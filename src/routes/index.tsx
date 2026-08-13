@@ -54,13 +54,6 @@ function Index() {
 
           <div className="relative flex h-full items-center justify-center text-center text-white px-4">
             <div className="max-w-2xl space-y-6">
-              <img src={logoAsset.url} alt="" className="mx-auto h-16 w-auto brightness-0 invert" />
-              <h2 className="text-5xl font-light tracking-[0.2em] uppercase md:text-7xl">
-                Elegância que impõe presença
-              </h2>
-              <p className="text-lg tracking-[0.1em] font-light">
-                VISTA SUA MELHOR VERSÃO. SEJA ÉVORA.
-              </p>
               <Button className="mt-8 bg-white px-10 py-6 text-black hover:bg-white/90 rounded-none tracking-widest uppercase">
                 Explorar Coleção
               </Button>
