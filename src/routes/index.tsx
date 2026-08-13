@@ -12,23 +12,8 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-[#fdfbf7] text-[#4a3f35]">
-      <header className="sticky top-0 z-50 w-full border-b border-[#e5e1da] bg-[#fdfbf7]/95 backdrop-blur supports-[backdrop-filter]:bg-[#fdfbf7]/60">
-        <div className="container mx-auto flex h-20 items-center justify-between px-4 lg:px-8">
-          <div className="flex items-center gap-2">
-            <img src={logoAsset.url} alt="Évora Logo" className="h-10 w-auto" />
-            <img src={logoTextAsset.url} alt="Évora" className="hidden h-6 w-auto md:block" />
-          </div>
-          <nav className="hidden items-center gap-8 md:flex">
-            <a href="#" className="text-sm font-medium tracking-widest uppercase hover:text-primary transition-colors">Início</a>
-            <a href="#" className="text-sm font-medium tracking-widest uppercase hover:text-primary transition-colors">Coleções</a>
-            <a href="#" className="text-sm font-medium tracking-widest uppercase hover:text-primary transition-colors">Sobre</a>
-          </nav>
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" className="text-sm font-medium tracking-widest uppercase">Carrinho (0)</Button>
-          </div>
-        </div>
-      </header>
+    <div className="pt-20">
+      <main>
 
       <main>
         {/* Hero Section */}
