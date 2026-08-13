@@ -30,30 +30,27 @@ import p8c from "@/assets/products/p8-c.jpg";
 import p8d from "@/assets/products/p8-d.jpg";
 
 // Novos imports específicos
-import noir1 from "@/assets/products/noir-1.jpg";
-import noir2 from "@/assets/products/noir-2.jpg";
-import noir3 from "@/assets/products/noir-3.jpg";
-import noir4 from "@/assets/products/noir-4.jpg";
 
-import marfim1 from "@/assets/products/marfim-1.jpg";
-import marfim2 from "@/assets/products/marfim-2.jpg";
-import marfim3 from "@/assets/products/marfim-3.jpg";
-import marfim4 from "@/assets/products/marfim-4.jpg";
 
-import lumiere1 from "@/assets/products/lumiere-1.jpg";
-import lumiere2 from "@/assets/products/lumiere-2.jpg";
-import lumiere3 from "@/assets/products/lumiere-3.jpg";
-import lumiere4 from "@/assets/products/lumiere-4.jpg";
+import alvorada1 from "@/assets/products/alvorada-v2-1.jpg";
+import alvorada2 from "@/assets/products/alvorada-v2-2.jpg";
+import alvorada3 from "@/assets/products/alvorada-v2-3.jpg";
+import alvorada4 from "@/assets/products/alvorada-v2-4.jpg";
 
-import alvorada1 from "@/assets/products/alvorada-1.jpg";
-import alvorada2 from "@/assets/products/alvorada-2.jpg";
-import alvorada3 from "@/assets/products/alvorada-3.jpg";
-import alvorada4 from "@/assets/products/alvorada-4.jpg";
+import auroraCafe1 from "@/assets/products/aurora-cafe-1.jpg";
+import auroraCafe2 from "@/assets/products/aurora-cafe-2.jpg";
+import auroraCafe3 from "@/assets/products/aurora-cafe-3.jpg";
+import auroraCafe4 from "@/assets/products/aurora-cafe-4.jpg";
 
-import nuvem1 from "@/assets/products/nuvem-1.jpg";
-import nuvem2 from "@/assets/products/nuvem-2.jpg";
-import nuvem3 from "@/assets/products/nuvem-3.jpg";
-import nuvem4 from "@/assets/products/nuvem-4.jpg";
+import monumentNoir1 from "@/assets/products/monument-noir-1.jpg";
+import monumentNoir2 from "@/assets/products/monument-noir-2.jpg";
+import monumentNoir3 from "@/assets/products/monument-noir-3.jpg";
+import monumentNoir4 from "@/assets/products/monument-noir-4.jpg";
+
+import saiaRose1 from "@/assets/products/saia-rose-1.jpg";
+import saiaRose2 from "@/assets/products/saia-rose-2.jpg";
+import saiaRose3 from "@/assets/products/saia-rose-3.jpg";
+import saiaRose4 from "@/assets/products/saia-rose-4.jpg";
 
 export interface Product {
   id: string;
@@ -110,58 +107,22 @@ export const products: Product[] = [
     reviews: [{ user: "Heloísa R.", comment: "Elegante sem esforço e o tecido não marca. Gostei muito.", rating: 5, image: p4b }],
   },
   {
-    id: "vestido-signature-duo",
-    name: "Vestido Évora Signature Duo",
-    price: 529,
-    description: "Vestido midi disponível em marfim e café, com mangas curtas estruturadas e recorte preciso na cintura. Feito para uma presença marcante.",
-    images: [ig4, p4b, p5b, p5c],
-    sizes,
-    reviews: [{ user: "Amanda C.", comment: "A modelagem valoriza muito o corpo e o acabamento é caprichado.", rating: 5, image: p5b }],
-  },
-  {
     id: "vestido-aurora-cafe",
     name: "Vestido Évora Aurora Café",
     price: 479,
     description: "Vestido midi em tom café, com cintura marcada e saia ampla. A tonalidade profunda atualiza uma silhueta clássica.",
-    images: [ig5, p5b, p5c, p5d],
+    images: [auroraCafe1, auroraCafe2, auroraCafe3, auroraCafe4],
     sizes,
-    reviews: [{ user: "Beatriz L.", comment: "A cor é sofisticada e o corte ficou certinho no corpo.", rating: 5, image: p5b }],
-  },
-  {
-    id: "colete-lumiere",
-    name: "Colete Évora Lumière",
-    price: 329,
-    description: "Colete de alfaiataria marfim com decote em V, cintura desenhada e botões dourados. Funciona sozinho ou em sobreposição.",
-    images: [lumiere1, lumiere2, lumiere3, lumiere4],
-    sizes,
-    reviews: [{ user: "Fernanda G.", comment: "Estrutura linda e botões muito bem acabados. Ficou perfeito com saia.", rating: 5, image: lumiere1 }],
-  },
-  {
-    id: "calca-fluida-nuvem",
-    name: "Calça Évora Nuvem",
-    price: 349,
-    description: "Calça pantalona marfim de cintura alta com amarração delicada. O tecido leve cria movimento e alonga a silhueta.",
-    images: [nuvem1, nuvem2, nuvem3, nuvem4],
-    sizes,
-    reviews: [{ user: "Patrícia A.", comment: "Confortável e muito elegante. O ajuste na cintura ajuda bastante.", rating: 5, image: nuvem1 }],
+    reviews: [{ user: "Beatriz L.", comment: "A cor é sofisticada e o corte ficou certinho no corpo.", rating: 5, image: auroraCafe1 }],
   },
   {
     id: "vestido-monument-noir",
     name: "Vestido Évora Monument Noir",
     price: 649,
     description: "Vestido longo de construção assimétrica em preto e marfim. O volume escultural no ombro transforma a peça em protagonista.",
-    images: [noir1, noir2, noir3, noir4],
+    images: [monumentNoir1, monumentNoir2, monumentNoir3, monumentNoir4],
     sizes,
-    reviews: [{ user: "Isabela N.", comment: "Diferente de tudo que eu tinha. A modelagem chama atenção na medida.", rating: 5, image: noir1 }],
-  },
-  {
-    id: "vestido-monument-marfim",
-    name: "Vestido Évora Monument Marfim",
-    price: 629,
-    description: "Vestido coluna marfim com pala assimétrica preta e recortes que definem a cintura. Uma leitura gráfica e contemporânea da elegância.",
-    images: [marfim1, marfim2, marfim3, marfim4],
-    sizes,
-    reviews: [{ user: "Larissa V.", comment: "Peça muito especial. A parte assimétrica fica linda nas fotos.", rating: 5, image: marfim1 }],
+    reviews: [{ user: "Isabela N.", comment: "Diferente de tudo que eu tinha. A modelagem chama atenção na medida.", rating: 5, image: monumentNoir1 }],
   },
   {
     id: "colete-alvorada",
@@ -186,26 +147,8 @@ export const products: Product[] = [
     name: "Saia Évora Rosé",
     price: 329,
     description: "Saia longa rosé com cintura alta e caimento fluido. A linha vertical alonga e garante movimento elegante ao caminhar.",
-    images: [p1d, ig0, p1b, p1c],
+    images: [saiaRose2, saiaRose1, saiaRose3, saiaRose4],
     sizes,
-    reviews: [{ user: "Natalia B.", comment: "Comprimento ótimo e tecido com peso bonito. Valeu a compra.", rating: 5, image: p1d }],
-  },
-  {
-    id: "calca-fluida-cafe",
-    name: "Calça Évora Café",
-    price: 349,
-    description: "Pantalona café de cintura alta com amarração frontal. Une conforto, textura leve e uma cor neutra de presença.",
-    images: [p7d, p7c, p7b, p7d],
-    sizes,
-    reviews: [{ user: "Paula D.", comment: "A cor café é linda e o tecido tem bastante movimento.", rating: 5, image: p7d }],
-  },
-  {
-    id: "saia-plisse-noir",
-    name: "Saia Évora Plissé Noir",
-    price: 359,
-    description: "Saia midi preta plissada, de cintura alta e volume controlado. Uma base versátil para combinar com alfaiataria ou peças acetinadas.",
-    images: [p8d, p8c, p8b, p8d],
-    sizes,
-    reviews: [{ user: "Sofia M.", comment: "O plissado é bem feito e ela não arma demais. Muito versátil.", rating: 5, image: p8d }],
+    reviews: [{ user: "Natalia B.", comment: "Comprimento ótimo e tecido com peso bonito. Valeu a compra.", rating: 5, image: saiaRose2 }],
   },
 ];
