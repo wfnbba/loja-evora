@@ -52,9 +52,9 @@ function Index() {
             />
           </div>
 
-          <div className="relative flex h-full items-center justify-center text-center text-white px-4">
+          <div className="relative flex h-full items-end justify-center px-4 pb-[33%] md:pb-[25%]">
             <div className="max-w-2xl space-y-6">
-              <Button className="mt-8 bg-white px-10 py-6 text-black hover:bg-white/90 rounded-none tracking-widest uppercase">
+              <Button className="bg-white px-10 py-6 text-black hover:bg-white/90 rounded-none tracking-widest uppercase transition-all duration-300">
                 Explorar Coleção
               </Button>
             </div>
