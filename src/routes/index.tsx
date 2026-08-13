@@ -1,6 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { products } from "@/lib/products-data";
 import logoAsset from "@/assets/logo.png.asset.json";
 import logoTextAsset from "@/assets/logo_text.png.asset.json";
 import heroMobileAsset from "@/assets/hero_mobile.png.asset.json";
@@ -11,24 +12,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-[#fdfbf7] text-[#4a3f35]">
-      <header className="sticky top-0 z-50 w-full border-b border-[#e5e1da] bg-[#fdfbf7]/95 backdrop-blur supports-[backdrop-filter]:bg-[#fdfbf7]/60">
-        <div className="container mx-auto flex h-20 items-center justify-between px-4 lg:px-8">
-          <div className="flex items-center gap-2">
-            <img src={logoAsset.url} alt="Évora Logo" className="h-10 w-auto" />
-            <img src={logoTextAsset.url} alt="Évora" className="hidden h-6 w-auto md:block" />
-          </div>
-          <nav className="hidden items-center gap-8 md:flex">
-            <a href="#" className="text-sm font-medium tracking-widest uppercase hover:text-primary transition-colors">Início</a>
-            <a href="#" className="text-sm font-medium tracking-widest uppercase hover:text-primary transition-colors">Coleções</a>
-            <a href="#" className="text-sm font-medium tracking-widest uppercase hover:text-primary transition-colors">Sobre</a>
-          </nav>
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" className="text-sm font-medium tracking-widest uppercase">Carrinho (0)</Button>
-          </div>
-        </div>
-      </header>
-
+    <div className="pt-20">
       <main>
         {/* Hero Section */}
         <section className="relative h-[80vh] w-full overflow-hidden">
@@ -64,37 +48,37 @@ function Index() {
         <section className="container mx-auto px-4 py-20 lg:px-8">
           <h3 className="mb-12 text-center text-3xl font-light tracking-[0.2em] uppercase">Produtos em Destaque</h3>
           <div className="grid grid-cols-1 gap-10 md:grid-cols-3 lg:grid-cols-4">
-            {[1, 2, 3, 4].map((i) => (
-              <Card key={i} className="border-none bg-transparent shadow-none group cursor-pointer">
-                <CardContent className="p-0">
-                  <div className="relative mb-6 aspect-[3/4] overflow-hidden bg-[#f5f2ed]">
-                    <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105 bg-muted" />
-                  </div>
-                  <div className="space-y-1 text-center">
-                    <h4 className="text-sm font-medium tracking-widest uppercase">Vestido Atemporal {i}</h4>
-                    <p className="text-sm font-light text-[#8a7d6e]">R$ 489,00</p>
-                  </div>
-                </CardContent>
-              </Card>
+            {products.slice(0, 8).map((product) => (
+              <Link 
+                key={product.id} 
+                to="/produtos/$productId" 
+                params={{ productId: product.id }}
+                className="group"
+              >
+                <Card className="border-none bg-transparent shadow-none cursor-pointer">
+                  <CardContent className="p-0">
+                    <div className="relative mb-6 aspect-[3/4] overflow-hidden bg-[#f5f2ed]">
+                      <img 
+                        src={product.images[0]} 
+                        alt={product.name}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="space-y-1 text-center">
+                      <h4 className="text-sm font-medium tracking-widest uppercase">{product.name}</h4>
+                      <p className="text-sm font-light text-[#8a7d6e]">
+                        R$ {product.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </section>
       </main>
-
-      <footer className="border-t border-[#e5e1da] bg-[#fdfbf7] py-16">
-        <div className="container mx-auto px-4 text-center lg:px-8">
-          <img src={logoAsset.url} alt="Évora Logo" className="mx-auto mb-8 h-8 w-auto opacity-50" />
-          <nav className="mb-8 flex justify-center gap-8">
-            <a href="#" className="text-xs font-medium tracking-widest uppercase hover:text-primary transition-colors">Termos</a>
-            <a href="#" className="text-xs font-medium tracking-widest uppercase hover:text-primary transition-colors">Privacidade</a>
-            <a href="#" className="text-xs font-medium tracking-widest uppercase hover:text-primary transition-colors">Instagram</a>
-          </nav>
-          <p className="text-xs tracking-widest font-light text-[#8a7d6e]">
-            © 2026 ÉVORA. TODOS OS DIREITOS RESERVADOS.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
+
 
