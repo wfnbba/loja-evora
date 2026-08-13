@@ -14,8 +14,6 @@ function Index() {
   return (
     <div className="pt-20">
       <main>
-
-      <main>
         {/* Hero Section */}
         <section className="relative h-[80vh] w-full overflow-hidden">
           {/* Desktop Hero - Imagem baseada na original mas ajustada para wide */}
