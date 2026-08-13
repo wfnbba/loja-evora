@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import logoAsset from "@/assets/logo.png.asset.json";
+import logoTextAsset from "@/assets/logo_text.png.asset.json";
+import heroMobileAsset from "@/assets/hero_mobile.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -8,35 +11,76 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <h1 className="text-2xl font-bold tracking-tight">Évora</h1>
-          <nav className="flex items-center gap-6">
-            <a href="#" className="text-sm font-medium hover:text-primary">Início</a>
-            <a href="#" className="text-sm font-medium hover:text-primary">Coleções</a>
-            <a href="#" className="text-sm font-medium hover:text-primary">Contato</a>
+    <div className="min-h-screen bg-[#fdfbf7] text-[#4a3f35]">
+      <header className="sticky top-0 z-50 w-full border-b border-[#e5e1da] bg-[#fdfbf7]/95 backdrop-blur supports-[backdrop-filter]:bg-[#fdfbf7]/60">
+        <div className="container mx-auto flex h-20 items-center justify-between px-4 lg:px-8">
+          <div className="flex items-center gap-2">
+            <img src={logoAsset.url} alt="Évora Logo" className="h-10 w-auto" />
+            <img src={logoTextAsset.url} alt="Évora" className="hidden h-6 w-auto md:block" />
+          </div>
+          <nav className="hidden items-center gap-8 md:flex">
+            <a href="#" className="text-sm font-medium tracking-widest uppercase hover:text-primary transition-colors">Início</a>
+            <a href="#" className="text-sm font-medium tracking-widest uppercase hover:text-primary transition-colors">Coleções</a>
+            <a href="#" className="text-sm font-medium tracking-widest uppercase hover:text-primary transition-colors">Sobre</a>
           </nav>
-          <Button variant="ghost">Carrinho (0)</Button>
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" className="text-sm font-medium tracking-widest uppercase">Carrinho (0)</Button>
+          </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
-        <section className="mb-12 rounded-2xl bg-secondary p-12 text-center">
-          <h2 className="text-4xl font-bold">Nova Coleção</h2>
-          <p className="mt-4 text-muted-foreground">Descubra a elegância da Évora.</p>
+      <main>
+        {/* Hero Section */}
+        <section className="relative h-[80vh] w-full overflow-hidden">
+          {/* Desktop Hero - Imagem baseada na original mas ajustada para wide */}
+          <div 
+            className="absolute inset-0 hidden bg-cover bg-center md:block"
+            style={{ 
+              backgroundImage: `url(${heroMobileAsset.url})`,
+              backgroundPosition: '50% 20%'
+            }}
+          >
+            <div className="absolute inset-0 bg-black/10" />
+          </div>
+          
+          {/* Mobile Hero - Imagem original */}
+          <div className="absolute inset-0 md:hidden">
+            <img 
+              src={heroMobileAsset.url} 
+              alt="Évora Coleção" 
+              className="h-full w-full object-cover"
+            />
+          </div>
+
+          <div className="relative flex h-full items-center justify-center text-center text-white px-4">
+            <div className="max-w-2xl space-y-6">
+              <img src={logoAsset.url} alt="" className="mx-auto h-16 w-auto brightness-0 invert" />
+              <h2 className="text-5xl font-light tracking-[0.2em] uppercase md:text-7xl">
+                Elegância que impõe presença
+              </h2>
+              <p className="text-lg tracking-[0.1em] font-light">
+                VISTA SUA MELHOR VERSÃO. SEJA ÉVORA.
+              </p>
+              <Button className="mt-8 bg-white px-10 py-6 text-black hover:bg-white/90 rounded-none tracking-widest uppercase">
+                Explorar Coleção
+              </Button>
+            </div>
+          </div>
         </section>
 
-        <section>
-          <h3 className="mb-6 text-2xl font-bold">Produtos em Destaque</h3>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4">
+        <section className="container mx-auto px-4 py-20 lg:px-8">
+          <h3 className="mb-12 text-center text-3xl font-light tracking-[0.2em] uppercase">Produtos em Destaque</h3>
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-3 lg:grid-cols-4">
             {[1, 2, 3, 4].map((i) => (
-              <Card key={i}>
-                <CardContent className="p-4">
-                  <div className="mb-4 aspect-square rounded-lg bg-muted" />
-                  <h4 className="font-semibold">Produto {i}</h4>
-                  <p className="text-sm text-muted-foreground">R$ 199,90</p>
-                  <Button className="mt-4 w-full">Ver Detalhes</Button>
+              <Card key={i} className="border-none bg-transparent shadow-none group cursor-pointer">
+                <CardContent className="p-0">
+                  <div className="relative mb-6 aspect-[3/4] overflow-hidden bg-[#f5f2ed]">
+                    <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105 bg-muted" />
+                  </div>
+                  <div className="space-y-1 text-center">
+                    <h4 className="text-sm font-medium tracking-widest uppercase">Vestido Atemporal {i}</h4>
+                    <p className="text-sm font-light text-[#8a7d6e]">R$ 489,00</p>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -44,9 +88,20 @@ function Index() {
         </section>
       </main>
 
-      <footer className="border-t py-8 text-center text-sm text-muted-foreground">
-        © 2026 Évora. Todos os direitos reservados.
+      <footer className="border-t border-[#e5e1da] bg-[#fdfbf7] py-16">
+        <div className="container mx-auto px-4 text-center lg:px-8">
+          <img src={logoAsset.url} alt="Évora Logo" className="mx-auto mb-8 h-8 w-auto opacity-50" />
+          <nav className="mb-8 flex justify-center gap-8">
+            <a href="#" className="text-xs font-medium tracking-widest uppercase hover:text-primary transition-colors">Termos</a>
+            <a href="#" className="text-xs font-medium tracking-widest uppercase hover:text-primary transition-colors">Privacidade</a>
+            <a href="#" className="text-xs font-medium tracking-widest uppercase hover:text-primary transition-colors">Instagram</a>
+          </nav>
+          <p className="text-xs tracking-widest font-light text-[#8a7d6e]">
+            © 2026 ÉVORA. TODOS OS DIREITOS RESERVADOS.
+          </p>
+        </div>
       </footer>
     </div>
   );
 }
+
