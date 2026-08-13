@@ -1,6 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { products } from "@/lib/products-data";
 import logoAsset from "@/assets/logo.png.asset.json";
 import logoTextAsset from "@/assets/logo_text.png.asset.json";
 import heroMobileAsset from "@/assets/hero_mobile.png.asset.json";
@@ -64,18 +65,31 @@ function Index() {
         <section className="container mx-auto px-4 py-20 lg:px-8">
           <h3 className="mb-12 text-center text-3xl font-light tracking-[0.2em] uppercase">Produtos em Destaque</h3>
           <div className="grid grid-cols-1 gap-10 md:grid-cols-3 lg:grid-cols-4">
-            {[1, 2, 3, 4].map((i) => (
-              <Card key={i} className="border-none bg-transparent shadow-none group cursor-pointer">
-                <CardContent className="p-0">
-                  <div className="relative mb-6 aspect-[3/4] overflow-hidden bg-[#f5f2ed]">
-                    <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105 bg-muted" />
-                  </div>
-                  <div className="space-y-1 text-center">
-                    <h4 className="text-sm font-medium tracking-widest uppercase">Vestido Atemporal {i}</h4>
-                    <p className="text-sm font-light text-[#8a7d6e]">R$ 489,00</p>
-                  </div>
-                </CardContent>
-              </Card>
+            {products.slice(0, 8).map((product) => (
+              <Link 
+                key={product.id} 
+                to="/produtos/$productId" 
+                params={{ productId: product.id }}
+                className="group"
+              >
+                <Card className="border-none bg-transparent shadow-none cursor-pointer">
+                  <CardContent className="p-0">
+                    <div className="relative mb-6 aspect-[3/4] overflow-hidden bg-[#f5f2ed]">
+                      <img 
+                        src={product.images[0]} 
+                        alt={product.name}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="space-y-1 text-center">
+                      <h4 className="text-sm font-medium tracking-widest uppercase">{product.name}</h4>
+                      <p className="text-sm font-light text-[#8a7d6e]">
+                        R$ {product.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </section>
