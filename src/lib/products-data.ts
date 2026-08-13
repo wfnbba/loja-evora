@@ -1,3 +1,38 @@
+import ig0 from "@/assets/products/ig-0.jpg";
+import ig1 from "@/assets/products/ig-1.jpg";
+import ig2 from "@/assets/products/ig-2.jpg";
+import ig3 from "@/assets/products/ig-3.jpg";
+import ig4 from "@/assets/products/ig-4.jpg";
+import ig5 from "@/assets/products/ig-5.jpg";
+import ig6 from "@/assets/products/ig-6.jpg";
+import ig7 from "@/assets/products/ig-7.jpg";
+import ig8 from "@/assets/products/ig-8.jpg";
+import ig9 from "@/assets/products/ig-9.jpg";
+import ig10 from "@/assets/products/ig-10.jpg";
+import p1b from "@/assets/products/p1-b.jpg";
+import p1c from "@/assets/products/p1-c.jpg";
+import p1d from "@/assets/products/p1-d.jpg";
+import p2b from "@/assets/products/p2-b.jpg";
+import p2c from "@/assets/products/p2-c.jpg";
+import p2d from "@/assets/products/p2-d.jpg";
+import p3b from "@/assets/products/p3-b.jpg";
+import p3c from "@/assets/products/p3-c.jpg";
+import p3d from "@/assets/products/p3-d.jpg";
+import p4b from "@/assets/products/p4-b.jpg";
+import p4c from "@/assets/products/p4-c.jpg";
+import p4d from "@/assets/products/p4-d.jpg";
+import p5b from "@/assets/products/p5-b.jpg";
+import p5c from "@/assets/products/p5-c.jpg";
+import p5d from "@/assets/products/p5-d.jpg";
+import p6b from "@/assets/products/p6-b.jpg";
+import p6c from "@/assets/products/p6-c.jpg";
+import p6d from "@/assets/products/p6-d.jpg";
+import p7b from "@/assets/products/p7-b.jpg";
+import p7c from "@/assets/products/p7-c.jpg";
+import p7d from "@/assets/products/p7-d.jpg";
+import p8b from "@/assets/products/p8-b.jpg";
+import p8c from "@/assets/products/p8-c.jpg";
+import p8d from "@/assets/products/p8-d.jpg";
 
 export interface Product {
   id: string;
@@ -14,119 +49,142 @@ export interface Product {
   }[];
 }
 
+const sizes = ["P", "M", "G", "GG"];
+
 export const products: Product[] = [
   {
-    id: "1",
-    name: "Vestido Évora Atemporal",
-    price: 489.00,
-    description: "Um clássico da coleção Évora, unindo elegância e sofisticação em cada detalhe. Confeccionado em tecido premium com caimento impecável.",
-    images: [
-      "https://scontent-bru2-1.cdninstagram.com/v/t51.82787-15/766662212_17950938909234828_3169058943588389230_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=111&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=TaCNs90wOtQQ7kNvwFC3WeZ&_nc_oc=Adopy0T-5POZQpRz9raQzjToAG9ZGR8ZsRGZY2Y4fwO56N9mDUFfzAvvSn--WjnRU3LvG-HH100BvvZMQK6x8UZI&_nc_zt=23&_nc_ht=scontent-bru2-1.cdninstagram.com&_nc_gid=Gbobsxo1j_qW7qYMnnOqxg&_nc_ss=7960f&oh=00_AQFhACjnZG1CU1JeNDD32QNrHGb11H9RtgCe3SnM5rHhtA&oe=6A8373F7",
-      "https://scontent-bru2-1.cdninstagram.com/v/t51.82787-15/767640649_17950937553234828_1584403068769699203_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=mLkMUIUmV_AQ7kNvwGaIy8I&_nc_oc=AdqrQXTqpBuD4luYTm3lsxWa_6TEoORmuyr068of9DGV5ltL8fnzSMwIrFM93CzvYhizw5x1OFvGRGkXAyuWbfC5&_nc_zt=23&_nc_ht=scontent-bru2-1.cdninstagram.com&_nc_gid=Gbobsxo1j_qW7qYMnnOqxg&_nc_ss=7960f&oh=00_AQEQ3-q_o2iUDfdNTaz874JNVmRbgfosdVv6fnrl44hr7A&oe=6A837D4A"
-    ],
-    sizes: ["P", "M", "G", "GG"],
-    reviews: [
-      { user: "Mariana S.", comment: "Simplesmente maravilhoso! O caimento é perfeito.", rating: 5 },
-      { user: "Clara M.", comment: "Tecido de muita qualidade, superou minhas expectativas.", rating: 5 }
-    ]
+    id: "conjunto-rose",
+    name: "Conjunto Évora Rosé",
+    price: 489,
+    description: "Conjunto de alfaiataria em tom rosé composto por colete acinturado e saia longa fluida. Uma produção delicada, elegante e versátil para ocasiões especiais.",
+    images: [ig0, p1b, p1c, p1d],
+    sizes,
+    reviews: [{ user: "Mariana S.", comment: "O conjunto veste muito bem e a cor é linda pessoalmente.", rating: 5, image: p1b }],
   },
   {
-    id: "2",
-    name: "Vestido Évora Noir",
-    price: 529.00,
-    description: "Para momentos que exigem presença. O vestido Noir é a definição de elegância moderna.",
-    images: [
-      "https://scontent-bru2-1.cdninstagram.com/v/t51.82787-15/767300783_17950936956234828_3047966980393859808_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=105&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=SAmXbftP29EQ7kNvwEVt3c3&_nc_oc=Adq8dxR1WD69ap2MgcVaSqGU6lpVlFIJhsZE0p05CfyH8kPmjqB3HbPBYUIQDOVo45r9VeN-PJp5NSgILmqwQ3UV&_nc_zt=23&_nc_ht=scontent-bru2-1.cdninstagram.com&_nc_gid=Gbobsxo1j_qW7qYMnnOqxg&_nc_ss=7960f&oh=00_AQEYGMTZnF3Z60JwZuvzm0r53VY0R3AtAn2i262jERv0HQ&oe=6A836DE8",
-      "https://scontent-bru2-1.cdninstagram.com/v/t51.82787-15/763692380_17950571232234828_743778118792386107_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=108&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=VMTL42KQwy0Q7kNvwFcM8zX&_nc_oc=AdqPKsS-C4f2qfzfa01e1ByxBQJ8VZiso4bkzkqJPXwlZvImYR6JHVH1CxEdO4CWFA92vEsXTc_rTZhqoVyhltoG&_nc_zt=23&_nc_ht=scontent-bru2-1.cdninstagram.com&_nc_gid=Gbobsxo1j_qW7qYMnnOqxg&_nc_ss=7960f&oh=00_AQEW0Ve0OengfX-GseXlIpNNeREeIyUQ-3KZa3rVbFRjIw&oe=6A838869"
-    ],
-    sizes: ["P", "M", "G"],
-    reviews: [
-      { user: "Beatriz L.", comment: "Fiquei encantada com os detalhes. Entrega rápida!", rating: 5 }
-    ]
+    id: "camisa-laco-orquidea",
+    name: "Camisa Évora Orquídea",
+    price: 289,
+    description: "Camisa acetinada com mangas longas e laço amplo na gola. O brilho suave e o acabamento dos punhos deixam a peça feminina sem perder a sofisticação.",
+    images: [ig1, p2b, p2c, p2d],
+    sizes,
+    reviews: [{ user: "Clara M.", comment: "A camisa é ainda mais bonita ao vivo. O laço fica perfeito.", rating: 5, image: p2b }],
   },
   {
-    id: "3",
-    name: "Vestido Évora Garden",
-    price: 459.00,
-    description: "Leveza e frescor em uma peça pensada para a mulher contemporânea.",
-    images: [
-      "https://scontent-bru2-1.cdninstagram.com/v/t51.82787-15/765351376_17950570815234828_4832261516069488329_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=107&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=IIdfrXl5GZwQ7kNvwE8z4q5&_nc_oc=Adr7qjrAZGhL_IME-aPty6GYrszrE2JKZwgBYiCXYFYUm5EpVpW9U4JFV2qPjtth21rl-3lAXktnRBX83Kb88AVt&_nc_zt=23&_nc_ht=scontent-bru2-1.cdninstagram.com&_nc_gid=Gbobsxo1j_qW7qYMnnOqxg&_nc_ss=7960f&oh=00_AQGFaTwP_w3_QKmlieRNuHa6fF_Y6B568rOo6HlsUoIKww&oe=6A837144"
-    ],
-    sizes: ["P", "M", "G", "GG"],
-    reviews: [
-      { user: "Juliana F.", comment: "Amei o modelo! Veste super bem.", rating: 4 }
-    ]
+    id: "vestido-aurora-rose",
+    name: "Vestido Évora Aurora Rosé",
+    price: 459,
+    description: "Vestido midi rosé com decote fechado, cintura marcada e saia evasê. Um clássico leve que acompanha do almoço ao evento noturno.",
+    images: [ig2, p3b, p3c, p3d],
+    sizes,
+    reviews: [{ user: "Juliana F.", comment: "Caimento impecável e comprimento elegante. Usei e recebi muitos elogios.", rating: 5, image: p3b }],
   },
   {
-    id: "4",
-    name: "Vestido Évora Minimal",
-    price: 399.00,
-    description: "Menos é mais. O corte minimalista valoriza a silhueta com extrema sofisticação.",
-    images: [
-      "https://scontent-bru2-1.cdninstagram.com/v/t51.82787-15/766007924_17950570662234828_2789359552823189651_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=103&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=JithFittr2UQ7kNvwEwEk6y&_nc_oc=AdqS5lNuW_GQyJgBqbHeGyrvGI5JurQ7K_gSCtPnQdVY1K-iyEjzYg1mJnqN6y3QqeO5QFtrJNsmyLnWV6d_JBu3&_nc_zt=23&_nc_ht=scontent-bru2-1.cdninstagram.com&_nc_gid=Gbobsxo1j_qW7qYMnnOqxg&_nc_ss=7960f&oh=00_AQE2cBMhT-zYQ3fBBA4nGyNC2-hO_R8tVXANDNa-fyUMtg&oe=6A8388F4"
-    ],
-    sizes: ["P", "M", "G"],
-    reviews: [
-      { user: "Heloísa R.", comment: "Perfeito para o dia a dia elegante.", rating: 5 }
-    ]
+    id: "vestido-aurora-marfim",
+    name: "Vestido Évora Aurora Marfim",
+    price: 459,
+    description: "A versão marfim do vestido Aurora traz linhas limpas, cintura definida e movimento suave. Atemporal e fácil de combinar.",
+    images: [ig3, p4b, p4c, p4d],
+    sizes,
+    reviews: [{ user: "Heloísa R.", comment: "Elegante sem esforço e o tecido não marca. Gostei muito.", rating: 5, image: p4b }],
   },
   {
-    id: "5",
-    name: "Vestido Évora Silk",
-    price: 599.00,
-    description: "O toque do seda em uma modelagem que exala luxo.",
-    images: [
-      "https://scontent-bru2-1.cdninstagram.com/v/t51.82787-15/673891804_17934164703234828_8968355217588724437_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=108&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=UD4x-Wqek1MQ7kNvwEYA_ni&_nc_oc=AdoodllTTADv4rKwKX3AHFRKJOkVGFdatx7tYqdOqgYo9sADQQhbaccOtQGrCte1NT23guP7W-6dGQHZVEkqzJR8&_nc_zt=23&_nc_ht=scontent-bru2-1.cdninstagram.com&_nc_gid=Gbobsxo1j_qW7qYMnnOqxg&_nc_ss=7960f&oh=00_AQEIUVx4Uma-O2IM3huj3n_PjAasBTudE8BTVmLfXtpbNA&oe=6A83620B"
-    ],
-    sizes: ["M", "G"],
-    reviews: []
+    id: "vestido-signature-duo",
+    name: "Vestido Évora Signature Duo",
+    price: 529,
+    description: "Vestido midi disponível em marfim e café, com mangas curtas estruturadas e recorte preciso na cintura. Feito para uma presença marcante.",
+    images: [ig4, p4b, p5b, p5c],
+    sizes,
+    reviews: [{ user: "Amanda C.", comment: "A modelagem valoriza muito o corpo e o acabamento é caprichado.", rating: 5, image: p5b }],
   },
   {
-    id: "6",
-    name: "Vestido Évora Azure",
-    price: 479.00,
-    description: "Um tom vibrante para iluminar sua presença em qualquer evento.",
-    images: [
-      "https://scontent-bru2-1.cdninstagram.com/v/t51.82787-15/673110192_17934164505234828_5241330742907289999_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=110&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=xWkvC4Y_TgwQ7kNvwFkpHZl&_nc_oc=Adp2dUZu1bdbkghlfkWK79fg8mK3LlD7MPTb4KYUa0xtTILmwCLPnDro4bo8h-Y87rwB8dtMmHDlYXINDBbQW-31&_nc_zt=23&_nc_ht=scontent-bru2-1.cdninstagram.com&_nc_gid=Gbobsxo1j_qW7qYMnnOqxg&_nc_ss=7960f&oh=00_AQHYQqLD2gnHlRvVuXkmEmiJeH2W7oJpYBDs5_pdKMaSaA&oe=6A83704F"
-    ],
-    sizes: ["P", "M"],
-    reviews: [
-      { user: "Fernanda G.", comment: "A cor é ainda mais linda pessoalmente!", rating: 5 }
-    ]
+    id: "vestido-aurora-cafe",
+    name: "Vestido Évora Aurora Café",
+    price: 479,
+    description: "Vestido midi em tom café, com cintura marcada e saia ampla. A tonalidade profunda atualiza uma silhueta clássica.",
+    images: [ig5, p5b, p5c, p5d],
+    sizes,
+    reviews: [{ user: "Beatriz L.", comment: "A cor é sofisticada e o corte ficou certinho no corpo.", rating: 5, image: p5b }],
   },
   {
-    id: "7",
-    name: "Vestido Évora Sunset",
-    price: 429.00,
-    description: "Ideal para fins de tarde sofisticados. Fluidez e conforto.",
-    images: [
-      "https://scontent-bru2-1.cdninstagram.com/v/t51.82787-15/764952792_17950567458234828_535134773863926064_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=110&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=8opnLO42YmkQ7kNvwF3hzSj&_nc_oc=AdqR3NggQzf0FYX3DoGzcDjGuO27wvfvU2N5sBGA87lhDa2mJLUD6aBiWJeTWEfPkI7si5jKBgl8Abtf_R8QMQEM&_nc_zt=23&_nc_ht=scontent-bru2-1.cdninstagram.com&_nc_gid=Gbobsxo1j_qW7qYMnnOqxg&_nc_ss=7960f&oh=00_AQHMhjGZOPCs-SMb5Uykhhd841RVgq8s07C8c3joekKHzg&oe=6A83658F"
-    ],
-    sizes: ["P", "M", "G", "GG"],
-    reviews: []
+    id: "colete-lumiere",
+    name: "Colete Évora Lumière",
+    price: 329,
+    description: "Colete de alfaiataria marfim com decote em V, cintura desenhada e botões dourados. Funciona sozinho ou em sobreposição.",
+    images: [ig6, p6b, p6c, p6d],
+    sizes,
+    reviews: [{ user: "Fernanda G.", comment: "Estrutura linda e botões muito bem acabados. Ficou perfeito com saia.", rating: 5, image: p6b }],
   },
   {
-    id: "8",
-    name: "Vestido Évora Classique",
-    price: 519.00,
-    description: "Atemporalidade e classe definem esta peça essencial no closet.",
-    images: [
-      "https://scontent-bru2-1.cdninstagram.com/v/t51.82787-15/764475985_17950566807234828_513055164744047950_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=108&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=4KbzgwoedaMQ7kNvwFrvfN7&_nc_oc=AdqXzDR-Z8UB02oyCfH9PEmEoxj3JYlQXMWCJjuW3EFD5DRCzp7HqijYGivZaOQLAVRy424oPSbvFb_kCHx-yUtY&_nc_zt=23&_nc_ht=scontent-bru2-1.cdninstagram.com&_nc_gid=Gbobsxo1j_qW7qYMnnOqxg&_nc_ss=7960f&oh=00_AQFvQ6M6UupL5cTiggxpTF192gyR3-jWb-14lU-yUynsAA&oe=6A838DE5"
-    ],
-    sizes: ["G", "GG"],
-    reviews: [
-      { user: "Amanda C.", comment: "Corte impecável.", rating: 5 }
-    ]
+    id: "calca-fluida-nuvem",
+    name: "Calça Évora Nuvem",
+    price: 349,
+    description: "Calça pantalona marfim de cintura alta com amarração delicada. O tecido leve cria movimento e alonga a silhueta.",
+    images: [ig7, p7b, p7c, p7d],
+    sizes,
+    reviews: [{ user: "Patrícia A.", comment: "Confortável e muito elegante. O ajuste na cintura ajuda bastante.", rating: 5, image: p7b }],
   },
   {
-    id: "9",
-    name: "Vestido Évora Royale",
-    price: 649.00,
-    description: "Digno de realeza. Acabamento manual e tecidos nobres.",
-    images: [
-      "https://scontent-bru2-1.cdninstagram.com/v/t51.82787-15/767560232_17950566207234828_6362718011266231642_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=U-QIAdgrjuoQ7kNvwFzErd9&_nc_oc=AdoAoGAQ5t2jM19xuwryPvX1Y_8bhoYbmv_O-kviMYPpWPObplE5L-PFg5hA0-64tCncsArxLfXK2LuJo2r12QyA&_nc_zt=23&_nc_ht=scontent-bru2-1.cdninstagram.com&_nc_gid=Gbobsxo1j_qW7qYMnnOqxg&_nc_ss=7960f&oh=00_AQHZuCbx9Fp6-UPg0DjK4h8ZvKnqzryyJRPxydwwYLlQzg&oe=6A83635A"
-    ],
-    sizes: ["M", "G"],
-    reviews: []
-  }
+    id: "vestido-monument-noir",
+    name: "Vestido Évora Monument Noir",
+    price: 649,
+    description: "Vestido longo de construção assimétrica em preto e marfim. O volume escultural no ombro transforma a peça em protagonista.",
+    images: [ig8, p8b, p8c, p8d],
+    sizes,
+    reviews: [{ user: "Isabela N.", comment: "Diferente de tudo que eu tinha. A modelagem chama atenção na medida.", rating: 5, image: p8b }],
+  },
+  {
+    id: "vestido-monument-marfim",
+    name: "Vestido Évora Monument Marfim",
+    price: 629,
+    description: "Vestido coluna marfim com pala assimétrica preta e recortes que definem a cintura. Uma leitura gráfica e contemporânea da elegância.",
+    images: [ig9, p8c, p8b, ig8],
+    sizes,
+    reviews: [{ user: "Larissa V.", comment: "Peça muito especial. A parte assimétrica fica linda nas fotos.", rating: 5, image: ig8 }],
+  },
+  {
+    id: "colete-alvorada",
+    name: "Colete Évora Alvorada",
+    price: 319,
+    description: "Colete marfim com fechamento frontal deslocado e barra levemente assimétrica. Alfaiataria moderna para composições claras ou contrastantes.",
+    images: [ig10, p6d, p6c, p6b],
+    sizes,
+    reviews: [{ user: "Renata P.", comment: "O recorte é muito bonito e deixa qualquer look mais arrumado.", rating: 5, image: ig10 }],
+  },
+  {
+    id: "colete-rose",
+    name: "Colete Évora Rosé",
+    price: 299,
+    description: "Colete rosé acinturado com fechamento frontal delicado. Pode ser usado com a saia coordenada ou separado em produções urbanas.",
+    images: [ig0, p1c, p1d, p1b],
+    sizes,
+    reviews: [{ user: "Camila T.", comment: "Comprei para usar separado e combinou com várias peças que já tinha.", rating: 4, image: p1c }],
+  },
+  {
+    id: "saia-rose",
+    name: "Saia Évora Rosé",
+    price: 329,
+    description: "Saia longa rosé com cintura alta e caimento fluido. A linha vertical alonga e garante movimento elegante ao caminhar.",
+    images: [p1d, ig0, p1b, p1c],
+    sizes,
+    reviews: [{ user: "Natalia B.", comment: "Comprimento ótimo e tecido com peso bonito. Valeu a compra.", rating: 5, image: p1d }],
+  },
+  {
+    id: "calca-fluida-cafe",
+    name: "Calça Évora Café",
+    price: 349,
+    description: "Pantalona café de cintura alta com amarração frontal. Une conforto, textura leve e uma cor neutra de presença.",
+    images: [p7d, ig7, p7c, p7b],
+    sizes,
+    reviews: [{ user: "Paula D.", comment: "A cor café é linda e o tecido tem bastante movimento.", rating: 5, image: p7d }],
+  },
+  {
+    id: "saia-plisse-noir",
+    name: "Saia Évora Plissé Noir",
+    price: 359,
+    description: "Saia midi preta plissada, de cintura alta e volume controlado. Uma base versátil para combinar com alfaiataria ou peças acetinadas.",
+    images: [ig10, p7d, p6b, ig8],
+    sizes,
+    reviews: [{ user: "Sofia M.", comment: "O plissado é bem feito e ela não arma demais. Muito versátil.", rating: 5, image: ig10 }],
+  },
 ];

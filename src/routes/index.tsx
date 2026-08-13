@@ -2,11 +2,19 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { products } from "@/lib/products-data";
-import logoAsset from "@/assets/logo.png.asset.json";
-import logoTextAsset from "@/assets/logo_text.png.asset.json";
 import heroMobileAsset from "@/assets/hero_mobile.png.asset.json";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Évora | Moda feminina elegante" },
+      { name: "description", content: "Conheça a coleção Évora: alfaiataria, vestidos e peças femininas que unem elegância, presença e acabamento impecável." },
+      { property: "og:title", content: "Évora | Moda feminina elegante" },
+      { property: "og:description", content: "Descubra vestidos, alfaiataria e peças femininas da coleção Évora." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
@@ -14,61 +22,43 @@ function Index() {
   return (
     <div className="pt-20">
       <main>
-        {/* Hero Section */}
         <section className="relative h-[80vh] w-full overflow-hidden">
-          {/* Desktop Hero - Imagem baseada na original mas ajustada para wide */}
-          <div 
+          <div
             className="absolute inset-0 hidden bg-cover bg-center md:block"
-            style={{ 
-              backgroundImage: `url(${heroMobileAsset.url})`,
-              backgroundPosition: '50% 20%'
-            }}
+            style={{ backgroundImage: `url(${heroMobileAsset.url})`, backgroundPosition: "50% 20%" }}
           >
-            <div className="absolute inset-0 bg-black/10" />
+            <div className="absolute inset-0 bg-foreground/10" />
           </div>
-          
-          {/* Mobile Hero - Imagem original */}
           <div className="absolute inset-0 md:hidden">
-            <img 
-              src={heroMobileAsset.url} 
-              alt="Évora Coleção" 
-              className="h-full w-full object-cover"
-            />
+            <img src={heroMobileAsset.url} alt="Coleção Évora" className="h-full w-full object-cover" width={1080} height={1350} />
           </div>
-
           <div className="relative flex h-full items-end justify-center px-4 pb-[33%] md:pb-[25%]">
-            <div className="max-w-2xl space-y-6">
-              <Button className="bg-white px-10 py-6 text-black hover:bg-white/90 rounded-none tracking-widest uppercase transition-all duration-300">
-                Explorar Coleção
-              </Button>
-            </div>
+            <Button asChild className="rounded-none bg-background px-10 py-6 text-foreground uppercase tracking-widest transition-all duration-300 hover:bg-background/90">
+              <a href="#colecao">Explorar Coleção</a>
+            </Button>
           </div>
         </section>
 
-        <section className="container mx-auto px-4 py-20 lg:px-8">
-          <h3 className="mb-12 text-center text-3xl font-light tracking-[0.2em] uppercase">Produtos em Destaque</h3>
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-3 lg:grid-cols-4">
-            {products.slice(0, 8).map((product) => (
-              <Link 
-                key={product.id} 
-                to="/produtos/$productId" 
-                params={{ productId: product.id }}
-                className="group"
-              >
-                <Card className="border-none bg-transparent shadow-none cursor-pointer">
+        <section id="colecao" className="container mx-auto scroll-mt-24 px-4 py-20 lg:px-8">
+          <h1 className="mb-12 text-center text-3xl font-light uppercase tracking-[0.2em]">Coleção Évora</h1>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-8 lg:grid-cols-4">
+            {products.map((product) => (
+              <Link key={product.id} to="/produtos/$productId" params={{ productId: product.id }} className="group">
+                <Card className="cursor-pointer border-none bg-transparent shadow-none">
                   <CardContent className="p-0">
-                    <div className="relative mb-6 aspect-[3/4] overflow-hidden bg-[#f5f2ed]">
-                      <img 
-                        src={product.images[0]} 
+                    <div className="relative mb-4 aspect-[3/4] overflow-hidden bg-muted md:mb-6">
+                      <img
+                        src={product.images[0]}
                         alt={product.name}
                         className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                        width={768}
+                        height={1024}
                       />
                     </div>
                     <div className="space-y-1 text-center">
-                      <h4 className="text-sm font-medium tracking-widest uppercase">{product.name}</h4>
-                      <p className="text-sm font-light text-[#8a7d6e]">
-                        R$ {product.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                      </p>
+                      <h2 className="text-xs font-medium uppercase tracking-widest md:text-sm">{product.name}</h2>
+                      <p className="text-sm font-light text-muted-foreground">R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
                     </div>
                   </CardContent>
                 </Card>
