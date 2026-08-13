@@ -4,11 +4,6 @@ import ig2 from "@/assets/products/ig-2.jpg";
 import ig3 from "@/assets/products/ig-3.jpg";
 import ig4 from "@/assets/products/ig-4.jpg";
 import ig5 from "@/assets/products/ig-5.jpg";
-import ig6 from "@/assets/products/ig-6.jpg";
-import ig7 from "@/assets/products/ig-7.jpg";
-import ig8 from "@/assets/products/ig-8.jpg";
-import ig9 from "@/assets/products/ig-9.jpg";
-import ig10 from "@/assets/products/ig-10.jpg";
 import p1b from "@/assets/products/p1-b.jpg";
 import p1c from "@/assets/products/p1-c.jpg";
 import p1d from "@/assets/products/p1-d.jpg";
@@ -33,6 +28,32 @@ import p7d from "@/assets/products/p7-d.jpg";
 import p8b from "@/assets/products/p8-b.jpg";
 import p8c from "@/assets/products/p8-c.jpg";
 import p8d from "@/assets/products/p8-d.jpg";
+
+// Novos imports específicos
+import noir1 from "@/assets/products/noir-1.jpg";
+import noir2 from "@/assets/products/noir-2.jpg";
+import noir3 from "@/assets/products/noir-3.jpg";
+import noir4 from "@/assets/products/noir-4.jpg";
+
+import marfim1 from "@/assets/products/marfim-1.jpg";
+import marfim2 from "@/assets/products/marfim-2.jpg";
+import marfim3 from "@/assets/products/marfim-3.jpg";
+import marfim4 from "@/assets/products/marfim-4.jpg";
+
+import lumiere1 from "@/assets/products/lumiere-1.jpg";
+import lumiere2 from "@/assets/products/lumiere-2.jpg";
+import lumiere3 from "@/assets/products/lumiere-3.jpg";
+import lumiere4 from "@/assets/products/lumiere-4.jpg";
+
+import alvorada1 from "@/assets/products/alvorada-1.jpg";
+import alvorada2 from "@/assets/products/alvorada-2.jpg";
+import alvorada3 from "@/assets/products/alvorada-3.jpg";
+import alvorada4 from "@/assets/products/alvorada-4.jpg";
+
+import nuvem1 from "@/assets/products/nuvem-1.jpg";
+import nuvem2 from "@/assets/products/nuvem-2.jpg";
+import nuvem3 from "@/assets/products/nuvem-3.jpg";
+import nuvem4 from "@/assets/products/nuvem-4.jpg";
 
 export interface Product {
   id: string;
@@ -111,45 +132,45 @@ export const products: Product[] = [
     name: "Colete Évora Lumière",
     price: 329,
     description: "Colete de alfaiataria marfim com decote em V, cintura desenhada e botões dourados. Funciona sozinho ou em sobreposição.",
-    images: [ig6, p6b, p6c, p6d],
+    images: [lumiere1, lumiere2, lumiere3, lumiere4],
     sizes,
-    reviews: [{ user: "Fernanda G.", comment: "Estrutura linda e botões muito bem acabados. Ficou perfeito com saia.", rating: 5, image: p6b }],
+    reviews: [{ user: "Fernanda G.", comment: "Estrutura linda e botões muito bem acabados. Ficou perfeito com saia.", rating: 5, image: lumiere1 }],
   },
   {
     id: "calca-fluida-nuvem",
     name: "Calça Évora Nuvem",
     price: 349,
     description: "Calça pantalona marfim de cintura alta com amarração delicada. O tecido leve cria movimento e alonga a silhueta.",
-    images: [ig7, p7b, p7c, p7d],
+    images: [nuvem1, nuvem2, nuvem3, nuvem4],
     sizes,
-    reviews: [{ user: "Patrícia A.", comment: "Confortável e muito elegante. O ajuste na cintura ajuda bastante.", rating: 5, image: p7b }],
+    reviews: [{ user: "Patrícia A.", comment: "Confortável e muito elegante. O ajuste na cintura ajuda bastante.", rating: 5, image: nuvem1 }],
   },
   {
     id: "vestido-monument-noir",
     name: "Vestido Évora Monument Noir",
     price: 649,
     description: "Vestido longo de construção assimétrica em preto e marfim. O volume escultural no ombro transforma a peça em protagonista.",
-    images: [ig8, p8b, p8c, p8d],
+    images: [noir1, noir2, noir3, noir4],
     sizes,
-    reviews: [{ user: "Isabela N.", comment: "Diferente de tudo que eu tinha. A modelagem chama atenção na medida.", rating: 5, image: p8b }],
+    reviews: [{ user: "Isabela N.", comment: "Diferente de tudo que eu tinha. A modelagem chama atenção na medida.", rating: 5, image: noir1 }],
   },
   {
     id: "vestido-monument-marfim",
     name: "Vestido Évora Monument Marfim",
     price: 629,
     description: "Vestido coluna marfim com pala assimétrica preta e recortes que definem a cintura. Uma leitura gráfica e contemporânea da elegância.",
-    images: [ig9, p8c, p8b, ig8],
+    images: [marfim1, marfim2, marfim3, marfim4],
     sizes,
-    reviews: [{ user: "Larissa V.", comment: "Peça muito especial. A parte assimétrica fica linda nas fotos.", rating: 5, image: ig8 }],
+    reviews: [{ user: "Larissa V.", comment: "Peça muito especial. A parte assimétrica fica linda nas fotos.", rating: 5, image: marfim1 }],
   },
   {
     id: "colete-alvorada",
     name: "Colete Évora Alvorada",
     price: 319,
     description: "Colete marfim com fechamento frontal deslocado e barra levemente assimétrica. Alfaiataria moderna para composições claras ou contrastantes.",
-    images: [ig10, p6d, p6c, p6b],
+    images: [alvorada1, alvorada2, alvorada3, alvorada4],
     sizes,
-    reviews: [{ user: "Renata P.", comment: "O recorte é muito bonito e deixa qualquer look mais arrumado.", rating: 5, image: ig10 }],
+    reviews: [{ user: "Renata P.", comment: "O recorte é muito bonito e deixa qualquer look mais arrumado.", rating: 5, image: alvorada1 }],
   },
   {
     id: "colete-rose",
@@ -174,7 +195,7 @@ export const products: Product[] = [
     name: "Calça Évora Café",
     price: 349,
     description: "Pantalona café de cintura alta com amarração frontal. Une conforto, textura leve e uma cor neutra de presença.",
-    images: [p7d, ig7, p7c, p7b],
+    images: [p7d, p7c, p7b, p7d],
     sizes,
     reviews: [{ user: "Paula D.", comment: "A cor café é linda e o tecido tem bastante movimento.", rating: 5, image: p7d }],
   },
@@ -183,8 +204,8 @@ export const products: Product[] = [
     name: "Saia Évora Plissé Noir",
     price: 359,
     description: "Saia midi preta plissada, de cintura alta e volume controlado. Uma base versátil para combinar com alfaiataria ou peças acetinadas.",
-    images: [ig10, p7d, p6b, ig8],
+    images: [p8d, p8c, p8b, p8d],
     sizes,
-    reviews: [{ user: "Sofia M.", comment: "O plissado é bem feito e ela não arma demais. Muito versátil.", rating: 5, image: ig10 }],
+    reviews: [{ user: "Sofia M.", comment: "O plissado é bem feito e ela não arma demais. Muito versátil.", rating: 5, image: p8d }],
   },
 ];
