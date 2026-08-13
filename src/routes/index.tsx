@@ -79,21 +79,8 @@ function Index() {
           </div>
         </section>
       </main>
-
-      <footer className="border-t border-[#e5e1da] bg-[#fdfbf7] py-16">
-        <div className="container mx-auto px-4 text-center lg:px-8">
-          <img src={logoAsset.url} alt="Évora Logo" className="mx-auto mb-8 h-8 w-auto opacity-50" />
-          <nav className="mb-8 flex justify-center gap-8">
-            <a href="#" className="text-xs font-medium tracking-widest uppercase hover:text-primary transition-colors">Termos</a>
-            <a href="#" className="text-xs font-medium tracking-widest uppercase hover:text-primary transition-colors">Privacidade</a>
-            <a href="#" className="text-xs font-medium tracking-widest uppercase hover:text-primary transition-colors">Instagram</a>
-          </nav>
-          <p className="text-xs tracking-widest font-light text-[#8a7d6e]">
-            © 2026 ÉVORA. TODOS OS DIREITOS RESERVADOS.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
+
 
