@@ -235,30 +235,49 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
           showOrderSummary ? "max-height-[500px] opacity-100" : "max-height-0 opacity-0 hidden"
         )}>
           <div className="p-5 space-y-4">
-            {items.map((item) => (
-              <div key={`${item.id}-${item.size}`} className="flex gap-4">
-                <div className="relative aspect-[3/4] w-14 shrink-0 overflow-hidden bg-muted border border-border/30">
-                  <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={56} height={75} />
-                  <span className="absolute -right-2 -top-2 flex size-5 items-center justify-center rounded-full bg-foreground text-background text-[10px] font-medium">
-                    {item.quantity}
-                  </span>
-                </div>
-                <div className="flex flex-1 flex-col justify-center gap-1">
-                  <h4 className="text-[11px] font-bold uppercase tracking-widest leading-tight">{item.name}</h4>
-                  <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Tamanho: {item.size}</p>
-                  <div className="flex items-center gap-2">
-                    <p className="text-[11px] font-medium mt-1">
-                      R$ {(item.price * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                    </p>
-                    {item.originalPrice && (
-                      <p className="text-[9px] text-muted-foreground/50 line-through mt-1">
-                        R$ {(item.originalPrice * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                      </p>
-                    )}
+            {items.map((item) => {
+              const originalPriceTotal = (item.originalPrice || item.price) * item.quantity;
+              const currentPriceTotal = item.price * item.quantity;
+              const discountAmount = originalPriceTotal - currentPriceTotal;
+              const discountPercentage = item.originalPrice ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0;
+              
+              return (
+                <div key={`${item.id}-${item.size}`} className="flex gap-4">
+                  <div className="relative aspect-[3/4] w-14 shrink-0 overflow-hidden bg-muted border border-border/30">
+                    <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={56} height={75} />
+                    <span className="absolute -right-2 -top-2 flex size-5 items-center justify-center rounded-full bg-foreground text-background text-[10px] font-medium">
+                      {item.quantity}
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col justify-center gap-1">
+                    <h4 className="text-[11px] font-bold uppercase tracking-widest leading-tight">{item.name}</h4>
+                    <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Tamanho: {item.size}</p>
+                    <div className="flex flex-col gap-0.5">
+                      <div className="flex items-center gap-2">
+                        <p className="text-[11px] font-bold">
+                          R$ {currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                        </p>
+                        {item.originalPrice && (
+                          <p className="text-[9px] text-muted-foreground/50 line-through">
+                            R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                          </p>
+                        )}
+                      </div>
+                      {discountAmount > 0 && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-[8px] bg-green-100 text-green-700 px-1.5 py-0.5 font-bold uppercase tracking-tighter">
+                            {discountPercentage}% OFF
+                          </span>
+                          <span className="text-[8px] text-green-600 font-bold uppercase tracking-widest">
+                            Economize R$ {discountAmount.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                          </span>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
             <Separator className="bg-border/30" />
             <div className="space-y-2 pb-2">
               <div className="flex justify-between text-[11px] uppercase tracking-widest text-muted-foreground">
@@ -269,9 +288,11 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 <span>Desconto</span>
                 <span className="text-green-600">- R$ {items.reduce((acc, item) => acc + (item.originalPrice ? (item.originalPrice - item.price) * item.quantity : 0), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
               </div>
-              <div className="flex justify-between text-[11px] uppercase tracking-widest text-green-600 font-bold">
+              <div className="flex justify-between text-[11px] uppercase tracking-widest text-foreground font-bold border-t border-border/20 pt-2 mt-1">
                 <span>Frete</span>
-                <span>GRÁTIS</span>
+                <span className={isAddressFilled ? "text-green-600" : "text-muted-foreground"}>
+                  {isAddressFilled ? "GRÁTIS" : "Calculado no endereço"}
+                </span>
               </div>
             </div>
           </div>
@@ -470,7 +491,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                     </div>
                   </div>
                   <div className="flex flex-col items-end gap-1">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-green-600">Frete Grátis</span>
+                    {isAddressFilled && (
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-green-600 animate-in fade-in duration-300">Frete Grátis</span>
+                    )}
                     <span className="text-[9px] uppercase tracking-widest text-muted-foreground">Promoção Évora</span>
                   </div>
                 </div>
@@ -559,30 +582,51 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             </h3>
             
             <div className="space-y-8">
-              {items.map((item) => (
-                <div key={`${item.id}-${item.size}`} className="flex gap-6 group">
-                  <div className="relative aspect-[3/4] w-24 shrink-0 overflow-hidden bg-white border border-border/50 group-hover:border-foreground/30 transition-colors">
-                    <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
-                    <span className="absolute -right-3 -top-3 flex size-7 items-center justify-center rounded-full bg-foreground text-background text-[11px] font-bold shadow-lg">
-                      {item.quantity}
-                    </span>
-                  </div>
-                  <div className="flex flex-1 flex-col justify-center gap-2">
-                    <h4 className="text-[12px] font-bold uppercase tracking-[0.2em] leading-relaxed">{item.name}</h4>
-                    <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Variante: {item.size}</p>
-                    <div className="flex items-center gap-2">
-                      <p className="text-[13px] font-medium mt-1 tracking-wider">
-                        R$ {(item.price * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                      </p>
-                      {item.originalPrice && (
-                        <p className="text-[10px] text-muted-foreground/50 line-through mt-1">
-                          R$ {(item.originalPrice * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                        </p>
-                      )}
+              {items.map((item) => {
+                const originalPriceTotal = (item.originalPrice || item.price) * item.quantity;
+                const currentPriceTotal = item.price * item.quantity;
+                const discountAmount = originalPriceTotal - currentPriceTotal;
+                const discountPercentage = item.originalPrice ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0;
+
+                return (
+                  <div key={`${item.id}-${item.size}`} className="flex gap-6 group">
+                    <div className="relative aspect-[3/4] w-24 shrink-0 overflow-hidden bg-white border border-border/50 group-hover:border-foreground/30 transition-colors">
+                      <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
+                      <span className="absolute -right-3 -top-3 flex size-7 items-center justify-center rounded-full bg-foreground text-background text-[11px] font-bold shadow-lg">
+                        {item.quantity}
+                      </span>
+                    </div>
+                    <div className="flex flex-1 flex-col justify-center gap-2">
+                      <h4 className="text-[12px] font-bold uppercase tracking-[0.2em] leading-relaxed">{item.name}</h4>
+                      <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Tamanho: {item.size}</p>
+                      
+                      <div className="flex flex-col gap-1 mt-1">
+                        <div className="flex items-center gap-3">
+                          <p className="text-[14px] font-bold tracking-wider">
+                            R$ {currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                          </p>
+                          {item.originalPrice && (
+                            <p className="text-[11px] text-muted-foreground/50 line-through tracking-tighter">
+                              R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                            </p>
+                          )}
+                        </div>
+                        
+                        {discountAmount > 0 && (
+                          <div className="flex flex-col gap-1">
+                            <span className="text-[9px] w-fit bg-green-100 text-green-700 px-2 py-0.5 font-bold uppercase tracking-widest">
+                              {discountPercentage}% OFF
+                            </span>
+                            <span className="text-[9px] text-green-600 font-bold uppercase tracking-[0.15em]">
+                              Você economiza R$ {discountAmount.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                            </span>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
@@ -596,12 +640,14 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 <span>Descontos</span>
                 <span className="text-green-600">- R$ {items.reduce((acc, item) => acc + (item.originalPrice ? (item.originalPrice - item.price) * item.quantity : 0), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
               </div>
-              <div className="flex justify-between items-center text-[12px] uppercase tracking-[0.2em] text-green-600 font-bold">
+              <div className="flex justify-between items-center text-[12px] uppercase tracking-[0.2em] font-bold">
                 <div className="flex items-center gap-3">
-                   <span>Frete Évora</span>
-                   <Truck className="size-4" />
+                   <span className="text-muted-foreground">Frete Évora</span>
+                   <Truck className="size-4 text-muted-foreground" />
                 </div>
-                <span>GRÁTIS</span>
+                <span className={isAddressFilled ? "text-green-600" : "text-muted-foreground"}>
+                  {isAddressFilled ? "GRÁTIS" : "A calcular"}
+                </span>
               </div>
             </div>
             
