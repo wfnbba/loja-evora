@@ -1,5 +1,6 @@
 
-import { supabase } from "@/integrations/supabase/client";
+import { supabaseAdmin as supabase } from "@/integrations/supabase/client.server";
+
 
 export async function trackCustomerAndOrder(data: {
   customer: {
