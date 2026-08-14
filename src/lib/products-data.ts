@@ -27,8 +27,6 @@ import p8c from "@/assets/products/p8-c.jpg";
 import p8d from "@/assets/products/p8-d.jpg";
 
 // Novos imports específicos
-
-
 import alvorada1 from "@/assets/products/alvorada-v3-1.png.asset.json";
 import alvorada2 from "@/assets/products/alvorada-v3-2.png.asset.json";
 import alvorada3 from "@/assets/products/alvorada-v3-3.png.asset.json";
@@ -73,7 +71,6 @@ import monumentNoir8 from "@/assets/products/monument-noir-v2-8.png.asset.json";
 import monumentNoir9 from "@/assets/products/monument-noir-v2-9.png.asset.json";
 import monumentNoir10 from "@/assets/products/monument-noir-v2-10.png.asset.json";
 
-
 import satinEspresso1 from "@/assets/products/satin-espresso-1.png.asset.json";
 import satinEspresso2 from "@/assets/products/satin-espresso-2.png.asset.json";
 import satinEspresso3 from "@/assets/products/satin-espresso-3.png.asset.json";
@@ -92,6 +89,7 @@ import saiaChiffon7 from "@/assets/products/saia-chiffon-7.png.asset.json";
 import saiaChiffon8 from "@/assets/products/saia-chiffon-8.png.asset.json";
 import saiaChiffon9 from "@/assets/products/saia-chiffon-9.png.asset.json";
 import saiaChiffon10 from "@/assets/products/saia-chiffon-10.png.asset.json";
+
 import saiaRenda1 from "@/assets/products/saia-renda-1.png.asset.json";
 import saiaRenda2 from "@/assets/products/saia-renda-2.png.asset.json";
 import saiaRenda3 from "@/assets/products/saia-renda-3.png.asset.json";
@@ -102,6 +100,7 @@ import saiaRenda7 from "@/assets/products/saia-renda-7.png.asset.json";
 import saiaRenda8 from "@/assets/products/saia-renda-8.png.asset.json";
 import saiaRenda9 from "@/assets/products/saia-renda-9.png.asset.json";
 import saiaRenda10 from "@/assets/products/saia-renda-10.png.asset.json";
+
 import conjuntoEspresso1 from "@/assets/products/conjunto-espresso-alfaiataria-1.png.asset.json";
 import conjuntoEspresso2 from "@/assets/products/conjunto-espresso-alfaiataria-2.png.asset.json";
 import conjuntoEspresso3 from "@/assets/products/conjunto-espresso-alfaiataria-3.png.asset.json";
@@ -235,7 +234,17 @@ export const products: Product[] = [
     sizes,
     colors: [{ name: "Off-White", value: "#faf9f6" }],
     reviews: [
-...
+      { 
+        user: "Carolina P.", 
+        comment: "O corte é impecável e a cor off-white é muito chique. Adorei a barra assimétrica.", 
+        rating: 5, 
+        image: alvorada1.url 
+      },
+      { 
+        user: "Fernanda T.", 
+        comment: "Veste super bem e o tecido é de altíssima qualidade. Recomendo muito!", 
+        rating: 5, 
+        image: alvorada6.url 
       }
     ],
   },
@@ -256,7 +265,17 @@ export const products: Product[] = [
     sizes,
     colors: [{ name: "Espresso", value: "#3d2b1f" }],
     reviews: [
-...
+      { 
+        user: "Fernanda L.", 
+        comment: "O brilho desse vestido é surreal. Veste como uma luva!", 
+        rating: 5, 
+        image: satinEspresso4.url 
+      },
+      { 
+        user: "Carolina M.", 
+        comment: "Comprei para um casamento e foi um sucesso. Muito chique.", 
+        rating: 5, 
+        image: satinEspresso1.url 
       }
     ],
   },
@@ -284,7 +303,17 @@ export const products: Product[] = [
       { name: "Preto", value: "#000000" }
     ],
     reviews: [
-...
+      { 
+        user: "Beatriz S.", 
+        comment: "A saia é maravilhosa, o tecido tem um movemento lindo ao andar.", 
+        rating: 5, 
+        image: saiaChiffon4.url 
+      },
+      { 
+        user: "Julia R.", 
+        comment: "Comprei a off-white e a cor é idêntica à foto. Muito elegante.", 
+        rating: 5, 
+        image: saiaChiffon1.url 
       }
     ],
   },
@@ -308,7 +337,17 @@ export const products: Product[] = [
     sizes,
     colors: [{ name: "Renda Nude", value: "#e8d7c5" }],
     reviews: [
-...
+      { 
+        user: "Larissa K.", 
+        comment: "A renda é de uma qualidade absurda. Parece uma joia no corpo.", 
+        rating: 5, 
+        image: saiaRenda1.url 
+      },
+      { 
+        user: "Monica V.", 
+        comment: "O forro é super confortável e o desenho da renda é divino. Amei cada detalhe.", 
+        rating: 5, 
+        image: saiaRenda10.url 
       }
     ],
   },
@@ -332,7 +371,17 @@ export const products: Product[] = [
     sizes,
     colors: [{ name: "Espresso", value: "#3d2b1f" }],
     reviews: [
-...
+      { 
+        user: "Tatiana B.", 
+        comment: "O caimento da calça é surreal e o colete com cinto valoriza muito a cintura.", 
+        rating: 5, 
+        image: conjuntoEspresso3.url 
+      },
+      { 
+        user: "Alessandra G.", 
+        comment: "Tecido encorpado e cor maravilhosa. Um conjunto que transmite muito poder.", 
+        rating: 5, 
+        image: conjuntoEspresso1.url 
       }
     ],
   },
