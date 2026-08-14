@@ -41,7 +41,7 @@ function Index() {
         </section>
 
         <section id="colecao" className="container mx-auto scroll-mt-24 px-4 py-20 lg:px-8">
-          <h1 className="mb-12 text-center text-3xl font-light uppercase tracking-[0.2em]">Coleção Évora</h1>
+          <h1 className="mb-16 text-center text-3xl font-light uppercase tracking-[0.3em]">Coleção Évora</h1>
           <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-8 lg:grid-cols-4">
             {products.map((product) => (
               <Link key={product.id} to="/produtos/$productId" params={{ productId: product.id }} className="group">
@@ -58,7 +58,7 @@ function Index() {
                       />
                     </div>
                     <div className="space-y-1 text-center">
-                      <h2 className="text-xs font-medium uppercase tracking-widest md:text-sm">{product.name}</h2>
+                      <h2 className="text-xs font-medium uppercase tracking-[0.2em] md:text-sm">{product.name}</h2>
                       <div className="flex items-center justify-center gap-2 mt-1">
                         <div className="flex text-foreground" aria-label={`${product.rating} de 5 estrelas`}>
                           {Array.from({ length: 5 }, (_, i) => (
@@ -68,9 +68,9 @@ function Index() {
                             />
                           ))}
                         </div>
-                        <span className="text-[10px] text-muted-foreground">{product.salesCount.toLocaleString("pt-BR")} vendidos</span>
+                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">{product.salesCount.toLocaleString("pt-BR")} vendidos</span>
                       </div>
-                      <p className="text-sm font-light text-muted-foreground">R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+                      <p className="text-sm font-light tracking-widest text-muted-foreground">R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
                     </div>
                   </CardContent>
                 </Card>

@@ -85,7 +85,7 @@ function ProductPage() {
               <p className="text-2xl font-light">R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
             </div>
             <div className="space-y-4">
-              <p className="text-sm font-medium uppercase tracking-widest">Tamanho</p>
+              <p className="text-xs font-medium uppercase tracking-[0.2em]">Tamanho</p>
               <div className="flex flex-wrap gap-3">
                 {product.sizes.map((size) => (
                   <Button key={size} type="button" variant={selectedSize === size ? "default" : "outline"} onClick={() => { setSelectedSize(size); setAdded(false); }} className="size-12 rounded-none p-0">{size}</Button>
@@ -96,7 +96,7 @@ function ProductPage() {
 
             {product.id === "conjunto-espresso-alfaiataria" && (
               <div className="space-y-4">
-                <p className="text-sm font-medium uppercase tracking-widest">Acessório Incluso</p>
+                <p className="text-xs font-medium uppercase tracking-[0.2em]">Acessório Incluso</p>
                 <div className="flex items-center gap-4">
                   <div className="flex h-12 items-center border border-foreground bg-foreground px-6 text-sm text-background">
                     CINTO - TAMANHO ÚNICO
@@ -112,7 +112,7 @@ function ProductPage() {
 
             {product.colors && product.colors.length > 0 && (
               <div className="space-y-4">
-                <p className="text-sm font-medium uppercase tracking-widest">Cor: {selectedColor}</p>
+                <p className="text-xs font-medium uppercase tracking-[0.2em]">Cor: {selectedColor}</p>
                 <div className="flex flex-wrap gap-3">
                   {product.colors.map((color) => (
                     <button
@@ -132,18 +132,18 @@ function ProductPage() {
               <ShoppingBag className="mr-3 size-5" />{added ? "Adicionado ao carrinho" : "Adicionar ao carrinho"}
             </Button>
             <div className="space-y-4 border-t border-border pt-8">
-              <h2 className="text-sm font-medium uppercase tracking-widest">Descrição</h2>
+              <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Descrição</h2>
               <p className="font-light leading-relaxed text-muted-foreground">{product.description}</p>
             </div>
             <div className="space-y-6 border-t border-border pt-8">
-              <h2 className="text-sm font-medium uppercase tracking-widest">Feedback das clientes</h2>
+              <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Feedback das clientes</h2>
               {product.reviews.map((review) => (
                 <article key={`${review.user}-${review.comment}`} className="flex gap-4">
                   {review.image && <img src={review.image} alt={`Foto enviada por ${review.user}`} className="size-16 shrink-0 object-cover" width={64} height={64} loading="lazy" />}
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
                       <div className="flex" aria-label={`${review.rating} de 5 estrelas`}>{Array.from({ length: review.rating }, (_, index) => <Star key={index} className="size-3 fill-current" />)}</div>
-                      <span className="text-xs font-medium uppercase tracking-widest">{review.user}</span>
+                      <span className="text-xs font-medium uppercase tracking-[0.2em]">{review.user}</span>
                     </div>
                     <p className="text-sm font-light italic text-muted-foreground">“{review.comment}”</p>
                   </div>
@@ -153,8 +153,8 @@ function ProductPage() {
           </section>
         </div>
 
-        <section className="mt-32 border-t border-border pt-20">
-          <h2 className="mb-12 text-center text-2xl font-light uppercase tracking-[0.2em]">Você também pode gostar</h2>
+        <section className="mt-32 border-t border-border/50 pt-20">
+          <h2 className="mb-16 text-center text-2xl font-light uppercase tracking-[0.3em]">Você também pode gostar</h2>
           <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-8 lg:grid-cols-4">
             {products
               .filter((p) => p.id !== product.id)
@@ -174,7 +174,7 @@ function ProductPage() {
                         />
                       </div>
                       <div className="space-y-1 text-center">
-                        <h3 className="text-xs font-medium uppercase tracking-widest md:text-sm">{recommended.name}</h3>
+                        <h3 className="text-xs font-medium uppercase tracking-[0.2em] md:text-sm">{recommended.name}</h3>
                         <div className="flex items-center justify-center gap-2 mt-1">
                           <div className="flex text-foreground" aria-label={`${recommended.rating} de 5 estrelas`}>
                             {Array.from({ length: 5 }, (_, i) => (
@@ -184,9 +184,9 @@ function ProductPage() {
                               />
                             ))}
                           </div>
-                          <span className="text-[10px] text-muted-foreground">{recommended.salesCount.toLocaleString("pt-BR")} vendidos</span>
+                          <span className="text-[10px] uppercase tracking-widest text-muted-foreground">{recommended.salesCount.toLocaleString("pt-BR")} vendidos</span>
                         </div>
-                        <p className="text-sm font-light text-muted-foreground">R$ {recommended.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+                        <p className="text-sm font-light tracking-widest text-muted-foreground">R$ {recommended.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
                       </div>
                     </CardContent>
                   </Card>
