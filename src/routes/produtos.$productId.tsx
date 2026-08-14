@@ -257,8 +257,9 @@ function ProductPage() {
 
 
                   <div className="flex flex-col items-end gap-1 pr-4">
-                    <span className="text-[10px] text-[#4a3f35]/40 line-through decoration-1 tracking-widest">R$ 49,90</span>
-                    <span className="text-[13px] font-black text-green-700 uppercase tracking-[0.2em]">GRÁTIS</span>
+                    <span className="text-xs text-[#4a3f35]/40 line-through decoration-1 tracking-widest">R$ 49,90</span>
+                    <span className="text-sm font-black text-green-700 uppercase tracking-widest">GRÁTIS</span>
+
                   </div>
                 </div>
               </div>
