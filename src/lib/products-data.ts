@@ -42,6 +42,17 @@ import auroraCafe2 from "@/assets/products/aurora-cafe-2.jpg";
 import auroraCafe3 from "@/assets/products/aurora-cafe-3.jpg";
 import auroraCafe4 from "@/assets/products/aurora-cafe-4.jpg";
 
+import auroraMarfim1 from "@/assets/products/aurora-marfim-1.png.asset.json";
+import auroraMarfim2 from "@/assets/products/aurora-marfim-2.png.asset.json";
+import auroraMarfim3 from "@/assets/products/aurora-marfim-3.png.asset.json";
+import auroraMarfim4 from "@/assets/products/aurora-marfim-4.png.asset.json";
+import auroraMarfim5 from "@/assets/products/aurora-marfim-5.png.asset.json";
+import auroraMarfim6 from "@/assets/products/aurora-marfim-6.png.asset.json";
+import auroraMarfim7 from "@/assets/products/aurora-marfim-7.png.asset.json";
+import auroraMarfim8 from "@/assets/products/aurora-marfim-8.png.asset.json";
+import auroraMarfim9 from "@/assets/products/aurora-marfim-9.png.asset.json";
+import auroraMarfim10 from "@/assets/products/aurora-marfim-10.png.asset.json";
+
 import monumentNoir1 from "@/assets/products/monument-noir-1.jpg";
 import monumentNoir2 from "@/assets/products/monument-noir-2.jpg";
 import monumentNoir3 from "@/assets/products/monument-noir-3.jpg";
@@ -102,9 +113,20 @@ export const products: Product[] = [
     name: "Vestido Évora Aurora Marfim",
     price: 459,
     description: "A versão marfim do vestido Aurora traz linhas limpas, cintura definida e movimento suave. Atemporal e fácil de combinar.",
-    images: [ig3, p4b, p4c, p4d],
+    images: [
+      auroraMarfim1.url,
+      auroraMarfim2.url,
+      auroraMarfim3.url,
+      auroraMarfim4.url,
+      auroraMarfim5.url,
+      auroraMarfim6.url,
+      auroraMarfim7.url,
+      auroraMarfim8.url,
+      auroraMarfim9.url,
+      auroraMarfim10.url,
+    ],
     sizes,
-    reviews: [{ user: "Heloísa R.", comment: "Elegante sem esforço e o tecido não marca. Gostei muito.", rating: 5, image: p4b }],
+    reviews: [{ user: "Heloísa R.", comment: "Elegante sem esforço e o tecido não marca. Gostei muito.", rating: 5, image: auroraMarfim1.url }],
   },
   {
     id: "vestido-aurora-cafe",
