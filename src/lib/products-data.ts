@@ -781,6 +781,8 @@ export const products: Product[] = [
     images: [ig2, p3b, p3c, p3d],
     sizes,
     colors: [{ name: "Rosé", value: "#e2b6b1" }],
+    salesCount: 652,
+    rating: 4.7,
     reviews: [{ user: "Juliana F.", comment: "Caimento impecável e comprimento elegante. Usei e recebi muitos elogios.", rating: 5, image: p3b }],
   },
 ];
