@@ -91,6 +91,16 @@ import saiaRenda7 from "@/assets/products/saia-renda-7.png.asset.json";
 import saiaRenda8 from "@/assets/products/saia-renda-8.png.asset.json";
 import saiaRenda9 from "@/assets/products/saia-renda-9.png.asset.json";
 import saiaRenda10 from "@/assets/products/saia-renda-10.png.asset.json";
+import conjuntoEspresso1 from "@/assets/products/conjunto-espresso-alfaiataria-1.png.asset.json";
+import conjuntoEspresso2 from "@/assets/products/conjunto-espresso-alfaiataria-2.png.asset.json";
+import conjuntoEspresso3 from "@/assets/products/conjunto-espresso-alfaiataria-3.png.asset.json";
+import conjuntoEspresso4 from "@/assets/products/conjunto-espresso-alfaiataria-4.png.asset.json";
+import conjuntoEspresso5 from "@/assets/products/conjunto-espresso-alfaiataria-5.png.asset.json";
+import conjuntoEspresso6 from "@/assets/products/conjunto-espresso-alfaiataria-6.png.asset.json";
+import conjuntoEspresso7 from "@/assets/products/conjunto-espresso-alfaiataria-7.png.asset.json";
+import conjuntoEspresso8 from "@/assets/products/conjunto-espresso-alfaiataria-8.png.asset.json";
+import conjuntoEspresso9 from "@/assets/products/conjunto-espresso-alfaiataria-9.png.asset.json";
+import conjuntoEspresso10 from "@/assets/products/conjunto-espresso-alfaiataria-10.png.asset.json";
 
 export interface Product {
   id: string;
@@ -295,6 +305,39 @@ export const products: Product[] = [
         comment: "O forro é super confortável e o desenho da renda é divino. Amei cada detalhe.", 
         rating: 5, 
         image: saiaRenda10.url 
+      }
+    ],
+  },
+  {
+    id: "conjunto-espresso-alfaiataria",
+    name: "Conjunto Évora Espresso Alfaiataria",
+    price: 589,
+    description: "Conjunto de alfaiataria premium composto por colete transpassado com cinto e calça wide leg. O tom espresso profundo e o corte impecável trazem uma sofisticação moderna e autoritária, ideal para a mulher que impõe presença.",
+    images: [
+      conjuntoEspresso1.url,
+      conjuntoEspresso2.url,
+      conjuntoEspresso3.url,
+      conjuntoEspresso4.url,
+      conjuntoEspresso5.url,
+      conjuntoEspresso6.url,
+      conjuntoEspresso7.url,
+      conjuntoEspresso8.url,
+      conjuntoEspresso9.url,
+      conjuntoEspresso10.url
+    ],
+    sizes,
+    reviews: [
+      { 
+        user: "Tatiana B.", 
+        comment: "O caimento da calça é surreal e o colete com cinto valoriza muito a cintura.", 
+        rating: 5, 
+        image: conjuntoEspresso3.url 
+      },
+      { 
+        user: "Alessandra G.", 
+        comment: "Tecido encorpado e cor maravilhosa. Um conjunto que transmite muito poder.", 
+        rating: 5, 
+        image: conjuntoEspresso1.url 
       }
     ],
   },
