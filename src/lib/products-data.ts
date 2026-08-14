@@ -178,9 +178,20 @@ export const products: Product[] = [
     name: "Vestido Évora Aurora Café",
     price: 479,
     description: "Vestido midi em tom café, com cintura marcada e saia ampla. A tonalidade profunda atualiza uma silhueta clássica.",
-    images: [auroraCafe1, auroraCafe2, auroraCafe3, auroraCafe4],
+    images: [
+      auroraCafe1.url,
+      auroraCafe2.url,
+      auroraCafe3.url,
+      auroraCafe4.url,
+      auroraCafe5.url,
+      auroraCafe6.url,
+      auroraCafe7.url,
+      auroraCafe8.url,
+      auroraCafe9.url,
+      auroraCafe10.url
+    ],
     sizes,
-    reviews: [{ user: "Beatriz L.", comment: "A cor é sofisticada e o corte ficou certinho no corpo.", rating: 5, image: auroraCafe1 }],
+    reviews: [{ user: "Beatriz L.", comment: "A cor é sofisticada e o corte ficou certinho no corpo.", rating: 5, image: auroraCafe1.url }],
   },
   {
     id: "vestido-monument-noir",
