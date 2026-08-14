@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Copy, CheckCircle2, Loader2, QrCode, ShoppingBag, ShieldCheck, Truck, ChevronDown, ChevronUp } from "lucide-react";
-import { createPixPayment, checkPixStatus } from "@/lib/vexopay.functions";
+import { createPixPayment, checkPixStatus, updateTransactionStatus } from "@/lib/vexopay.functions";
 import { getAddressByCep } from "@/lib/cep.functions";
 import { useServerFn } from "@tanstack/react-start";
 import { getPersistedUtms } from "@/hooks/use-utm-tracking";
@@ -44,6 +44,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
   const checkStatus = useServerFn(checkPixStatus);
   const sendToUtmify = useServerFn(sendUtmifyOrder);
   const getAddress = useServerFn(getAddressByCep);
+  const updateStatus = useServerFn(updateTransactionStatus);
 
   const handleCepChange = async (cep: string) => {
     const cleanCep = cep.replace(/\D/g, "");
@@ -101,7 +102,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
     try {
       const result = await createPix({
         data: {
-          items: items.map(i => ({ id: i.id, quantity: i.quantity, price: i.price })),
+          items: items.map(i => ({ id: i.id, name: i.name, quantity: i.quantity, price: i.price, size: i.size })),
           payerName: formData.name,
           payerDocument: doc,
           email: formData.email,
@@ -192,6 +193,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             };
 
             sendToUtmify({ data: orderData }).catch(err => console.error("UTMify error:", err));
+            updateStatus({ data: { transactionId: pixData.transactionId, status: 'paid' } }).catch(err => console.error("Tracking update error:", err));
             setStep("success");
             clearCart();
             clearInterval(interval);
