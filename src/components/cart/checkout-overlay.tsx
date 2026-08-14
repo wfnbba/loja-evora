@@ -214,7 +214,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
 
   return (
-    <div className="flex h-full flex-col overflow-hidden bg-background">
+    <div className="fixed inset-0 z-[100] flex h-full flex-col overflow-hidden bg-background">
       {/* Header Mobile / Tablet */}
       <div className="lg:hidden border-b border-border/50 sticky top-0 bg-background z-30">
         <div className="p-5 flex items-center justify-between">
