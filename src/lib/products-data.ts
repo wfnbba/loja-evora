@@ -101,6 +101,14 @@ import saiaRenda8 from "@/assets/products/saia-renda-8.png.asset.json";
 import saiaRenda9 from "@/assets/products/saia-renda-9.png.asset.json";
 import saiaRenda10 from "@/assets/products/saia-renda-10.png.asset.json";
 
+import feedbackMarfim1 from "@/assets/feedbacks/marfim-1.json";
+import feedbackMarfim2 from "@/assets/feedbacks/marfim-2.json";
+import feedbackMarfim3 from "@/assets/feedbacks/marfim-3.json";
+import feedbackMarfim4 from "@/assets/feedbacks/marfim-4.json";
+import feedbackMarfim5 from "@/assets/feedbacks/marfim-5.json";
+import feedbackMarfim6 from "@/assets/feedbacks/marfim-6.json";
+
+
 import conjuntoEspresso1 from "@/assets/products/conjunto-espresso-alfaiataria-1.png.asset.json";
 import conjuntoEspresso2 from "@/assets/products/conjunto-espresso-alfaiataria-2.png.asset.json";
 import conjuntoEspresso3 from "@/assets/products/conjunto-espresso-alfaiataria-3.png.asset.json";
@@ -170,7 +178,44 @@ export const products: Product[] = [
     ],
     sizes,
     colors: [{ name: "Marfim", value: "#f5f5f0" }],
-    reviews: [{ user: "Heloísa R.", comment: "Elegante sem esforço e o tecido não marca. Gostei muito.", rating: 5, image: auroraMarfim1.url }],
+    reviews: [
+      { 
+        user: "Renata G.", 
+        comment: "Simplesmente apaixonada por cada detalhe. O vestido veste como uma luva e a experiência de unboxing foi incrível!", 
+        rating: 5, 
+        image: feedbackMarfim1.url 
+      },
+      { 
+        user: "Camila V.", 
+        comment: "O Aurora Marfim é o ápice da elegância. O tecido é maravilhoso e a cor é muito chique.", 
+        rating: 5, 
+        image: feedbackMarfim2.url 
+      },
+      { 
+        user: "Sonia M.", 
+        comment: "Recebi o meu hoje e estou encantada. A qualidade da Évora é indiscutível.", 
+        rating: 5, 
+        image: feedbackMarfim3.url 
+      },
+      { 
+        user: "Letícia B.", 
+        comment: "Caimento impecável! Um investimento que vale cada centavo para quem busca sofisticação.", 
+        rating: 5, 
+        image: feedbackMarfim4.url 
+      },
+      { 
+        user: "Paula S.", 
+        comment: "A modelagem valoriza muito o corpo. O detalhe da gola é um diferencial muito charmoso.", 
+        rating: 5, 
+        image: feedbackMarfim5.url 
+      },
+      { 
+        user: "Marta F.", 
+        comment: "Elegante e atemporal. A peça que faltava no meu guarda-roupa para ocasiões especiais.", 
+        rating: 5, 
+        image: feedbackMarfim6.url 
+      }
+    ],
   },
   {
     id: "vestido-aurora-cafe",
