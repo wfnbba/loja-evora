@@ -11,6 +11,17 @@ const createPixInput = z.object({
   })),
   payerName: z.string().min(3, "Nome muito curto"),
   payerDocument: z.string().length(11, "CPF deve ter 11 dígitos"),
+  email: z.string().email("E-mail inválido"),
+  phone: z.string(),
+  address: z.object({
+    street: z.string(),
+    number: z.string(),
+    complement: z.string().optional(),
+    neighborhood: z.string(),
+    city: z.string(),
+    state: z.string(),
+    zipCode: z.string(),
+  }),
 });
 
 export const createPixPayment = createServerFn({ method: "POST" })
@@ -66,6 +77,9 @@ export const createPixPayment = createServerFn({ method: "POST" })
         amount: total,
         payerName: data.payerName,
         payerDocument: data.payerDocument,
+        payerEmail: data.email,
+        payerPhone: data.phone,
+        payerAddress: data.address,
         description: `Compra na Loja Évora - ${data.items.length} itens`
       })
     });

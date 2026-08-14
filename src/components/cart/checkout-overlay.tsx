@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Copy, CheckCircle2, Loader2, QrCode } from "lucide-react";
 import { createPixPayment, checkPixStatus } from "@/lib/vexopay.functions";
+import { getAddressByCep } from "@/lib/cep.functions";
 import { useServerFn } from "@tanstack/react-start";
 import { getPersistedUtms } from "@/hooks/use-utm-tracking";
 import { sendUtmifyOrder } from "@/lib/utmify.functions";
@@ -22,11 +23,43 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
   const [formData, setFormData] = useState({
     name: "",
     document: "",
+    email: "",
+    phone: "",
+    cep: "",
+    street: "",
+    number: "",
+    complement: "",
+    neighborhood: "",
+    city: "",
+    state: "",
   });
 
   const createPix = useServerFn(createPixPayment);
   const checkStatus = useServerFn(checkPixStatus);
   const sendToUtmify = useServerFn(sendUtmifyOrder);
+  const getAddress = useServerFn(getAddressByCep);
+
+  const handleCepChange = async (cep: string) => {
+    const cleanCep = cep.replace(/\D/g, "");
+    setFormData(prev => ({ ...prev, cep: cleanCep }));
+    
+    if (cleanCep.length === 8) {
+      try {
+        const result = await getAddress({ data: cleanCep });
+        if (result.success && result.data) {
+          setFormData(prev => ({
+            ...prev,
+            street: result.data.street || prev.street,
+            neighborhood: result.data.neighborhood || prev.neighborhood,
+            city: result.data.city || prev.city,
+            state: result.data.state || prev.state,
+          }));
+        }
+      } catch (error) {
+        console.error("CEP fetch error:", error);
+      }
+    }
+  };
 
 
   const handleCreatePayment = async (e: React.FormEvent) => {
@@ -38,13 +71,39 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
       return;
     }
 
+    if (!formData.email.includes("@")) {
+      toast.error("E-mail inválido");
+      return;
+    }
+
+    if (formData.cep.length !== 8) {
+      toast.error("CEP inválido");
+      return;
+    }
+
+    if (!formData.street || !formData.number || !formData.neighborhood || !formData.city || !formData.state) {
+      toast.error("Preencha todos os campos de endereço");
+      return;
+    }
+
     setLoading(true);
     try {
       const result = await createPix({
         data: {
           items: items.map(i => ({ id: i.id, quantity: i.quantity })),
           payerName: formData.name,
-          payerDocument: doc
+          payerDocument: doc,
+          email: formData.email,
+          phone: formData.phone,
+          address: {
+            street: formData.street,
+            number: formData.number,
+            complement: formData.complement,
+            neighborhood: formData.neighborhood,
+            city: formData.city,
+            state: formData.state,
+            zipCode: formData.cep
+          }
         }
       });
 
@@ -89,10 +148,19 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
               approvedDate: new Date().toISOString().replace('T', ' ').split('.')[0],
               customer: {
                 name: formData.name,
-                email: "customer@evora.com.br", // We could collect email, but using a placeholder if not present
-                phone: null,
-                document: formData.document,
+                email: formData.email,
+                phone: formData.phone,
+                document: doc,
                 country: "BR",
+                address: {
+                  street: formData.street,
+                  number: formData.number,
+                  complement: formData.complement,
+                  neighborhood: formData.neighborhood,
+                  city: formData.city,
+                  state: formData.state,
+                  zipCode: formData.cep
+                }
               },
               products: items.map(item => ({
                 id: item.id,
@@ -153,7 +221,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
     <div className="flex h-full flex-col p-8">
       <div className="mb-8 flex items-center justify-between">
         <h2 className="text-xs font-medium uppercase tracking-[0.2em]">
-          {step === "form" ? "Dados do Pagador" : "Pagamento PIX"}
+          {step === "form" ? "Dados de Entrega e Pagamento" : "Pagamento PIX"}
         </h2>
         <span className="text-[10px] text-muted-foreground uppercase tracking-widest">
           Total: R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
@@ -162,39 +230,154 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
       {step === "form" ? (
         <form onSubmit={handleCreatePayment} className="flex flex-1 flex-col justify-between">
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <Label htmlFor="name" className="text-[10px] uppercase tracking-widest text-muted-foreground">Nome Completo</Label>
-              <Input
-                id="name"
-                required
-                className="rounded-none border-border/50 focus-visible:ring-foreground"
-                placeholder="Ex: Maria Oliveira"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              />
+          <div className="space-y-6 pb-20">
+            <div className="space-y-4">
+              <h3 className="text-[10px] font-medium uppercase tracking-[0.2em] border-b border-border/50 pb-2">Informações Pessoais</h3>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="name" className="text-[10px] uppercase tracking-widest text-muted-foreground">Nome Completo</Label>
+                  <Input
+                    id="name"
+                    required
+                    className="rounded-none border-border/50 focus-visible:ring-foreground"
+                    placeholder="Maria Oliveira"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="cpf" className="text-[10px] uppercase tracking-widest text-muted-foreground">CPF</Label>
+                  <Input
+                    id="cpf"
+                    required
+                    maxLength={11}
+                    className="rounded-none border-border/50 focus-visible:ring-foreground"
+                    placeholder="000.000.000-00"
+                    value={formData.document}
+                    onChange={(e) => setFormData({ ...formData, document: e.target.value.replace(/\D/g, "") })}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-[10px] uppercase tracking-widest text-muted-foreground">E-mail</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    required
+                    className="rounded-none border-border/50 focus-visible:ring-foreground"
+                    placeholder="maria@exemplo.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="phone" className="text-[10px] uppercase tracking-widest text-muted-foreground">Celular / WhatsApp</Label>
+                  <Input
+                    id="phone"
+                    required
+                    className="rounded-none border-border/50 focus-visible:ring-foreground"
+                    placeholder="(00) 00000-0000"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  />
+                </div>
+              </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="cpf" className="text-[10px] uppercase tracking-widest text-muted-foreground">CPF (Somente números)</Label>
-              <Input
-                id="cpf"
-                required
-                maxLength={11}
-                className="rounded-none border-border/50 focus-visible:ring-foreground"
-                placeholder="000.000.000-00"
-                value={formData.document}
-                onChange={(e) => setFormData({ ...formData, document: e.target.value.replace(/\D/g, "") })}
-              />
+
+            <div className="space-y-4">
+              <h3 className="text-[10px] font-medium uppercase tracking-[0.2em] border-b border-border/50 pb-2">Endereço de Entrega</h3>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="cep" className="text-[10px] uppercase tracking-widest text-muted-foreground">CEP</Label>
+                  <Input
+                    id="cep"
+                    required
+                    maxLength={8}
+                    className="rounded-none border-border/50 focus-visible:ring-foreground"
+                    placeholder="00000-000"
+                    value={formData.cep}
+                    onChange={(e) => handleCepChange(e.target.value)}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="street" className="text-[10px] uppercase tracking-widest text-muted-foreground">Endereço / Rua</Label>
+                  <Input
+                    id="street"
+                    required
+                    className="rounded-none border-border/50 focus-visible:ring-foreground"
+                    placeholder="Nome da rua"
+                    value={formData.street}
+                    onChange={(e) => setFormData({ ...formData, street: e.target.value })}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="number" className="text-[10px] uppercase tracking-widest text-muted-foreground">Número</Label>
+                  <Input
+                    id="number"
+                    required
+                    className="rounded-none border-border/50 focus-visible:ring-foreground"
+                    placeholder="123"
+                    value={formData.number}
+                    onChange={(e) => setFormData({ ...formData, number: e.target.value })}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="complement" className="text-[10px] uppercase tracking-widest text-muted-foreground">Complemento (opcional)</Label>
+                  <Input
+                    id="complement"
+                    className="rounded-none border-border/50 focus-visible:ring-foreground"
+                    placeholder="Apto, Bloco..."
+                    value={formData.complement}
+                    onChange={(e) => setFormData({ ...formData, complement: e.target.value })}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="neighborhood" className="text-[10px] uppercase tracking-widest text-muted-foreground">Bairro</Label>
+                  <Input
+                    id="neighborhood"
+                    required
+                    className="rounded-none border-border/50 focus-visible:ring-foreground"
+                    placeholder="Nome do bairro"
+                    value={formData.neighborhood}
+                    onChange={(e) => setFormData({ ...formData, neighborhood: e.target.value })}
+                  />
+                </div>
+                <div className="space-y-2 flex gap-4 sm:flex-row flex-col">
+                  <div className="flex-1 space-y-2">
+                    <Label htmlFor="city" className="text-[10px] uppercase tracking-widest text-muted-foreground">Cidade</Label>
+                    <Input
+                      id="city"
+                      required
+                      className="rounded-none border-border/50 focus-visible:ring-foreground"
+                      placeholder="Sua cidade"
+                      value={formData.city}
+                      onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                    />
+                  </div>
+                  <div className="w-20 space-y-2">
+                    <Label htmlFor="state" className="text-[10px] uppercase tracking-widest text-muted-foreground">UF</Label>
+                    <Input
+                      id="state"
+                      required
+                      maxLength={2}
+                      className="rounded-none border-border/50 focus-visible:ring-foreground uppercase"
+                      placeholder="SP"
+                      value={formData.state}
+                      onChange={(e) => setFormData({ ...formData, state: e.target.value.toUpperCase() })}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
+
             <p className="text-[9px] text-muted-foreground leading-relaxed uppercase tracking-wider">
-              Seus dados são usados apenas para a geração da cobrança PIX segura via VexoPay.
+              Seus dados são protegidos e usados apenas para a entrega e geração do pagamento seguro via VexoPay.
             </p>
           </div>
 
           <Button 
             type="submit" 
             disabled={loading} 
-            className="w-full rounded-none py-8 uppercase tracking-[0.2em] font-medium mt-8"
+            className="w-full rounded-none py-8 uppercase tracking-[0.2em] font-medium sticky bottom-0 z-10 bg-background border-t border-border/20"
           >
             {loading ? <Loader2 className="mr-2 size-4 animate-spin" /> : "Gerar QR Code PIX"}
           </Button>
