@@ -396,7 +396,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                       />
                     </div>
                     <div className="space-y-3">
-                      <Label htmlFor="cep" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">CEP</Label>
+                      <Label htmlFor="cep" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">CEP</Label>
                       <Input
                         id="cep"
                         required
