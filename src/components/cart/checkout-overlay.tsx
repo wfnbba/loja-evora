@@ -472,7 +472,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                           />
                         </div>
                         <div className="col-span-1 space-y-3">
-                          <Label htmlFor="state" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">UF</Label>
+                          <Label htmlFor="state" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">UF</Label>
                           <Input
                             id="state"
                             required
