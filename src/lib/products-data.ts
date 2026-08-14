@@ -98,6 +98,16 @@ import saiaRenda5 from "@/assets/products/saia-renda-5.png.asset.json";
 import saiaRenda6 from "@/assets/products/saia-renda-6.png.asset.json";
 import saiaRenda7 from "@/assets/products/saia-renda-7.png.asset.json";
 import saiaRenda8 from "@/assets/products/saia-renda-8.png.asset.json";
+import calcaOffWhite1 from "@/assets/products/calca-alfaiataria-off-white-1.png.asset.json";
+import calcaOffWhite2 from "@/assets/products/calca-alfaiataria-off-white-2.png.asset.json";
+import calcaOffWhite3 from "@/assets/products/calca-alfaiataria-off-white-3.png.asset.json";
+import calcaOffWhite4 from "@/assets/products/calca-alfaiataria-off-white-4.png.asset.json";
+import calcaOffWhite5 from "@/assets/products/calca-alfaiataria-off-white-5.png.asset.json";
+import calcaOffWhite6 from "@/assets/products/calca-alfaiataria-off-white-6.png.asset.json";
+import calcaOffWhite7 from "@/assets/products/calca-alfaiataria-off-white-7.png.asset.json";
+import calcaOffWhite8 from "@/assets/products/calca-alfaiataria-off-white-8.png.asset.json";
+import calcaOffWhite9 from "@/assets/products/calca-alfaiataria-off-white-9.png.asset.json";
+import calcaOffWhite10 from "@/assets/products/calca-alfaiataria-off-white-10.png.asset.json";
 import saiaRenda9 from "@/assets/products/saia-renda-9.png.asset.json";
 import saiaRenda10 from "@/assets/products/saia-renda-10.png.asset.json";
 
@@ -890,5 +900,28 @@ export const products: Product[] = [
       { user: "Renata F.", comment: "Chegou direitinho e um clássico que toda mulher deveria ter. super elegante e sofisticado.", rating: 5 },
       { user: "Vanessa P.", comment: "O unboxing foi ótimo. Estou apaixonada por essa peça. Cada detalhe foi pensado com carinho, nota-se pelo acabamento.", rating: 5 },
     ],
+  },
+  {
+    id: "conjunto-alfaiataria-off-white",
+    name: "Conjunto Évora Alfaiataria Off-White",
+    price: 649.0,
+    description: "Uma composição de elegância absoluta para a mulher que não abre mão da sofisticação. O Conjunto Évora Alfaiataria Off-White une a leveza da camisa fluida à estrutura impecável da calça de alfaiataria com pregas. Um visual atemporal que transita perfeitamente entre o ambiente corporativo e eventos sociais refinados. O corte clássico valoriza a silhueta com conforto e distinção." + exchangePolicy,
+    images: [
+      (calcaOffWhite1 as any).url,
+      (calcaOffWhite2 as any).url,
+      (calcaOffWhite3 as any).url,
+      (calcaOffWhite4 as any).url,
+      (calcaOffWhite5 as any).url,
+      (calcaOffWhite6 as any).url,
+      (calcaOffWhite7 as any).url,
+      (calcaOffWhite8 as any).url,
+      (calcaOffWhite9 as any).url,
+      (calcaOffWhite10 as any).url,
+    ],
+    sizes,
+    rating: 4.9,
+    salesCount: 1842,
+    ratingBreakdown: { 5: 145, 4: 28, 3: 5, 2: 0, 1: 0 },
+    reviews: [],
   },
 ];
