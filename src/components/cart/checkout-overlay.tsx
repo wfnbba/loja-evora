@@ -309,8 +309,8 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
         {/* Form and Desktop Content */}
         <div className="flex-1 order-2 lg:order-1">
           <div className="bg-white p-6 md:p-10 border border-border/50 shadow-sm">
-          {step === "form" ? (
-            <form onSubmit={handleCreatePayment} className="max-w-xl mx-auto space-y-10">
+            {step === "form" ? (
+              <form onSubmit={handleCreatePayment} className="max-w-xl mx-auto space-y-10">
               <div className="space-y-6">
                 <div className="flex items-center gap-3 border-b border-border/50 pb-4">
                   <span className="flex size-6 md:size-7 items-center justify-center rounded-full bg-foreground text-background text-[10px] md:text-xs font-bold">1</span>
