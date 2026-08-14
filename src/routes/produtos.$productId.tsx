@@ -234,7 +234,7 @@ function ProductPage() {
                   </div>
                 )}
                 
-                {product.id === "conjunto-alfaiataria-off-white" && (
+                {(product.id === "conjunto-alfaiataria-off-white" || product.id === "calca-alfaiataria-off-white") && (
                   <div className="wistia-video-container mt-6 aspect-[9/16] w-full max-w-[400px] overflow-hidden bg-muted mx-auto lg:mx-0">
                     <div 
                       dangerouslySetInnerHTML={{ 
