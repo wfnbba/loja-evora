@@ -63,7 +63,7 @@ function Index() {
                       <div className="mt-3">
                         <Button 
                           asChild
-                          className="w-full rounded-none bg-foreground text-background text-[10px] uppercase tracking-[0.2em] py-5 hover:bg-foreground/90 transition-all"
+                          className="w-full rounded-none bg-foreground text-background text-[10px] uppercase tracking-[0.2em] py-5 hover:bg-foreground/90 transition-all utmify"
                         >
                           <Link to="/produtos/$productId" params={{ productId: product.id }}>
                             ADICIONAR AO CARRINHO
@@ -81,7 +81,14 @@ function Index() {
                         </div>
                         <span className="text-[10px] uppercase tracking-widest text-muted-foreground">{product.salesCount.toLocaleString("pt-BR")} vendidos</span>
                       </div>
-                      <p className="text-sm font-light tracking-widest text-muted-foreground">R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+                      <div className="flex items-center justify-center gap-2 text-[10px] tracking-widest mt-1">
+                        <p className="font-light text-muted-foreground">R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+                        {product.originalPrice && (
+                          <p className="text-[9px] text-muted-foreground/50 line-through">
+                            R$ {product.originalPrice.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                          </p>
+                        )}
+                      </div>
                     </div>
                   </CardContent>
                 </Card>

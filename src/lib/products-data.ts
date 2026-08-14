@@ -206,6 +206,7 @@ export interface Product {
   id: string;
   name: string;
   price: number;
+  originalPrice?: number;
   description: string;
   images: string[];
   sizes: string[];
@@ -228,6 +229,7 @@ export const products: Product[] = [
   { id: "vestido-aurora-marfim",
     name: "Vestido Évora Aurora Marfim",
     price: 459,
+    originalPrice: 589,
     description: "A versão marfim do vestido Aurora traz linhas limpas, cintura definida e movimento suave. Atemporal e fácil de combinar." + exchangePolicy,
     images: [
       auroraMarfim1.url,
@@ -296,7 +298,8 @@ export const products: Product[] = [
   },
   { id: "vestido-aurora-cafe",
     name: "Vestido Évora Aurora Café",
-    price: 479,
+    price: 129.90,
+    originalPrice: 379,
     description: "Vestido midi em tom café, com cintura marcada e saia ampla. A tonalidade profunda atualiza uma silhueta clássica." + exchangePolicy,
     images: [
       auroraCafe1.url,
@@ -370,6 +373,7 @@ export const products: Product[] = [
   { id: "vestido-monument-noir",
     name: "Vestido Évora Monument Noir",
     price: 649,
+    originalPrice: 890,
     description: "Vestido longo de construção assimétrica em preto e marfim. O volume escultural no ombro transforma a peça em protagonista." + exchangePolicy,
     images: [
       monumentNoir1.url,
@@ -444,6 +448,7 @@ export const products: Product[] = [
   { id: "colete-alvorada",
     name: "Colete Évora Alvorada",
     price: 359,
+    originalPrice: 489,
     description: "Colete em alfaiataria premium off-white com fechamento frontal por botões delicados e barra assimétrica. Uma peça minimalista e sofisticada que redefine o conceito de elegância moderna. Perfeito para sobreposições ou usado como peça única, garantindo um visual polido e autoritário." + exchangePolicy,
     images: [
       alvorada1.url,
@@ -516,6 +521,7 @@ export const products: Product[] = [
   { id: "vestido-satin-espresso",
     name: "Vestido Évora Satin Espresso",
     price: 529,
+    originalPrice: 690,
     description: "Vestido longo em cetim de seda tom espresso, com decote degagê e alças finas reguláveis. O brilho luxuoso do tecido e o caimento fluido criam uma silhueta feminina e extremamente elegante para eventos noturnos." + exchangePolicy,
     images: [
       satinEspresso1.url,
@@ -585,6 +591,7 @@ export const products: Product[] = [
   { id: "saia-chiffon-fluida",
     name: "Saia Évora Chiffon Fluida",
     price: 389,
+    originalPrice: 490,
     description: "Saia midi em chiffon de alta qualidade com modelagem em camadas e caimento leve. Possui forro interno e cós com elástico para maior conforto. Uma peça versátil que transita do casual ao sofisticado com elegância." + exchangePolicy,
     images: [
       saiaChiffon1.url,
@@ -662,6 +669,7 @@ export const products: Product[] = [
   { id: "saia-renda-romantique",
     name: "Saia Évora Renda Romantique",
     price: 429,
+    originalPrice: 590,
     description: "Saia midi em renda guipure delicada com detalhes florais e transparência sutil. Possui forro em tom nude para destacar o desenho da renda, cós estruturado e fechamento por zíper invisível. Uma peça atemporal que exala feminilidade e elegância." + exchangePolicy,
     images: [
       saiaRenda1.url,
@@ -728,6 +736,7 @@ export const products: Product[] = [
   { id: "conjunto-espresso-alfaiataria",
     name: "Conjunto Évora Espresso Alfaiataria",
     price: 589,
+    originalPrice: 790,
     description: "Conjunto de alfaiataria premium composto por colete transpassado com cinto (brinde incluso) e calça wide leg. O tom espresso profundo e o corte impecável trazem uma sofisticação moderna e autoritária, ideal para a mulher que impõe presença. Acompanha cinto exclusivo em couro sintético no mesmo tom." + exchangePolicy,
     images: [
       conjuntoEspresso1.url,
@@ -803,6 +812,7 @@ export const products: Product[] = [
   { id: "conjunto-rose",
     name: "Conjunto Évora Rosé",
     price: 489,
+    originalPrice: 629,
     description: "Conjunto de alfaiataria em tom rosé composto por colete acinturado e saia longa fluida. Uma produção delicada, elegante e versátil para ocasiões especiais." + exchangePolicy,
     images: [ig0, p1b, p1c, p1d],
     sizes,
@@ -857,6 +867,7 @@ export const products: Product[] = [
   { id: "vestido-aurora-rose",
     name: "Vestido Évora Aurora Rosé",
     price: 459,
+    originalPrice: 589,
     description: "Vestido midi rosé com decote fechado, cintura marcada e saia evasê. Um clássico leve que acompanha do almoço ao evento noturno." + exchangePolicy,
     images: [ig2, p3b, p3c, p3d],
     sizes,
@@ -912,6 +923,7 @@ export const products: Product[] = [
     id: "calca-alfaiataria-off-white",
     name: "Calça Évora Alfaiataria Off-White",
     price: 389.0,
+    originalPrice: 489,
     description: "A peça que define a elegância moderna. Nossa Calça de Alfaiataria Off-White possui corte reto impecável, pregas frontais que alongam a silhueta e um caimento fluido que exala sofisticação. Ideal para compor looks minimalistas e poderosos. *Acompanha cinto preto de brinde para finalizar o visual com perfeição.*" + exchangePolicy,
     images: [
       (calcaOffWhite1 as any).url,
