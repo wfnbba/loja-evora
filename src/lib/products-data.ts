@@ -923,6 +923,7 @@ export const products: Product[] = [
     id: "calca-alfaiataria-off-white",
     name: "Calça Évora Alfaiataria Off-White",
     price: 389.0,
+    originalPrice: 489,
     description: "A peça que define a elegância moderna. Nossa Calça de Alfaiataria Off-White possui corte reto impecável, pregas frontais que alongam a silhueta e um caimento fluido que exala sofisticação. Ideal para compor looks minimalistas e poderosos. *Acompanha cinto preto de brinde para finalizar o visual com perfeição.*" + exchangePolicy,
     images: [
       (calcaOffWhite1 as any).url,
