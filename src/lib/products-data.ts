@@ -202,6 +202,7 @@ export interface Product {
   }[];
 }
 
+const sizes = ["P", "M", "G", "GG"];
 const exchangePolicy = "";
 
 export const products: Product[] = [
