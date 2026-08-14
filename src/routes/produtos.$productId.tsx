@@ -269,16 +269,17 @@ function ProductPage() {
               <Button 
                 onClick={addToCart} 
                 className={cn(
-                  "w-full rounded-none py-8 uppercase tracking-[0.2em] transition-all duration-300 utmify",
+                  "w-full rounded-none py-10 text-sm md:text-base font-bold uppercase tracking-widest transition-all duration-300 utmify",
                   (!selectedSize || (product.colors && product.colors.length > 0 && !selectedColor)) 
                     ? "bg-[#4a3f35]/40 hover:bg-[#4a3f35]/50" 
                     : "bg-[#4a3f35] hover:bg-[#4a3f35]/90"
                 )}
               >
-                <ShoppingBag className="mr-3 size-5" />
+                <ShoppingBag className="mr-3 size-6" />
                 {added ? "ADICIONADO AO CARRINHO" : "ADICIONAR AO CARRINHO"}
               </Button>
             </div>
+
             
             <div className="space-y-4 border-t border-border pt-8">
               <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Descrição</h2>
