@@ -26,6 +26,8 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
   const [pixData, setPixData] = useState<any>(null);
   const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 minutos em segundos
   const [isAddressFilled, setIsAddressFilled] = useState(false);
+  const [isSummaryOpen, setIsSummaryOpen] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     document: "",
