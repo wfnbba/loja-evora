@@ -16,6 +16,8 @@ interface CartStore {
   items: CartItem[];
   addItem: (item: CartItem) => void;
   removeItem: (id: string, size: string, color?: string) => void;
+  incrementQuantity: (id: string, size: string, color?: string) => void;
+  decrementQuantity: (id: string, size: string, color?: string) => void;
   updateQuantity: (id: string, size: string, quantity: number, color?: string) => void;
   clearCart: () => void;
   totalItems: () => number;
@@ -51,6 +53,24 @@ export const useCartStore = create<CartStore>()(
         set((state) => ({
           items: state.items.filter(
             (item) => !(item.id === id && item.size === size && item.color === color)
+          ),
+        }));
+      },
+      incrementQuantity: (id, size, color) => {
+        set((state) => ({
+          items: state.items.map((item) =>
+            item.id === id && item.size === size && item.color === color
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          ),
+        }));
+      },
+      decrementQuantity: (id, size, color) => {
+        set((state) => ({
+          items: state.items.map((item) =>
+            item.id === id && item.size === size && item.color === color
+              ? { ...item, quantity: Math.max(1, item.quantity - 1) }
+              : item
           ),
         }));
       },
