@@ -121,6 +121,7 @@ export function CartSheet({ open, onOpenChange }: CartSheetProps) {
             </div>
             <Separator className="bg-border/50" />
             <Button 
+              id="checkout-button"
               onClick={() => setShowCheckout(true)}
               className="w-full rounded-none py-8 uppercase tracking-[0.2em] font-medium cursor-pointer utmify bg-foreground text-background hover:bg-foreground/90 transition-all"
             >
