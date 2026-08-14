@@ -42,6 +42,17 @@ import auroraCafe2 from "@/assets/products/aurora-cafe-2.jpg";
 import auroraCafe3 from "@/assets/products/aurora-cafe-3.jpg";
 import auroraCafe4 from "@/assets/products/aurora-cafe-4.jpg";
 
+import auroraMarfim1 from "@/assets/products/aurora-marfim-1.png.asset.json";
+import auroraMarfim2 from "@/assets/products/aurora-marfim-2.png.asset.json";
+import auroraMarfim3 from "@/assets/products/aurora-marfim-3.png.asset.json";
+import auroraMarfim4 from "@/assets/products/aurora-marfim-4.png.asset.json";
+import auroraMarfim5 from "@/assets/products/aurora-marfim-5.png.asset.json";
+import auroraMarfim6 from "@/assets/products/aurora-marfim-6.png.asset.json";
+import auroraMarfim7 from "@/assets/products/aurora-marfim-7.png.asset.json";
+import auroraMarfim8 from "@/assets/products/aurora-marfim-8.png.asset.json";
+import auroraMarfim9 from "@/assets/products/aurora-marfim-9.png.asset.json";
+import auroraMarfim10 from "@/assets/products/aurora-marfim-10.png.asset.json";
+
 import monumentNoir1 from "@/assets/products/monument-noir-1.jpg";
 import monumentNoir2 from "@/assets/products/monument-noir-2.jpg";
 import monumentNoir3 from "@/assets/products/monument-noir-3.jpg";
