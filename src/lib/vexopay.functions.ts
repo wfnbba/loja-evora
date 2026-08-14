@@ -97,7 +97,15 @@ export const createPixPayment = createServerFn({ method: "POST" })
           name: data.payerName,
           phone: data.phone,
           document: data.payerDocument,
-          address: data.address
+          address: {
+            zipCode: data.address.zipCode,
+            street: data.address.street,
+            number: data.address.number,
+            complement: data.address.complement,
+            neighborhood: data.address.neighborhood,
+            city: data.address.city,
+            state: data.address.state
+          }
         },
         transactionId: transactionResult.data.transactionId,
         items: data.items.map(i => ({
@@ -117,7 +125,8 @@ export const createPixPayment = createServerFn({ method: "POST" })
 export const updateTransactionStatus = createServerFn({ method: "POST" })
   .validator((data: { transactionId: string; status: 'paid' | 'cancelled' }) => data)
   .handler(async ({ data }) => {
-    return await updateOrderStatus(data.transactionId, data.status);
+    const result = await updateOrderStatus(data.transactionId, data.status);
+    return result;
   });
 
 export const checkPixStatus = createServerFn({ method: "GET" })

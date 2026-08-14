@@ -81,7 +81,7 @@ export async function trackCustomerAndOrder(data: {
     return { success: true, orderId: order.id };
   } catch (error) {
     console.error('Error tracking customer/order:', error);
-    return { success: false, error };
+    return { success: false, error: error instanceof Error ? error.message : String(error) };
   }
 }
 
@@ -96,6 +96,6 @@ export async function updateOrderStatus(transactionId: string, status: 'paid' | 
     return { success: true };
   } catch (error) {
     console.error('Error updating order status:', error);
-    return { success: false, error };
+    return { success: false, error: error instanceof Error ? error.message : String(error) };
   }
 }
