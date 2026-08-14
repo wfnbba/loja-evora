@@ -308,15 +308,16 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
               })}
               
               <div className="pt-2 space-y-2 border-t border-border/20">
-                <div className="flex justify-between text-[10px] uppercase tracking-widest text-foreground font-bold">
-                  <div className="flex items-center gap-2">
+                <div className="flex justify-between text-xs uppercase tracking-widest text-foreground font-bold">
+                  <div className="flex items-center gap-3">
                     <span>Frete</span>
-                    <Truck className="size-3" />
+                    <Truck className="size-4" />
                   </div>
-                  <span className={isAddressFilled ? "text-green-600" : "text-muted-foreground"}>
-                    {isAddressFilled ? "GRÁTIS" : "Calculado no endereço"}
+                  <span className={isAddressFilled ? "text-green-600" : "text-muted-foreground/60"}>
+                    {isAddressFilled ? "GRÁTIS" : "Aguardando endereço"}
                   </span>
                 </div>
+
               </div>
             </div>
           )}
