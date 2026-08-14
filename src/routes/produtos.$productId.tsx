@@ -153,8 +153,8 @@ function ProductPage() {
           </section>
         </div>
 
-        <section className="mt-32 border-t border-border pt-20">
-          <h2 className="mb-12 text-center text-2xl font-light uppercase tracking-[0.2em]">Você também pode gostar</h2>
+        <section className="mt-32 border-t border-border/50 pt-20">
+          <h2 className="mb-16 text-center text-2xl font-light uppercase tracking-[0.3em]">Você também pode gostar</h2>
           <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-8 lg:grid-cols-4">
             {products
               .filter((p) => p.id !== product.id)
@@ -174,7 +174,7 @@ function ProductPage() {
                         />
                       </div>
                       <div className="space-y-1 text-center">
-                        <h3 className="text-xs font-medium uppercase tracking-widest md:text-sm">{recommended.name}</h3>
+                        <h3 className="text-xs font-medium uppercase tracking-[0.2em] md:text-sm">{recommended.name}</h3>
                         <div className="flex items-center justify-center gap-2 mt-1">
                           <div className="flex text-foreground" aria-label={`${recommended.rating} de 5 estrelas`}>
                             {Array.from({ length: 5 }, (_, i) => (
@@ -184,9 +184,9 @@ function ProductPage() {
                               />
                             ))}
                           </div>
-                          <span className="text-[10px] text-muted-foreground">{recommended.salesCount.toLocaleString("pt-BR")} vendidos</span>
+                          <span className="text-[10px] uppercase tracking-widest text-muted-foreground">{recommended.salesCount.toLocaleString("pt-BR")} vendidos</span>
                         </div>
-                        <p className="text-sm font-light text-muted-foreground">R$ {recommended.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+                        <p className="text-sm font-light tracking-widest text-muted-foreground">R$ {recommended.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
                       </div>
                     </CardContent>
                   </Card>
