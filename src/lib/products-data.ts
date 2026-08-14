@@ -27,8 +27,6 @@ import p8c from "@/assets/products/p8-c.jpg";
 import p8d from "@/assets/products/p8-d.jpg";
 
 // Novos imports específicos
-
-
 import alvorada1 from "@/assets/products/alvorada-v3-1.png.asset.json";
 import alvorada2 from "@/assets/products/alvorada-v3-2.png.asset.json";
 import alvorada3 from "@/assets/products/alvorada-v3-3.png.asset.json";
@@ -73,7 +71,6 @@ import monumentNoir8 from "@/assets/products/monument-noir-v2-8.png.asset.json";
 import monumentNoir9 from "@/assets/products/monument-noir-v2-9.png.asset.json";
 import monumentNoir10 from "@/assets/products/monument-noir-v2-10.png.asset.json";
 
-
 import satinEspresso1 from "@/assets/products/satin-espresso-1.png.asset.json";
 import satinEspresso2 from "@/assets/products/satin-espresso-2.png.asset.json";
 import satinEspresso3 from "@/assets/products/satin-espresso-3.png.asset.json";
@@ -92,6 +89,7 @@ import saiaChiffon7 from "@/assets/products/saia-chiffon-7.png.asset.json";
 import saiaChiffon8 from "@/assets/products/saia-chiffon-8.png.asset.json";
 import saiaChiffon9 from "@/assets/products/saia-chiffon-9.png.asset.json";
 import saiaChiffon10 from "@/assets/products/saia-chiffon-10.png.asset.json";
+
 import saiaRenda1 from "@/assets/products/saia-renda-1.png.asset.json";
 import saiaRenda2 from "@/assets/products/saia-renda-2.png.asset.json";
 import saiaRenda3 from "@/assets/products/saia-renda-3.png.asset.json";
@@ -102,6 +100,7 @@ import saiaRenda7 from "@/assets/products/saia-renda-7.png.asset.json";
 import saiaRenda8 from "@/assets/products/saia-renda-8.png.asset.json";
 import saiaRenda9 from "@/assets/products/saia-renda-9.png.asset.json";
 import saiaRenda10 from "@/assets/products/saia-renda-10.png.asset.json";
+
 import conjuntoEspresso1 from "@/assets/products/conjunto-espresso-alfaiataria-1.png.asset.json";
 import conjuntoEspresso2 from "@/assets/products/conjunto-espresso-alfaiataria-2.png.asset.json";
 import conjuntoEspresso3 from "@/assets/products/conjunto-espresso-alfaiataria-3.png.asset.json";
@@ -120,6 +119,7 @@ export interface Product {
   description: string;
   images: string[];
   sizes: string[];
+  colors?: { name: string; value: string }[];
   reviews: {
     user: string;
     comment: string;
@@ -138,6 +138,7 @@ export const products: Product[] = [
     description: "Conjunto de alfaiataria em tom rosé composto por colete acinturado e saia longa fluida. Uma produção delicada, elegante e versátil para ocasiões especiais.",
     images: [ig0, p1b, p1c, p1d],
     sizes,
+    colors: [{ name: "Rosé", value: "#e2b6b1" }],
     reviews: [{ user: "Mariana S.", comment: "O conjunto veste muito bem e a cor é linda pessoalmente.", rating: 5, image: p1b }],
   },
   {
@@ -147,6 +148,7 @@ export const products: Product[] = [
     description: "Vestido midi rosé com decote fechado, cintura marcada e saia evasê. Um clássico leve que acompanha do almoço ao evento noturno.",
     images: [ig2, p3b, p3c, p3d],
     sizes,
+    colors: [{ name: "Rosé", value: "#e2b6b1" }],
     reviews: [{ user: "Juliana F.", comment: "Caimento impecável e comprimento elegante. Usei e recebi muitos elogios.", rating: 5, image: p3b }],
   },
   {
@@ -167,6 +169,7 @@ export const products: Product[] = [
       auroraMarfim10.url,
     ],
     sizes,
+    colors: [{ name: "Marfim", value: "#f5f5f0" }],
     reviews: [{ user: "Heloísa R.", comment: "Elegante sem esforço e o tecido não marca. Gostei muito.", rating: 5, image: auroraMarfim1.url }],
   },
   {
@@ -187,6 +190,7 @@ export const products: Product[] = [
       auroraCafe10.url
     ],
     sizes,
+    colors: [{ name: "Café", value: "#4b3621" }],
     reviews: [{ user: "Beatriz L.", comment: "A cor é sofisticada e o corte ficou certinho no corpo.", rating: 5, image: auroraCafe1.url }],
   },
   {
@@ -207,6 +211,7 @@ export const products: Product[] = [
       monumentNoir10.url
     ],
     sizes,
+    colors: [{ name: "Noir/Marfim", value: "#000000" }],
     reviews: [{ user: "Isabela N.", comment: "Diferente de tudo que eu tinha. A modelagem chama atenção na medida.", rating: 5, image: monumentNoir1.url }],
   },
   {
@@ -227,6 +232,7 @@ export const products: Product[] = [
       alvorada10.url
     ],
     sizes,
+    colors: [{ name: "Off-White", value: "#faf9f6" }],
     reviews: [
       { 
         user: "Carolina P.", 
@@ -257,6 +263,7 @@ export const products: Product[] = [
       satinEspresso7.url
     ],
     sizes,
+    colors: [{ name: "Espresso", value: "#3d2b1f" }],
     reviews: [
       { 
         user: "Fernanda L.", 
@@ -290,10 +297,15 @@ export const products: Product[] = [
       saiaChiffon10.url
     ],
     sizes,
+    colors: [
+      { name: "Off-White", value: "#faf9f6" },
+      { name: "Terracota", value: "#a45a52" },
+      { name: "Preto", value: "#000000" }
+    ],
     reviews: [
       { 
         user: "Beatriz S.", 
-        comment: "A saia é maravilhosa, o tecido tem um movimento lindo ao andar.", 
+        comment: "A saia é maravilhosa, o tecido tem um movemento lindo ao andar.", 
         rating: 5, 
         image: saiaChiffon4.url 
       },
@@ -323,6 +335,7 @@ export const products: Product[] = [
       saiaRenda10.url
     ],
     sizes,
+    colors: [{ name: "Renda Nude", value: "#e8d7c5" }],
     reviews: [
       { 
         user: "Larissa K.", 
@@ -356,6 +369,7 @@ export const products: Product[] = [
       conjuntoEspresso10.url
     ],
     sizes,
+    colors: [{ name: "Espresso", value: "#3d2b1f" }],
     reviews: [
       { 
         user: "Tatiana B.", 
