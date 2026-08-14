@@ -404,8 +404,9 @@ function ProductPage() {
           </section>
         </div>
 
-        <section className="mt-32 space-y-16">
-          <div className="space-y-4 text-center">
+        <section className="mt-32 space-y-16 px-4 md:px-0">
+          <div className="space-y-6 text-center">
+
             <h2 className="text-2xl md:text-3xl font-light uppercase tracking-[0.3em]">Explore nossa coleção</h2>
             <div className="mx-auto h-px w-20 bg-foreground/10" />
             <Link to="/" className="inline-block text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground underline underline-offset-4">
