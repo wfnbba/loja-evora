@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { CheckoutOverlay } from "@/components/cart/checkout-overlay";
 import { useCartStore } from "@/store/cart-store";
 import { useEffect } from "react";
@@ -27,15 +27,25 @@ function CheckoutPage() {
   if (items.length === 0) return null;
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur-md">
-        <div className="container mx-auto flex h-20 items-center justify-center px-4">
-          <img src={logoAsset.url} alt="Évora Logo" className="h-10 w-auto" />
+    <div className="min-h-screen bg-[#fcfaf7]">
+      <header className="w-full border-b border-border/50 bg-background">
+        <div className="container mx-auto flex h-20 items-center justify-between px-4">
+          <Link to="/">
+            <img src={logoAsset.url} alt="Évora Logo" className="h-10 w-auto" />
+          </Link>
+          <div className="hidden md:flex items-center gap-2 text-muted-foreground">
+            <span className="text-[10px] font-bold uppercase tracking-widest">Ambiente Seguro</span>
+          </div>
         </div>
       </header>
-      <main className="pt-20 h-screen">
+      <main className="container mx-auto py-8 lg:py-12">
         <CheckoutOverlay onClose={() => navigate({ to: "/" })} />
       </main>
+      <footer className="py-8 text-center border-t border-border/50 mt-12">
+        <p className="text-[10px] tracking-[0.2em] font-light text-muted-foreground uppercase">
+          © 2026 ÉVORA. TODOS OS DIREITOS RESERVADOS.
+        </p>
+      </footer>
     </div>
   );
 }
