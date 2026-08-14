@@ -184,10 +184,17 @@ function ProductPage() {
                 ))}
               </div>
               {!selectedSize && <p className="text-xs text-muted-foreground">Selecione um tamanho para adicionar ao carrinho.</p>}
-              <p className="flex items-center gap-2 text-[10px] font-light uppercase tracking-[0.2em] text-muted-foreground/80">
-                <span className="size-1 rounded-full bg-green-600/50" />
-                Primeira troca é gratuita em caso de tamanho errado.
-              </p>
+              <div className="mt-4 flex items-center gap-3 border border-green-600/20 bg-green-600/5 p-4 transition-all hover:bg-green-600/10">
+                <div className="flex size-8 items-center justify-center rounded-full bg-green-600/10 text-green-700">
+                  <RefreshCw className="size-4 animate-spin-slow" />
+                </div>
+                <div className="space-y-0.5">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-green-700">Troca Garantida</p>
+                  <p className="text-[9px] font-light uppercase tracking-[0.15em] text-green-600/90">
+                    Primeira troca é gratuita em caso de tamanho errado.
+                  </p>
+                </div>
+              </div>
             </div>
 
             {(product.id === "conjunto-espresso-alfaiataria" || product.id === "calca-alfaiataria-off-white") && (
