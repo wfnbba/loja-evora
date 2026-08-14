@@ -160,24 +160,25 @@ function ProductPage() {
             
             {product.sizes.length > 0 && (
               <div className="space-y-4">
-                <p className="text-xs font-medium uppercase tracking-[0.2em]">Tamanho</p>
+                <p className="text-xs font-bold uppercase tracking-widest">Tamanho</p>
                 <div className="flex flex-wrap gap-3">
                   {product.sizes.map((size) => (
-                    <Button key={size} type="button" variant={selectedSize === size ? "default" : "outline"} onClick={() => { setSelectedSize(size); setAdded(false); }} className="size-12 rounded-none p-0">{size}</Button>
+                    <Button key={size} type="button" variant={selectedSize === size ? "default" : "outline"} onClick={() => { setSelectedSize(size); setAdded(false); }} className="size-14 rounded-none p-0 text-sm font-bold">{size}</Button>
                   ))}
                 </div>
                 <div className="mt-4 flex items-center gap-3 border border-green-600/20 bg-green-600/5 p-4 transition-all hover:bg-green-600/10">
-                  <div className="flex size-8 items-center justify-center rounded-full bg-green-600/10 text-green-700">
-                    <RefreshCw className="size-4 animate-spin-slow" />
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-green-600/10 text-green-700">
+                    <RefreshCw className="size-5 animate-spin-slow" />
                   </div>
                   <div className="space-y-0.5">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-green-700">Troca Garantida</p>
-                    <p className="text-[9px] font-light uppercase tracking-[0.15em] text-green-600/90">
+                    <p className="text-xs font-bold uppercase tracking-widest text-green-700">Troca Garantida</p>
+                    <p className="text-[11px] font-medium uppercase tracking-wider text-green-600/90 leading-tight">
                       Primeira troca é gratuita em caso de tamanho errado.
                     </p>
                   </div>
                 </div>
               </div>
+
             )}
 
             {product.colors && (
