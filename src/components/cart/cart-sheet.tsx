@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCartStore } from "@/store/cart-store";
+import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import {
   Sheet,
   SheetContent,
@@ -8,9 +8,8 @@ import {
   SheetFooter,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Minus, Plus, Trash2, ShoppingBag, ChevronLeft } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingBag, Loader2 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import { CheckoutOverlay } from "./checkout-overlay";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 
 interface CartSheetProps {
@@ -19,46 +18,26 @@ interface CartSheetProps {
 }
 
 export function CartSheet({ open, onOpenChange }: CartSheetProps) {
-  const { items, removeItem, updateQuantity, totalPrice } = useCartStore();
-  const [showCheckout, setShowCheckout] = useState(false);
-
-  const handleOpenChange = (val: boolean) => {
-    onOpenChange(val);
-    if (!val) {
-      setTimeout(() => setShowCheckout(false), 300);
-    }
-  };
+  const { items, removeItem, updateQuantity, isLoading, checkoutUrl } = useShopifyCartStore();
 
   return (
-    <Sheet open={open} onOpenChange={handleOpenChange}>
+    <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent className="flex w-full flex-col sm:max-w-4xl border-l border-border/50 bg-background p-0 overflow-hidden">
         <SheetHeader className="border-b border-border/50 p-6 flex-row items-center justify-between space-y-0 shrink-0">
-          <div className="flex items-center gap-4">
-            {showCheckout && (
-              <button 
-                onClick={() => setShowCheckout(false)}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <ChevronLeft className="size-4" />
-              </button>
-            )}
-            <SheetTitle className="text-xs font-medium uppercase tracking-[0.2em]">
-              {showCheckout ? "Checkout Seguro" : "Seu Carrinho"}
-            </SheetTitle>
-          </div>
+          <SheetTitle className="text-xs font-medium uppercase tracking-[0.2em]">
+            Seu Carrinho
+          </SheetTitle>
         </SheetHeader>
 
         <div className="flex-1 overflow-y-auto relative custom-scrollbar">
-          {false ? (
-            <div />
-          ) : items.length === 0 ? (
+          {items.length === 0 ? (
             <div className="flex h-full flex-col items-center justify-center space-y-4 text-center">
               <ShoppingBag className="size-12 text-muted-foreground/30" />
               <p className="text-sm font-light tracking-wide text-muted-foreground">Seu carrinho está vazio.</p>
               <Button 
                 variant="outline" 
                 onClick={() => onOpenChange(false)}
-                className="rounded-none border-border/50 uppercase tracking-widest cursor-pointer"
+                className="rounded-none border-border/50 uppercase tracking-widest"
               >
                 Continuar Comprando
               </Button>
@@ -123,12 +102,12 @@ export function CartSheet({ open, onOpenChange }: CartSheetProps) {
           )}
         </div>
 
-        {items.length > 0 && !showCheckout && (
+        {items.length > 0 && (
           <SheetFooter className="border-t border-border/50 p-6 lg:p-10 flex-col sm:flex-col space-y-4 shrink-0 bg-background">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-medium uppercase tracking-[0.2em]">Total Estimado</span>
               <span className="text-xl font-light tracking-[0.2em]">
-                {items[0]?.price.currencyCode} {items.reduce((acc, item) => acc + (parseFloat(item.price.amount) * item.quantity), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                {items[0]?.price.currencyCode || 'BRL'} {items.reduce((acc, item) => acc + (parseFloat(item.price.amount) * item.quantity), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
               </span>
             </div>
             <Separator className="bg-border/50" />
@@ -136,13 +115,10 @@ export function CartSheet({ open, onOpenChange }: CartSheetProps) {
               id="checkout-button"
               asChild
               disabled={isLoading || !checkoutUrl}
-              className="w-full rounded-none py-8 uppercase tracking-[0.2em] font-medium cursor-pointer utmify bg-foreground text-background hover:bg-foreground/90 transition-all disabled:opacity-50"
+              className="w-full rounded-none py-8 uppercase tracking-[0.2em] font-medium cursor-pointer bg-foreground text-background hover:bg-foreground/90 transition-all disabled:opacity-50"
             >
               <a href={checkoutUrl || "#"}>{isLoading ? "PROCESSANDO..." : "Finalizar Compra"}</a>
             </Button>
-            <p className="text-[10px] text-center text-muted-foreground tracking-widest uppercase">
-              Frete grátis aplicado automaticamente.
-            </p>
           </SheetFooter>
         )}
       </SheetContent>
