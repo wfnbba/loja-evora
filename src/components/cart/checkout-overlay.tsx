@@ -243,15 +243,15 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
       <div className="flex flex-col lg:flex-row min-h-screen">
         {/* Mobile Order Summary (Always Visible) */}
-        <div className="lg:hidden border-b border-border/50 bg-muted/5">
+        <div className="lg:hidden border-b border-border/50 bg-[#faf8f6]">
           <div 
-            className="w-full p-5 flex items-center justify-between text-xs font-bold uppercase tracking-widest"
+            className="w-full p-6 flex items-center justify-between text-xs font-bold uppercase tracking-widest border-b border-border/10"
           >
             <div className="flex items-center gap-3 text-foreground">
-              <ShoppingBag className="size-4" />
+              <ShoppingBag className="size-5" />
               <span>Resumo do Pedido</span>
             </div>
-            <span className="text-sm text-[#d4af37] font-bold">
+            <span className="text-base text-foreground font-bold">
               R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
             </span>
           </div>
