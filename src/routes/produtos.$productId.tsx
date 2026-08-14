@@ -152,16 +152,16 @@ function ProductPage() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
           <section aria-label="Galeria do produto" className="space-y-4">
             <div className="relative aspect-[3/4] overflow-hidden bg-muted">
-              <OptimizedImage src={product.images[selectedImage] || ""} alt={`${product.name}, foto ${selectedImage + 1}`} className="h-full w-full object-cover" width={600} height={800} priority />
-              <Button variant="secondary" size="icon" aria-label="Foto anterior" onClick={() => setSelectedImage((current) => current > 0 ? current - 1 : product.images.length - 1)} className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none">
+              <OptimizedImage src={images[selectedImage] || ""} alt={`${product.title}, foto ${selectedImage + 1}`} className="h-full w-full object-cover" width={600} height={800} priority />
+              <Button variant="secondary" size="icon" aria-label="Foto anterior" onClick={() => setSelectedImage((current) => current > 0 ? current - 1 : images.length - 1)} className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none">
                 <ChevronLeft className="size-5" />
               </Button>
-              <Button variant="secondary" size="icon" aria-label="Próxima foto" onClick={() => setSelectedImage((current) => current < product.images.length - 1 ? current + 1 : 0)} className="absolute right-4 top-1/2 -translate-y-1/2 rounded-none">
+              <Button variant="secondary" size="icon" aria-label="Próxima foto" onClick={() => setSelectedImage((current) => current < images.length - 1 ? current + 1 : 0)} className="absolute right-4 top-1/2 -translate-y-1/2 rounded-none">
                 <ChevronRight className="size-5" />
               </Button>
             </div>
             <div className="grid grid-cols-4 gap-3">
-              {product.images.map((image, index) => (
+              {images.map((image, index) => (
                 <button key={image} type="button" aria-label={`Exibir foto ${index + 1}`} onClick={() => setSelectedImage(index)} className={`relative aspect-[3/4] overflow-hidden border-2 transition-colors ${selectedImage === index ? "border-foreground" : "border-transparent"}`}>
                   <OptimizedImage src={image} alt="" className="h-full w-full object-cover" width={150} height={200} />
                 </button>
@@ -171,85 +171,66 @@ function ProductPage() {
 
           <section className="space-y-8">
             <div className="space-y-2">
-              <h1 className="text-3xl font-light uppercase tracking-[0.2em]">{product.name}</h1>
+              <h1 className="text-3xl font-light uppercase tracking-[0.2em]">{product.title}</h1>
               <div className="flex items-center gap-4 text-sm font-light">
                 <div className="flex items-center gap-1">
-                  <div className="flex" aria-label={`${product.rating} de 5 estrelas`}>
+                  <div className="flex" aria-label="5 de 5 estrelas">
                     {Array.from({ length: 5 }, (_, i) => (
                       <Star
                         key={i}
-                        className={`size-3 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`}
+                        className="size-3 fill-current"
                       />
                     ))}
                   </div>
-                  <span>{product.rating}/5</span>
+                  <span>5/5</span>
                 </div>
                 <span className="text-muted-foreground">|</span>
-                <span>{product.salesCount.toLocaleString("pt-BR")} vendidos</span>
+                <span>Novo na Évora</span>
               </div>
               <div className="flex items-baseline gap-3">
-                <p className="text-2xl font-light">R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
-                {product.originalPrice && (
-                  <p className="text-sm font-light text-muted-foreground line-through decoration-muted-foreground/50">
-                    R$ {product.originalPrice.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                  </p>
-                )}
-                {product.originalPrice && (
-                  <span className="bg-foreground text-background text-[10px] px-2 py-0.5 font-medium uppercase tracking-widest">
-                    -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF
-                  </span>
-                )}
+                <p className="text-2xl font-light">
+                  {product.priceRange.minVariantPrice.currencyCode} {parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                </p>
               </div>
             </div>
-            <div className="space-y-4">
-              <p className="text-xs font-medium uppercase tracking-[0.2em]">Tamanho</p>
-              <div className="flex flex-wrap gap-3">
-                {product.sizes.map((size) => (
-                  <Button key={size} type="button" variant={selectedSize === size ? "default" : "outline"} onClick={() => { setSelectedSize(size); setAdded(false); }} className="size-12 rounded-none p-0">{size}</Button>
-                ))}
-              </div>
-              {!selectedSize && <p className="text-xs text-muted-foreground">Selecione um tamanho para adicionar ao carrinho.</p>}
-              <div className="mt-4 flex items-center gap-3 border border-green-600/20 bg-green-600/5 p-4 transition-all hover:bg-green-600/10">
-                <div className="flex size-8 items-center justify-center rounded-full bg-green-600/10 text-green-700">
-                  <RefreshCw className="size-4 animate-spin-slow" />
-                </div>
-                <div className="space-y-0.5">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-green-700">Troca Garantida</p>
-                  <p className="text-[9px] font-light uppercase tracking-[0.15em] text-green-600/90">
-                    Primeira troca é gratuita em caso de tamanho errado.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {(product.id === "conjunto-espresso-alfaiataria" || product.id === "calca-alfaiataria-off-white") && (
+            
+            {sizeOption && (
               <div className="space-y-4">
-                <p className="text-xs font-medium uppercase tracking-[0.2em]">Acessório Incluso</p>
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 items-center border border-foreground bg-foreground px-6 text-sm text-background">
-                    CINTO - TAMANHO ÚNICO
+                <p className="text-xs font-medium uppercase tracking-[0.2em]">Tamanho</p>
+                <div className="flex flex-wrap gap-3">
+                  {sizeOption.values.map((size) => (
+                    <Button key={size} type="button" variant={selectedSize === size ? "default" : "outline"} onClick={() => { setSelectedSize(size); setAdded(false); }} className="size-12 rounded-none p-0">{size}</Button>
+                  ))}
+                </div>
+                {!selectedSize && <p className="text-xs text-muted-foreground">Selecione um tamanho para adicionar ao carrinho.</p>}
+                <div className="mt-4 flex items-center gap-3 border border-green-600/20 bg-green-600/5 p-4 transition-all hover:bg-green-600/10">
+                  <div className="flex size-8 items-center justify-center rounded-full bg-green-600/10 text-green-700">
+                    <RefreshCw className="size-4 animate-spin-slow" />
                   </div>
-                  <div className="text-sm font-light">
-                    <span className="mr-2 text-muted-foreground line-through">R$ 89,00</span>
-                    <span className="font-medium text-green-600">BRINDE</span>
+                  <div className="space-y-0.5">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-green-700">Troca Garantida</p>
+                    <p className="text-[9px] font-light uppercase tracking-[0.15em] text-green-600/90">
+                      Primeira troca é gratuita em caso de tamanho errado.
+                    </p>
                   </div>
                 </div>
               </div>
             )}
 
-            {product.colors && product.colors.length > 0 && (
+            {colorOption && (
               <div className="space-y-4">
                 <p className="text-xs font-medium uppercase tracking-[0.2em]">Cor: {selectedColor}</p>
                 <div className="flex flex-wrap gap-3">
-                  {product.colors.map((color) => (
-                    <button
-                      key={color.name}
+                  {colorOption.values.map((color) => (
+                    <Button
+                      key={color}
                       type="button"
-                      aria-label={`Cor ${color.name}`}
-                      onClick={() => { setSelectedColor(color.name); setAdded(false); }}
-                      className={`size-10 rounded-full border border-border transition-all ${selectedColor === color.name ? "ring-2 ring-foreground ring-offset-2" : "hover:scale-105"}`}
-                      style={{ backgroundColor: color.value }}
-                    />
+                      variant={selectedColor === color ? "default" : "outline"}
+                      onClick={() => { setSelectedColor(color); setAdded(false); }}
+                      className="rounded-none px-4 py-2 text-[10px] uppercase tracking-widest"
+                    >
+                      {color}
+                    </Button>
                   ))}
                 </div>
               </div>
@@ -260,20 +241,29 @@ function ProductPage() {
                 id="add-to-cart-button"
                 type="button" 
                 onClick={addToCart} 
-                disabled={!selectedSize} 
+                disabled={!selectedSize || isLoadingCart} 
                 className="w-full rounded-none py-8 uppercase tracking-[0.2em] cursor-pointer"
               >
-                <ShoppingBag className="mr-3 size-5" />{added ? "ADICIONADO AO CARRINHO" : "ADICIONAR AO CARRINHO"}
+                {isLoadingCart ? (
+                  <Loader2 className="mr-3 size-5 animate-spin" />
+                ) : (
+                  <ShoppingBag className="mr-3 size-5" />
+                )}
+                {added ? "ADICIONADO AO CARRINHO" : "ADICIONAR AO CARRINHO"}
               </Button>
               
               {/* Botão Fixo Mobile-First */}
               <div className="fixed bottom-0 left-0 right-0 z-40 bg-background/95 p-4 backdrop-blur-md border-t border-border/50 md:hidden animate-in fade-in slide-in-from-bottom-full duration-500">
                 <Button 
                   onClick={addToCart} 
-                  disabled={!selectedSize}
+                  disabled={!selectedSize || isLoadingCart}
                   className="w-full rounded-none py-8 uppercase tracking-[0.2em] font-bold shadow-2xl"
                 >
-                  <ShoppingBag className="mr-3 size-5" />
+                  {isLoadingCart ? (
+                    <Loader2 className="mr-3 size-5 animate-spin" />
+                  ) : (
+                    <ShoppingBag className="mr-3 size-5" />
+                  )}
                   {added ? "ADICIONADO" : "COMPRAR AGORA"}
                 </Button>
               </div>
@@ -284,7 +274,7 @@ function ProductPage() {
               <div className="space-y-6">
                 <p className="font-light leading-relaxed text-muted-foreground">{product.description}</p>
                 
-                {product.id === "vestido-aurora-cafe" && (
+                {product.handle === "vestido-aurora-cafe" && (
                   <div className="wistia-video-container mt-6 aspect-[9/16] w-full max-w-[400px] overflow-hidden bg-muted mx-auto lg:mx-0">
                     <style>
                       {`
@@ -300,7 +290,7 @@ function ProductPage() {
                   </div>
                 )}
                 
-                {(product.id === "conjunto-alfaiataria-off-white" || product.id === "calca-alfaiataria-off-white") && (
+                {product.handle === "calca-alfaiataria-off-white" && (
                   <div className="wistia-video-container mt-6 aspect-[9/16] w-full max-w-[400px] overflow-hidden bg-muted mx-auto lg:mx-0">
                     <style>
                       {`
@@ -317,6 +307,7 @@ function ProductPage() {
                 )}
               </div>
             </div>
+
             
             <div id="feedbacks" className="space-y-12 border-t border-border pt-12">
               <div className="space-y-8">
