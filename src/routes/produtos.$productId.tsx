@@ -170,7 +170,7 @@ function ProductPage() {
               </p>
             </div>
 
-            {product.id === "conjunto-espresso-alfaiataria" && (
+            {(product.id === "conjunto-espresso-alfaiataria" || product.id === "calca-alfaiataria-off-white") && (
               <div className="space-y-4">
                 <p className="text-xs font-medium uppercase tracking-[0.2em]">Acessório Incluso</p>
                 <div className="flex items-center gap-4">
