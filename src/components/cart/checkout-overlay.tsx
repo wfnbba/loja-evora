@@ -204,23 +204,11 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
   }, [step, pixData, checkStatus, clearCart]);
 
   if (step === "success") {
-    return (
-      <div className="flex h-full flex-col items-center justify-center space-y-6 p-8 text-center animate-in fade-in zoom-in duration-500">
-        <div className="flex size-20 items-center justify-center rounded-full bg-green-50 text-green-600">
-          <CheckCircle2 className="size-10" />
-        </div>
-        <div className="space-y-2">
-          <h2 className="text-xl font-medium uppercase tracking-[0.2em]">Pagamento Confirmado</h2>
-          <p className="text-sm font-light text-muted-foreground">
-            Obrigada por escolher a Évora. Seu pedido já está sendo processado e você receberá atualizações em breve.
-          </p>
-        </div>
-        <Button onClick={onClose} className="w-full rounded-none uppercase tracking-widest py-6">
-          Voltar para a Loja
-        </Button>
-      </div>
-    );
+    // Redirecionamento automático para a página de obrigado após o sucesso
+    window.location.href = "/obrigado";
+    return null;
   }
+
 
   return (
     <div className="flex h-full flex-col overflow-hidden bg-background">
@@ -258,17 +246,28 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 <div className="flex flex-1 flex-col justify-center gap-1">
                   <h4 className="text-[11px] font-bold uppercase tracking-widest leading-tight">{item.name}</h4>
                   <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Tamanho: {item.size}</p>
-                  <p className="text-[11px] font-medium mt-1">
-                    R$ {(item.price * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-[11px] font-medium mt-1">
+                      R$ {(item.price * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                    </p>
+                    {item.originalPrice && (
+                      <p className="text-[9px] text-muted-foreground/50 line-through mt-1">
+                        R$ {(item.originalPrice * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
             <Separator className="bg-border/30" />
             <div className="space-y-2 pb-2">
               <div className="flex justify-between text-[11px] uppercase tracking-widest text-muted-foreground">
-                <span>Subtotal</span>
-                <span>R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
+                <span>Itens</span>
+                <span>R$ {items.reduce((acc, item) => acc + ((item.originalPrice || item.price) * item.quantity), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
+              </div>
+              <div className="flex justify-between text-[11px] uppercase tracking-widest text-muted-foreground">
+                <span>Desconto</span>
+                <span className="text-green-600">- R$ {items.reduce((acc, item) => acc + (item.originalPrice ? (item.originalPrice - item.price) * item.quantity : 0), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
               </div>
               <div className="flex justify-between text-[11px] uppercase tracking-widest text-green-600 font-bold">
                 <span>Frete</span>
@@ -436,18 +435,20 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                       </div>
 
                       {/* Info de Frete e Prazo - Só aparece quando CEP está OK */}
-                      <div className="bg-foreground text-background p-6 space-y-3 animate-in fade-in zoom-in duration-500">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            <Truck className="size-5" />
-                            <span className="text-[12px] font-bold uppercase tracking-widest">Entrega Padrão</span>
+                      {formData.cep.length === 8 && (
+                        <div className="bg-foreground text-background p-6 space-y-3 animate-in fade-in zoom-in duration-500">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                              <Truck className="size-5" />
+                              <span className="text-[12px] font-bold uppercase tracking-widest">Entrega Padrão</span>
+                            </div>
+                            <span className="text-[12px] font-bold uppercase tracking-widest text-green-400">Grátis</span>
                           </div>
-                          <span className="text-[12px] font-bold uppercase tracking-widest text-green-400">Grátis</span>
+                          <p className="text-[10px] uppercase tracking-widest text-background/70">
+                            Previsão de entrega: <strong className="text-background">5 dias úteis</strong>
+                          </p>
                         </div>
-                        <p className="text-[10px] uppercase tracking-widest text-background/70">
-                          Previsão de entrega: <strong className="text-background">5 dias úteis</strong>
-                        </p>
-                      </div>
+                      )}
                     </div>
                   )}
                 </div>
@@ -481,7 +482,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                   disabled={loading} 
                   className="w-full rounded-none py-10 md:py-12 text-sm md:text-base uppercase tracking-[0.3em] font-bold bg-foreground text-background hover:bg-foreground/90 transition-all shadow-xl utmify"
                 >
-                  {loading ? <Loader2 className="mr-2 size-5 animate-spin" /> : "Finalizar Compra"}
+                  {loading ? <Loader2 className="mr-2 size-5 animate-spin" /> : "Gerar PIX QR Code"}
                 </Button>
                 <div className="flex flex-col items-center gap-4 py-4 border-t border-border/50">
                   <div className="flex items-center gap-4 opacity-70">
@@ -569,9 +570,16 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                   <div className="flex flex-1 flex-col justify-center gap-2">
                     <h4 className="text-[12px] font-bold uppercase tracking-[0.2em] leading-relaxed">{item.name}</h4>
                     <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Variante: {item.size}</p>
-                    <p className="text-[13px] font-medium mt-1 tracking-wider">
-                      R$ {(item.price * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                    </p>
+                    <div className="flex items-center gap-2">
+                      <p className="text-[13px] font-medium mt-1 tracking-wider">
+                        R$ {(item.price * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                      </p>
+                      {item.originalPrice && (
+                        <p className="text-[10px] text-muted-foreground/50 line-through mt-1">
+                          R$ {(item.originalPrice * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -581,8 +589,12 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
           <div className="space-y-8 pt-8 mt-auto border-t border-border/50">
             <div className="space-y-4">
               <div className="flex justify-between items-center text-[12px] uppercase tracking-[0.2em] text-muted-foreground">
-                <span>Valor Total</span>
-                <span>R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
+                <span>Subtotal</span>
+                <span>R$ {items.reduce((acc, item) => acc + ((item.originalPrice || item.price) * item.quantity), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
+              </div>
+              <div className="flex justify-between items-center text-[12px] uppercase tracking-[0.2em] text-muted-foreground">
+                <span>Descontos</span>
+                <span className="text-green-600">- R$ {items.reduce((acc, item) => acc + (item.originalPrice ? (item.originalPrice - item.price) * item.quantity : 0), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
               </div>
               <div className="flex justify-between items-center text-[12px] uppercase tracking-[0.2em] text-green-600 font-bold">
                 <div className="flex items-center gap-3">
@@ -601,7 +613,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 <p className="text-[9px] text-green-600 uppercase tracking-widest font-bold">Desconto VIP Aplicado</p>
               </div>
               <span className="text-2xl font-light tracking-[0.2em]">
-                R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                R$ {items.reduce((acc, item) => acc + (item.price * item.quantity), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
               </span>
             </div>
 

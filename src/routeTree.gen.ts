@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as ObrigadoRouteImport } from './routes/obrigado'
 import { Route as ProdutosProductIdRouteImport } from './routes/produtos.$productId'
 import { Route as ApiPublicWebhookRouteImport } from './routes/api/public/webhook'
@@ -17,6 +18,11 @@ import { Route as ApiPublicWebhookRouteImport } from './routes/api/public/webhoo
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ObrigadoRoute = ObrigadoRouteImport.update({
@@ -37,12 +43,14 @@ const ApiPublicWebhookRoute = ApiPublicWebhookRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/checkout': typeof CheckoutRoute
   '/obrigado': typeof ObrigadoRoute
   '/produtos/$productId': typeof ProdutosProductIdRoute
   '/api/public/webhook': typeof ApiPublicWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/checkout': typeof CheckoutRoute
   '/obrigado': typeof ObrigadoRoute
   '/produtos/$productId': typeof ProdutosProductIdRoute
   '/api/public/webhook': typeof ApiPublicWebhookRoute
@@ -50,18 +58,30 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/checkout': typeof CheckoutRoute
   '/obrigado': typeof ObrigadoRoute
   '/produtos/$productId': typeof ProdutosProductIdRoute
   '/api/public/webhook': typeof ApiPublicWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/obrigado' | '/produtos/$productId' | '/api/public/webhook'
+  fullPaths:
+    | '/'
+    | '/checkout'
+    | '/obrigado'
+    | '/produtos/$productId'
+    | '/api/public/webhook'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/obrigado' | '/produtos/$productId' | '/api/public/webhook'
+  to:
+    | '/'
+    | '/checkout'
+    | '/obrigado'
+    | '/produtos/$productId'
+    | '/api/public/webhook'
   id:
     | '__root__'
     | '/'
+    | '/checkout'
     | '/obrigado'
     | '/produtos/$productId'
     | '/api/public/webhook'
@@ -69,6 +89,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CheckoutRoute: typeof CheckoutRoute
   ObrigadoRoute: typeof ObrigadoRoute
   ProdutosProductIdRoute: typeof ProdutosProductIdRoute
   ApiPublicWebhookRoute: typeof ApiPublicWebhookRoute
@@ -81,6 +102,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/obrigado': {
@@ -109,6 +137,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CheckoutRoute: CheckoutRoute,
   ObrigadoRoute: ObrigadoRoute,
   ProdutosProductIdRoute: ProdutosProductIdRoute,
   ApiPublicWebhookRoute: ApiPublicWebhookRoute,

@@ -123,10 +123,10 @@ export function CartSheet({ open, onOpenChange }: CartSheetProps) {
             <Separator className="bg-border/50" />
             <Button 
               id="checkout-button"
-              onClick={() => setShowCheckout(true)}
+              asChild
               className="w-full rounded-none py-8 uppercase tracking-[0.2em] font-medium cursor-pointer utmify bg-foreground text-background hover:bg-foreground/90 transition-all"
             >
-              Finalizar Compra
+              <a href="/checkout">Finalizar Compra</a>
             </Button>
             <p className="text-[10px] text-center text-muted-foreground tracking-widest uppercase">
               Frete grátis aplicado automaticamente.
