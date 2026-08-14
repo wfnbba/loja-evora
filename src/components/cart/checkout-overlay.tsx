@@ -652,7 +652,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                           </div>
                           <div className="flex items-center border border-border/50 rounded-none bg-background w-fit">
                             <button onClick={() => decrementQuantity(item.id, item.size, item.color)} className="p-1 hover:bg-muted"><Minus className="size-3" /></button>
-                            <span className="text-[11px] px-3 font-bold">{item.quantity}</span>
+                            <span className="text-sm px-3 font-bold">{item.quantity}</span>
                             <button onClick={() => incrementQuantity(item.id, item.size, item.color)} className="p-1 hover:bg-muted"><Plus className="size-3" /></button>
                           </div>
                         </div>
