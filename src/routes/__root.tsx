@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode, useState, useLayoutEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { useShopifyCartStore } from "@/store/shopify-cart-store";
+import { useCartStore } from "@/store/cart-store";
 import { CartSheet } from "@/components/cart/cart-sheet";
 import { useUtmTracking } from "@/hooks/use-utm-tracking";
 import { useCartSync } from "@/hooks/use-cart-sync";
@@ -154,12 +154,9 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  // Usar hook de hidratação para evitar incompatibilidade no SSR
-  const [mounted, setMounted] = useState(false);
-  const totalItems = useShopifyCartStore((state: any) => state.items.reduce((acc: number, item: any) => acc + item.quantity, 0));
+  const totalItems = useCartStore((state) => state.totalItems());
 
   useEffect(() => {
-    setMounted(true);
     const handleOpenCart = () => setIsCartOpen(true);
     window.addEventListener('open-cart', handleOpenCart);
     return () => window.removeEventListener('open-cart', handleOpenCart);
@@ -184,7 +181,7 @@ function Header() {
               onClick={() => setIsCartOpen(true)}
               className="text-sm font-medium tracking-[0.2em] uppercase hover:bg-transparent px-0 cursor-pointer"
             >
-              Carrinho ({mounted ? totalItems : 0})
+              Carrinho ({totalItems})
             </Button>
           </div>
         </div>

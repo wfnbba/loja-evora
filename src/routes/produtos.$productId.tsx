@@ -1,5 +1,5 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
-import { useShopifyCartStore } from "@/store/shopify-cart-store";
+import { useCartStore } from "@/store/cart-store";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, Star, ShoppingBag, RefreshCw, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -152,9 +152,10 @@ function ProductPage() {
   const [selectedColor, setSelectedColor] = useState(product.options.find(o => o.name.toLowerCase() === 'cor')?.values[0] || "");
   const [added, setAdded] = useState(false);
   
-  const addItem = useShopifyCartStore((state) => state.addItem);
-  const isLoadingCart = useShopifyCartStore((state) => state.isLoading);
-  const setIsCartOpen = useShopifyCartStore((state) => state.setIsOpen);
+  const addItem = useCartStore((state) => state.addItem);
+  const setIsCartOpen = (open: boolean) => {
+    window.dispatchEvent(new CustomEvent('open-cart'));
+  };
 
   const mockReviews = [
     { user: "Mariana S.", rating: 5, comment: "Vestido maravilhoso! O tecido é de uma qualidade absurda, cai super bem no corpo. Évora realmente surpreendeu." },
@@ -189,13 +190,14 @@ function ProductPage() {
       return;
     }
     
-    await addItem({
-      product: shopifyProduct,
-      variantId: variant.id,
-      variantTitle: variant.title,
-      price: variant.price,
-      quantity: 1,
-      selectedOptions: variant.selectedOptions
+    addItem({
+      id: variant.id,
+      name: product.title,
+      price: parseFloat(variant.price.amount),
+      image: product.images.edges[0]?.node?.url || "",
+      size: selectedSize || "Único",
+      color: selectedColor,
+      quantity: 1
     });
     
     setAdded(true);
@@ -292,10 +294,10 @@ function ProductPage() {
             <div className="flex flex-col gap-4">
               <Button 
                 onClick={addToCart} 
-                disabled={!selectedSize || isLoadingCart} 
+                disabled={!selectedSize} 
                 className="w-full rounded-none py-8 uppercase tracking-[0.2em] utmify"
               >
-                {isLoadingCart ? <Loader2 className="mr-3 size-5 animate-spin" /> : <ShoppingBag className="mr-3 size-5" />}
+                <ShoppingBag className="mr-3 size-5" />
                 {added ? "ADICIONADO AO CARRINHO" : "ADICIONAR AO CARRINHO"}
               </Button>
             </div>
