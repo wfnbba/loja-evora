@@ -594,7 +594,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 <Button 
                   variant="ghost" 
                   onClick={() => setStep("form")} 
-                  className="w-full text-[10px] font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground underline underline-offset-4"
+                  className="w-full text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground underline underline-offset-4"
                 >
                   Alterar dados de entrega
                 </Button>
