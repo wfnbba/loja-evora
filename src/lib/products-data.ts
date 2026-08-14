@@ -194,10 +194,12 @@ export interface Product {
   colors?: { name: string; value: string }[];
   salesCount: number;
   rating: number;
+  ratingBreakdown: { 1: number; 2: number; 3: number; 4: number; 5: number; };
   reviews: {
     user: string;
     comment: string;
     rating: number;
+  ratingBreakdown: { 1: number; 2: number; 3: number; 4: number; 5: number; };
     image?: string;
   }[];
 }
@@ -227,6 +229,7 @@ export const products: Product[] = [
     colors: [{ name: "Marfim", value: "#f5f5f0" }],
     salesCount: 3421,
     rating: 4.8,
+    ratingBreakdown: { 1: 18, 2: 18, 3: 29, 4: 157, 5: 1488 },
     reviews: [
       { 
         user: "Thais G.", 
@@ -281,6 +284,7 @@ export const products: Product[] = [
     colors: [{ name: "Café", value: "#4b3621" }],
     salesCount: 2154,
     rating: 4.9,
+    ratingBreakdown: { 1: 8, 2: 11, 3: 20, 4: 94, 5: 967 },
     reviews: [
       { 
         user: "Mariana V.", 
@@ -360,6 +364,7 @@ export const products: Product[] = [
     colors: [{ name: "Noir/Marfim", value: "#000000" }],
     salesCount: 1587,
     rating: 4.7,
+    ratingBreakdown: { 1: 32, 2: 39, 3: 108, 4: 368, 5: 1284 },
     reviews: [
       { 
         user: "Thais G.", 
@@ -439,6 +444,7 @@ export const products: Product[] = [
     colors: [{ name: "Off-White", value: "#faf9f6" }],
     salesCount: 4231,
     rating: 4.9,
+    ratingBreakdown: { 1: 33, 2: 17, 3: 47, 4: 203, 5: 1815 },
     reviews: [
       { 
         user: "Beatriz L.", 
@@ -508,6 +514,7 @@ export const products: Product[] = [
     colors: [{ name: "Espresso", value: "#3d2b1f" }],
     salesCount: 2845,
     rating: 4.8,
+    ratingBreakdown: { 1: 17, 2: 22, 3: 31, 4: 133, 5: 1219 },
     reviews: [
       { 
         user: "Isabela R.", 
@@ -584,6 +591,7 @@ export const products: Product[] = [
     ],
     salesCount: 5124,
     rating: 4.9,
+    ratingBreakdown: { 1: 28, 2: 25, 3: 39, 4: 245, 5: 2225 },
     reviews: [
       { 
         user: "Mariana T.", 
@@ -662,6 +670,7 @@ export const products: Product[] = [
     colors: [{ name: "Renda Nude", value: "#e8d7c5" }],
     salesCount: 1243,
     rating: 4.6,
+    ratingBreakdown: { 1: 37, 2: 39, 3: 105, 4: 344, 5: 1203 },
     reviews: [
       { 
         user: "Larissa K.", 
@@ -698,6 +707,7 @@ export const products: Product[] = [
     colors: [{ name: "Espresso", value: "#3d2b1f" }],
     salesCount: 6842,
     rating: 4.9,
+    ratingBreakdown: { 1: 37, 2: 39, 3: 61, 4: 330, 5: 2954 },
     reviews: [
       { 
         user: "Mariana K.", 
@@ -772,6 +782,7 @@ export const products: Product[] = [
     colors: [{ name: "Rosé", value: "#e2b6b1" }],
     salesCount: 843,
     rating: 4.8,
+    ratingBreakdown: { 1: 15, 2: 17, 3: 34, 4: 168, 5: 1384 },
     reviews: [{ user: "Mariana S.", comment: "O conjunto veste muito bem e a cor é linda pessoalmente.", rating: 5, image: p1b }],
   },
   {
@@ -784,6 +795,7 @@ export const products: Product[] = [
     colors: [{ name: "Rosé", value: "#e2b6b1" }],
     salesCount: 652,
     rating: 4.7,
+    ratingBreakdown: { 1: 34, 2: 37, 3: 91, 4: 305, 5: 1028 },
     reviews: [{ user: "Juliana F.", comment: "Caimento impecável e comprimento elegante. Usei e recebi muitos elogios.", rating: 5, image: p3b }],
   },
 ];
