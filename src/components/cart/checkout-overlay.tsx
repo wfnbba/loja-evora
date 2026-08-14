@@ -448,7 +448,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                           />
                         </div>
                         <div className="space-y-3">
-                          <Label htmlFor="neighborhood" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">Bairro</Label>
+                          <Label htmlFor="neighborhood" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">Bairro</Label>
                           <Input
                             id="neighborhood"
                             required
