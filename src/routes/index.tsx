@@ -79,26 +79,27 @@ function Index() {
                           {Array.from({ length: 5 }, (_, i) => (
                             <Star
                               key={i}
-                              className={`size-2.5 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`}
+                              className={`size-3 md:size-3.5 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`}
                             />
                           ))}
                         </div>
-                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                        <span className="text-[11px] md:text-xs uppercase tracking-widest text-muted-foreground font-medium">
                           {product.salesCount >= 100 
                             ? `+${Math.floor(product.salesCount / 100) * 100} vendas` 
                             : "Novo"}
                         </span>
                       </div>
-                      <div className="flex items-center justify-center gap-2 text-[10px] tracking-widest mt-1">
-                        <p className="font-light text-muted-foreground">
+                      <div className="flex items-center justify-center gap-2 text-xs md:text-sm tracking-widest mt-1">
+                        <p className="font-bold text-foreground">
                           R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                         </p>
                         {product.originalPrice && (
-                          <p className="text-[9px] text-muted-foreground/50 line-through">
+                          <p className="text-[10px] md:text-xs text-muted-foreground/50 line-through">
                             R$ {product.originalPrice.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                           </p>
                         )}
                       </div>
+
                     </div>
                   </CardContent>
                 </Card>
