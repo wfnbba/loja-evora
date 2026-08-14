@@ -108,6 +108,16 @@ import feedbackMarfim4 from "@/assets/feedbacks/marfim-4.json";
 import feedbackMarfim5 from "@/assets/feedbacks/marfim-5.json";
 import feedbackMarfim6 from "@/assets/feedbacks/marfim-6.json";
 
+import feedbackEspresso1 from "@/assets/feedbacks/espresso-1.json";
+import feedbackEspresso2 from "@/assets/feedbacks/espresso-2.json";
+import feedbackEspresso3 from "@/assets/feedbacks/espresso-3.json";
+import feedbackEspresso4 from "@/assets/feedbacks/espresso-4.json";
+import feedbackEspresso5 from "@/assets/feedbacks/espresso-5.json";
+import feedbackEspresso6 from "@/assets/feedbacks/espresso-6.json";
+import feedbackEspresso7 from "@/assets/feedbacks/espresso-7.json";
+import feedbackEspresso8 from "@/assets/feedbacks/espresso-8.json";
+
+
 
 import conjuntoEspresso1 from "@/assets/products/conjunto-espresso-alfaiataria-1.png.asset.json";
 import conjuntoEspresso2 from "@/assets/products/conjunto-espresso-alfaiataria-2.png.asset.json";
