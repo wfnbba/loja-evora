@@ -8,13 +8,6 @@ import { Progress } from "@/components/ui/progress";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { products as localProducts } from "@/lib/products-data";
 
-declare module 'react' {
-  namespace JSX {
-    interface IntrinsicElements {
-      'wistia-player': any;
-    }
-  }
-}
 
 export const Route = createFileRoute("/produtos/$productId")({
   loader: async ({ params }) => {
@@ -183,8 +176,19 @@ function ProductPage() {
                 <p className="font-light leading-relaxed text-muted-foreground">{product.description}</p>
                 
                 {product.video && (
-                  <div className="wistia-video-container mt-6 aspect-[9/16] w-full max-w-[400px] overflow-hidden bg-muted mx-auto lg:mx-0">
-                    <wistia-player media-id={product.video} aspect="0.5625"></wistia-player>
+                  <div className="mt-8 space-y-4">
+                    <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Vídeo do Produto</h2>
+                    <div className="relative mx-auto aspect-[9/16] w-full max-w-[320px] overflow-hidden rounded-lg bg-black shadow-xl lg:mx-0">
+                      <video
+                        src={product.video}
+                        controls
+                        playsInline
+                        className="h-full w-full object-cover"
+                        poster={product.images[0]}
+                      >
+                        Seu navegador não suporta a tag de vídeo.
+                      </video>
+                    </div>
                   </div>
                 )}
               </div>
