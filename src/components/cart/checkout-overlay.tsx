@@ -102,7 +102,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
     try {
       const result = await createPix({
         data: {
-          items: items.map(i => ({ id: i.id, name: i.name, quantity: i.quantity, price: i.price, size: i.size })),
+          items: items.map(i => ({ id: i.id, name: i.name, quantity: i.quantity, price: i.price, size: i.size, color: i.color })),
           payerName: formData.name,
           payerDocument: doc,
           email: formData.email,
@@ -252,7 +252,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
               const discountPercentage = item.originalPrice ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0;
               
               return (
-                <div key={`${item.id}-${item.size}`} className="flex gap-3 py-3 border-b border-border/10 last:border-0 relative">
+                <div key={`${item.id}-${item.size}-${item.color}`} className="flex gap-3 py-3 border-b border-border/10 last:border-0 relative">
                   <div className="relative size-14 shrink-0 overflow-hidden bg-white border border-border/30 rounded-sm">
                     <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={56} height={56} />
                   </div>
@@ -267,12 +267,17 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <p className="text-[9px] text-muted-foreground uppercase tracking-widest">Tam: {item.size}</p>
-                        <div className="flex items-center border border-border/50 rounded-none bg-background">
-                          <button onClick={() => decrementQuantity(item.id, item.size)} className="p-1 hover:bg-muted"><Minus className="size-2" /></button>
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-2">
+                          <p className="text-[9px] text-muted-foreground uppercase tracking-widest shrink-0">Tam: {item.size}</p>
+                          {item.color && (
+                            <p className="text-[9px] text-muted-foreground uppercase tracking-widest truncate">Cor: {item.color}</p>
+                          )}
+                        </div>
+                        <div className="flex items-center border border-border/50 rounded-none bg-background w-fit">
+                          <button onClick={() => decrementQuantity(item.id, item.size, item.color)} className="p-1 hover:bg-muted"><Minus className="size-2" /></button>
                           <span className="text-[9px] px-2 font-bold">{item.quantity}</span>
-                          <button onClick={() => incrementQuantity(item.id, item.size)} className="p-1 hover:bg-muted"><Plus className="size-2" /></button>
+                          <button onClick={() => incrementQuantity(item.id, item.size, item.color)} className="p-1 hover:bg-muted"><Plus className="size-2" /></button>
                         </div>
                       </div>
                       {discountPercentage > 0 && (
@@ -280,7 +285,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                       )}
                     </div>
                   </div>
-                  <button onClick={() => removeItem(item.id, item.size)} className="absolute -right-1 top-2 p-1 text-muted-foreground/40"><X className="size-3" /></button>
+                  <button onClick={() => removeItem(item.id, item.size, item.color)} className="absolute -right-1 top-2 p-1 text-muted-foreground/40"><X className="size-3" /></button>
                 </div>
               );
             })}
@@ -586,7 +591,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 const discountPercentage = item.originalPrice ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0;
 
                 return (
-                  <div key={`${item.id}-${item.size}`} className="flex gap-5 py-4 border-b border-border/10 last:border-0 relative group">
+                  <div key={`${item.id}-${item.size}-${item.color}`} className="flex gap-5 py-4 border-b border-border/10 last:border-0 relative group">
                     <div className="relative size-20 shrink-0 overflow-hidden bg-white border border-border/50 rounded-sm">
                       <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={80} height={80} />
                     </div>
@@ -606,12 +611,17 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                       </div>
                       
                       <div className="flex items-center justify-between mt-2">
-                        <div className="flex items-center gap-4">
-                          <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Tamanho: {item.size}</p>
-                          <div className="flex items-center border border-border/50 rounded-none bg-background">
-                            <button onClick={() => decrementQuantity(item.id, item.size)} className="p-1 hover:bg-muted"><Minus className="size-3" /></button>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex items-center gap-4">
+                            <p className="text-[10px] text-muted-foreground uppercase tracking-widest shrink-0">Tamanho: {item.size}</p>
+                            {item.color && (
+                              <p className="text-[10px] text-muted-foreground uppercase tracking-widest truncate">Cor: {item.color}</p>
+                            )}
+                          </div>
+                          <div className="flex items-center border border-border/50 rounded-none bg-background w-fit">
+                            <button onClick={() => decrementQuantity(item.id, item.size, item.color)} className="p-1 hover:bg-muted"><Minus className="size-3" /></button>
                             <span className="text-[11px] px-3 font-bold">{item.quantity}</span>
-                            <button onClick={() => incrementQuantity(item.id, item.size)} className="p-1 hover:bg-muted"><Plus className="size-3" /></button>
+                            <button onClick={() => incrementQuantity(item.id, item.size, item.color)} className="p-1 hover:bg-muted"><Plus className="size-3" /></button>
                           </div>
                         </div>
                         {discountAmount > 0 && (
@@ -622,7 +632,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                       </div>
                     </div>
                     <button 
-                      onClick={() => removeItem(item.id, item.size)} 
+                      onClick={() => removeItem(item.id, item.size, item.color)} 
                       className="absolute -right-2 top-0 p-2 text-muted-foreground/40 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
                     >
                       <X className="size-4" />

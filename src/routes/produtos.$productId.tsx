@@ -46,7 +46,7 @@ function ProductPage() {
   
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState("");
-  const [selectedColor, setSelectedColor] = useState(product.colors?.[0]?.name || "");
+  const [selectedColor, setSelectedColor] = useState(product.colors?.[0]?.name || "Única");
   const [added, setAdded] = useState(false);
   
   const addItem = useCartStore((state) => state.addItem);
@@ -161,15 +161,31 @@ function ProductPage() {
               </div>
             )}
 
-            {product.colors && product.colors.length > 0 && (
+            {product.colors && (
               <div className="space-y-4">
                 <p className="text-xs font-medium uppercase tracking-[0.2em]">Cor: {selectedColor}</p>
                 <div className="flex flex-wrap gap-3">
-                  {product.colors.map((color) => (
-                    <Button key={color.name} type="button" variant={selectedColor === color.name ? "default" : "outline"} onClick={() => setSelectedColor(color.name)} className="rounded-none px-4 py-2 text-[10px] uppercase tracking-widest">
-                      {color.name}
+                  {product.colors.length > 0 ? (
+                    product.colors.map((color) => (
+                      <Button 
+                        key={color.name} 
+                        type="button" 
+                        variant={selectedColor === color.name ? "default" : "outline"} 
+                        onClick={() => setSelectedColor(color.name)} 
+                        className="rounded-none px-4 py-2 text-[10px] uppercase tracking-widest min-w-[80px]"
+                      >
+                        {color.name}
+                      </Button>
+                    ))
+                  ) : (
+                    <Button 
+                      type="button" 
+                      variant="default" 
+                      className="rounded-none px-4 py-2 text-[10px] uppercase tracking-widest min-w-[80px] cursor-default"
+                    >
+                      Única
                     </Button>
-                  ))}
+                  )}
                 </div>
               </div>
             )}
