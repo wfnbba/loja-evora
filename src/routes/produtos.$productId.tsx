@@ -88,6 +88,11 @@ function ProductPage() {
     } else if (sortOrder === "rating-low") {
       result.sort((a, b) => a.rating - b.rating);
     } else if (sortOrder === "relevance") {
+      // Para este produto específico, respeitar a ordem do array definida nos dados
+      if (product.id === "calca-alfaiataria-off-white") {
+        return result;
+      }
+      
       result.sort((a, b) => {
         // Prioridade 1: Comentário + Imagem
         if (a.image && a.comment && (!b.image || !b.comment)) return -1;
