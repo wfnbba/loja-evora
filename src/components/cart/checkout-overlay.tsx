@@ -244,17 +244,18 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
         <div className="lg:hidden border-b border-border/50 bg-muted/5">
           <button 
             onClick={() => setIsSummaryOpen(!isSummaryOpen)}
-            className="w-full p-4 flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-muted/10 transition-colors"
+            className="w-full p-5 flex items-center justify-between text-xs font-bold uppercase tracking-widest hover:bg-muted/10 transition-colors"
           >
-            <div className="flex items-center gap-2">
-              <ShoppingBag className="size-3" />
-              <span>{isSummaryOpen ? "Ocultar Pedido" : "Ver Pedido"}</span>
-              {isSummaryOpen ? <ChevronUp className="size-3" /> : <ChevronDown className="size-3" />}
+            <div className="flex items-center gap-3">
+              <ShoppingBag className="size-4" />
+              <span>{isSummaryOpen ? "Ocultar Resumo" : "Exibir Resumo"}</span>
+              {isSummaryOpen ? <ChevronUp className="size-4" /> : <ChevronDown className="size-4" />}
             </div>
-            <span className="text-[11px] text-[#d4af37]">
+            <span className="text-sm text-[#d4af37] font-bold">
               R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
             </span>
           </button>
+
 
           {isSummaryOpen && (
             <div className="p-4 space-y-4 animate-in slide-in-from-top-2 duration-300">
