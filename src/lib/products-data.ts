@@ -812,6 +812,7 @@ export const products: Product[] = [
   { id: "conjunto-rose",
     name: "Conjunto Évora Rosé",
     price: 489,
+    originalPrice: 629,
     description: "Conjunto de alfaiataria em tom rosé composto por colete acinturado e saia longa fluida. Uma produção delicada, elegante e versátil para ocasiões especiais." + exchangePolicy,
     images: [ig0, p1b, p1c, p1d],
     sizes,
