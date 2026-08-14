@@ -108,8 +108,9 @@ function ProductPage() {
 
   return (
     <main className="min-h-screen bg-background pb-12 pt-20 md:pb-20 md:pt-24 text-foreground">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-20">
+      <div className="container mx-auto px-0 md:px-4 lg:px-8">
+        <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-2 lg:gap-20">
+
           <section aria-label="Galeria do produto" className="space-y-4">
             <div className="relative aspect-[3/4] overflow-hidden bg-muted">
               <OptimizedImage src={product.images[selectedImage] || ""} alt={product.name} className="h-full w-full object-cover" width={600} height={800} priority />
