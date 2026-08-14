@@ -183,7 +183,7 @@ function ProductPage() {
                       variant="default" 
                       className="rounded-none px-4 py-2 text-[10px] uppercase tracking-widest min-w-[80px] cursor-default"
                     >
-                      Única
+                      {selectedColor}
                     </Button>
                   )}
                 </div>
