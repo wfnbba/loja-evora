@@ -116,6 +116,15 @@ import feedbackEspresso5 from "@/assets/feedbacks/espresso-5.json";
 import feedbackEspresso6 from "@/assets/feedbacks/espresso-6.json";
 import feedbackEspresso7 from "@/assets/feedbacks/espresso-7.json";
 import feedbackEspresso8 from "@/assets/feedbacks/espresso-8.json";
+import feedbackChiffon1 from "@/assets/feedbacks/chiffon-1.json";
+import feedbackChiffon2 from "@/assets/feedbacks/chiffon-2.json";
+import feedbackChiffon3 from "@/assets/feedbacks/chiffon-3.json";
+import feedbackChiffon4 from "@/assets/feedbacks/chiffon-4.json";
+import feedbackChiffon5 from "@/assets/feedbacks/chiffon-5.json";
+import feedbackChiffon6 from "@/assets/feedbacks/chiffon-6.json";
+import feedbackChiffon7 from "@/assets/feedbacks/chiffon-7.json";
+import feedbackChiffon8 from "@/assets/feedbacks/chiffon-8.json";
+import feedbackChiffon9 from "@/assets/feedbacks/chiffon-9.json";
 
 
 
@@ -395,16 +404,58 @@ export const products: Product[] = [
     ],
     reviews: [
       { 
-        user: "Beatriz S.", 
-        comment: "A saia é maravilhosa, o tecido tem um movemento lindo ao andar.", 
+        user: "Mariana T.", 
+        comment: "Simplesmente apaixonada pela leveza dessa saia! O unboxing foi uma experiência incrível, dá pra sentir o cuidado da Évora em cada detalhe.", 
         rating: 5, 
-        image: saiaChiffon4.url 
+        image: feedbackChiffon1.url 
       },
       { 
-        user: "Julia R.", 
-        comment: "Comprei a off-white e a cor é idêntica à foto. Muito elegante.", 
+        user: "Amanda L.", 
+        comment: "O caimento é impecável. A cor off-white é super versátil e o tecido tem uma qualidade superior. Me senti maravilhosa!", 
         rating: 5, 
-        image: saiaChiffon1.url 
+        image: feedbackChiffon2.url 
+      },
+      { 
+        user: "Giovanna R.", 
+        comment: "Chegou super rápido e a embalagem é um luxo. A saia superou todas as minhas expectativas, o movimento do chiffon é lindo.", 
+        rating: 5, 
+        image: feedbackChiffon3.url 
+      },
+      { 
+        user: "Larissa M.", 
+        comment: "Dá pra ver que é uma peça de alto padrão. O elástico no cós é super confortável e não marca nada. Amei!", 
+        rating: 5, 
+        image: feedbackChiffon4.url 
+      },
+      { 
+        user: "Camila F.", 
+        comment: "Perfeita para qualquer ocasião. Usei com uma regata básica e o look ficou super sofisticado. A Évora arrasa demais!", 
+        rating: 5, 
+        image: feedbackChiffon5.url 
+      },
+      { 
+        user: "Rafaela S.", 
+        comment: "Tô encantada com o capricho da marca. A saia veste super bem e o acabamento é perfeito. Vale cada centavo!", 
+        rating: 5, 
+        image: feedbackChiffon6.url 
+      },
+      { 
+        user: "Letícia B.", 
+        comment: "O tecido é muito leve e tem um toque delicioso na pele. É a peça que faltava no meu guarda-roupa para looks elegantes.", 
+        rating: 5, 
+        image: feedbackChiffon7.url 
+      },
+      { 
+        user: "Beatriz N.", 
+        comment: "Experiência de compra maravilhosa. A saia chegou impecável, pronta para usar. O atendimento da loja também é nota 10!", 
+        rating: 5, 
+        image: feedbackChiffon8.url 
+      },
+      { 
+        user: "Juliana C.", 
+        comment: "Já quero uma de cada cor! A fluidez dessa saia é algo surreal, me sinto muito feminina usando ela.", 
+        rating: 5, 
+        image: feedbackChiffon9.url 
       }
     ],
   },
