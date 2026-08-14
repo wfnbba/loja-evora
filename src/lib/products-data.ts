@@ -195,10 +195,12 @@ export interface Product {
   salesCount: number;
   rating: number;
   ratingBreakdown: { 1: number; 2: number; 3: number; 4: number; 5: number; };
+  ratingBreakdown: { 1: number; 2: number; 3: number; 4: number; 5: number; };
   reviews: {
     user: string;
     comment: string;
     rating: number;
+  ratingBreakdown: { 1: number; 2: number; 3: number; 4: number; 5: number; };
   ratingBreakdown: { 1: number; 2: number; 3: number; 4: number; 5: number; };
     image?: string;
   }[];
