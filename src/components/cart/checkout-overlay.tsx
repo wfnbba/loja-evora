@@ -237,8 +237,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
       </div>
 
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-        {/* Mobile Order Summary - Collapsible */}
-        <div className="lg:hidden w-full">
+        {/* Mobile Order Summary */}
         <div className="lg:hidden border-b border-border/50 bg-muted/5 max-h-[40vh] overflow-y-auto">
           <div className="p-4 space-y-4">
             <div className="flex items-center justify-between mb-2">
