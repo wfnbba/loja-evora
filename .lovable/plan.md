@@ -1,22 +1,39 @@
-# Checkout Optimization and VexoPay Fix
+# Checkout Optimization and UI Refinement
 
-Finalize the checkout experience by optimizing the PIX flow, relaxing data validation for conversion, and ensuring the UI is clean and functional.
+Finalize the checkout experience for Loja Évora by ensuring conversion-friendly validations, permanent order summary visibility on mobile, and fixing the PIX generation logic.
 
-## UI/UX Refinement
-- Ensure Order Summary is permanently visible on mobile.
-- Clean up checkout layout to end at the PIX logo, removing any accidental product content leakages below the payment section.
-- Standardize fonts and spacing for a premium mobile-first experience.
+## User Review Required
 
-## Validation & Conversion
-- Relax CPF/Document validation to accept entries with at least 3 characters.
-- Relax Phone validation to accept any input length (removing strict DDD/formatting requirements).
-- Ensure input fields allow for direct text entry (formatted or unformatted) without aggressive stripping.
+> [!IMPORTANT]
+> The checkout is now restricted to PIX only, with relaxed validation for CPF and Phone to maximize conversion as requested.
 
-## PIX Integration (VexoPay)
-- Fix "Gerar PIX QR Code" button functionality by ensuring correct payload structure and error handling.
-- Verify API response handling to transition from form to QR code display seamlessly.
+## Proposed Changes
+
+### UI & Layout
+- Make the Order Summary permanent on mobile (removing the collapsible toggle) to ensure transparency.
+- Ensure the checkout flow ends immediately at the PIX logo/QR code, removing any leakage from product landing pages.
+- Increase visibility of the "Free Shipping" benefit once the address is filled.
+
+### Validation & Conversion
+- Relax CPF validation to accept partial or incorrectly formatted inputs (minimum length check only).
+- Relax Phone validation to accept any numeric input (minimum length check only).
+- Ensure auto-fill via CEP works reliably for all Brazilian addresses.
+
+### PIX Payment Logic
+- Verify and fix the VexoPay integration to ensure the "Gerar PIX QR Code" button correctly initiates the payment flow.
+- Ensure the PIX copy-paste code and QR code are displayed clearly after generation.
+- Implement automatic redirection to the `/obrigado` page once payment is confirmed.
 
 ## Technical Details
-- Modify `src/lib/vexopay.functions.ts` to relax Zod schema constraints.
-- Update `src/components/cart/checkout-overlay.tsx` to handle relaxed validation, input changes, and UI cleanup.
-- Refactor `src/routes/checkout.tsx` to ensure a sealed layout without footer or extra component interference.
+
+### Frontend Changes
+- **src/components/cart/checkout-overlay.tsx**:
+  - Remove `isSummaryOpen` state and related collapsible logic.
+  - Simplify `handleCreatePayment` validation logic.
+  - Update `payerDocument` and `phone` inputs to be less restrictive.
+  - Ensure the main container has a clean end after the PIX section.
+
+### Backend Changes
+- **src/lib/vexopay.functions.ts**:
+  - Update Zod schema to allow minimal character counts for `payerDocument` and `phone`.
+  - Log PIX creation attempts for easier debugging.
