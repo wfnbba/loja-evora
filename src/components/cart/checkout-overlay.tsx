@@ -583,10 +583,11 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 <div className="flex flex-col items-center gap-4">
                   <div className="flex items-center gap-3 text-foreground font-bold">
                     <Loader2 className="size-4 animate-spin" />
-                    <span className="text-[11px] uppercase tracking-[0.2em]">Aguardando Pagamento...</span>
+                    <span className="text-sm uppercase tracking-widest font-bold">Aguardando Pagamento...</span>
                   </div>
-                  <p className="text-[10px] text-muted-foreground uppercase tracking-widest text-center">
+                  <p className="text-xs text-muted-foreground uppercase tracking-widest text-center">
                     Não feche esta página até a confirmação automática.
+
                   </p>
                 </div>
 
