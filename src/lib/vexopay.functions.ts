@@ -14,8 +14,8 @@ const createPixInput = z.object({
   })),
   payerName: z.string().min(1, "Nome é obrigatório"),
   payerDocument: z.string().min(1, "Documento é obrigatório"),
-  email: z.string().email("E-mail inválido"),
-  phone: z.string(),
+  email: z.string().min(3, "E-mail inválido"),
+  phone: z.string().min(1, "Telefone é obrigatório"),
   address: z.object({
     street: z.string(),
     number: z.string(),
