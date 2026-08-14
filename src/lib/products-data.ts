@@ -659,6 +659,8 @@ export const products: Product[] = [
     ],
     sizes,
     colors: [{ name: "Renda Nude", value: "#e8d7c5" }],
+    salesCount: 1243,
+    rating: 4.6,
     reviews: [
       { 
         user: "Larissa K.", 
