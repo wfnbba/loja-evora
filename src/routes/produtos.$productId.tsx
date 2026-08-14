@@ -46,7 +46,7 @@ function ProductPage() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
           <section aria-label="Galeria do produto" className="space-y-4">
             <div className="relative aspect-[3/4] overflow-hidden bg-muted">
-              <img src={product.images[selectedImage]} alt={`${product.name}, foto ${selectedImage + 1}`} className="h-full w-full object-cover" width={768} height={1024} />
+              <img src={product.images[selectedImage]} alt={`${product.name}, foto ${selectedImage + 1}`} className="h-full w-full object-cover" width={768} height={1024} loading="lazy" />
               <Button variant="secondary" size="icon" aria-label="Foto anterior" onClick={() => setSelectedImage((current) => current > 0 ? current - 1 : product.images.length - 1)} className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none">
                 <ChevronLeft className="size-5" />
               </Button>
@@ -57,7 +57,7 @@ function ProductPage() {
             <div className="grid grid-cols-4 gap-3">
               {product.images.map((image, index) => (
                 <button key={image} type="button" aria-label={`Exibir foto ${index + 1}`} onClick={() => setSelectedImage(index)} className={`relative aspect-[3/4] overflow-hidden border-2 transition-colors ${selectedImage === index ? "border-foreground" : "border-transparent"}`}>
-                  <img src={image} alt="" className="h-full w-full object-cover" width={192} height={256} />
+                  <img src={image} alt="" className="h-full w-full object-cover" width={192} height={256} loading="lazy" />
                 </button>
               ))}
             </div>
@@ -66,6 +66,21 @@ function ProductPage() {
           <section className="space-y-8">
             <div className="space-y-2">
               <h1 className="text-3xl font-light uppercase tracking-[0.2em]">{product.name}</h1>
+              <div className="flex items-center gap-4 text-sm font-light">
+                <div className="flex items-center gap-1">
+                  <div className="flex" aria-label={`${product.rating} de 5 estrelas`}>
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <Star
+                        key={i}
+                        className={`size-3 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`}
+                      />
+                    ))}
+                  </div>
+                  <span>{product.rating}/5</span>
+                </div>
+                <span className="text-muted-foreground">|</span>
+                <span>{product.salesCount.toLocaleString("pt-BR")} vendidos</span>
+              </div>
               <p className="text-2xl font-light">R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
             </div>
             <div className="space-y-4">
@@ -123,7 +138,7 @@ function ProductPage() {
               <h2 className="text-sm font-medium uppercase tracking-widest">Feedback das clientes</h2>
               {product.reviews.map((review) => (
                 <article key={`${review.user}-${review.comment}`} className="flex gap-4">
-                  {review.image && <img src={review.image} alt={`Foto enviada por ${review.user}`} className="size-16 shrink-0 object-cover" width={64} height={64} />}
+                  {review.image && <img src={review.image} alt={`Foto enviada por ${review.user}`} className="size-16 shrink-0 object-cover" width={64} height={64} loading="lazy" />}
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
                       <div className="flex" aria-label={`${review.rating} de 5 estrelas`}>{Array.from({ length: review.rating }, (_, index) => <Star key={index} className="size-3 fill-current" />)}</div>

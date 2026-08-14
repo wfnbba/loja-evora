@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Star } from "lucide-react";
 import { products } from "@/lib/products-data";
 import heroMobileAsset from "@/assets/hero_mobile.png.asset.json";
 
@@ -53,10 +54,22 @@ function Index() {
                         className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                         width={768}
                         height={1024}
+                        loading="lazy"
                       />
                     </div>
                     <div className="space-y-1 text-center">
                       <h2 className="text-xs font-medium uppercase tracking-widest md:text-sm">{product.name}</h2>
+                      <div className="flex items-center justify-center gap-2 mt-1">
+                        <div className="flex text-foreground" aria-label={`${product.rating} de 5 estrelas`}>
+                          {Array.from({ length: 5 }, (_, i) => (
+                            <Star
+                              key={i}
+                              className={`size-2.5 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`}
+                            />
+                          ))}
+                        </div>
+                        <span className="text-[10px] text-muted-foreground">{product.salesCount.toLocaleString("pt-BR")} vendidos</span>
+                      </div>
                       <p className="text-sm font-light text-muted-foreground">R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
                     </div>
                   </CardContent>

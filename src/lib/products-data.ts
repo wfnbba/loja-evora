@@ -192,6 +192,8 @@ export interface Product {
   images: string[];
   sizes: string[];
   colors?: { name: string; value: string }[];
+  salesCount: number;
+  rating: number;
   reviews: {
     user: string;
     comment: string;
@@ -222,6 +224,8 @@ export const products: Product[] = [
     ],
     sizes,
     colors: [{ name: "Marfim", value: "#f5f5f0" }],
+    salesCount: 3421,
+    rating: 4.8,
     reviews: [
       { 
         user: "Thais G.", 
@@ -274,6 +278,8 @@ export const products: Product[] = [
     ],
     sizes,
     colors: [{ name: "Café", value: "#4b3621" }],
+    salesCount: 2154,
+    rating: 4.9,
     reviews: [
       { 
         user: "Mariana V.", 
@@ -351,6 +357,8 @@ export const products: Product[] = [
     ],
     sizes,
     colors: [{ name: "Noir/Marfim", value: "#000000" }],
+    salesCount: 1587,
+    rating: 4.7,
     reviews: [
       { 
         user: "Thais G.", 
@@ -428,6 +436,8 @@ export const products: Product[] = [
     ],
     sizes,
     colors: [{ name: "Off-White", value: "#faf9f6" }],
+    salesCount: 4231,
+    rating: 4.9,
     reviews: [
       { 
         user: "Beatriz L.", 
@@ -495,6 +505,8 @@ export const products: Product[] = [
     ],
     sizes,
     colors: [{ name: "Espresso", value: "#3d2b1f" }],
+    salesCount: 2845,
+    rating: 4.8,
     reviews: [
       { 
         user: "Isabela R.", 
@@ -569,6 +581,8 @@ export const products: Product[] = [
       { name: "Terracota", value: "#a45a52" },
       { name: "Preto", value: "#000000" }
     ],
+    salesCount: 5124,
+    rating: 4.9,
     reviews: [
       { 
         user: "Mariana T.", 
@@ -645,6 +659,8 @@ export const products: Product[] = [
     ],
     sizes,
     colors: [{ name: "Renda Nude", value: "#e8d7c5" }],
+    salesCount: 1243,
+    rating: 4.6,
     reviews: [
       { 
         user: "Larissa K.", 
@@ -679,6 +695,8 @@ export const products: Product[] = [
     ],
     sizes,
     colors: [{ name: "Espresso", value: "#3d2b1f" }],
+    salesCount: 6842,
+    rating: 4.9,
     reviews: [
       { 
         user: "Mariana K.", 
@@ -751,6 +769,8 @@ export const products: Product[] = [
     images: [ig0, p1b, p1c, p1d],
     sizes,
     colors: [{ name: "Rosé", value: "#e2b6b1" }],
+    salesCount: 843,
+    rating: 4.8,
     reviews: [{ user: "Mariana S.", comment: "O conjunto veste muito bem e a cor é linda pessoalmente.", rating: 5, image: p1b }],
   },
   {
@@ -761,6 +781,8 @@ export const products: Product[] = [
     images: [ig2, p3b, p3c, p3d],
     sizes,
     colors: [{ name: "Rosé", value: "#e2b6b1" }],
+    salesCount: 652,
+    rating: 4.7,
     reviews: [{ user: "Juliana F.", comment: "Caimento impecável e comprimento elegante. Usei e recebi muitos elogios.", rating: 5, image: p3b }],
   },
 ];
