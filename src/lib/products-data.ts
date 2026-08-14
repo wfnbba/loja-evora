@@ -178,7 +178,44 @@ export const products: Product[] = [
     ],
     sizes,
     colors: [{ name: "Marfim", value: "#f5f5f0" }],
-    reviews: [{ user: "Heloísa R.", comment: "Elegante sem esforço e o tecido não marca. Gostei muito.", rating: 5, image: auroraMarfim1.url }],
+    reviews: [
+      { 
+        user: "Renata G.", 
+        comment: "Simplesmente apaixonada por cada detalhe. O vestido veste como uma luva e a experiência de unboxing foi incrível!", 
+        rating: 5, 
+        image: feedbackMarfim1.url 
+      },
+      { 
+        user: "Camila V.", 
+        comment: "O Aurora Marfim é o ápice da elegância. O tecido é maravilhoso e a cor é muito chique.", 
+        rating: 5, 
+        image: feedbackMarfim2.url 
+      },
+      { 
+        user: "Sonia M.", 
+        comment: "Recebi o meu hoje e estou encantada. A qualidade da Évora é indiscutível.", 
+        rating: 5, 
+        image: feedbackMarfim3.url 
+      },
+      { 
+        user: "Letícia B.", 
+        comment: "Caimento impecável! Um investimento que vale cada centavo para quem busca sofisticação.", 
+        rating: 5, 
+        image: feedbackMarfim4.url 
+      },
+      { 
+        user: "Paula S.", 
+        comment: "A modelagem valoriza muito o corpo. O detalhe da gola é um diferencial muito charmoso.", 
+        rating: 5, 
+        image: feedbackMarfim5.url 
+      },
+      { 
+        user: "Marta F.", 
+        comment: "Elegante e atemporal. A peça que faltava no meu guarda-roupa para ocasiões especiais.", 
+        rating: 5, 
+        image: feedbackMarfim6.url 
+      }
+    ],
   },
   {
     id: "vestido-aurora-cafe",
