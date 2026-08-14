@@ -23,8 +23,15 @@ export const Route = createFileRoute("/produtos/$productId")({
     return { product };
   },
   head: ({ loaderData }) => {
-    const { product } = loaderData;
-    const title = `${product.name} | Évora`;
+    const product = loaderData?.product;
+    if (!product) {
+      return {
+        meta: [
+          { title: "Produto não encontrado | Loja Évora" },
+        ]
+      };
+    }
+    const title = `${product.name} | Loja Évora`;
     const description = product.description;
     return {
       meta: [
@@ -41,7 +48,8 @@ export const Route = createFileRoute("/produtos/$productId")({
 });
 
 function ProductPage() {
-  const { product } = Route.useLoaderData();
+  const loaderData = Route.useLoaderData();
+  const product = loaderData.product;
   
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState("");
