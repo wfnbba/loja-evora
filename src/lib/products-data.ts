@@ -113,6 +113,8 @@ import calcaOffWhite9 from "@/assets/products/calca-alfaiataria-off-white-9.png.
 import calcaOffWhite10 from "@/assets/products/calca-alfaiataria-off-white-10.png.asset.json";
 import saiaRenda9 from "@/assets/products/saia-renda-9.png.asset.json";
 import saiaRenda10 from "@/assets/products/saia-renda-10.png.asset.json";
+import cintoOffwhite from "@/assets/cinto_offwhite.webp.asset.json";
+import cintoEspresso from "@/assets/cinto_espresso.webp.asset.json";
 
 import feedbackMarfim1 from "@/assets/feedbacks/marfim-1.json";
 import feedbackMarfim2 from "@/assets/feedbacks/marfim-2.json";
@@ -3113,7 +3115,8 @@ export const products: Product[] = [
       name: "Cinto Premium Évora",
       color: "Marrom Escuro",
       colorValue: "#3d2b1f",
-      price: "Grátis"
+      price: "Grátis",
+      image: cintoEspresso.url
     },
     colors: [{ name: "Espresso", value: "#3d2b1f" }],
     salesCount: 6842,
@@ -3901,7 +3904,8 @@ export const products: Product[] = [
       name: "Cinto Premium Évora",
       color: "Preto",
       colorValue: "#000000",
-      price: "Grátis"
+      price: "Grátis",
+      image: cintoOffwhite.url
     },
     colors: [{ name: "Off-White", value: "#faf9f6" }],
     rating: 4.8,
