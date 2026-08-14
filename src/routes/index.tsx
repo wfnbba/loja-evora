@@ -79,14 +79,16 @@ function Index() {
                             />
                           ))}
                         </div>
-                        <div className="flex items-center justify-center gap-2 text-[10px] tracking-widest mt-1">
-                          <p className="font-light text-muted-foreground">R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
-                          {product.originalPrice && (
-                            <p className="text-[9px] text-muted-foreground/50 line-through">
-                              R$ {product.originalPrice.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                            </p>
-                          )}
-                        </div>
+                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">{product.salesCount.toLocaleString("pt-BR")} vendidos</span>
+                      </div>
+                      <div className="flex items-center justify-center gap-2 text-[10px] tracking-widest mt-1">
+                        <p className="font-light text-muted-foreground">R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+                        {product.originalPrice && (
+                          <p className="text-[9px] text-muted-foreground/50 line-through">
+                            R$ {product.originalPrice.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                          </p>
+                        )}
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
