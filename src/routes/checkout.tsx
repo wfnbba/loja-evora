@@ -27,15 +27,15 @@ function CheckoutPage() {
   if (items.length === 0) return null;
 
   return (
-    <div className="min-h-screen bg-background pt-20">
+    <div className="min-h-screen bg-background">
       <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur-md">
         <div className="container mx-auto flex h-20 items-center justify-center px-4">
           <img src={logoAsset.url} alt="Évora Logo" className="h-10 w-auto" />
         </div>
       </header>
-      <div className="h-[calc(100vh-80px)]">
+      <main className="pt-20 h-screen">
         <CheckoutOverlay onClose={() => navigate({ to: "/" })} />
-      </div>
+      </main>
     </div>
   );
 }
