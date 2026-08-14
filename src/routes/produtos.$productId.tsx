@@ -49,15 +49,20 @@ function ProductPage() {
       return;
     }
     
-    addItem({
+    const newItem = {
       id: product.id,
       name: product.name,
       price: product.price,
       image: product.images[0] ?? "",
       size: selectedSize,
-      color: selectedColor || undefined,
       quantity: 1
-    });
+    } as any;
+    
+    if (selectedColor) {
+      newItem.color = selectedColor;
+    }
+    
+    addItem(newItem);
     
     setAdded(true);
     toast.success(`${product.name} adicionado ao carrinho`, {
