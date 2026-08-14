@@ -731,6 +731,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
               <p className="text-xs text-background/70 uppercase tracking-widest leading-loose">
                 Sua compra está protegida. Receba em 5 dias ou seu dinheiro de volta.
               </p>
+            </div>
           </div>
         </div>
       </div>
