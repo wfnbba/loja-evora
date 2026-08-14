@@ -234,8 +234,8 @@ const exchangePolicy = "";
 export const products: Product[] = [
   { id: "vestido-aurora-marfim",
     name: "Vestido Évora Aurora Marfim",
-    price: 459,
-    originalPrice: 589,
+    price: 89,
+    originalPrice: 179,
     description: "A versão marfim do vestido Aurora traz linhas limpas, cintura definida e movimento suave. Atemporal e fácil de combinar." + exchangePolicy,
     images: [
       auroraMarfim1.url,
@@ -304,8 +304,8 @@ export const products: Product[] = [
   },
   { id: "vestido-aurora-cafe",
     name: "Vestido Évora Aurora Café",
-    price: 129.90,
-    originalPrice: 379,
+    price: 89,
+    originalPrice: 179,
     video: videoAuroraCafe.url,
     description: "Vestido midi em tom café, com cintura marcada e saia ampla. A tonalidade profunda atualiza uma silhueta clássica." + exchangePolicy,
 
@@ -930,8 +930,8 @@ export const products: Product[] = [
   {
     id: "calca-alfaiataria-off-white",
     name: "Calça Évora Alfaiataria Off-White",
-    price: 389.0,
-    originalPrice: 489,
+    price: 99.0,
+    originalPrice: 189.0,
     video: videoCalcaOffWhite.url,
     description: "A peça que define a elegância moderna. Nossa Calça de Alfaiataria Off-White possui corte reto impecável, pregas frontais que alongam a silhueta e um caimento fluido que exala sofisticação. Ideal para compor looks minimalistas e poderosos. *Acompanha cinto preto de brinde para finalizar o visual com perfeição.*" + exchangePolicy,
 
