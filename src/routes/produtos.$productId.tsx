@@ -136,7 +136,7 @@ function ProductPage() {
               <p className="font-light leading-relaxed text-muted-foreground">{product.description}</p>
             </div>
             <div className="space-y-6 border-t border-border pt-8">
-              <h2 className="text-sm font-medium uppercase tracking-widest">Feedback das clientes</h2>
+              <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Feedback das clientes</h2>
               {product.reviews.map((review) => (
                 <article key={`${review.user}-${review.comment}`} className="flex gap-4">
                   {review.image && <img src={review.image} alt={`Foto enviada por ${review.user}`} className="size-16 shrink-0 object-cover" width={64} height={64} loading="lazy" />}
