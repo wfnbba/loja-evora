@@ -192,6 +192,8 @@ export interface Product {
   images: string[];
   sizes: string[];
   colors?: { name: string; value: string }[];
+  salesCount: number;
+  rating: number;
   reviews: {
     user: string;
     comment: string;
