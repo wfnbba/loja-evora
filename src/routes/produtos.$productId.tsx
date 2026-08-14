@@ -107,19 +107,20 @@ function ProductPage() {
   };
 
   return (
-    <main className="min-h-screen bg-background pb-20 pt-24 text-foreground">
+    <main className="min-h-screen bg-background pb-12 pt-20 md:pb-20 md:pt-24 text-foreground">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-20">
           <section aria-label="Galeria do produto" className="space-y-4">
             <div className="relative aspect-[3/4] overflow-hidden bg-muted">
               <OptimizedImage src={product.images[selectedImage] || ""} alt={product.name} className="h-full w-full object-cover" width={600} height={800} priority />
-              <Button variant="secondary" size="icon" onClick={() => setSelectedImage((current) => current > 0 ? current - 1 : product.images.length - 1)} className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none">
-                <ChevronLeft className="size-5" />
+              <Button variant="secondary" size="icon" onClick={() => setSelectedImage((current) => current > 0 ? current - 1 : product.images.length - 1)} className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none size-12">
+                <ChevronLeft className="size-6" />
               </Button>
-              <Button variant="secondary" size="icon" onClick={() => setSelectedImage((current) => current < product.images.length - 1 ? current + 1 : 0)} className="absolute right-4 top-1/2 -translate-y-1/2 rounded-none">
-                <ChevronRight className="size-5" />
+              <Button variant="secondary" size="icon" onClick={() => setSelectedImage((current) => current < product.images.length - 1 ? current + 1 : 0)} className="absolute right-4 top-1/2 -translate-y-1/2 rounded-none size-12">
+                <ChevronRight className="size-6" />
               </Button>
             </div>
+
             <div className="grid grid-cols-4 gap-3">
               {product.images.map((image, index) => (
                 <button key={image} type="button" onClick={() => setSelectedImage(index)} className={`relative aspect-[3/4] overflow-hidden border-2 transition-colors ${selectedImage === index ? "border-foreground" : "border-transparent"}`}>
