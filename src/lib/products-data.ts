@@ -71,6 +71,17 @@ import satinEspresso5 from "@/assets/products/satin-espresso-5.png.asset.json";
 import satinEspresso6 from "@/assets/products/satin-espresso-6.png.asset.json";
 import satinEspresso7 from "@/assets/products/satin-espresso-7.png.asset.json";
 
+import saiaChiffon1 from "@/assets/products/saia-chiffon-1.png.asset.json";
+import saiaChiffon2 from "@/assets/products/saia-chiffon-2.png.asset.json";
+import saiaChiffon3 from "@/assets/products/saia-chiffon-3.png.asset.json";
+import saiaChiffon4 from "@/assets/products/saia-chiffon-4.png.asset.json";
+import saiaChiffon5 from "@/assets/products/saia-chiffon-5.png.asset.json";
+import saiaChiffon6 from "@/assets/products/saia-chiffon-6.png.asset.json";
+import saiaChiffon7 from "@/assets/products/saia-chiffon-7.png.asset.json";
+import saiaChiffon8 from "@/assets/products/saia-chiffon-8.png.asset.json";
+import saiaChiffon9 from "@/assets/products/saia-chiffon-9.png.asset.json";
+import saiaChiffon10 from "@/assets/products/saia-chiffon-10.png.asset.json";
+
 export interface Product {
   id: string;
   name: string;
@@ -208,6 +219,39 @@ export const products: Product[] = [
         comment: "Comprei para um casamento e foi um sucesso. Muito chique.", 
         rating: 5, 
         image: satinEspresso1.url 
+      }
+    ],
+  },
+  {
+    id: "saia-chiffon-fluida",
+    name: "Saia Évora Chiffon Fluida",
+    price: 389,
+    description: "Saia midi em chiffon de alta qualidade com modelagem em camadas e caimento leve. Possui forro interno e cós com elástico para maior conforto. Uma peça versátil que transita do casual ao sofisticado com elegância.",
+    images: [
+      saiaChiffon1.url,
+      saiaChiffon2.url,
+      saiaChiffon3.url,
+      saiaChiffon4.url,
+      saiaChiffon5.url,
+      saiaChiffon6.url,
+      saiaChiffon7.url,
+      saiaChiffon8.url,
+      saiaChiffon9.url,
+      saiaChiffon10.url
+    ],
+    sizes,
+    reviews: [
+      { 
+        user: "Beatriz S.", 
+        comment: "A saia é maravilhosa, o tecido tem um movimento lindo ao andar.", 
+        rating: 5, 
+        image: saiaChiffon4.url 
+      },
+      { 
+        user: "Julia R.", 
+        comment: "Comprei a off-white e a cor é idêntica à foto. Muito elegante.", 
+        rating: 5, 
+        image: saiaChiffon1.url 
       }
     ],
   },
