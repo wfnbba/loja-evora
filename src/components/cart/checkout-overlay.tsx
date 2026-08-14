@@ -568,9 +568,16 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                   <div className="flex flex-1 flex-col justify-center gap-2">
                     <h4 className="text-[12px] font-bold uppercase tracking-[0.2em] leading-relaxed">{item.name}</h4>
                     <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Variante: {item.size}</p>
-                    <p className="text-[13px] font-medium mt-1 tracking-wider">
-                      R$ {(item.price * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                    </p>
+                    <div className="flex items-center gap-2">
+                      <p className="text-[13px] font-medium mt-1 tracking-wider">
+                        R$ {(item.price * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                      </p>
+                      {item.originalPrice && (
+                        <p className="text-[10px] text-muted-foreground/50 line-through mt-1">
+                          R$ {(item.originalPrice * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}

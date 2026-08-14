@@ -69,14 +69,15 @@ function ProductPage() {
       return;
     }
     
-    const newItem = {
+    const newItem: any = {
       id: product.id,
       name: product.name,
       price: product.price,
+      originalPrice: product.originalPrice,
       image: product.images[0] ?? "",
       size: selectedSize,
       quantity: 1
-    } as any;
+    };
     
     if (selectedColor) {
       newItem.color = selectedColor;
