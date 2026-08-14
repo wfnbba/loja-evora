@@ -50,7 +50,7 @@ function Index() {
                   <CardContent className="p-0">
                     <div className="relative mb-4 aspect-[3/4] overflow-hidden bg-muted md:mb-6">
                       <OptimizedImage
-                        src={product.images[0]}
+                        src={product.images[0] || ""}
                         alt={product.name}
                         className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                         width={400}

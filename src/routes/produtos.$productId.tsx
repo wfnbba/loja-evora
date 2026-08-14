@@ -136,7 +136,7 @@ function ProductPage() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
           <section aria-label="Galeria do produto" className="space-y-4">
             <div className="relative aspect-[3/4] overflow-hidden bg-muted">
-              <OptimizedImage src={product.images[selectedImage]} alt={`${product.name}, foto ${selectedImage + 1}`} className="h-full w-full object-cover" width={600} height={800} priority />
+              <OptimizedImage src={product.images[selectedImage] || ""} alt={`${product.name}, foto ${selectedImage + 1}`} className="h-full w-full object-cover" width={600} height={800} priority />
               <Button variant="secondary" size="icon" aria-label="Foto anterior" onClick={() => setSelectedImage((current) => current > 0 ? current - 1 : product.images.length - 1)} className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none">
                 <ChevronLeft className="size-5" />
               </Button>
