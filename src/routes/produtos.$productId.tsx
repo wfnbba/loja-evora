@@ -1,12 +1,12 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { useCartStore } from "@/store/cart-store";
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, Star, ShoppingBag, RefreshCw, Loader2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, ShoppingBag, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Progress } from "@/components/ui/progress";
 import { OptimizedImage } from "@/components/ui/optimized-image";
-import { storefrontApiRequest, GET_PRODUCTS_QUERY, ShopifyProduct } from "@/lib/shopify";
+import { products as localProducts } from "@/lib/products-data";
 
 declare module 'react' {
   namespace JSX {
@@ -18,117 +18,14 @@ declare module 'react' {
 
 export const Route = createFileRoute("/produtos/$productId")({
   loader: async ({ params }) => {
-    try {
-      const data = await storefrontApiRequest(GET_PRODUCTS_QUERY, {
-        first: 1,
-        query: `handle:${params.productId}`
-      });
-      
-      const product = data?.data?.products?.edges[0];
-      if (product) return { product: product as ShopifyProduct, isLocal: false };
-      
-      // Fallback para produto local
-      const { products: localProducts } = await import("@/lib/products-data");
-      const lp = localProducts.find(p => p.id === params.productId);
-      
-      if (!lp) throw notFound();
-
-      const shopifyProduct: ShopifyProduct = {
-        node: {
-          id: `local-${lp.id}`,
-          title: lp.name,
-          description: lp.description,
-          handle: lp.id,
-          priceRange: {
-            minVariantPrice: {
-              amount: lp.price.toString(),
-              currencyCode: "BRL"
-            }
-          },
-          images: {
-            edges: lp.images.map(img => ({
-              node: {
-                url: img,
-                altText: lp.name
-              }
-            }))
-          },
-          variants: {
-            edges: lp.sizes.map(size => ({
-              node: {
-                id: `local-variant-${lp.id}-${size}`,
-                title: size,
-                price: {
-                  amount: lp.price.toString(),
-                  currencyCode: "BRL"
-                },
-                availableForSale: true,
-                selectedOptions: [{ name: "Tamanho", value: size }]
-              }
-            }))
-          },
-          options: [
-            { name: "Tamanho", values: lp.sizes },
-            ...(lp.colors ? [{ name: "Cor", values: lp.colors.map(c => c.name) }] : [])
-          ]
-        }
-      };
-
-      return { product: shopifyProduct, isLocal: true };
-    } catch (error) {
-      console.error("Error loading product, trying local:", error);
-      // Repetir lógica de fallback para erro de API
-      const { products: localProducts } = await import("@/lib/products-data");
-      const lp = localProducts.find(p => p.id === params.productId);
-      if (!lp) throw notFound();
-      
-      const shopifyProduct: ShopifyProduct = {
-        node: {
-          id: `local-${lp.id}`,
-          title: lp.name,
-          description: lp.description,
-          handle: lp.id,
-          priceRange: {
-            minVariantPrice: {
-              amount: lp.price.toString(),
-              currencyCode: "BRL"
-            }
-          },
-          images: {
-            edges: lp.images.map(img => ({
-              node: {
-                url: img,
-                altText: lp.name
-              }
-            }))
-          },
-          variants: {
-            edges: lp.sizes.map(size => ({
-              node: {
-                id: `local-variant-${lp.id}-${size}`,
-                title: size,
-                price: {
-                  amount: lp.price.toString(),
-                  currencyCode: "BRL"
-                },
-                availableForSale: true,
-                selectedOptions: [{ name: "Tamanho", value: size }]
-              }
-            }))
-          },
-          options: [
-            { name: "Tamanho", values: lp.sizes },
-            ...(lp.colors ? [{ name: "Cor", values: lp.colors.map(c => c.name) }] : [])
-          ]
-        }
-      };
-      return { product: shopifyProduct, isLocal: true };
-    }
+    const product = localProducts.find(p => p.id === params.productId);
+    if (!product) throw notFound();
+    return { product };
   },
   head: ({ loaderData }) => {
-    const product = loaderData?.product?.node;
-    const title = product ? `${product.title} | Évora` : "Produto | Évora";
-    const description = product?.description ?? "Conheça a coleção de moda feminina Évora.";
+    const { product } = loaderData;
+    const title = `${product.name} | Évora`;
+    const description = product.description;
     return {
       meta: [
         { title },
@@ -144,18 +41,14 @@ export const Route = createFileRoute("/produtos/$productId")({
 });
 
 function ProductPage() {
-  const { product: shopifyProduct, isLocal } = Route.useLoaderData();
-  const product = shopifyProduct.node;
+  const { product } = Route.useLoaderData();
   
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState("");
-  const [selectedColor, setSelectedColor] = useState(product.options.find(o => o.name.toLowerCase() === 'cor')?.values[0] || "");
+  const [selectedColor, setSelectedColor] = useState(product.colors?.[0]?.name || "");
   const [added, setAdded] = useState(false);
   
   const addItem = useCartStore((state) => state.addItem);
-  const setIsCartOpen = (open: boolean) => {
-    window.dispatchEvent(new CustomEvent('open-cart'));
-  };
 
   const mockReviews = [
     { user: "Mariana S.", rating: 5, comment: "Vestido maravilhoso! O tecido é de uma qualidade absurda, cai super bem no corpo. Évora realmente surpreendeu." },
@@ -169,46 +62,26 @@ function ProductPage() {
   const ratingBreakdown = { 5: 120, 4: 25, 3: 8, 2: 3, 1: 1 };
 
   const addToCart = async () => {
-    const sizeOption = product.options.find(o => o.name.toLowerCase() === 'tamanho' || o.name.toLowerCase() === 'size');
-    if (sizeOption && !selectedSize) {
+    if (product.sizes.length > 0 && !selectedSize) {
       toast.error("Por favor, selecione um tamanho");
       return;
     }
     
-    const variant = product.variants.edges.find(({ node: v }: any) => {
-      const sizeMatch = !selectedSize || v.selectedOptions.some((o: any) => 
-        (o.name.toLowerCase() === 'tamanho' || o.name.toLowerCase() === 'size') && o.value === selectedSize
-      );
-      const colorMatch = !selectedColor || v.selectedOptions.some((o: any) => 
-        o.name.toLowerCase() === 'cor' && o.value === selectedColor
-      );
-      return sizeMatch && colorMatch;
-    })?.node || product.variants.edges[0]?.node;
-
-    if (!variant) {
-      toast.error("Variante não encontrada");
-      return;
-    }
-    
     addItem({
-      id: variant.id,
-      name: product.title,
-      price: parseFloat(variant.price.amount),
-      image: product.images.edges[0]?.node?.url || "",
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.images[0],
       size: selectedSize || "Único",
       color: selectedColor,
       quantity: 1
     });
     
     setAdded(true);
-    toast.success(`${product.title} adicionado ao carrinho`);
-    setIsCartOpen(true);
+    toast.success(`${product.name} adicionado ao carrinho`);
+    window.dispatchEvent(new CustomEvent('open-cart'));
     setTimeout(() => setAdded(false), 2000);
   };
-
-  const images = product.images.edges.map(e => e.node.url);
-  const sizeOption = product.options.find(o => o.name.toLowerCase() === 'tamanho' || o.name.toLowerCase() === 'size');
-  const colorOption = product.options.find(o => o.name.toLowerCase() === 'cor');
 
   return (
     <main className="min-h-screen bg-background pb-20 pt-24 text-foreground">
@@ -216,16 +89,16 @@ function ProductPage() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
           <section aria-label="Galeria do produto" className="space-y-4">
             <div className="relative aspect-[3/4] overflow-hidden bg-muted">
-              <OptimizedImage src={images[selectedImage] || ""} alt={product.title} className="h-full w-full object-cover" width={600} height={800} priority />
-              <Button variant="secondary" size="icon" onClick={() => setSelectedImage((current) => current > 0 ? current - 1 : images.length - 1)} className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none">
+              <OptimizedImage src={product.images[selectedImage] || ""} alt={product.name} className="h-full w-full object-cover" width={600} height={800} priority />
+              <Button variant="secondary" size="icon" onClick={() => setSelectedImage((current) => current > 0 ? current - 1 : product.images.length - 1)} className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none">
                 <ChevronLeft className="size-5" />
               </Button>
-              <Button variant="secondary" size="icon" onClick={() => setSelectedImage((current) => current < images.length - 1 ? current + 1 : 0)} className="absolute right-4 top-1/2 -translate-y-1/2 rounded-none">
+              <Button variant="secondary" size="icon" onClick={() => setSelectedImage((current) => current < product.images.length - 1 ? current + 1 : 0)} className="absolute right-4 top-1/2 -translate-y-1/2 rounded-none">
                 <ChevronRight className="size-5" />
               </Button>
             </div>
             <div className="grid grid-cols-4 gap-3">
-              {images.map((image, index) => (
+              {product.images.map((image, index) => (
                 <button key={image} type="button" onClick={() => setSelectedImage(index)} className={`relative aspect-[3/4] overflow-hidden border-2 transition-colors ${selectedImage === index ? "border-foreground" : "border-transparent"}`}>
                   <OptimizedImage src={image} alt="" className="h-full w-full object-cover" width={150} height={200} />
                 </button>
@@ -235,35 +108,39 @@ function ProductPage() {
 
           <section className="space-y-8">
             <div className="space-y-2">
-              <h1 className="text-3xl font-light uppercase tracking-[0.2em]">{product.title}</h1>
+              <h1 className="text-3xl font-light uppercase tracking-[0.2em]">{product.name}</h1>
               <div className="flex items-center gap-4 text-sm font-light">
                 <div className="flex items-center gap-1">
                   <div className="flex" aria-label="5 de 5 estrelas">
                     {Array.from({ length: 5 }, (_, i) => (
-                      <Star key={i} className="size-3 fill-current" />
+                      <Star key={i} className={`size-3 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`} />
                     ))}
                   </div>
-                  <span>5/5</span>
+                  <span>{product.rating.toFixed(1)}/5</span>
                 </div>
                 <span className="text-muted-foreground">|</span>
-                <span>Novo na Évora</span>
+                <span>{product.salesCount} vendas</span>
               </div>
               <div className="flex items-baseline gap-3">
                 <p className="text-2xl font-light">
-                  {product.priceRange.minVariantPrice.currencyCode} {parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                  R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                 </p>
+                {product.originalPrice && (
+                  <p className="text-lg text-muted-foreground line-through">
+                    R$ {product.originalPrice.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                  </p>
+                )}
               </div>
             </div>
             
-            {sizeOption && (
+            {product.sizes.length > 0 && (
               <div className="space-y-4">
                 <p className="text-xs font-medium uppercase tracking-[0.2em]">Tamanho</p>
                 <div className="flex flex-wrap gap-3">
-                  {sizeOption.values.map((size) => (
+                  {product.sizes.map((size) => (
                     <Button key={size} type="button" variant={selectedSize === size ? "default" : "outline"} onClick={() => { setSelectedSize(size); setAdded(false); }} className="size-12 rounded-none p-0">{size}</Button>
                   ))}
                 </div>
-                {!selectedSize && <p className="text-xs text-muted-foreground">Selecione um tamanho para adicionar ao carrinho.</p>}
                 <div className="mt-4 flex items-center gap-3 border border-green-600/20 bg-green-600/5 p-4 transition-all hover:bg-green-600/10">
                   <div className="flex size-8 items-center justify-center rounded-full bg-green-600/10 text-green-700">
                     <RefreshCw className="size-4 animate-spin-slow" />
@@ -278,13 +155,13 @@ function ProductPage() {
               </div>
             )}
 
-            {colorOption && (
+            {product.colors && product.colors.length > 0 && (
               <div className="space-y-4">
                 <p className="text-xs font-medium uppercase tracking-[0.2em]">Cor: {selectedColor}</p>
                 <div className="flex flex-wrap gap-3">
-                  {colorOption.values.map((color) => (
-                    <Button key={color} type="button" variant={selectedColor === color ? "default" : "outline"} onClick={() => setSelectedColor(color)} className="rounded-none px-4 py-2 text-[10px] uppercase tracking-widest">
-                      {color}
+                  {product.colors.map((color) => (
+                    <Button key={color.name} type="button" variant={selectedColor === color.name ? "default" : "outline"} onClick={() => setSelectedColor(color.name)} className="rounded-none px-4 py-2 text-[10px] uppercase tracking-widest">
+                      {color.name}
                     </Button>
                   ))}
                 </div>
@@ -294,7 +171,7 @@ function ProductPage() {
             <div className="flex flex-col gap-4">
               <Button 
                 onClick={addToCart} 
-                disabled={!selectedSize} 
+                disabled={product.sizes.length > 0 && !selectedSize} 
                 className="w-full rounded-none py-8 uppercase tracking-[0.2em] utmify"
               >
                 <ShoppingBag className="mr-3 size-5" />
@@ -307,15 +184,9 @@ function ProductPage() {
               <div className="space-y-6">
                 <p className="font-light leading-relaxed text-muted-foreground">{product.description}</p>
                 
-                {product.handle === "vestido-aurora-cafe" && (
+                {product.video && (
                   <div className="wistia-video-container mt-6 aspect-[9/16] w-full max-w-[400px] overflow-hidden bg-muted mx-auto lg:mx-0">
-                    <wistia-player media-id="wt5hy23zyr" aspect="0.5625"></wistia-player>
-                  </div>
-                )}
-                
-                {product.handle === "calca-alfaiataria-off-white" && (
-                  <div className="wistia-video-container mt-6 aspect-[9/16] w-full max-w-[400px] overflow-hidden bg-muted mx-auto lg:mx-0">
-                    <wistia-player media-id="z4i9e4fgkn" aspect="0.5625"></wistia-player>
+                    <wistia-player media-id={product.video} aspect="0.5625"></wistia-player>
                   </div>
                 )}
               </div>
@@ -326,10 +197,10 @@ function ProductPage() {
                 <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Avaliações</h2>
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                   <div className="flex flex-col items-center justify-center space-y-2 border-r border-border/50 pr-8 text-center">
-                    <span className="text-5xl font-light">4.9</span>
+                    <span className="text-5xl font-light">{product.rating.toFixed(1)}</span>
                     <div className="flex">
                       {Array.from({ length: 5 }, (_, i) => (
-                        <Star key={i} className={`size-4 ${i < 4 ? "fill-current" : "text-muted-foreground"}`} />
+                        <Star key={i} className={`size-4 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`} />
                       ))}
                     </div>
                     <span className="text-xs uppercase tracking-widest text-muted-foreground">{totalReviews.toLocaleString("pt-BR")} avaliações</span>
