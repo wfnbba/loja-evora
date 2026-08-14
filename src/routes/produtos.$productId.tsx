@@ -85,7 +85,7 @@ function ProductPage() {
               <p className="text-2xl font-light">R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
             </div>
             <div className="space-y-4">
-              <p className="text-sm font-medium uppercase tracking-widest">Tamanho</p>
+              <p className="text-xs font-medium uppercase tracking-[0.2em]">Tamanho</p>
               <div className="flex flex-wrap gap-3">
                 {product.sizes.map((size) => (
                   <Button key={size} type="button" variant={selectedSize === size ? "default" : "outline"} onClick={() => { setSelectedSize(size); setAdded(false); }} className="size-12 rounded-none p-0">{size}</Button>
@@ -96,7 +96,7 @@ function ProductPage() {
 
             {product.id === "conjunto-espresso-alfaiataria" && (
               <div className="space-y-4">
-                <p className="text-sm font-medium uppercase tracking-widest">Acessório Incluso</p>
+                <p className="text-xs font-medium uppercase tracking-[0.2em]">Acessório Incluso</p>
                 <div className="flex items-center gap-4">
                   <div className="flex h-12 items-center border border-foreground bg-foreground px-6 text-sm text-background">
                     CINTO - TAMANHO ÚNICO
@@ -112,7 +112,7 @@ function ProductPage() {
 
             {product.colors && product.colors.length > 0 && (
               <div className="space-y-4">
-                <p className="text-sm font-medium uppercase tracking-widest">Cor: {selectedColor}</p>
+                <p className="text-xs font-medium uppercase tracking-[0.2em]">Cor: {selectedColor}</p>
                 <div className="flex flex-wrap gap-3">
                   {product.colors.map((color) => (
                     <button
@@ -132,7 +132,7 @@ function ProductPage() {
               <ShoppingBag className="mr-3 size-5" />{added ? "Adicionado ao carrinho" : "Adicionar ao carrinho"}
             </Button>
             <div className="space-y-4 border-t border-border pt-8">
-              <h2 className="text-sm font-medium uppercase tracking-widest">Descrição</h2>
+              <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Descrição</h2>
               <p className="font-light leading-relaxed text-muted-foreground">{product.description}</p>
             </div>
             <div className="space-y-6 border-t border-border pt-8">
