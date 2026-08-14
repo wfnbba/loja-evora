@@ -13,6 +13,7 @@ import { sendUtmifyOrder } from "@/lib/utmify.functions";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { OptimizedImage } from "@/components/ui/optimized-image";
+import pixLogoAsset from "@/assets/logo-pix.png.asset.json";
 
 interface CheckoutOverlayProps {
   onClose: () => void;
@@ -512,10 +513,8 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                     <ShieldCheck className="size-4" />
                     <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Pagamento 100% Criptografado</span>
                   </div>
-                  <div className="flex items-center gap-6 opacity-40 grayscale scale-75 md:scale-90">
-                    <img src="https://logodownload.org/wp-content/uploads/2020/02/pix-bc-logo.png" alt="PIX" className="h-4" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Visa" className="h-3" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" alt="Mastercard" className="h-4" />
+                  <div className="flex items-center gap-6 opacity-60 scale-75 md:scale-90">
+                    <img src={pixLogoAsset.url} alt="PIX" className="h-8 w-auto" />
                   </div>
                 </div>
               </div>
@@ -591,7 +590,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 return (
                   <div key={`${item.id}-${item.size}`} className="flex gap-6 group">
                     <div className="relative aspect-[3/4] w-24 shrink-0 overflow-hidden bg-white border border-border/50 group-hover:border-foreground/30 transition-colors">
-                      <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
+                      <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={96} height={128} />
                       <span className="absolute -right-3 -top-3 flex size-7 items-center justify-center rounded-full bg-foreground text-background text-[11px] font-bold shadow-lg">
                         {item.quantity}
                       </span>
