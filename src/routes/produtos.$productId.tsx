@@ -55,7 +55,7 @@ function ProductPage() {
       price: product.price,
       image: product.images[0],
       size: selectedSize,
-      color: selectedColor,
+      color: selectedColor || undefined,
       quantity: 1
     });
     
