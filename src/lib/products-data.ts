@@ -63,6 +63,14 @@ import saiaRose2 from "@/assets/products/saia-rose-2.jpg";
 import saiaRose3 from "@/assets/products/saia-rose-3.jpg";
 import saiaRose4 from "@/assets/products/saia-rose-4.jpg";
 
+import satinEspresso1 from "@/assets/products/satin-espresso-1.png.asset.json";
+import satinEspresso2 from "@/assets/products/satin-espresso-2.png.asset.json";
+import satinEspresso3 from "@/assets/products/satin-espresso-3.png.asset.json";
+import satinEspresso4 from "@/assets/products/satin-espresso-4.png.asset.json";
+import satinEspresso5 from "@/assets/products/satin-espresso-5.png.asset.json";
+import satinEspresso6 from "@/assets/products/satin-espresso-6.png.asset.json";
+import satinEspresso7 from "@/assets/products/satin-espresso-7.png.asset.json";
+
 export interface Product {
   id: string;
   name: string;
