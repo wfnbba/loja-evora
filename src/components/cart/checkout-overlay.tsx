@@ -285,20 +285,21 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                       <div className="flex items-center justify-between">
                         <div className="flex flex-col gap-1">
                           <div className="flex items-center gap-2">
-                            <p className="text-[9px] text-muted-foreground uppercase tracking-widest shrink-0">Tam: {item.size}</p>
+                            <p className="text-[10px] text-muted-foreground uppercase tracking-widest shrink-0">Tam: {item.size}</p>
                             {item.color && (
-                              <p className="text-[9px] text-muted-foreground uppercase tracking-widest truncate">Cor: {item.color}</p>
+                              <p className="text-[10px] text-muted-foreground uppercase tracking-widest truncate">Cor: {item.color}</p>
                             )}
                           </div>
                           <div className="flex items-center border border-border/50 rounded-none bg-background w-fit">
-                            <button onClick={(e) => { e.stopPropagation(); decrementQuantity(item.id, item.size, item.color); }} className="p-1 hover:bg-muted"><Minus className="size-2" /></button>
-                            <span className="text-[9px] px-2 font-bold">{item.quantity}</span>
-                            <button onClick={(e) => { e.stopPropagation(); incrementQuantity(item.id, item.size, item.color); }} className="p-1 hover:bg-muted"><Plus className="size-2" /></button>
+                            <button onClick={(e) => { e.stopPropagation(); decrementQuantity(item.id, item.size, item.color); }} className="p-2 hover:bg-muted"><Minus className="size-3" /></button>
+                            <span className="text-xs px-3 font-bold">{item.quantity}</span>
+                            <button onClick={(e) => { e.stopPropagation(); incrementQuantity(item.id, item.size, item.color); }} className="p-2 hover:bg-muted"><Plus className="size-3" /></button>
                           </div>
                         </div>
                         {discountPercentage > 0 && (
-                          <span className="text-[8px] text-green-600 font-bold uppercase tracking-widest">-{discountPercentage}% OFF</span>
+                          <span className="text-[10px] text-green-600 font-bold uppercase tracking-widest">-{discountPercentage}% OFF</span>
                         )}
+
                       </div>
                     </div>
                     <button onClick={(e) => { e.stopPropagation(); removeItem(item.id, item.size, item.color); }} className="absolute -right-1 top-2 p-1 text-muted-foreground/40"><X className="size-3" /></button>
