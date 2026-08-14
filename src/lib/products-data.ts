@@ -255,7 +255,7 @@ export const products: Product[] = [
       auroraMarfim10.url,
     ],
     sizes,
-    colors: [{ name: "Marfim", value: "#f5f5f0" },],
+    colors: [{ name: "Marfim", value: "#f5f5f0" }],
     salesCount: 3421,
     rating: 4.8,
     ratingBreakdown: { 1: 4, 2: 6, 3: 29, 4: 100, 5: 1488 },
@@ -327,7 +327,7 @@ export const products: Product[] = [
       auroraCafe10.url
     ],
     sizes,
-    colors: [{ name: "Café", value: "#4b3621" },],
+    colors: [{ name: "Café", value: "#4b3621" }],
     salesCount: 2154,
     rating: 4.8,
     ratingBreakdown: { 5: 967, 4: 94, 3: 20, 2: 6, 1: 4 },
@@ -401,7 +401,7 @@ export const products: Product[] = [
       monumentNoir10.url
     ],
     sizes,
-    colors: [{ name: "Noir/Marfim", value: "#000000" },],
+    colors: [{ name: "Noir/Marfim", value: "#000000" }],
     salesCount: 1587,
     rating: 4.7,
     ratingBreakdown: { 1: 4, 2: 6, 3: 30, 4: 100, 5: 1284 },
@@ -476,7 +476,7 @@ export const products: Product[] = [
       alvorada10.url
     ],
     sizes,
-    colors: [{ name: "Off-White", value: "#faf9f6" },],
+    colors: [{ name: "Off-White", value: "#faf9f6" }],
     salesCount: 4231,
     rating: 4.9,
     ratingBreakdown: { 1: 4, 2: 6, 3: 30, 4: 100, 5: 1815 },
@@ -546,7 +546,7 @@ export const products: Product[] = [
       satinEspresso7.url
     ],
     sizes,
-    colors: [{ name: "Espresso", value: "#3d2b1f" },],
+    colors: [{ name: "Espresso", value: "#3d2b1f" }],
     salesCount: 2845,
     rating: 4.8,
     ratingBreakdown: { 1: 4, 2: 6, 3: 30, 4: 100, 5: 1219 },
@@ -697,7 +697,7 @@ export const products: Product[] = [
       saiaRenda10.url
     ],
     sizes,
-    colors: [{ name: "Renda Nude", value: "#e8d7c5" },],
+    colors: [{ name: "Renda Nude", value: "#e8d7c5" }],
     salesCount: 1243,
     rating: 4.6,
     ratingBreakdown: { 1: 4, 2: 6, 3: 30, 4: 100, 5: 1203 },
@@ -769,7 +769,7 @@ export const products: Product[] = [
       color: "Espresso",
       price: "Grátis"
     },
-    colors: [{ name: "Espresso", value: "#3d2b1f" },],
+    colors: [{ name: "Espresso", value: "#3d2b1f" }],
     salesCount: 6842,
     rating: 4.9,
     ratingBreakdown: { 1: 4, 2: 6, 3: 30, 4: 100, 5: 2954 },
@@ -834,7 +834,7 @@ export const products: Product[] = [
     description: "Conjunto de alfaiataria em tom rosé composto por colete acinturado e saia longa fluida. Uma produção delicada, elegante e versátil para ocasiões especiais." + exchangePolicy,
     images: [ig0, p1b, p1c, p1d],
     sizes,
-    colors: [{ name: "Rosé", value: "#e2b6b1" },],
+    colors: [{ name: "Rosé", value: "#e2b6b1" }],
     salesCount: 843,
     rating: 4.8,
     ratingBreakdown: { 1: 4, 2: 6, 3: 30, 4: 100, 5: 1384 },
@@ -889,7 +889,7 @@ export const products: Product[] = [
     description: "Vestido midi rosé com decote fechado, cintura marcada e saia evasê. Um clássico leve que acompanha do almoço ao evento noturno." + exchangePolicy,
     images: [ig2, p3b, p3c, p3d],
     sizes,
-    colors: [{ name: "Rosé", value: "#e2b6b1" },],
+    colors: [{ name: "Rosé", value: "#e2b6b1" }],
     salesCount: 652,
     rating: 4.7,
     ratingBreakdown: { 1: 4, 2: 6, 3: 30, 4: 100, 5: 1028 },
@@ -962,6 +962,7 @@ export const products: Product[] = [
       color: "Preto",
       price: "Grátis"
     },
+    colors: [{ name: "Off-White", value: "#faf9f6" }],
     rating: 4.8,
     salesCount: 1842,
     ratingBreakdown: { 5: 1245, 4: 98, 3: 25, 2: 6, 1: 4 },
