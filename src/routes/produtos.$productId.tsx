@@ -14,7 +14,7 @@ import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 
-declare global {
+declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
       'wistia-player': any;
