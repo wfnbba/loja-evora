@@ -338,7 +338,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 </div>
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <div className="space-y-3">
-                    <Label htmlFor="email" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">E-mail</Label>
+                    <Label htmlFor="email" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">E-mail</Label>
                     <Input
                       id="email"
                       type="email"
