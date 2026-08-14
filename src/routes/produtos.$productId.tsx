@@ -113,7 +113,7 @@ function ProductPage() {
 
           <section aria-label="Galeria do produto" className="relative space-y-4 md:sticky md:top-24">
             {/* Carrossel Principal */}
-            <div className="relative aspect-[3/4] overflow-hidden bg-muted md:rounded-sm">
+            <div className="relative aspect-[3/4] overflow-hidden bg-muted md:rounded-sm group cursor-pointer" onClick={() => setSelectedImage((current) => current < product.images.length - 1 ? current + 1 : 0)}>
               <div 
                 className="flex h-full w-full transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${selectedImage * 100}%)` }}
