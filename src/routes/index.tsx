@@ -52,9 +52,10 @@ function Index() {
                         src={product.images[0]}
                         alt={product.name}
                         className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        width={768}
-                        height={1024}
+                        width={400}
+                        height={533}
                         loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <div className="space-y-1 text-center">
