@@ -1,6 +1,8 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { products } from "@/lib/products-data";
 import { Button } from "@/components/ui/button";
+import { useCartStore } from "@/store/cart-store";
+import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useState, useMemo } from "react";
@@ -38,10 +40,36 @@ function ProductPage() {
   const [added, setAdded] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const reviewsPerPage = 10;
+  
+  const addItem = useCartStore((state) => state.addItem);
 
   const addToCart = () => {
-    if (!selectedSize) return;
+    if (!selectedSize) {
+      toast.error("Por favor, selecione um tamanho");
+      return;
+    }
+    
+    const newItem = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.images[0] ?? "",
+      size: selectedSize,
+      quantity: 1
+    } as any;
+    
+    if (selectedColor) {
+      newItem.color = selectedColor;
+    }
+    
+    addItem(newItem);
+    
     setAdded(true);
+    toast.success(`${product.name} adicionado ao carrinho`, {
+      description: `Tamanho: ${selectedSize}${selectedColor ? ` | Cor: ${selectedColor}` : ""}`
+    });
+    
+    setTimeout(() => setAdded(false), 2000);
   };
 
   const sortedReviews = useMemo(() => {
@@ -157,7 +185,7 @@ function ProductPage() {
               </div>
             )}
 
-            <Button type="button" onClick={addToCart} disabled={!selectedSize} className="w-full rounded-none py-8 uppercase tracking-[0.2em]">
+            <Button type="button" onClick={addToCart} disabled={!selectedSize} className="w-full rounded-none py-8 uppercase tracking-[0.2em] cursor-pointer">
               <ShoppingBag className="mr-3 size-5" />{added ? "Adicionado ao carrinho" : "Adicionar ao carrinho"}
             </Button>
             <div className="space-y-4 border-t border-border pt-8">

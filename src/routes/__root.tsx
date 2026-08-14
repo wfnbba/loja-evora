@@ -7,8 +7,10 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, type ReactNode, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useCartStore } from "@/store/cart-store";
+import { CartSheet } from "@/components/cart/cart-sheet";
 import logoAsset from "@/assets/logo.png.asset.json";
 import logoTextAsset from "@/assets/logo_text.png.asset.json";
 
@@ -109,22 +111,8 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         <div className="min-h-screen bg-[#fdfbf7] text-[#4a3f35]">
-          <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur-md">
-            <div className="container mx-auto flex h-20 items-center justify-between px-4 lg:px-8">
-              <Link to="/" className="flex items-center gap-2">
-                <img src={logoAsset.url} alt="Évora Logo" className="h-10 w-auto" />
-                <img src={logoTextAsset.url} alt="Évora" className="hidden h-6 w-auto md:block" />
-              </Link>
-              <nav className="hidden items-center gap-8 md:flex">
-                <Link to="/" className="text-sm font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Início</Link>
-                <a href="#" className="text-sm font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Coleções</a>
-                <a href="#" className="text-sm font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Sobre</a>
-              </nav>
-              <div className="flex items-center gap-4">
-                <Button variant="ghost" className="text-sm font-medium tracking-[0.2em] uppercase hover:bg-transparent px-0">Carrinho (0)</Button>
-              </div>
-            </div>
-          </header>
+          <Header />
+          {children}
           {children}
           <footer className="border-t border-border/50 bg-background py-20">
             <div className="container mx-auto px-4 text-center lg:px-8">
@@ -142,6 +130,39 @@ function RootShell({ children }: { children: ReactNode }) {
         <Scripts />
       </body>
     </html>
+  );
+}
+
+function Header() {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const totalItems = useCartStore((state) => state.totalItems());
+
+  return (
+    <>
+      <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur-md">
+        <div className="container mx-auto flex h-20 items-center justify-between px-4 lg:px-8">
+          <Link to="/" className="flex items-center gap-2">
+            <img src={logoAsset.url} alt="Évora Logo" className="h-10 w-auto" />
+            <img src={logoTextAsset.url} alt="Évora" className="hidden h-6 w-auto md:block" />
+          </Link>
+          <nav className="hidden items-center gap-8 md:flex">
+            <Link to="/" className="text-sm font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Início</Link>
+            <a href="#" className="text-sm font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Coleções</a>
+            <a href="#" className="text-sm font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Sobre</a>
+          </nav>
+          <div className="flex items-center gap-4">
+            <Button 
+              variant="ghost" 
+              onClick={() => setIsCartOpen(true)}
+              className="text-sm font-medium tracking-[0.2em] uppercase hover:bg-transparent px-0 cursor-pointer"
+            >
+              Carrinho ({totalItems})
+            </Button>
+          </div>
+        </div>
+      </header>
+      <CartSheet open={isCartOpen} onOpenChange={setIsCartOpen} />
+    </>
   );
 }
 
