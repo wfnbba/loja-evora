@@ -1,29 +1,26 @@
-# Plano de Replicação: Layout DoramaFLIX em Espanhol para Évora
+# Plano de Replicação: Layout DoramaFLIX para Évora
 
-O objetivo é replicar a estrutura visual e de vendas do site `doramatvflix.com.br` na loja **Évora**, traduzindo toda a interface e conteúdo para o **Espanhol**, conforme solicitado. Manteremos a estratégia de conversão original, adaptando-a para o nicho de moda de luxo da Évora.
+O objetivo é replicar a estrutura visual e de vendas do site `doramatvflix.netlify.app` na loja **Évora**, adaptando a estética de "streaming de doramas" para uma "loja de moda de alto padrão", mantendo a eficiência de conversão do layout original (foco em planos/ofertas e provas sociais).
 
-## Alterações de Idioma (Espanhol)
+## Alterações Visuais e Estruturais
 
-- **Textos de Interface**: Traduzir botões, labels e navegação (ex: "Assinar Agora" -> "Suscribirse Ahora", "Explorar Coleção" -> "Explorar Colección").
-- **Catálogo e Produtos**: Traduzir nomes, descrições e categorias dos produtos no `products-data.ts`.
-- **Provas Sociais**: Traduzir ou adaptar os feedbacks das clientes para espanhol, mantendo o tom realista e positivo.
-- **Slogans**: Adaptar os slogans da Évora para o espanhol (ex: "Elegancia que impone presencia").
-
-## Replicação Visual (Baseada no DoramaFLIX)
-
-- **Estilo Dark/Premium**: Adotar o fundo escuro e sofisticado do DoramaFLIX, mas com a paleta da Évora (tons de café, marfim e dourado).
-- **Seção de Ofertas (Planos)**: Replicar o layout de cards de preço do DoramaFLIX para exibir combos ou seleções exclusivas da Évora em espanhol.
-- **Grade de Destaques**: Usar o estilo de posters arredondados para as peças principais da coleção.
-- **Footer e Garantia**: Traduzir selos de segurança e métodos de pagamento.
+- **Header**: Adaptar o botão "Assinar Agora" para "Ver Coleção" ou "Explorar Loja", mantendo o estilo minimalista com fundo translúcido.
+- **Hero Section**: Substituir a seção atual por uma que utilize a tipografia e o impacto visual do site de referência, mas com as imagens da Évora.
+- **Seção de Planos (Ofertas)**: Transformar a estrutura de "Pacote Básico/Premium" em "Combos" ou "Ofertas Especiais" da Évora (ex: "Look Completo", "Seleção VIP"), mantendo o design de cards com gradientes e badges de desconto.
+- **Destaques**: Adaptar o carrossel/grade de posters de doramas para uma exibição de "Peças de Destaque" da Évora com o mesmo estilo de bordas arredondadas e sombras.
+- **Provas Sociais**: Replicar a seção "O que nossos clientes dizem" usando os feedbacks reais extraídos do Instagram da Évora.
+- **Seção de Garantia/Pagamento**: Adaptar a iconografia para métodos de pagamento de e-commerce (PIX, Cartão) e selos de segurança.
+- **Paleta de Cores**: Manter o fundo escuro/sofisticado do DoramaFLIX (roxo profundo/preto) mas ajustado para os tons de marrom/dourado/creme da Évora para manter a identidade de luxo.
 
 ## Detalhes Técnicos
 
-- **Internacionalização**: Embora o foco seja a versão em espanhol, os textos serão substituídos diretamente nos arquivos de dados e componentes para esta versão específica.
-- **Componentes**: Manter o uso de `Carousel` e `Card` do shadcn, aplicando os estilos visuais (gradientes e glassmorphism) do site de referência.
+- **Componentes UI**: Utilizar `Carousel` do shadcn para os destaques e `Card` para as ofertas.
+- **Estilização**: Implementar gradientes e efeitos de vidro (glassmorphism) conforme o site de referência.
+- **Responsividade**: Garantir que o layout "mobile-first" do DoramaFLIX seja preservado, especialmente a posição dos botões de ação (CTA).
+- **Tipografia**: Integrar a fonte 'Great Vibes' (ou similar) para detalhes elegantes e 'Inter' para o corpo, conforme o site original.
 
 ## Próximos Passos
 
-1. Atualizar `src/lib/products-data.ts` com traduções para o espanhol.
-2. Reformular a `src/routes/index.tsx` para seguir a estrutura de seções do DoramaFLIX (Hero -> Destaques -> Planos/Ofertas -> Feedbacks).
-3. Ajustar os metadados de SEO na `index.tsx` e `__root.tsx` para o idioma espanhol.
-
+1. Criar novos componentes de seção na `index.tsx` baseados na estrutura do DoramaFLIX.
+2. Atualizar a `products-data.ts` se necessário para incluir metadados de "destaque" ou "combos".
+3. Ajustar o CSS global para incluir os gradientes e animações detectados no site de referência.
