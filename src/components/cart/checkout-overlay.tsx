@@ -384,7 +384,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                   
                   <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div className="space-y-3">
-                      <Label htmlFor="cpf" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">CPF</Label>
+                      <Label htmlFor="cpf" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">CPF</Label>
                       <Input
                         id="cpf"
                         required
