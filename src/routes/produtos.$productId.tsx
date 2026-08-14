@@ -265,7 +265,14 @@ function ProductPage() {
                         __html: `
                           <script src="https://fast.wistia.com/player.js" async></script>
                           <script src="https://fast.wistia.com/embed/z4i9e4fgkn.js" async type="module"></script>
-                          <style>wistia-player[media-id='z4i9e4fgkn']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/z4i9e4fgkn/swatch'); display: block; filter: blur(5px); padding-top:177.78%; }</style>
+                          <style>
+                            wistia-player[media-id='z4i9e4fgkn']:not(:defined) { 
+                              background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/z4i9e4fgkn/swatch'); 
+                              display: block; 
+                              filter: blur(5px); 
+                              padding-top:177.78%; 
+                            }
+                          </style>
                           <wistia-player media-id="z4i9e4fgkn" aspect="0.5625"></wistia-player>
                         `
                       }}
