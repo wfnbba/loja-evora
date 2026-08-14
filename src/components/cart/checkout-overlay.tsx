@@ -260,7 +260,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                     <div className="flex justify-between items-start">
                       <h4 className="text-[10px] font-bold uppercase tracking-widest leading-tight w-2/3">{item.name}</h4>
                       <div className="flex flex-col items-end">
-                        <p className="text-[10px] font-bold">R$ {currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+                        <p className={cn("text-[10px] font-bold", item.price === 0 && "text-green-600")}>
+                          {item.price === 0 ? "GRÁTIS" : `R$ ${currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`}
+                        </p>
                         {item.originalPrice && item.originalPrice > item.price && (
                           <p className="text-[8px] text-muted-foreground/50 line-through">R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
                         )}
@@ -599,8 +601,8 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                       <div className="flex justify-between items-start gap-4">
                         <h4 className="text-[12px] font-bold uppercase tracking-[0.2em] leading-relaxed line-clamp-2">{item.name}</h4>
                         <div className="flex flex-col items-end shrink-0">
-                          <p className="text-[14px] font-bold tracking-wider">
-                            R$ {currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                          <p className={cn("text-[14px] font-bold tracking-wider", item.price === 0 && "text-green-600")}>
+                            {item.price === 0 ? "GRÁTIS" : `R$ ${currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`}
                           </p>
                           {item.originalPrice && item.originalPrice > item.price && (
                             <p className="text-[11px] text-muted-foreground/50 line-through tracking-tighter">
