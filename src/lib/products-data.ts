@@ -222,4 +222,37 @@ export const products: Product[] = [
       }
     ],
   },
+  {
+    id: "saia-chiffon-fluida",
+    name: "Saia Évora Chiffon Fluida",
+    price: 389,
+    description: "Saia midi em chiffon de alta qualidade com modelagem em camadas e caimento leve. Possui forro interno e cós com elástico para maior conforto. Uma peça versátil que transita do casual ao sofisticado com elegância.",
+    images: [
+      saiaChiffon1.url,
+      saiaChiffon2.url,
+      saiaChiffon3.url,
+      saiaChiffon4.url,
+      saiaChiffon5.url,
+      saiaChiffon6.url,
+      saiaChiffon7.url,
+      saiaChiffon8.url,
+      saiaChiffon9.url,
+      saiaChiffon10.url
+    ],
+    sizes,
+    reviews: [
+      { 
+        user: "Beatriz S.", 
+        comment: "A saia é maravilhosa, o tecido tem um movimento lindo ao andar.", 
+        rating: 5, 
+        image: saiaChiffon4.url 
+      },
+      { 
+        user: "Julia R.", 
+        comment: "Comprei a off-white e a cor é idêntica à foto. Muito elegante.", 
+        rating: 5, 
+        image: saiaChiffon1.url 
+      }
+    ],
+  },
 ];
