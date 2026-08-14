@@ -103,7 +103,6 @@ import calcaOffWhite2 from "@/assets/products/calca-alfaiataria-off-white-2.png.
 import calcaOffWhite3 from "@/assets/products/calca-alfaiataria-off-white-3.png.asset.json";
 import calcaOffWhite4 from "@/assets/products/calca-alfaiataria-off-white-4.png.asset.json";
 import calcaOffWhite5 from "@/assets/products/calca-alfaiataria-off-white-5.png.asset.json";
-import calcaOffWhite6 from "@/assets/products/calca-alfaiataria-off-white-6.png.asset.json";
 import calcaOffWhite7 from "@/assets/products/calca-alfaiataria-off-white-7.png.asset.json";
 import calcaOffWhite8 from "@/assets/products/calca-alfaiataria-off-white-8.png.asset.json";
 import calcaOffWhite9 from "@/assets/products/calca-alfaiataria-off-white-9.png.asset.json";
@@ -912,7 +911,6 @@ export const products: Product[] = [
       (calcaOffWhite3 as any).url,
       (calcaOffWhite4 as any).url,
       (calcaOffWhite5 as any).url,
-      (calcaOffWhite6 as any).url,
       (calcaOffWhite7 as any).url,
       (calcaOffWhite8 as any).url,
       (calcaOffWhite9 as any).url,
