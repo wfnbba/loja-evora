@@ -42,7 +42,7 @@ function Index() {
 
         <section id="colecao" className="container mx-auto scroll-mt-24 px-4 py-20 lg:px-8">
           <h1 className="mb-16 text-center text-3xl font-light uppercase tracking-[0.3em]">Coleção Évora</h1>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-8 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-2 md:grid-cols-3 md:gap-x-8 lg:grid-cols-4">
             {products.map((product) => (
               <Link key={product.id} to="/produtos/$productId" params={{ productId: product.id }} className="group">
                 <Card className="cursor-pointer border-none bg-transparent shadow-none">
