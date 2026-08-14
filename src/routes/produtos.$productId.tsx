@@ -164,7 +164,7 @@ function ProductPage() {
               <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Descrição</h2>
               <p className="font-light leading-relaxed text-muted-foreground">{product.description}</p>
             </div>
-            <div className="space-y-12 border-t border-border pt-12">
+            <div id="feedbacks" className="space-y-12 border-t border-border pt-12">
               <div className="space-y-8">
                 <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Avaliações</h2>
                 
