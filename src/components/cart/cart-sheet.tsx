@@ -33,7 +33,7 @@ export function CartSheet({ open, onOpenChange }: CartSheetProps) {
               <Button 
                 variant="outline" 
                 onClick={() => onOpenChange(false)}
-                className="rounded-none border-border/50 uppercase tracking-widest"
+                className="rounded-none border-border/50 uppercase tracking-widest cursor-pointer"
               >
                 Continuar Comprando
               </Button>
@@ -96,7 +96,7 @@ export function CartSheet({ open, onOpenChange }: CartSheetProps) {
               </span>
             </div>
             <Separator className="bg-border/50" />
-            <Button className="w-full rounded-none py-6 uppercase tracking-[0.2em] font-medium">
+            <Button className="w-full rounded-none py-6 uppercase tracking-[0.2em] font-medium cursor-pointer">
               Finalizar Compra
             </Button>
             <p className="text-[10px] text-center text-muted-foreground tracking-wide">

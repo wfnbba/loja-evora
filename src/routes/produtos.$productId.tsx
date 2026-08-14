@@ -185,7 +185,7 @@ function ProductPage() {
               </div>
             )}
 
-            <Button type="button" onClick={addToCart} disabled={!selectedSize} className="w-full rounded-none py-8 uppercase tracking-[0.2em]">
+            <Button type="button" onClick={addToCart} disabled={!selectedSize} className="w-full rounded-none py-8 uppercase tracking-[0.2em] cursor-pointer">
               <ShoppingBag className="mr-3 size-5" />{added ? "Adicionado ao carrinho" : "Adicionar ao carrinho"}
             </Button>
             <div className="space-y-4 border-t border-border pt-8">
