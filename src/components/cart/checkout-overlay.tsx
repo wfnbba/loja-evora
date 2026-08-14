@@ -613,7 +613,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 <p className="text-[9px] text-green-600 uppercase tracking-widest font-bold">Desconto VIP Aplicado</p>
               </div>
               <span className="text-2xl font-light tracking-[0.2em]">
-                R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                R$ {items.reduce((acc, item) => acc + (item.price * item.quantity), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
               </span>
             </div>
 
