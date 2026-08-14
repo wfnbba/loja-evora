@@ -657,7 +657,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                           </div>
                         </div>
                         {discountAmount > 0 && (
-                          <span className="text-[9px] bg-green-100 text-green-700 px-2 py-0.5 font-bold uppercase tracking-widest">
+                          <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 font-bold uppercase tracking-widest">
                             {discountPercentage}% OFF
                           </span>
                         )}
