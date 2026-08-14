@@ -232,11 +232,12 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
   return (
     <div className="w-full">
       {/* Banner de Urgência */}
-      <div className="bg-[#1a1512] text-white py-3 px-4 text-center rounded-none mb-8">
-        <p className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] animate-pulse">
-          Preço garantido por apenas <span className="text-[#d4af37] mx-1">{formatTime(timeLeft)}</span> Devido a alta demanda.
+      <div className="bg-[#1a1512] text-white py-4 px-6 text-center rounded-none mb-8">
+        <p className="text-xs md:text-sm font-bold uppercase tracking-widest animate-pulse">
+          Preço garantido por apenas <span className="text-[#d4af37] mx-1">{formatTime(timeLeft)}</span> devido a alta demanda.
         </p>
       </div>
+
 
       <div className="flex flex-col lg:flex-row min-h-screen">
         {/* Mobile Order Summary (Collapsible) */}
