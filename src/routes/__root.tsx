@@ -109,31 +109,31 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         <div className="min-h-screen bg-[#fdfbf7] text-[#4a3f35]">
-          <header className="fixed top-0 z-50 w-full border-b border-[#e5e1da] bg-[#fdfbf7]/95 backdrop-blur supports-[backdrop-filter]:bg-[#fdfbf7]/60">
+          <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur-md">
             <div className="container mx-auto flex h-20 items-center justify-between px-4 lg:px-8">
               <Link to="/" className="flex items-center gap-2">
                 <img src={logoAsset.url} alt="Évora Logo" className="h-10 w-auto" />
                 <img src={logoTextAsset.url} alt="Évora" className="hidden h-6 w-auto md:block" />
               </Link>
               <nav className="hidden items-center gap-8 md:flex">
-                <Link to="/" className="text-sm font-medium tracking-widest uppercase hover:text-[#8a7d6e] transition-colors">Início</Link>
-                <a href="#" className="text-sm font-medium tracking-widest uppercase hover:text-[#8a7d6e] transition-colors">Coleções</a>
-                <a href="#" className="text-sm font-medium tracking-widest uppercase hover:text-[#8a7d6e] transition-colors">Sobre</a>
+                <Link to="/" className="text-sm font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Início</Link>
+                <a href="#" className="text-sm font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Coleções</a>
+                <a href="#" className="text-sm font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Sobre</a>
               </nav>
               <div className="flex items-center gap-4">
-                <Button variant="ghost" className="text-sm font-medium tracking-widest uppercase hover:bg-transparent">Carrinho (0)</Button>
+                <Button variant="ghost" className="text-sm font-medium tracking-[0.2em] uppercase hover:bg-transparent px-0">Carrinho (0)</Button>
               </div>
             </div>
           </header>
           {children}
-          <footer className="border-t border-[#e5e1da] bg-[#fdfbf7] py-16">
+          <footer className="border-t border-border/50 bg-background py-20">
             <div className="container mx-auto px-4 text-center lg:px-8">
               <img src={logoAsset.url} alt="Évora Logo" className="mx-auto mb-8 h-8 w-auto opacity-50" />
               <nav className="mb-8 flex justify-center gap-8">
-                <a href="#" className="text-xs font-medium tracking-widest uppercase hover:text-[#8a7d6e] transition-colors">Termos</a>
-                <a href="#" className="text-xs font-medium tracking-widest uppercase hover:text-[#8a7d6e] transition-colors">Privacidade</a>
+                <a href="#" className="text-[10px] font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Termos</a>
+                <a href="#" className="text-[10px] font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Privacidade</a>
               </nav>
-              <p className="text-xs tracking-widest font-light text-[#8a7d6e]">
+              <p className="text-[10px] tracking-[0.2em] font-light text-muted-foreground">
                 © 2026 ÉVORA. TODOS OS DIREITOS RESERVADOS.
               </p>
             </div>
