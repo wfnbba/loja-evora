@@ -505,6 +505,8 @@ export const products: Product[] = [
     ],
     sizes,
     colors: [{ name: "Espresso", value: "#3d2b1f" }],
+    salesCount: 2845,
+    rating: 4.8,
     reviews: [
       { 
         user: "Isabela R.", 
