@@ -89,10 +89,11 @@ function Index() {
                             : "Novo"}
                         </span>
                       </div>
-                      <div className="flex items-center justify-center gap-2 text-xs md:text-sm tracking-widest mt-1">
+                      <div className="flex items-center justify-center gap-2 text-sm md:text-base tracking-widest mt-1">
                         <p className="font-bold text-foreground">
                           R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                         </p>
+
                         {product.originalPrice && (
                           <p className="text-[10px] md:text-xs text-muted-foreground/50 line-through">
                             R$ {product.originalPrice.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
