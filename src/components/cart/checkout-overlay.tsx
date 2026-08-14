@@ -63,7 +63,6 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             city: result.data.city || prev.city,
             state: result.data.state || prev.state,
           }));
-          setIsAddressFilled(true);
           // Focus on number input after address is filled
           setTimeout(() => {
             const numberInput = document.getElementById('number');
@@ -92,7 +91,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
       return;
     }
 
-    if (formData.cep.length !== 8) {
+    if (formData.cep && formData.cep.length > 0 && formData.cep.length !== 8) {
       toast.error("CEP inválido");
       return;
     }
@@ -106,7 +105,14 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
     try {
       const result = await createPix({
         data: {
-          items: items.map(i => ({ id: i.id, name: i.name, quantity: i.quantity, price: i.price, size: i.size, color: i.color })),
+          items: [...items, ...(formData.street.length > 3 ? [{
+            id: 'shipping-premium',
+            name: 'Frete Premium Évora',
+            price: 0,
+            quantity: 1,
+            size: 'Express',
+            color: 'Logística'
+          }] : [])].map(i => ({ id: i.id, name: i.name, quantity: i.quantity, price: i.price, size: i.size, color: i.color })),
           payerName: formData.name || "Cliente",
           payerDocument: formData.document || "00000000000",
           email: formData.email,
@@ -257,7 +263,15 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
           </div>
 
           <div className="p-4 space-y-4">
-              {items.map((item) => {
+              {[...items, ...(formData.street.length > 3 ? [{
+                id: 'shipping-premium',
+                name: 'Frete Premium Évora',
+                price: 0,
+                quantity: 1,
+                image: 'https://cdn-icons-png.flaticon.com/512/709/709790.png',
+                size: 'Express',
+                color: 'Logística'
+              }] : [])].map((item) => {
                 const originalPriceTotal = (item.originalPrice || item.price) * item.quantity;
                 const currentPriceTotal = item.price * item.quantity;
                 const discountPercentage = item.originalPrice ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0;
@@ -290,11 +304,13 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                               <p className="text-[10px] text-muted-foreground uppercase tracking-widest truncate">Cor: {item.color}</p>
                             )}
                           </div>
-                          <div className="flex items-center border border-border/50 rounded-none bg-background w-fit">
-                            <button onClick={(e) => { e.stopPropagation(); decrementQuantity(item.id, item.size, item.color); }} className="p-2 hover:bg-muted"><Minus className="size-3" /></button>
-                            <span className="text-xs px-3 font-bold">{item.quantity}</span>
-                            <button onClick={(e) => { e.stopPropagation(); incrementQuantity(item.id, item.size, item.color); }} className="p-2 hover:bg-muted"><Plus className="size-3" /></button>
-                          </div>
+                          {!item.id.includes('shipping-premium') && (
+                            <div className="flex items-center border border-border/50 rounded-none bg-background w-fit">
+                              <button onClick={(e) => { e.stopPropagation(); decrementQuantity(item.id, item.size, item.color); }} className="p-2 hover:bg-muted"><Minus className="size-3" /></button>
+                              <span className="text-xs px-3 font-bold">{item.quantity}</span>
+                              <button onClick={(e) => { e.stopPropagation(); incrementQuantity(item.id, item.size, item.color); }} className="p-2 hover:bg-muted"><Plus className="size-3" /></button>
+                            </div>
+                          )}
                         </div>
                         {discountPercentage > 0 && (
                           <span className="text-[10px] text-green-600 font-bold uppercase tracking-widest">-{discountPercentage}% OFF</span>
@@ -302,7 +318,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
                       </div>
                     </div>
-                    <button onClick={(e) => { e.stopPropagation(); removeItem(item.id, item.size, item.color); }} className="absolute -right-1 top-2 p-1 text-muted-foreground/40"><X className="size-3" /></button>
+                    {!item.id.includes('shipping-premium') && (
+                      <button onClick={(e) => { e.stopPropagation(); removeItem(item.id, item.size, item.color); }} className="absolute -right-1 top-2 p-1 text-muted-foreground/40"><X className="size-3" /></button>
+                    )}
                   </div>
                 );
               })}
@@ -313,8 +331,8 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                     <span className="text-muted-foreground">Frete</span>
                     <Truck className="size-4 text-muted-foreground" />
                   </div>
-                  <span className={isAddressFilled ? "text-green-600 font-bold" : "text-muted-foreground/60 italic"}>
-                    {isAddressFilled ? "GRÁTIS" : "A calcular"}
+                  <span className={formData.street.length > 3 ? "text-green-600 font-bold" : "text-muted-foreground/60 italic"}>
+                    {formData.street.length > 3 ? "GRÁTIS" : "A calcular"}
                   </span>
                 </div>
                 
@@ -418,7 +436,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                     </div>
                   </div>
 
-                  {isAddressFilled && (
+                  {true && (
                     <div className="space-y-6 animate-in fade-in slide-in-from-top-2 duration-300">
                       <div className="grid grid-cols-3 gap-6">
                         <div className="col-span-2 space-y-3">
@@ -475,8 +493,8 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                           <Input
                             id="city"
                             required
-                            readOnly
-                            className="h-12 md:h-14 rounded-none border-border/80 bg-muted/20 text-sm md:text-base"
+                            className="h-12 md:h-14 rounded-none border-border/80 focus-visible:ring-foreground bg-muted/5 text-sm md:text-base"
+                            onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                             value={formData.city}
                           />
                         </div>
@@ -485,15 +503,15 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                           <Input
                             id="state"
                             required
-                            readOnly
-                            className="h-12 md:h-14 rounded-none border-border/80 bg-muted/20 text-sm md:text-base text-center"
+                            className="h-12 md:h-14 rounded-none border-border/80 focus-visible:ring-foreground bg-muted/5 text-sm md:text-base text-center"
+                            onChange={(e) => setFormData({ ...formData, state: e.target.value })}
                             value={formData.state}
                           />
                         </div>
                       </div>
 
                       {/* Info de Frete e Prazo - Só aparece quando CEP está OK */}
-                      {formData.cep.length === 8 && (
+                      {formData.street.length > 3 && (
                         <div className="bg-foreground text-background p-6 space-y-3 animate-in fade-in zoom-in duration-500">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
@@ -627,7 +645,15 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             </h3>
             
             <div className="space-y-8">
-              {items.map((item) => {
+              {[...items, ...(formData.street.length > 3 ? [{
+                id: 'shipping-premium',
+                name: 'Frete Premium Évora',
+                price: 0,
+                quantity: 1,
+                image: 'https://cdn-icons-png.flaticon.com/512/709/709790.png',
+                size: 'Express',
+                color: 'Logística'
+              }] : [])].map((item) => {
                 const originalPriceTotal = (item.originalPrice || item.price) * item.quantity;
                 const currentPriceTotal = item.price * item.quantity;
                 const discountAmount = originalPriceTotal - currentPriceTotal;
@@ -665,11 +691,13 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
                             )}
                           </div>
-                          <div className="flex items-center border border-border/50 rounded-none bg-background w-fit">
-                            <button onClick={() => decrementQuantity(item.id, item.size, item.color)} className="p-1 hover:bg-muted"><Minus className="size-3" /></button>
-                            <span className="text-sm px-3 font-bold">{item.quantity}</span>
-                            <button onClick={() => incrementQuantity(item.id, item.size, item.color)} className="p-1 hover:bg-muted"><Plus className="size-3" /></button>
-                          </div>
+                          {!item.id.includes('shipping-premium') && (
+                            <div className="flex items-center border border-border/50 rounded-none bg-background w-fit">
+                              <button onClick={() => decrementQuantity(item.id, item.size, item.color)} className="p-1 hover:bg-muted"><Minus className="size-3" /></button>
+                              <span className="text-sm px-3 font-bold">{item.quantity}</span>
+                              <button onClick={() => incrementQuantity(item.id, item.size, item.color)} className="p-1 hover:bg-muted"><Plus className="size-3" /></button>
+                            </div>
+                          )}
                         </div>
                         {discountAmount > 0 && (
                           <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 font-bold uppercase tracking-widest">
@@ -678,12 +706,14 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                         )}
                       </div>
                     </div>
-                    <button 
-                      onClick={() => removeItem(item.id, item.size, item.color)} 
-                      className="absolute -right-2 top-0 p-2 text-muted-foreground/40 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
-                    >
-                      <X className="size-4" />
-                    </button>
+                    {!item.id.includes('shipping-premium') && (
+                      <button 
+                        onClick={() => removeItem(item.id, item.size, item.color)} 
+                        className="absolute -right-2 top-0 p-2 text-muted-foreground/40 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                      >
+                        <X className="size-4" />
+                      </button>
+                    )}
                   </div>
                 );
               })}
