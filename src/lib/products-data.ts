@@ -203,7 +203,7 @@ export interface Product {
 }
 
 const sizes = ["P", "M", "G", "GG"];
-const exchangePolicy = " Primeira troca é gratuita em caso de tamanho errado.";
+const exchangePolicy = "";
 
 export const products: Product[] = [
   {

@@ -92,6 +92,10 @@ function ProductPage() {
                 ))}
               </div>
               {!selectedSize && <p className="text-xs text-muted-foreground">Selecione um tamanho para adicionar ao carrinho.</p>}
+              <p className="flex items-center gap-2 text-[10px] font-light uppercase tracking-[0.2em] text-muted-foreground/80">
+                <span className="size-1 rounded-full bg-green-600/50" />
+                Primeira troca é gratuita em caso de tamanho errado.
+              </p>
             </div>
 
             {product.id === "conjunto-espresso-alfaiataria" && (
