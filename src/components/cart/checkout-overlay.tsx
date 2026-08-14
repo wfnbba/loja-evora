@@ -516,8 +516,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                       <QrCode className="size-6" />
                     </div>
                     <div className="space-y-1">
-                      <p className="text-[12px] font-bold uppercase tracking-[0.2em]">PIX Dinâmico</p>
-                      <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Aprovação instantânea</p>
+                      <p className="text-sm font-bold uppercase tracking-widest">PIX Dinâmico</p>
+                      <p className="text-xs text-muted-foreground uppercase tracking-widest">Aprovação instantânea</p>
+
                     </div>
                   </div>
                   <div className="flex flex-col items-end gap-1">
