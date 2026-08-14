@@ -551,8 +551,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
           ) : (
             <div className="flex flex-1 flex-col items-center justify-center space-y-10 animate-in fade-in slide-in-from-right-4 duration-500 py-12 lg:py-20">
               <div className="text-center space-y-3">
-                <h3 className="text-2xl font-bold uppercase tracking-[0.3em]">Pedido Reservado</h3>
-                <p className="text-[11px] text-muted-foreground uppercase tracking-[0.2em]">Escaneie o código abaixo para finalizar seu pedido na Évora.</p>
+                <h3 className="text-2xl font-bold uppercase tracking-widest">Pedido Reservado</h3>
+                <p className="text-sm text-muted-foreground uppercase tracking-widest">Escaneie o código abaixo para finalizar seu pedido na Évora.</p>
+
               </div>
 
               <div className="relative aspect-square w-full max-w-[320px] border-4 border-foreground p-8 bg-white shadow-2xl">
