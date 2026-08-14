@@ -14,15 +14,17 @@ const createPixInput = z.object({
 });
 
 export const createPixPayment = createServerFn({ method: "POST" })
-  .input(createPixInput)
+  .validator((data) => createPixInput.parse(data))
   .handler(async ({ data }) => {
+
     const ci = process.env['VEXOPAY_CI'];
     const cs = process.env['VEXOPAY_CS'];
 
     if (!ci || !cs) {
       // In development, if keys are missing, we might return a mock for testing UI
       // but in production this should be a real error
-      if (process.env.NODE_ENV === 'development') {
+      if (process.env['NODE_ENV'] === 'development') {
+
         console.warn("VexoPay API keys missing. Returning mock data.");
         return {
           success: true,
@@ -78,13 +80,14 @@ export const createPixPayment = createServerFn({ method: "POST" })
   });
 
 export const checkPixStatus = createServerFn({ method: "GET" })
-  .input(z.object({ transactionId: z.string() }))
+  .validator((data) => z.object({ transactionId: z.string() }).parse(data))
   .handler(async ({ data }) => {
+
     const ci = process.env['VEXOPAY_CI'];
     const cs = process.env['VEXOPAY_CS'];
 
     if (!ci || !cs) {
-      if (process.env.NODE_ENV === 'development') {
+      if (process.env['NODE_ENV'] === 'development') {
         return { success: true, data: { status: "pending" } };
       }
       throw new Error("VexoPay API keys are not configured.");

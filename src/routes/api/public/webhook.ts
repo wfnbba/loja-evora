@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { createHmac, timingSafeEqual } from 'crypto';
+import { createHmac, timingSafeEqual } from 'node:crypto';
 
 export const Route = createFileRoute('/api/public/webhook')({
   server: {

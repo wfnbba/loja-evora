@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProdutosProductIdRouteImport } from './routes/produtos.$productId'
+import { Route as ApiPublicWebhookRouteImport } from './routes/api/public/webhook'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const ProdutosProductIdRoute = ProdutosProductIdRouteImport.update({
   path: '/produtos/$productId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicWebhookRoute = ApiPublicWebhookRouteImport.update({
+  id: '/api/public/webhook',
+  path: '/api/public/webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/produtos/$productId': typeof ProdutosProductIdRoute
+  '/api/public/webhook': typeof ApiPublicWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/produtos/$productId': typeof ProdutosProductIdRoute
+  '/api/public/webhook': typeof ApiPublicWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/produtos/$productId': typeof ProdutosProductIdRoute
+  '/api/public/webhook': typeof ApiPublicWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/produtos/$productId'
+  fullPaths: '/' | '/produtos/$productId' | '/api/public/webhook'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/produtos/$productId'
-  id: '__root__' | '/' | '/produtos/$productId'
+  to: '/' | '/produtos/$productId' | '/api/public/webhook'
+  id: '__root__' | '/' | '/produtos/$productId' | '/api/public/webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ProdutosProductIdRoute: typeof ProdutosProductIdRoute
+  ApiPublicWebhookRoute: typeof ApiPublicWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProdutosProductIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/webhook': {
+      id: '/api/public/webhook'
+      path: '/api/public/webhook'
+      fullPath: '/api/public/webhook'
+      preLoaderRoute: typeof ApiPublicWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ProdutosProductIdRoute: ProdutosProductIdRoute,
+  ApiPublicWebhookRoute: ApiPublicWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
