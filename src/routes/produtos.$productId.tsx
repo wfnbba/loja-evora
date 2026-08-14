@@ -201,12 +201,13 @@ function ProductPage() {
                         <Star key={i} className={`size-4 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`} />
                       ))}
                     </div>
-                    <span className="text-xs uppercase tracking-widest text-muted-foreground">{totalReviews.toLocaleString("pt-BR")} avaliações</span>
+                    <span className="text-xs uppercase tracking-widest text-muted-foreground">{product.reviews.length.toLocaleString("pt-BR")} avaliações</span>
                   </div>
                   <div className="col-span-1 space-y-2 lg:col-span-2">
                     {[5, 4, 3, 2, 1].map((star) => {
-                      const count = ratingBreakdown[star as keyof typeof ratingBreakdown] || 0;
-                      const percentage = (count / totalReviews) * 100;
+                      const count = product.ratingBreakdown[star as keyof typeof product.ratingBreakdown] || 0;
+                      const totalForPercentage = Object.values(product.ratingBreakdown).reduce((a, b) => a + b, 0) || 1;
+                      const percentage = (count / totalForPercentage) * 100;
                       return (
                         <div key={star} className="flex items-center gap-4">
                           <span className="w-4 text-xs font-light">{star}</span>
@@ -221,7 +222,7 @@ function ProductPage() {
               </div>
 
               <div className="space-y-10">
-                {mockReviews.map((review, idx) => (
+                {product.reviews.slice(0, 10).map((review, idx) => (
                   <article key={idx} className="flex flex-col gap-4">
                     <div className="flex items-center gap-3">
                       <div className="flex">
@@ -232,6 +233,17 @@ function ProductPage() {
                       <span className="text-[10px] font-medium uppercase tracking-[0.2em]">{review.user}</span>
                     </div>
                     <p className="text-sm font-light leading-relaxed text-muted-foreground">{review.comment}</p>
+                    {review.image && (
+                      <div className="relative mt-2 aspect-square w-32 overflow-hidden bg-muted">
+                        <OptimizedImage
+                          src={review.image}
+                          alt={`Avaliação de ${review.user}`}
+                          className="h-full w-full object-cover"
+                          width={128}
+                          height={128}
+                        />
+                      </div>
+                    )}
                   </article>
                 ))}
               </div>
