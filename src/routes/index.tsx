@@ -1,11 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, Loader2 } from "lucide-react";
+import { Star } from "lucide-react";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import heroMobileAsset from "@/assets/hero_mobile.png.asset.json";
-import { useShopifyProducts } from "@/hooks/use-shopify-products";
-import { useCartStore } from "@/store/cart-store";
+import { products as localProducts } from "@/lib/products-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -22,9 +21,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const { data: products, isLoading } = useShopifyProducts();
-
-
   return (
     <div className="pt-20">
       <main>
@@ -48,69 +44,64 @@ function Index() {
         <section id="colecao" className="container mx-auto scroll-mt-24 px-4 py-20 lg:px-8">
           <h1 className="mb-16 text-center text-3xl font-light uppercase tracking-[0.3em]">Coleção Évora</h1>
           <div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-2 md:grid-cols-3 md:gap-x-8 lg:grid-cols-4">
-            {isLoading ? (
-              <div className="col-span-full flex h-64 items-center justify-center">
-                <Loader2 className="h-8 w-8 animate-spin text-[#4a3f35]" />
-              </div>
-            ) : !products || products.length === 0 ? (
-              <div className="col-span-full py-20 text-center">
-                <p className="text-sm font-light uppercase tracking-widest text-muted-foreground">Nenhum produto encontrado</p>
-                <p className="mt-2 text-xs text-muted-foreground">Adicione produtos à sua loja Shopify para que eles apareçam aqui.</p>
-              </div>
-            ) : (
-              products.map(({ node: product }) => (
-                <Link key={product.id} to="/produtos/$productId" params={{ productId: product.handle }} className="group">
-                  <Card className="cursor-pointer border-none bg-transparent shadow-none">
-                    <CardContent className="p-0">
-                      <div className="relative mb-4 aspect-[3/4] overflow-hidden bg-muted md:mb-6">
-                        <OptimizedImage
-                          src={product.images.edges[0]?.node?.url || ""}
-                          alt={product.title}
-                          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          width={400}
-                          height={533}
-                        />
+            {localProducts.map((product) => (
+              <Link key={product.id} to="/produtos/$productId" params={{ productId: product.id }} className="group">
+                <Card className="cursor-pointer border-none bg-transparent shadow-none">
+                  <CardContent className="p-0">
+                    <div className="relative mb-4 aspect-[3/4] overflow-hidden bg-muted md:mb-6">
+                      <OptimizedImage
+                        src={product.images[0] || ""}
+                        alt={product.name}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        width={400}
+                        height={533}
+                      />
+                    </div>
+                    <div className="space-y-1 text-center">
+                      <h2 className="text-xs font-medium uppercase tracking-[0.2em] md:text-sm">{product.name}</h2>
+                      <div className="mt-4">
+                        <Button 
+                          asChild
+                          variant="outline"
+                          className="w-full rounded-none border-foreground/20 text-[10px] uppercase tracking-[0.2em] py-5 hover:bg-foreground hover:text-background transition-all"
+                        >
+                          <Link to="/produtos/$productId" params={{ productId: product.id }}>
+                            Ver Detalhes
+                          </Link>
+                        </Button>
                       </div>
-                      <div className="space-y-1 text-center">
-                        <h2 className="text-xs font-medium uppercase tracking-[0.2em] md:text-sm">{product.title}</h2>
-                        <div className="mt-4">
-                          <Button 
-                            asChild
-                            variant="outline"
-                            className="w-full rounded-none border-foreground/20 text-[10px] uppercase tracking-[0.2em] py-5 hover:bg-foreground hover:text-background transition-all"
-                          >
-                            <Link to="/produtos/$productId" params={{ productId: product.handle }}>
-                              Ver Detalhes
-                            </Link>
-                          </Button>
+                      <div className="flex items-center justify-center gap-2 mt-1">
+                        <div className="flex text-foreground">
+                          {Array.from({ length: 5 }, (_, i) => (
+                            <Star
+                              key={i}
+                              className={`size-2.5 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`}
+                            />
+                          ))}
                         </div>
-                        <div className="flex items-center justify-center gap-2 mt-1">
-                          <div className="flex text-foreground" aria-label="Avaliação não disponível">
-                            {Array.from({ length: 5 }, (_, i) => (
-                              <Star
-                                key={i}
-                                className={`size-2.5 ${i < 5 ? "fill-current" : "text-muted-foreground"}`}
-                              />
-                            ))}
-                          </div>
-                          <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Novo</span>
-                        </div>
-                        <div className="flex items-center justify-center gap-2 text-[10px] tracking-widest mt-1">
-                          <p className="font-light text-muted-foreground">
-                            {product.priceRange.minVariantPrice.currencyCode} {parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">{product.salesCount > 100 ? "+100 vendas" : "Novo"}</span>
+                      </div>
+                      <div className="flex items-center justify-center gap-2 text-[10px] tracking-widest mt-1">
+                        <p className="font-light text-muted-foreground">
+                          R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                        </p>
+                        {product.originalPrice && (
+                          <p className="text-[9px] text-muted-foreground/50 line-through">
+                            R$ {product.originalPrice.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                           </p>
-                        </div>
+                        )}
                       </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              ))
-            )}
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
           </div>
         </section>
       </main>
     </div>
   );
 }
+
 
 
