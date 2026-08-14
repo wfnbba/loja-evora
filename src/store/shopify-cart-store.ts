@@ -33,6 +33,8 @@ interface CartStore {
   clearCart: () => void;
   syncCart: () => Promise<void>;
   getCheckoutUrl: () => string | null;
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
 }
 
 function formatCheckoutUrl(checkoutUrl: string): string {
@@ -124,6 +126,8 @@ export const useShopifyCartStore = create<CartStore>()(
       checkoutUrl: null,
       isLoading: false,
       isSyncing: false,
+      isOpen: false,
+      setIsOpen: (isOpen) => set({ isOpen }),
 
       addItem: async (item) => {
         const { items, cartId, clearCart } = get();
