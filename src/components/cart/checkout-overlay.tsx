@@ -26,6 +26,8 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
   const [pixData, setPixData] = useState<any>(null);
   const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 minutos em segundos
   const [isAddressFilled, setIsAddressFilled] = useState(false);
+  const [isSummaryOpen, setIsSummaryOpen] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     document: "",
@@ -228,89 +230,101 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
 
   return (
-    <div className="fixed inset-0 z-[100] flex h-full flex-col overflow-hidden bg-background">
+    <div className="w-full">
       {/* Banner de Urgência */}
-      <div className="bg-[#1a1512] text-white py-3 px-4 text-center z-[110]">
+      <div className="bg-[#1a1512] text-white py-3 px-4 text-center rounded-none mb-8">
         <p className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] animate-pulse">
           Preço garantido por apenas <span className="text-[#d4af37] mx-1">{formatTime(timeLeft)}</span> Devido a alta demanda.
         </p>
       </div>
 
-      <div className="flex flex-1 flex-col lg:flex-row h-full overflow-hidden">
-        {/* Mobile: Resumo do Pedido Explicito (sempre visível no topo no mobile) */}
-        <div className="lg:hidden border-b border-border/50 bg-muted/5 max-h-[40vh] overflow-y-auto">
-          <div className="p-4 space-y-4">
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="text-[10px] font-bold uppercase tracking-[0.2em]">Seu Pedido</h3>
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em]">
-                R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-              </span>
+      <div className="flex flex-col lg:flex-row min-h-screen">
+        {/* Mobile Order Summary (Collapsible) */}
+        <div className="lg:hidden border-b border-border/50 bg-muted/5">
+          <button 
+            onClick={() => setIsSummaryOpen(!isSummaryOpen)}
+            className="w-full p-4 flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-muted/10 transition-colors"
+          >
+            <div className="flex items-center gap-2">
+              <ShoppingBag className="size-3" />
+              <span>{isSummaryOpen ? "Ocultar Pedido" : "Ver Pedido"}</span>
+              {isSummaryOpen ? <ChevronUp className="size-3" /> : <ChevronDown className="size-3" />}
             </div>
-            {items.map((item) => {
-              const originalPriceTotal = (item.originalPrice || item.price) * item.quantity;
-              const currentPriceTotal = item.price * item.quantity;
-              const discountPercentage = item.originalPrice ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0;
-              
-              return (
-                <div key={`${item.id}-${item.size}-${item.color}`} className="flex gap-3 py-3 border-b border-border/10 last:border-0 relative">
-                  <div className="relative size-14 shrink-0 overflow-hidden bg-white border border-border/30 rounded-sm">
-                    <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={56} height={56} />
-                  </div>
-                  <div className="flex flex-1 flex-col justify-center gap-1">
-                    <div className="flex justify-between items-start">
-                      <h4 className="text-[10px] font-bold uppercase tracking-widest leading-tight w-2/3">{item.name}</h4>
-                      <div className="flex flex-col items-end">
-                        <p className={cn("text-[10px] font-bold", item.price === 0 && "text-green-600")}>
-                          {item.price === 0 ? "GRÁTIS" : `R$ ${currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`}
-                        </p>
-                        {item.originalPrice && item.originalPrice > item.price && (
-                          <p className="text-[8px] text-muted-foreground/50 line-through">R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+            <span className="text-[11px] text-[#d4af37]">
+              R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+            </span>
+          </button>
+
+          {isSummaryOpen && (
+            <div className="p-4 space-y-4 animate-in slide-in-from-top-2 duration-300">
+              {items.map((item) => {
+                const originalPriceTotal = (item.originalPrice || item.price) * item.quantity;
+                const currentPriceTotal = item.price * item.quantity;
+                const discountPercentage = item.originalPrice ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0;
+                
+                return (
+                  <div key={`${item.id}-${item.size}-${item.color}`} className="flex gap-3 py-3 border-b border-border/10 last:border-0 relative">
+                    <div className="relative size-14 shrink-0 overflow-hidden bg-white border border-border/30 rounded-sm">
+                      <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={56} height={56} />
+                    </div>
+                    <div className="flex flex-1 flex-col justify-center gap-1">
+                      <div className="flex justify-between items-start">
+                        <h4 className="text-[10px] font-bold uppercase tracking-widest leading-tight w-2/3">{item.name}</h4>
+                        <div className="flex flex-col items-end">
+                          <p className={cn("text-[10px] font-bold", item.price === 0 && "text-green-600")}>
+                            {item.price === 0 ? "GRÁTIS" : `R$ ${currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`}
+                          </p>
+                          {item.originalPrice && item.originalPrice > item.price && (
+                            <p className="text-[8px] text-muted-foreground/50 line-through">R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex items-center gap-2">
+                            <p className="text-[9px] text-muted-foreground uppercase tracking-widest shrink-0">Tam: {item.size}</p>
+                            {item.color && (
+                              <p className="text-[9px] text-muted-foreground uppercase tracking-widest truncate">Cor: {item.color}</p>
+                            )}
+                          </div>
+                          <div className="flex items-center border border-border/50 rounded-none bg-background w-fit">
+                            <button onClick={(e) => { e.stopPropagation(); decrementQuantity(item.id, item.size, item.color); }} className="p-1 hover:bg-muted"><Minus className="size-2" /></button>
+                            <span className="text-[9px] px-2 font-bold">{item.quantity}</span>
+                            <button onClick={(e) => { e.stopPropagation(); incrementQuantity(item.id, item.size, item.color); }} className="p-1 hover:bg-muted"><Plus className="size-2" /></button>
+                          </div>
+                        </div>
+                        {discountPercentage > 0 && (
+                          <span className="text-[8px] text-green-600 font-bold uppercase tracking-widest">-{discountPercentage}% OFF</span>
                         )}
                       </div>
                     </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex flex-col gap-1">
-                        <div className="flex items-center gap-2">
-                          <p className="text-[9px] text-muted-foreground uppercase tracking-widest shrink-0">Tam: {item.size}</p>
-                          {item.color && (
-                            <p className="text-[9px] text-muted-foreground uppercase tracking-widest truncate">Cor: {item.color}</p>
-                          )}
-                        </div>
-                        <div className="flex items-center border border-border/50 rounded-none bg-background w-fit">
-                          <button onClick={() => decrementQuantity(item.id, item.size, item.color)} className="p-1 hover:bg-muted"><Minus className="size-2" /></button>
-                          <span className="text-[9px] px-2 font-bold">{item.quantity}</span>
-                          <button onClick={() => incrementQuantity(item.id, item.size, item.color)} className="p-1 hover:bg-muted"><Plus className="size-2" /></button>
-                        </div>
-                      </div>
-                      {discountPercentage > 0 && (
-                        <span className="text-[8px] text-green-600 font-bold uppercase tracking-widest">-{discountPercentage}% OFF</span>
-                      )}
-                    </div>
+                    <button onClick={(e) => { e.stopPropagation(); removeItem(item.id, item.size, item.color); }} className="absolute -right-1 top-2 p-1 text-muted-foreground/40"><X className="size-3" /></button>
                   </div>
-                  <button onClick={() => removeItem(item.id, item.size, item.color)} className="absolute -right-1 top-2 p-1 text-muted-foreground/40"><X className="size-3" /></button>
+                );
+              })}
+              
+              <div className="pt-2 space-y-2 border-t border-border/20">
+                <div className="flex justify-between text-[10px] uppercase tracking-widest text-foreground font-bold">
+                  <div className="flex items-center gap-2">
+                    <span>Frete</span>
+                    <Truck className="size-3" />
+                  </div>
+                  <span className={isAddressFilled ? "text-green-600" : "text-muted-foreground"}>
+                    {isAddressFilled ? "GRÁTIS" : "Calculado no endereço"}
+                  </span>
                 </div>
-              );
-            })}
-            
-            <div className="pt-2 space-y-2 border-t border-border/20">
-              <div className="flex justify-between text-[10px] uppercase tracking-widest text-foreground font-bold">
-                <div className="flex items-center gap-2">
-                  <span>Frete</span>
-                  <Truck className="size-3" />
-                </div>
-                <span className={isAddressFilled ? "text-green-600" : "text-muted-foreground"}>
-                  {isAddressFilled ? "GRÁTIS" : "Calculado no endereço"}
-                </span>
               </div>
             </div>
-          </div>
+          )}
         </div>
-      </div>
-      <div className="flex flex-1 flex-col lg:flex-row h-full overflow-hidden">
-        {/* Coluna Esquerda: Formulário (ou QR Code) */}
-        <div className="flex-1 overflow-y-auto custom-scrollbar p-4 md:p-8 lg:p-12 lg:border-r lg:border-border/50 bg-[#fcfaf7]">
-          {step === "form" ? (
-            <form onSubmit={handleCreatePayment} className="max-w-xl mx-auto space-y-10">
+
+
+        {/* Form and Desktop Content */}
+        <div className="flex-1 order-2 lg:order-1 p-6 md:p-10 lg:p-16">
+          <div className="bg-white p-0">
+
+            {step === "form" ? (
+              <form onSubmit={handleCreatePayment} className="max-w-xl mx-auto space-y-10">
               <div className="space-y-6">
                 <div className="flex items-center gap-3 border-b border-border/50 pb-4">
                   <span className="flex size-6 md:size-7 items-center justify-center rounded-full bg-foreground text-background text-[10px] md:text-xs font-bold">1</span>
@@ -574,12 +588,14 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 </Button>
               </div>
             </div>
-          )}
+            )}
+          </div>
         </div>
 
         {/* Coluna Direita: Resumo do Pedido (Desktop) */}
-        <div className="hidden lg:flex lg:w-[450px] bg-muted/30 p-12 lg:p-16 flex-col gap-10 overflow-y-auto border-l border-border/30">
+        <div className="hidden lg:flex lg:w-[450px] bg-[#faf8f6] p-12 lg:p-16 flex-col gap-10 border-l border-border/30 min-h-screen">
           <div className="space-y-10">
+
             <h3 className="text-[12px] font-bold uppercase tracking-[0.3em] border-b-2 border-foreground pb-6 flex items-center gap-3">
               <ShoppingBag className="size-4" />
               Itens Selecionados
