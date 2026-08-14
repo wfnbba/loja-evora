@@ -1,6 +1,8 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { products } from "@/lib/products-data";
 import { Button } from "@/components/ui/button";
+import { useCartStore } from "@/store/cart-store";
+import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useState, useMemo } from "react";
@@ -38,10 +40,31 @@ function ProductPage() {
   const [added, setAdded] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const reviewsPerPage = 10;
+  
+  const addItem = useCartStore((state) => state.addItem);
 
   const addToCart = () => {
-    if (!selectedSize) return;
+    if (!selectedSize) {
+      toast.error("Por favor, selecione um tamanho");
+      return;
+    }
+    
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.images[0],
+      size: selectedSize,
+      color: selectedColor,
+      quantity: 1
+    });
+    
     setAdded(true);
+    toast.success(`${product.name} adicionado ao carrinho`, {
+      description: `Tamanho: ${selectedSize}${selectedColor ? ` | Cor: ${selectedColor}` : ""}`
+    });
+    
+    setTimeout(() => setAdded(false), 2000);
   };
 
   const sortedReviews = useMemo(() => {
