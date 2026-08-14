@@ -701,8 +701,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             
             <div className="flex justify-between items-end">
               <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">Total do Pedido</span>
-                <p className="text-[9px] text-green-600 uppercase tracking-widest font-bold">Desconto VIP Aplicado</p>
+                <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Total do Pedido</span>
+                <p className="text-[10px] text-green-600 uppercase tracking-widest font-bold">Desconto VIP Aplicado</p>
+
               </div>
               <span className="text-2xl font-light tracking-[0.2em]">
                 R$ {items.reduce((acc, item) => acc + (item.price * item.quantity), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
