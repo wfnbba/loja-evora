@@ -164,7 +164,7 @@ function ProductPage() {
             </div>
 
             {/* Miniaturas */}
-            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide px-4 md:px-0 snap-x">
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide px-4 md:px-0 snap-x hidden">
               {product.images.map((image, index) => (
                 <button 
                   key={index} 
