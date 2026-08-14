@@ -78,6 +78,22 @@ function ProductPage() {
               {!selectedSize && <p className="text-xs text-muted-foreground">Selecione um tamanho para adicionar ao carrinho.</p>}
             </div>
 
+            {product.id === "conjunto-espresso-alfaiataria" && (
+              <div className="space-y-4">
+                <p className="text-sm font-medium uppercase tracking-widest">Acessório Incluso</p>
+                <div className="flex items-center gap-4">
+                  <div className="flex h-12 items-center border border-foreground bg-foreground px-6 text-sm text-background">
+                    CINTO - TAMANHO ÚNICO
+                  </div>
+                  <div className="text-sm font-light">
+                    <span className="mr-2 text-muted-foreground line-through">R$ 89,00</span>
+                    <span className="font-medium text-green-600">BRINDE</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+
             {product.colors && product.colors.length > 0 && (
               <div className="space-y-4">
                 <p className="text-sm font-medium uppercase tracking-widest">Cor: {selectedColor}</p>

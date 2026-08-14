@@ -139,6 +139,18 @@ import conjuntoEspresso8 from "@/assets/products/conjunto-espresso-alfaiataria-8
 import conjuntoEspresso9 from "@/assets/products/conjunto-espresso-alfaiataria-9.png.asset.json";
 import conjuntoEspresso10 from "@/assets/products/conjunto-espresso-alfaiataria-10.png.asset.json";
 
+import feedbackEspressoAlfaiataria1 from "@/assets/feedbacks/espresso-alfaiataria-1.json";
+import feedbackEspressoAlfaiataria2 from "@/assets/feedbacks/espresso-alfaiataria-2.json";
+import feedbackEspressoAlfaiataria3 from "@/assets/feedbacks/espresso-alfaiataria-3.json";
+import feedbackEspressoAlfaiataria4 from "@/assets/feedbacks/espresso-alfaiataria-4.json";
+import feedbackEspressoAlfaiataria5 from "@/assets/feedbacks/espresso-alfaiataria-5.json";
+import feedbackEspressoAlfaiataria6 from "@/assets/feedbacks/espresso-alfaiataria-6.json";
+import feedbackEspressoAlfaiataria7 from "@/assets/feedbacks/espresso-alfaiataria-7.json";
+import feedbackEspressoAlfaiataria8 from "@/assets/feedbacks/espresso-alfaiataria-8.json";
+import feedbackEspressoAlfaiataria9 from "@/assets/feedbacks/espresso-alfaiataria-9.json";
+import feedbackEspressoAlfaiataria10 from "@/assets/feedbacks/espresso-alfaiataria-10.json";
+
+
 export interface Product {
   id: string;
   name: string;
@@ -497,7 +509,7 @@ export const products: Product[] = [
     id: "conjunto-espresso-alfaiataria",
     name: "Conjunto Évora Espresso Alfaiataria",
     price: 589,
-    description: "Conjunto de alfaiataria premium composto por colete transpassado com cinto e calça wide leg. O tom espresso profundo e o corte impecável trazem uma sofisticação moderna e autoritária, ideal para a mulher que impõe presença.",
+    description: "Conjunto de alfaiataria premium composto por colete transpassado com cinto (brinde incluso) e calça wide leg. O tom espresso profundo e o corte impecável trazem uma sofisticação moderna e autoritária, ideal para a mulher que impõe presença. Acompanha cinto exclusivo em couro sintético no mesmo tom.",
     images: [
       conjuntoEspresso1.url,
       conjuntoEspresso2.url,
@@ -514,17 +526,66 @@ export const products: Product[] = [
     colors: [{ name: "Espresso", value: "#3d2b1f" }],
     reviews: [
       { 
-        user: "Tatiana B.", 
-        comment: "O caimento da calça é surreal e o colete com cinto valoriza muito a cintura.", 
+        user: "Mariana K.", 
+        comment: "O conjunto é simplesmente impecável! A calça veste super bem e o colete com o cinto dá um toque muito elegante. O unboxing foi uma experiência de luxo.", 
         rating: 5, 
-        image: conjuntoEspresso3.url 
+        image: feedbackEspressoAlfaiataria1.url 
       },
       { 
-        user: "Alessandra G.", 
-        comment: "Tecido encorpado e cor maravilhosa. Um conjunto que transmite muito poder.", 
+        user: "Juliana F.", 
+        comment: "Apaixonada pela qualidade do tecido. O cinto que veio de brinde é lindo e finaliza o look com perfeição. É uma peça que impõe presença mesmo!", 
         rating: 5, 
-        image: conjuntoEspresso1.url 
+        image: feedbackEspressoAlfaiataria2.url 
+      },
+      { 
+        user: "Carla S.", 
+        comment: "Chegou super rápido e a embalagem é um capricho só. O conjunto espresso é ainda mais bonito pessoalmente, muito sofisticado.", 
+        rating: 5, 
+        image: feedbackEspressoAlfaiataria3.url 
+      },
+      { 
+        user: "Beatriz L.", 
+        comment: "Amei o caimento da calça wide leg. Ficou perfeita no comprimento e na cintura. O colete é muito versátil também.", 
+        rating: 5, 
+        image: feedbackEspressoAlfaiataria4.url 
+      },
+      { 
+        user: "Renata M.", 
+        comment: "O cinto é de ótima qualidade e o fato de vir como brinde é um diferencial maravilhoso da Évora. Muito satisfeita!", 
+        rating: 5, 
+        image: feedbackEspressoAlfaiataria5.url 
+      },
+      { 
+        user: "Amanda T.", 
+        comment: "Experiência de compra nota 10. O atendimento é ótimo e as peças são de padrão altíssimo. Me sinto muito poderosa com esse conjunto.", 
+        rating: 5, 
+        image: feedbackEspressoAlfaiataria6.url 
+      },
+      { 
+        user: "Fernanda G.", 
+        comment: "Dá pra ver o cuidado em cada detalhe, desde o corte até os botões. O tom de marrom espresso é muito chique.", 
+        rating: 5, 
+        image: feedbackEspressoAlfaiataria7.url 
+      },
+      { 
+        user: "Sonia P.", 
+        comment: "Veste super bem e o tecido é muito confortável. O cinto ajusta perfeitamente o colete no corpo.", 
+        rating: 5, 
+        image: feedbackEspressoAlfaiataria8.url 
+      },
+      { 
+        user: "Paula R.", 
+        comment: "Já quero outras cores! A modelagem da Évora é diferenciada, valoriza muito o corpo com elegância.", 
+        rating: 5, 
+        image: feedbackEspressoAlfaiataria9.url 
+      },
+      { 
+        user: "Isabela D.", 
+        comment: "Um investimento que vale a pena. O conjunto é atemporal e muito bem acabado. O brinde foi uma surpresa deliciosa.", 
+        rating: 5, 
+        image: feedbackEspressoAlfaiataria10.url 
       }
     ],
+
   },
 ];
