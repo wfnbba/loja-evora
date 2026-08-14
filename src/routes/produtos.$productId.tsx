@@ -8,13 +8,6 @@ import { Progress } from "@/components/ui/progress";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { products as localProducts } from "@/lib/products-data";
 
-declare module 'react' {
-  namespace JSX {
-    interface IntrinsicElements {
-      'wistia-player': any;
-    }
-  }
-}
 
 export const Route = createFileRoute("/produtos/$productId")({
   loader: async ({ params }) => {
