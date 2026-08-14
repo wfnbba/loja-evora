@@ -246,17 +246,28 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 <div className="flex flex-1 flex-col justify-center gap-1">
                   <h4 className="text-[11px] font-bold uppercase tracking-widest leading-tight">{item.name}</h4>
                   <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Tamanho: {item.size}</p>
-                  <p className="text-[11px] font-medium mt-1">
-                    R$ {(item.price * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-[11px] font-medium mt-1">
+                      R$ {(item.price * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                    </p>
+                    {item.originalPrice && (
+                      <p className="text-[9px] text-muted-foreground/50 line-through mt-1">
+                        R$ {(item.originalPrice * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
             <Separator className="bg-border/30" />
             <div className="space-y-2 pb-2">
               <div className="flex justify-between text-[11px] uppercase tracking-widest text-muted-foreground">
-                <span>Subtotal</span>
-                <span>R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
+                <span>Itens</span>
+                <span>R$ {items.reduce((acc, item) => acc + (item.price * item.quantity), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
+              </div>
+              <div className="flex justify-between text-[11px] uppercase tracking-widest text-muted-foreground">
+                <span>Desconto</span>
+                <span className="text-green-600">- R$ {items.reduce((acc, item) => acc + (item.originalPrice ? (item.originalPrice - item.price) * item.quantity : 0), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
               </div>
               <div className="flex justify-between text-[11px] uppercase tracking-widest text-green-600 font-bold">
                 <span>Frete</span>
@@ -569,8 +580,12 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
           <div className="space-y-8 pt-8 mt-auto border-t border-border/50">
             <div className="space-y-4">
               <div className="flex justify-between items-center text-[12px] uppercase tracking-[0.2em] text-muted-foreground">
-                <span>Valor Total</span>
-                <span>R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
+                <span>Subtotal</span>
+                <span>R$ {items.reduce((acc, item) => acc + (item.price * item.quantity), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
+              </div>
+              <div className="flex justify-between items-center text-[12px] uppercase tracking-[0.2em] text-muted-foreground">
+                <span>Descontos</span>
+                <span className="text-green-600">- R$ {items.reduce((acc, item) => acc + (item.originalPrice ? (item.originalPrice - item.price) * item.quantity : 0), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
               </div>
               <div className="flex justify-between items-center text-[12px] uppercase tracking-[0.2em] text-green-600 font-bold">
                 <div className="flex items-center gap-3">
