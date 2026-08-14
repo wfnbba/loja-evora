@@ -34,16 +34,17 @@ function Index() {
           <div className="absolute inset-0 md:hidden">
             <OptimizedImage src={heroMobileAsset.url} alt="Coleção Évora" className="h-full w-full object-cover" width={800} height={1200} priority />
           </div>
-          <div className="relative flex h-full items-end justify-center px-4 pb-[33%] md:pb-[25%]">
-            <Button asChild className="rounded-none bg-background px-10 py-6 text-foreground uppercase tracking-widest transition-all duration-300 hover:bg-background/90">
+          <div className="relative flex h-full items-end justify-center px-4 pb-[30%] md:pb-[25%]">
+            <Button asChild className="rounded-none bg-background px-12 py-8 text-sm md:text-base text-foreground uppercase tracking-widest transition-all duration-300 hover:bg-background/90">
               <a href="#colecao">Explorar Coleção</a>
             </Button>
           </div>
         </section>
 
-        <section id="colecao" className="container mx-auto scroll-mt-24 px-4 py-20 lg:px-8">
-          <h1 className="mb-16 text-center text-3xl font-light uppercase tracking-[0.3em]">Coleção Évora</h1>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-2 md:grid-cols-3 md:gap-x-8 lg:grid-cols-4">
+        <section id="colecao" className="container mx-auto scroll-mt-24 px-4 py-12 md:py-20 lg:px-8">
+          <h1 className="mb-10 md:mb-16 text-center text-2xl md:text-3xl font-light uppercase tracking-[0.3em]">Coleção Évora</h1>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-3 md:gap-x-8 lg:grid-cols-4">
+
             {localProducts.map((product) => (
               <Link key={product.id} to="/produtos/$productId" params={{ productId: product.id }} className="group">
                 <Card className="cursor-pointer border-none bg-transparent shadow-none">
