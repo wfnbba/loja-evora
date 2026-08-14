@@ -489,12 +489,13 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
                               <Truck className="size-5" />
-                              <span className="text-[12px] font-bold uppercase tracking-widest">Entrega Padrão</span>
+                              <span className="text-sm font-bold uppercase tracking-widest">Entrega Padrão</span>
                             </div>
-                            <span className="text-[12px] font-bold uppercase tracking-widest text-green-400">Grátis</span>
+                            <span className="text-sm font-bold uppercase tracking-widest text-green-400">Grátis</span>
                           </div>
-                          <p className="text-[10px] uppercase tracking-widest text-background/70">
+                          <p className="text-xs uppercase tracking-widest text-background/70">
                             Previsão de entrega: <strong className="text-background">5 dias úteis</strong>
+
                           </p>
                         </div>
                       )}
