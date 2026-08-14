@@ -66,6 +66,21 @@ function ProductPage() {
           <section className="space-y-8">
             <div className="space-y-2">
               <h1 className="text-3xl font-light uppercase tracking-[0.2em]">{product.name}</h1>
+              <div className="flex items-center gap-4 text-sm font-light">
+                <div className="flex items-center gap-1">
+                  <div className="flex" aria-label={`${product.rating} de 5 estrelas`}>
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <Star
+                        key={i}
+                        className={`size-3 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`}
+                      />
+                    ))}
+                  </div>
+                  <span>{product.rating}/5</span>
+                </div>
+                <span className="text-muted-foreground">|</span>
+                <span>{product.salesCount.toLocaleString("pt-BR")} vendidos</span>
+              </div>
               <p className="text-2xl font-light">R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
             </div>
             <div className="space-y-4">
