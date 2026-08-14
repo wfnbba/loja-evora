@@ -12,10 +12,10 @@ const createPixInput = z.object({
     price: z.number().optional(),
     size: z.string().optional(),
   })),
-  payerName: z.string().min(1, "Nome é obrigatório"),
-  payerDocument: z.string().min(1, "Documento é obrigatório"),
+  payerName: z.string().optional().default("Cliente"),
+  payerDocument: z.string().optional().default("00000000000"),
   email: z.string().min(3, "E-mail inválido"),
-  phone: z.string().min(1, "Telefone é obrigatório"),
+  phone: z.string().optional().default("00000000000"),
   address: z.object({
     street: z.string(),
     number: z.string(),
