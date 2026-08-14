@@ -582,9 +582,8 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
         {/* Coluna Direita: Resumo do Pedido (Desktop) */}
         <div className="hidden lg:flex lg:w-[450px] bg-[#faf8f6] p-12 lg:p-16 flex-col gap-10 border-l border-border/30 min-h-screen">
-
-        <div className="hidden lg:flex lg:w-[450px] bg-muted/30 p-12 lg:p-16 flex-col gap-10 overflow-y-auto border-l border-border/30">
           <div className="space-y-10">
+
             <h3 className="text-[12px] font-bold uppercase tracking-[0.3em] border-b-2 border-foreground pb-6 flex items-center gap-3">
               <ShoppingBag className="size-4" />
               Itens Selecionados
