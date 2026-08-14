@@ -646,7 +646,8 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                           <div className="flex items-center gap-4">
                             <p className="text-xs text-muted-foreground uppercase tracking-widest shrink-0">Tamanho: {item.size}</p>
                             {item.color && (
-                              <p className="text-[10px] text-muted-foreground uppercase tracking-widest truncate">Cor: {item.color}</p>
+                              <p className="text-xs text-muted-foreground uppercase tracking-widest truncate">Cor: {item.color}</p>
+
                             )}
                           </div>
                           <div className="flex items-center border border-border/50 rounded-none bg-background w-fit">
