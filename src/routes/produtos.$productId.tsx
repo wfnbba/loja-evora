@@ -107,43 +107,52 @@ function ProductPage() {
   };
 
   return (
-    <main className="min-h-screen bg-background pb-20 pt-24 text-foreground">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
+    <main className="min-h-screen bg-background pb-12 pt-20 md:pb-20 md:pt-24 text-foreground">
+      <div className="container mx-auto px-0 md:px-4 lg:px-8">
+        <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-2 lg:gap-20">
+
           <section aria-label="Galeria do produto" className="space-y-4">
             <div className="relative aspect-[3/4] overflow-hidden bg-muted">
               <OptimizedImage src={product.images[selectedImage] || ""} alt={product.name} className="h-full w-full object-cover" width={600} height={800} priority />
-              <Button variant="secondary" size="icon" onClick={() => setSelectedImage((current) => current > 0 ? current - 1 : product.images.length - 1)} className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none">
-                <ChevronLeft className="size-5" />
+              <Button variant="secondary" size="icon" onClick={() => setSelectedImage((current) => current > 0 ? current - 1 : product.images.length - 1)} className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none size-12">
+                <ChevronLeft className="size-6" />
               </Button>
-              <Button variant="secondary" size="icon" onClick={() => setSelectedImage((current) => current < product.images.length - 1 ? current + 1 : 0)} className="absolute right-4 top-1/2 -translate-y-1/2 rounded-none">
-                <ChevronRight className="size-5" />
+              <Button variant="secondary" size="icon" onClick={() => setSelectedImage((current) => current < product.images.length - 1 ? current + 1 : 0)} className="absolute right-4 top-1/2 -translate-y-1/2 rounded-none size-12">
+                <ChevronRight className="size-6" />
               </Button>
             </div>
-            <div className="grid grid-cols-4 gap-3">
+
+            <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide px-4 md:px-0">
               {product.images.map((image, index) => (
-                <button key={image} type="button" onClick={() => setSelectedImage(index)} className={`relative aspect-[3/4] overflow-hidden border-2 transition-colors ${selectedImage === index ? "border-foreground" : "border-transparent"}`}>
-                  <OptimizedImage src={image} alt="" className="h-full w-full object-cover" width={150} height={200} />
+                <button 
+                  key={index} 
+                  type="button" 
+                  onClick={() => setSelectedImage(index)} 
+                  className={cn("relative aspect-[3/4] w-20 flex-shrink-0 overflow-hidden bg-muted md:w-24 border-2 transition-colors", selectedImage === index ? "border-foreground" : "border-transparent opacity-60")}
+                >
+                  <OptimizedImage src={image} alt={`${product.name} miniatura ${index + 1}`} className="h-full w-full object-cover" width={96} height={128} />
                 </button>
               ))}
             </div>
+
           </section>
 
-          <section className="space-y-8">
+          <section className="space-y-6 md:space-y-8 px-4 md:px-0">
             <div className="space-y-2">
-              <h1 className="text-3xl font-light uppercase tracking-[0.2em]">{product.name}</h1>
-              <div className="flex items-center gap-4 text-sm font-light">
+              <h1 className="text-2xl md:text-3xl font-light uppercase tracking-widest">{product.name}</h1>
+              <div className="flex items-center gap-4 text-sm font-medium">
                 <div className="flex items-center gap-1">
                   <div className="flex" aria-label="5 de 5 estrelas">
                     {Array.from({ length: 5 }, (_, i) => (
-                      <Star key={i} className={`size-3 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`} />
+                      <Star key={i} className={`size-3.5 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`} />
                     ))}
                   </div>
-                  <span>{product.rating.toFixed(1)}/5</span>
+                  <span className="text-xs md:text-sm">{product.rating.toFixed(1)}/5</span>
                 </div>
                 <span className="text-muted-foreground">|</span>
-                <span>{product.salesCount} vendas</span>
+                <span className="text-xs md:text-sm">{product.salesCount} vendas</span>
               </div>
+
               <div className="flex items-baseline gap-3">
                 <p className="text-2xl font-light">
                   R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
@@ -158,29 +167,31 @@ function ProductPage() {
             
             {product.sizes.length > 0 && (
               <div className="space-y-4">
-                <p className="text-xs font-medium uppercase tracking-[0.2em]">Tamanho</p>
+                <p className="text-xs font-bold uppercase tracking-widest">Tamanho</p>
                 <div className="flex flex-wrap gap-3">
                   {product.sizes.map((size) => (
-                    <Button key={size} type="button" variant={selectedSize === size ? "default" : "outline"} onClick={() => { setSelectedSize(size); setAdded(false); }} className="size-12 rounded-none p-0">{size}</Button>
+                    <Button key={size} type="button" variant={selectedSize === size ? "default" : "outline"} onClick={() => { setSelectedSize(size); setAdded(false); }} className="size-14 rounded-none p-0 text-sm font-bold">{size}</Button>
                   ))}
                 </div>
                 <div className="mt-4 flex items-center gap-3 border border-green-600/20 bg-green-600/5 p-4 transition-all hover:bg-green-600/10">
-                  <div className="flex size-8 items-center justify-center rounded-full bg-green-600/10 text-green-700">
-                    <RefreshCw className="size-4 animate-spin-slow" />
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-green-600/10 text-green-700">
+                    <RefreshCw className="size-5 animate-spin-slow" />
                   </div>
                   <div className="space-y-0.5">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-green-700">Troca Garantida</p>
-                    <p className="text-[9px] font-light uppercase tracking-[0.15em] text-green-600/90">
+                    <p className="text-xs font-bold uppercase tracking-widest text-green-700">Troca Garantida</p>
+                    <p className="text-[11px] font-medium uppercase tracking-wider text-green-600/90 leading-tight">
                       Primeira troca é gratuita em caso de tamanho errado.
                     </p>
                   </div>
                 </div>
               </div>
+
             )}
 
             {product.colors && (
               <div className="space-y-4">
-                <p className="text-xs font-medium uppercase tracking-[0.2em]">Cor: {selectedColor}</p>
+                <p className="text-xs font-bold uppercase tracking-widest">Cor: {selectedColor}</p>
+
                 <div className="flex flex-wrap gap-4">
                   {product.colors.length > 0 ? (
                     product.colors.map((color) => (
@@ -201,10 +212,11 @@ function ProductPage() {
                           style={{ backgroundColor: color.value }}
                         />
                         {selectedColor === color.name && (
-                          <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[8px] font-bold uppercase tracking-widest whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                          <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold uppercase tracking-widest whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
                             {color.name}
                           </span>
                         )}
+
                       </button>
                     ))
                   ) : (
@@ -224,16 +236,16 @@ function ProductPage() {
 
             {product.includedGift && (
               <div className="mt-4 space-y-4">
-                <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">Brinde Exclusivo Ganho</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Brinde Exclusivo Ganho</p>
                 <div className="group relative flex items-center justify-between border-2 border-dashed border-[#4a3f35]/30 p-5 bg-[#4a3f35]/5 transition-all hover:bg-[#4a3f35]/10 overflow-hidden cursor-default">
                   {/* Badge de Destaque */}
                   <div className="absolute -right-8 -top-8 size-20 rotate-45 bg-[#4a3f35] flex items-end justify-center pb-2">
-                    <span className="text-[8px] font-bold text-[#fdfbf7] uppercase tracking-tighter">GRÁTIS</span>
+                    <span className="text-[10px] font-bold text-[#fdfbf7] uppercase tracking-tighter">GRÁTIS</span>
                   </div>
                   
                   <div className="flex items-center gap-5">
                     {/* Seletor Visual de Cor para o Brinde */}
-                    <div className="relative flex size-12 items-center justify-center rounded-full border-2 border-foreground p-1 ring-1 ring-foreground ring-offset-2 shadow-lg bg-white">
+                    <div className="relative flex size-14 items-center justify-center rounded-full border-2 border-foreground p-1 ring-1 ring-foreground ring-offset-2 shadow-lg bg-white">
                       <span 
                         className="h-full w-full rounded-full shadow-inner"
                         style={{ backgroundColor: product.includedGift.colorValue || "#3d2b1f" }}
@@ -242,17 +254,19 @@ function ProductPage() {
                     </div>
                     
                     <div className="flex flex-col gap-1.5">
-                      <h4 className="text-[12px] font-bold uppercase tracking-[0.15em] text-[#4a3f35]">{product.includedGift.name}</h4>
+                      <h4 className="text-sm font-bold uppercase tracking-widest text-[#4a3f35] leading-tight">{product.includedGift.name}</h4>
                       <div className="flex items-center gap-3">
-                        <span className="text-[9px] font-medium uppercase tracking-widest text-[#4a3f35]/70">Cor: {product.includedGift.color}</span>
-                        <span className="text-[9px] font-medium uppercase tracking-widest text-[#4a3f35]/70">Tam: Único</span>
+                        <span className="text-[11px] font-bold uppercase tracking-widest text-[#4a3f35]/70">Cor: {product.includedGift.color}</span>
+                        <span className="text-[11px] font-bold uppercase tracking-widest text-[#4a3f35]/70">Tam: Único</span>
                       </div>
                     </div>
                   </div>
 
+
                   <div className="flex flex-col items-end gap-1 pr-4">
-                    <span className="text-[10px] text-[#4a3f35]/40 line-through decoration-1 tracking-widest">R$ 49,90</span>
-                    <span className="text-[13px] font-black text-green-700 uppercase tracking-[0.2em]">GRÁTIS</span>
+                    <span className="text-xs text-[#4a3f35]/40 line-through decoration-1 tracking-widest">R$ 49,90</span>
+                    <span className="text-sm font-black text-green-700 uppercase tracking-widest">GRÁTIS</span>
+
                   </div>
                 </div>
               </div>
@@ -262,25 +276,28 @@ function ProductPage() {
               <Button 
                 onClick={addToCart} 
                 className={cn(
-                  "w-full rounded-none py-8 uppercase tracking-[0.2em] transition-all duration-300 utmify",
+                  "w-full rounded-none py-10 text-sm md:text-base font-bold uppercase tracking-widest transition-all duration-300 utmify",
                   (!selectedSize || (product.colors && product.colors.length > 0 && !selectedColor)) 
                     ? "bg-[#4a3f35]/40 hover:bg-[#4a3f35]/50" 
                     : "bg-[#4a3f35] hover:bg-[#4a3f35]/90"
                 )}
               >
-                <ShoppingBag className="mr-3 size-5" />
+                <ShoppingBag className="mr-3 size-6" />
                 {added ? "ADICIONADO AO CARRINHO" : "ADICIONAR AO CARRINHO"}
               </Button>
             </div>
+
             
             <div className="space-y-4 border-t border-border pt-8">
-              <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Descrição</h2>
+              <h2 className="text-sm font-bold uppercase tracking-widest">Descrição</h2>
               <div className="space-y-6">
-                <p className="font-light leading-relaxed text-muted-foreground">{product.description}</p>
+                <p className="text-sm md:text-base font-light leading-relaxed text-muted-foreground">{product.description}</p>
+
                 
                 {product.video && (
                   <div className="mt-8 space-y-4">
-                    <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Vídeo do Produto</h2>
+                    <h2 className="text-sm font-bold uppercase tracking-widest">Vídeo do Produto</h2>
+
                     <VideoPlayer src={product.video} poster={product.images[0]} />
                   </div>
                 )}
@@ -289,17 +306,19 @@ function ProductPage() {
 
             <div id="feedbacks" className="space-y-12 border-t border-border pt-12">
               <div className="space-y-8">
-                <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Avaliações</h2>
+                <h2 className="text-sm font-bold uppercase tracking-widest">Avaliações</h2>
+
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                   <div className="flex flex-col items-center justify-center space-y-2 border-r border-border/50 pr-8 text-center">
                     <span className="text-5xl font-light">{product.rating.toFixed(1)}</span>
                     <div className="flex">
                       {Array.from({ length: 5 }, (_, i) => (
-                        <Star key={i} className={`size-4 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`} />
+                        <Star key={i} className={`size-5 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`} />
                       ))}
                     </div>
-                    <span className="text-xs uppercase tracking-widest text-muted-foreground">{product.reviews.length.toLocaleString("pt-BR")} avaliações</span>
+                    <span className="text-sm uppercase tracking-widest text-muted-foreground font-medium">{product.reviews.length.toLocaleString("pt-BR")} avaliações</span>
                   </div>
+
                   <div className="col-span-1 space-y-2 lg:col-span-2">
                     {[5, 4, 3, 2, 1].map((star) => {
                       const count = product.ratingBreakdown[star as keyof typeof product.ratingBreakdown] || 0;
@@ -307,11 +326,12 @@ function ProductPage() {
                       const percentage = (count / totalForPercentage) * 100;
                       return (
                         <div key={star} className="flex items-center gap-4">
-                          <span className="w-4 text-xs font-light">{star}</span>
-                          <Star className="size-3 fill-current" />
-                          <Progress value={percentage} className="h-1 flex-1" />
-                          <span className="w-12 text-right text-[10px] tabular-nums text-muted-foreground">{count.toLocaleString("pt-BR")}</span>
+                          <span className="w-5 text-sm font-bold">{star}</span>
+                          <Star className="size-4 fill-current" />
+                          <Progress value={percentage} className="h-2 flex-1" />
+                          <span className="w-12 text-right text-xs tabular-nums text-muted-foreground font-medium">{count.toLocaleString("pt-BR")}</span>
                         </div>
+
                       );
                     })}
                   </div>
@@ -324,16 +344,17 @@ function ProductPage() {
                     <div className="flex items-center gap-3">
                       <div className="flex">
                         {Array.from({ length: 5 }, (_, index) => (
-                          <Star key={index} className={`size-3 ${index < review.rating ? "fill-current text-[#4a3f35]" : "text-muted-foreground/30"}`} />
+                          <Star key={index} className={`size-4 ${index < review.rating ? "fill-current text-[#4a3f35]" : "text-muted-foreground/30"}`} />
                         ))}
                       </div>
-                      <span className="text-[10px] font-medium uppercase tracking-[0.2em]">{review.user}</span>
+                      <span className="text-xs md:text-sm font-bold uppercase tracking-widest">{review.user}</span>
                     </div>
                     {review.comment && (
-                      <p className="text-sm font-light leading-relaxed text-muted-foreground">{review.comment}</p>
+                      <p className="text-sm md:text-base font-light leading-relaxed text-muted-foreground">{review.comment}</p>
                     )}
+
                     {review.image && (
-                      <div className="relative mt-2 aspect-square w-32 overflow-hidden bg-muted">
+                      <div className="relative mt-2 aspect-square w-40 overflow-hidden bg-muted">
                         <OptimizedImage
                           src={review.image}
                           alt={`Avaliação de ${review.user}`}
@@ -360,9 +381,10 @@ function ProductPage() {
                     >
                       Anterior
                     </Button>
-                    <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground">
+                    <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
                       Página {reviewPage} de {totalPages}
                     </span>
+
                     <Button
                       variant="outline"
                       size="sm"
@@ -382,11 +404,12 @@ function ProductPage() {
           </section>
         </div>
 
-        <section className="mt-32 space-y-16">
-          <div className="space-y-4 text-center">
-            <h2 className="text-2xl font-light uppercase tracking-[0.3em]">Explore nossa coleção</h2>
+        <section className="mt-32 space-y-16 px-4 md:px-0">
+          <div className="space-y-6 text-center">
+
+            <h2 className="text-2xl md:text-3xl font-light uppercase tracking-[0.3em]">Explore nossa coleção</h2>
             <div className="mx-auto h-px w-20 bg-foreground/10" />
-            <Link to="/" className="inline-block text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground underline underline-offset-4">
+            <Link to="/" className="inline-block text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground underline underline-offset-4">
               Voltar para a loja
             </Link>
           </div>

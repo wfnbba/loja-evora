@@ -34,16 +34,17 @@ function Index() {
           <div className="absolute inset-0 md:hidden">
             <OptimizedImage src={heroMobileAsset.url} alt="Coleção Évora" className="h-full w-full object-cover" width={800} height={1200} priority />
           </div>
-          <div className="relative flex h-full items-end justify-center px-4 pb-[33%] md:pb-[25%]">
-            <Button asChild className="rounded-none bg-background px-10 py-6 text-foreground uppercase tracking-widest transition-all duration-300 hover:bg-background/90">
+          <div className="relative flex h-full items-end justify-center px-4 pb-[30%] md:pb-[25%]">
+            <Button asChild className="rounded-none bg-background px-12 py-8 text-sm md:text-base text-foreground uppercase tracking-widest transition-all duration-300 hover:bg-background/90">
               <a href="#colecao">Explorar Coleção</a>
             </Button>
           </div>
         </section>
 
-        <section id="colecao" className="container mx-auto scroll-mt-24 px-4 py-20 lg:px-8">
-          <h1 className="mb-16 text-center text-3xl font-light uppercase tracking-[0.3em]">Coleção Évora</h1>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-2 md:grid-cols-3 md:gap-x-8 lg:grid-cols-4">
+        <section id="colecao" className="container mx-auto scroll-mt-24 px-4 py-12 md:py-20 lg:px-8">
+          <h1 className="mb-10 md:mb-16 text-center text-2xl md:text-3xl font-light uppercase tracking-[0.3em]">Coleção Évora</h1>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-3 md:gap-x-8 lg:grid-cols-4">
+
             {localProducts.map((product) => (
               <Link key={product.id} to="/produtos/$productId" params={{ productId: product.id }} className="group">
                 <Card className="cursor-pointer border-none bg-transparent shadow-none">
@@ -58,45 +59,48 @@ function Index() {
                       />
                     </div>
                     <div className="space-y-1 text-center">
-                      <h2 className="text-[10px] font-medium uppercase tracking-[0.2em] md:text-sm line-clamp-1">
-                        {product.name.length > 20 ? `${product.name.substring(0, 20)}...` : product.name}
+                      <h2 className="text-xs font-bold uppercase tracking-widest md:text-sm line-clamp-2 min-h-[2.5rem] flex items-center justify-center">
+                        {product.name}
                       </h2>
-                      <div className="mt-4">
+                      <div className="mt-2">
                         <Button 
                           asChild
                           variant="outline"
-                          className="w-full rounded-none border-foreground/20 text-[10px] uppercase tracking-[0.2em] py-5 hover:bg-foreground hover:text-background transition-all"
+                          className="w-full rounded-none border-foreground/20 text-xs uppercase tracking-widest py-6 hover:bg-foreground hover:text-background transition-all"
                         >
                           <Link to="/produtos/$productId" params={{ productId: product.id }}>
                             Ver Detalhes
                           </Link>
                         </Button>
                       </div>
-                      <div className="flex items-center justify-center gap-2 mt-1">
+                      <div className="flex items-center justify-center gap-2 mt-2">
+
                         <div className="flex text-foreground">
                           {Array.from({ length: 5 }, (_, i) => (
                             <Star
                               key={i}
-                              className={`size-2.5 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`}
+                              className={`size-3 md:size-3.5 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`}
                             />
                           ))}
                         </div>
-                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                        <span className="text-[11px] md:text-xs uppercase tracking-widest text-muted-foreground font-medium">
                           {product.salesCount >= 100 
                             ? `+${Math.floor(product.salesCount / 100) * 100} vendas` 
                             : "Novo"}
                         </span>
                       </div>
-                      <div className="flex items-center justify-center gap-2 text-[10px] tracking-widest mt-1">
-                        <p className="font-light text-muted-foreground">
+                      <div className="flex items-center justify-center gap-2 text-sm md:text-base tracking-widest mt-1">
+                        <p className="font-bold text-foreground">
                           R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                         </p>
+
                         {product.originalPrice && (
-                          <p className="text-[9px] text-muted-foreground/50 line-through">
+                          <p className="text-xs md:text-sm text-muted-foreground/50 line-through">
                             R$ {product.originalPrice.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                           </p>
                         )}
                       </div>
+
                     </div>
                   </CardContent>
                 </Card>

@@ -232,28 +232,30 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
   return (
     <div className="w-full">
       {/* Banner de Urgência */}
-      <div className="bg-[#1a1512] text-white py-3 px-4 text-center rounded-none mb-8">
-        <p className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] animate-pulse">
-          Preço garantido por apenas <span className="text-[#d4af37] mx-1">{formatTime(timeLeft)}</span> Devido a alta demanda.
+      <div className="bg-[#1a1512] text-white py-4 px-6 text-center rounded-none mb-8">
+        <p className="text-xs md:text-sm font-bold uppercase tracking-widest animate-pulse">
+          Preço garantido por apenas <span className="text-[#d4af37] mx-1">{formatTime(timeLeft)}</span> devido a alta demanda.
         </p>
       </div>
+
 
       <div className="flex flex-col lg:flex-row min-h-screen">
         {/* Mobile Order Summary (Collapsible) */}
         <div className="lg:hidden border-b border-border/50 bg-muted/5">
           <button 
             onClick={() => setIsSummaryOpen(!isSummaryOpen)}
-            className="w-full p-4 flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-muted/10 transition-colors"
+            className="w-full p-5 flex items-center justify-between text-xs font-bold uppercase tracking-widest hover:bg-muted/10 transition-colors"
           >
-            <div className="flex items-center gap-2">
-              <ShoppingBag className="size-3" />
-              <span>{isSummaryOpen ? "Ocultar Pedido" : "Ver Pedido"}</span>
-              {isSummaryOpen ? <ChevronUp className="size-3" /> : <ChevronDown className="size-3" />}
+            <div className="flex items-center gap-3">
+              <ShoppingBag className="size-4" />
+              <span>{isSummaryOpen ? "Ocultar Resumo" : "Exibir Resumo"}</span>
+              {isSummaryOpen ? <ChevronUp className="size-4" /> : <ChevronDown className="size-4" />}
             </div>
-            <span className="text-[11px] text-[#d4af37]">
+            <span className="text-sm text-[#d4af37] font-bold">
               R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
             </span>
           </button>
+
 
           {isSummaryOpen && (
             <div className="p-4 space-y-4 animate-in slide-in-from-top-2 duration-300">
@@ -263,39 +265,41 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 const discountPercentage = item.originalPrice ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0;
                 
                 return (
-                  <div key={`${item.id}-${item.size}-${item.color}`} className="flex gap-3 py-3 border-b border-border/10 last:border-0 relative">
-                    <div className="relative size-14 shrink-0 overflow-hidden bg-white border border-border/30 rounded-sm">
-                      <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={56} height={56} />
+                  <div key={`${item.id}-${item.size}-${item.color}`} className="flex gap-4 py-4 border-b border-border/10 last:border-0 relative">
+                    <div className="relative size-20 shrink-0 overflow-hidden bg-white border border-border/30 rounded-sm">
+                      <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={80} height={80} />
                     </div>
-                    <div className="flex flex-1 flex-col justify-center gap-1">
+                    <div className="flex flex-1 flex-col justify-center gap-2">
                       <div className="flex justify-between items-start">
-                        <h4 className="text-[10px] font-bold uppercase tracking-widest leading-tight w-2/3">{item.name}</h4>
+                        <h4 className="text-xs font-bold uppercase tracking-widest leading-tight w-2/3">{item.name}</h4>
                         <div className="flex flex-col items-end">
-                          <p className={cn("text-[10px] font-bold", item.price === 0 && "text-green-600")}>
+                          <p className={cn("text-xs font-bold", item.price === 0 && "text-green-600")}>
                             {item.price === 0 ? "GRÁTIS" : `R$ ${currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`}
                           </p>
                           {item.originalPrice && item.originalPrice > item.price && (
-                            <p className="text-[8px] text-muted-foreground/50 line-through">R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+                            <p className="text-[10px] text-muted-foreground/50 line-through">R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
                           )}
                         </div>
                       </div>
+
                       <div className="flex items-center justify-between">
                         <div className="flex flex-col gap-1">
                           <div className="flex items-center gap-2">
-                            <p className="text-[9px] text-muted-foreground uppercase tracking-widest shrink-0">Tam: {item.size}</p>
+                            <p className="text-[10px] text-muted-foreground uppercase tracking-widest shrink-0">Tam: {item.size}</p>
                             {item.color && (
-                              <p className="text-[9px] text-muted-foreground uppercase tracking-widest truncate">Cor: {item.color}</p>
+                              <p className="text-[10px] text-muted-foreground uppercase tracking-widest truncate">Cor: {item.color}</p>
                             )}
                           </div>
                           <div className="flex items-center border border-border/50 rounded-none bg-background w-fit">
-                            <button onClick={(e) => { e.stopPropagation(); decrementQuantity(item.id, item.size, item.color); }} className="p-1 hover:bg-muted"><Minus className="size-2" /></button>
-                            <span className="text-[9px] px-2 font-bold">{item.quantity}</span>
-                            <button onClick={(e) => { e.stopPropagation(); incrementQuantity(item.id, item.size, item.color); }} className="p-1 hover:bg-muted"><Plus className="size-2" /></button>
+                            <button onClick={(e) => { e.stopPropagation(); decrementQuantity(item.id, item.size, item.color); }} className="p-2 hover:bg-muted"><Minus className="size-3" /></button>
+                            <span className="text-xs px-3 font-bold">{item.quantity}</span>
+                            <button onClick={(e) => { e.stopPropagation(); incrementQuantity(item.id, item.size, item.color); }} className="p-2 hover:bg-muted"><Plus className="size-3" /></button>
                           </div>
                         </div>
                         {discountPercentage > 0 && (
-                          <span className="text-[8px] text-green-600 font-bold uppercase tracking-widest">-{discountPercentage}% OFF</span>
+                          <span className="text-[10px] text-green-600 font-bold uppercase tracking-widest">-{discountPercentage}% OFF</span>
                         )}
+
                       </div>
                     </div>
                     <button onClick={(e) => { e.stopPropagation(); removeItem(item.id, item.size, item.color); }} className="absolute -right-1 top-2 p-1 text-muted-foreground/40"><X className="size-3" /></button>
@@ -304,15 +308,16 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
               })}
               
               <div className="pt-2 space-y-2 border-t border-border/20">
-                <div className="flex justify-between text-[10px] uppercase tracking-widest text-foreground font-bold">
-                  <div className="flex items-center gap-2">
+                <div className="flex justify-between text-xs uppercase tracking-widest text-foreground font-bold">
+                  <div className="flex items-center gap-3">
                     <span>Frete</span>
-                    <Truck className="size-3" />
+                    <Truck className="size-4" />
                   </div>
-                  <span className={isAddressFilled ? "text-green-600" : "text-muted-foreground"}>
-                    {isAddressFilled ? "GRÁTIS" : "Calculado no endereço"}
+                  <span className={isAddressFilled ? "text-green-600" : "text-muted-foreground/60"}>
+                    {isAddressFilled ? "GRÁTIS" : "Aguardando endereço"}
                   </span>
                 </div>
+
               </div>
             </div>
           )}
@@ -327,12 +332,13 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
               <form onSubmit={handleCreatePayment} className="max-w-xl mx-auto space-y-10">
               <div className="space-y-6">
                 <div className="flex items-center gap-3 border-b border-border/50 pb-4">
-                  <span className="flex size-6 md:size-7 items-center justify-center rounded-full bg-foreground text-background text-[10px] md:text-xs font-bold">1</span>
-                  <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em]">Contato</h3>
+                  <span className="flex size-7 md:size-8 items-center justify-center rounded-full bg-foreground text-background text-xs md:text-sm font-bold">1</span>
+                  <h3 className="text-sm md:text-base font-bold uppercase tracking-widest">Contato</h3>
+
                 </div>
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <div className="space-y-3">
-                    <Label htmlFor="email" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">E-mail</Label>
+                    <Label htmlFor="email" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">E-mail</Label>
                     <Input
                       id="email"
                       type="email"
@@ -344,7 +350,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                     />
                   </div>
                   <div className="space-y-3">
-                    <Label htmlFor="phone" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">WhatsApp / Telefone</Label>
+                    <Label htmlFor="phone" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">WhatsApp / Telefone</Label>
                     <Input
                       id="phone"
                       required
@@ -359,12 +365,13 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
               <div className="space-y-6">
                 <div className="flex items-center gap-3 border-b border-border/50 pb-4">
-                  <span className="flex size-6 md:size-7 items-center justify-center rounded-full bg-foreground text-background text-[10px] md:text-xs font-bold">2</span>
-                  <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em]">Entrega</h3>
+                  <span className="flex size-7 md:size-8 items-center justify-center rounded-full bg-foreground text-background text-xs md:text-sm font-bold">2</span>
+                  <h3 className="text-sm md:text-base font-bold uppercase tracking-widest">Entrega</h3>
+
                 </div>
                 <div className="grid grid-cols-1 gap-6">
                   <div className="space-y-3">
-                    <Label htmlFor="name" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">Nome Completo</Label>
+                    <Label htmlFor="name" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">Nome Completo</Label>
                     <Input
                       id="name"
                       required
@@ -377,7 +384,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                   
                   <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div className="space-y-3">
-                      <Label htmlFor="cpf" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">CPF</Label>
+                      <Label htmlFor="cpf" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">CPF</Label>
                       <Input
                         id="cpf"
                         required
@@ -389,7 +396,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                       />
                     </div>
                     <div className="space-y-3">
-                      <Label htmlFor="cep" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">CEP</Label>
+                      <Label htmlFor="cep" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">CEP</Label>
                       <Input
                         id="cep"
                         required
@@ -406,7 +413,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                     <div className="space-y-6 animate-in fade-in slide-in-from-top-2 duration-300">
                       <div className="grid grid-cols-3 gap-6">
                         <div className="col-span-2 space-y-3">
-                          <Label htmlFor="street" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">Rua / Avenida</Label>
+                          <Label htmlFor="street" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">Rua / Avenida</Label>
                           <Input
                             id="street"
                             required
@@ -417,7 +424,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                           />
                         </div>
                         <div className="col-span-1 space-y-3">
-                          <Label htmlFor="number" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">Número</Label>
+                          <Label htmlFor="number" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">Número</Label>
                           <Input
                             id="number"
                             required
@@ -431,7 +438,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
                       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                         <div className="space-y-3">
-                          <Label htmlFor="complement" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">Complemento (opcional)</Label>
+                          <Label htmlFor="complement" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">Complemento (opcional)</Label>
                           <Input
                             id="complement"
                             className="h-12 md:h-14 rounded-none border-border/80 focus-visible:ring-foreground bg-muted/5 text-sm md:text-base"
@@ -441,7 +448,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                           />
                         </div>
                         <div className="space-y-3">
-                          <Label htmlFor="neighborhood" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">Bairro</Label>
+                          <Label htmlFor="neighborhood" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">Bairro</Label>
                           <Input
                             id="neighborhood"
                             required
@@ -455,7 +462,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
                       <div className="grid grid-cols-4 gap-6">
                         <div className="col-span-3 space-y-3">
-                          <Label htmlFor="city" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">Cidade</Label>
+                          <Label htmlFor="city" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">Cidade</Label>
                           <Input
                             id="city"
                             required
@@ -465,7 +472,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                           />
                         </div>
                         <div className="col-span-1 space-y-3">
-                          <Label htmlFor="state" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">UF</Label>
+                          <Label htmlFor="state" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">UF</Label>
                           <Input
                             id="state"
                             required
@@ -482,12 +489,13 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
                               <Truck className="size-5" />
-                              <span className="text-[12px] font-bold uppercase tracking-widest">Entrega Padrão</span>
+                              <span className="text-sm font-bold uppercase tracking-widest">Entrega Padrão</span>
                             </div>
-                            <span className="text-[12px] font-bold uppercase tracking-widest text-green-400">Grátis</span>
+                            <span className="text-sm font-bold uppercase tracking-widest text-green-400">Grátis</span>
                           </div>
-                          <p className="text-[10px] uppercase tracking-widest text-background/70">
+                          <p className="text-xs uppercase tracking-widest text-background/70">
                             Previsão de entrega: <strong className="text-background">5 dias úteis</strong>
+
                           </p>
                         </div>
                       )}
@@ -498,8 +506,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
               <div className="space-y-6">
                 <div className="flex items-center gap-3 border-b border-border/50 pb-4">
-                  <span className="flex size-6 md:size-7 items-center justify-center rounded-full bg-foreground text-background text-[10px] md:text-xs font-bold">3</span>
-                  <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em]">Pagamento</h3>
+                  <span className="flex size-7 md:size-8 items-center justify-center rounded-full bg-foreground text-background text-xs md:text-sm font-bold">3</span>
+                  <h3 className="text-sm md:text-base font-bold uppercase tracking-widest">Pagamento</h3>
+
                 </div>
                 <div className="border border-border/50 p-6 flex items-center justify-between bg-white shadow-sm">
                   <div className="flex items-center gap-4">
@@ -507,13 +516,14 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                       <QrCode className="size-6" />
                     </div>
                     <div className="space-y-1">
-                      <p className="text-[12px] font-bold uppercase tracking-[0.2em]">PIX Dinâmico</p>
-                      <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Aprovação instantânea</p>
+                      <p className="text-sm font-bold uppercase tracking-widest">PIX Dinâmico</p>
+                      <p className="text-xs text-muted-foreground uppercase tracking-widest">Aprovação instantânea</p>
+
                     </div>
                   </div>
                   <div className="flex flex-col items-end gap-1">
                     {isAddressFilled && (
-                      <span className="text-[10px] font-bold uppercase tracking-widest text-green-600 animate-in fade-in duration-300">Frete Grátis</span>
+                      <span className="text-xs font-bold uppercase tracking-widest text-green-600 animate-in fade-in duration-300">Frete Grátis</span>
                     )}
                   </div>
                 </div>
@@ -523,14 +533,14 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 <Button 
                   type="submit" 
                   disabled={loading} 
-                  className="w-full rounded-none py-10 md:py-12 text-sm md:text-base uppercase tracking-[0.3em] font-bold bg-foreground text-background hover:bg-foreground/90 transition-all shadow-xl utmify"
+                  className="w-full rounded-none py-10 md:py-12 text-sm md:text-base uppercase tracking-widest font-bold bg-foreground text-background hover:bg-foreground/90 transition-all shadow-xl utmify"
                 >
                   {loading ? <Loader2 className="mr-2 size-5 animate-spin" /> : "Gerar PIX QR Code"}
                 </Button>
                 <div className="flex flex-col items-center gap-4 py-8 border-t border-border/50 bg-muted/5">
                   <div className="flex items-center gap-4 text-foreground/80">
                     <ShieldCheck className="size-5 text-green-600" />
-                    <span className="text-[11px] font-bold uppercase tracking-[0.2em]">Pagamento Seguro & Criptografado</span>
+                    <span className="text-xs font-bold uppercase tracking-widest">Pagamento Seguro & Criptografado</span>
                   </div>
                   <div className="flex items-center gap-6 opacity-60 scale-75 md:scale-90">
                     <img src={pixLogoAsset.url} alt="PIX" className="h-8 w-auto" />
@@ -541,8 +551,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
           ) : (
             <div className="flex flex-1 flex-col items-center justify-center space-y-10 animate-in fade-in slide-in-from-right-4 duration-500 py-12 lg:py-20">
               <div className="text-center space-y-3">
-                <h3 className="text-2xl font-bold uppercase tracking-[0.3em]">Pedido Reservado</h3>
-                <p className="text-[11px] text-muted-foreground uppercase tracking-[0.2em]">Escaneie o código abaixo para finalizar seu pedido na Évora.</p>
+                <h3 className="text-2xl font-bold uppercase tracking-widest">Pedido Reservado</h3>
+                <p className="text-sm text-muted-foreground uppercase tracking-widest">Escaneie o código abaixo para finalizar seu pedido na Évora.</p>
+
               </div>
 
               <div className="relative aspect-square w-full max-w-[320px] border-4 border-foreground p-8 bg-white shadow-2xl">
@@ -557,13 +568,13 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
               
               <div className="w-full max-w-sm space-y-8">
                 <div className="text-center space-y-3">
-                  <p className="text-[12px] font-bold uppercase tracking-[0.2em]">Copie o código abaixo se preferir:</p>
+                  <p className="text-sm font-bold uppercase tracking-widest">Copie o código abaixo se preferir:</p>
                 </div>
                 
                 <Button 
                   variant="outline" 
                   onClick={copyToClipboard}
-                  className="w-full rounded-none py-8 border-2 border-foreground uppercase tracking-[0.2em] font-bold group bg-foreground text-background hover:bg-foreground/90 transition-all"
+                  className="w-full rounded-none py-10 border-2 border-foreground uppercase tracking-widest font-bold group bg-foreground text-background hover:bg-foreground/90 transition-all"
                 >
                   <Copy className="mr-3 size-5" />
                   Copiar Código PIX
@@ -572,17 +583,18 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 <div className="flex flex-col items-center gap-4">
                   <div className="flex items-center gap-3 text-foreground font-bold">
                     <Loader2 className="size-4 animate-spin" />
-                    <span className="text-[11px] uppercase tracking-[0.2em]">Aguardando Pagamento...</span>
+                    <span className="text-sm uppercase tracking-widest font-bold">Aguardando Pagamento...</span>
                   </div>
-                  <p className="text-[10px] text-muted-foreground uppercase tracking-widest text-center">
+                  <p className="text-xs text-muted-foreground uppercase tracking-widest text-center">
                     Não feche esta página até a confirmação automática.
+
                   </p>
                 </div>
 
                 <Button 
                   variant="ghost" 
                   onClick={() => setStep("form")} 
-                  className="w-full text-[10px] font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground underline underline-offset-4"
+                  className="w-full text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground underline underline-offset-4"
                 >
                   Alterar dados de entrega
                 </Button>
@@ -596,7 +608,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
         <div className="hidden lg:flex lg:w-[450px] bg-[#faf8f6] p-12 lg:p-16 flex-col gap-10 border-l border-border/30 min-h-screen">
           <div className="space-y-10">
 
-            <h3 className="text-[12px] font-bold uppercase tracking-[0.3em] border-b-2 border-foreground pb-6 flex items-center gap-3">
+            <h3 className="text-sm font-bold uppercase tracking-widest border-b-2 border-foreground pb-6 flex items-center gap-3">
               <ShoppingBag className="size-4" />
               Itens Selecionados
             </h3>
@@ -615,13 +627,14 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                     </div>
                     <div className="flex flex-1 flex-col justify-center">
                       <div className="flex justify-between items-start gap-4">
-                        <h4 className="text-[12px] font-bold uppercase tracking-[0.2em] leading-relaxed line-clamp-2">{item.name}</h4>
+                        <h4 className="text-sm font-bold uppercase tracking-widest leading-relaxed line-clamp-2">{item.name}</h4>
                         <div className="flex flex-col items-end shrink-0">
-                          <p className={cn("text-[14px] font-bold tracking-wider", item.price === 0 && "text-green-600")}>
+                          <p className={cn("text-base font-bold tracking-wider", item.price === 0 && "text-green-600")}>
                             {item.price === 0 ? "GRÁTIS" : `R$ ${currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`}
                           </p>
                           {item.originalPrice && item.originalPrice > item.price && (
-                            <p className="text-[11px] text-muted-foreground/50 line-through tracking-tighter">
+                            <p className="text-xs text-muted-foreground/50 line-through tracking-tighter">
+
                               R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                             </p>
                           )}
@@ -631,19 +644,20 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                       <div className="flex items-center justify-between mt-2">
                         <div className="flex flex-col gap-1">
                           <div className="flex items-center gap-4">
-                            <p className="text-[10px] text-muted-foreground uppercase tracking-widest shrink-0">Tamanho: {item.size}</p>
+                            <p className="text-xs text-muted-foreground uppercase tracking-widest shrink-0">Tamanho: {item.size}</p>
                             {item.color && (
-                              <p className="text-[10px] text-muted-foreground uppercase tracking-widest truncate">Cor: {item.color}</p>
+                              <p className="text-xs text-muted-foreground uppercase tracking-widest truncate">Cor: {item.color}</p>
+
                             )}
                           </div>
                           <div className="flex items-center border border-border/50 rounded-none bg-background w-fit">
                             <button onClick={() => decrementQuantity(item.id, item.size, item.color)} className="p-1 hover:bg-muted"><Minus className="size-3" /></button>
-                            <span className="text-[11px] px-3 font-bold">{item.quantity}</span>
+                            <span className="text-sm px-3 font-bold">{item.quantity}</span>
                             <button onClick={() => incrementQuantity(item.id, item.size, item.color)} className="p-1 hover:bg-muted"><Plus className="size-3" /></button>
                           </div>
                         </div>
                         {discountAmount > 0 && (
-                          <span className="text-[9px] bg-green-100 text-green-700 px-2 py-0.5 font-bold uppercase tracking-widest">
+                          <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 font-bold uppercase tracking-widest">
                             {discountPercentage}% OFF
                           </span>
                         )}
@@ -663,15 +677,16 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
           <div className="space-y-8 pt-8 mt-auto border-t border-border/50">
             <div className="space-y-4">
-              <div className="flex justify-between items-center text-[12px] uppercase tracking-[0.2em] text-muted-foreground">
+              <div className="flex justify-between items-center text-xs uppercase tracking-widest text-muted-foreground">
                 <span>Subtotal</span>
                 <span>R$ {items.reduce((acc, item) => acc + ((item.originalPrice || item.price) * item.quantity), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
               </div>
-              <div className="flex justify-between items-center text-[12px] uppercase tracking-[0.2em] text-muted-foreground">
+              <div className="flex justify-between items-center text-xs uppercase tracking-widest text-muted-foreground">
+
                 <span>Descontos</span>
                 <span className="text-green-600">- R$ {items.reduce((acc, item) => acc + (item.originalPrice ? (item.originalPrice - item.price) * item.quantity : 0), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
               </div>
-              <div className="flex justify-between items-center text-[12px] uppercase tracking-[0.2em] font-bold">
+              <div className="flex justify-between items-center text-xs uppercase tracking-widest font-bold">
                 <div className="flex items-center gap-3">
                    <span className="text-muted-foreground">Frete</span>
                    <Truck className="size-4 text-muted-foreground" />
@@ -686,8 +701,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             
             <div className="flex justify-between items-end">
               <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">Total do Pedido</span>
-                <p className="text-[9px] text-green-600 uppercase tracking-widest font-bold">Desconto VIP Aplicado</p>
+                <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Total do Pedido</span>
+                <p className="text-[10px] text-green-600 uppercase tracking-widest font-bold">Desconto VIP Aplicado</p>
+
               </div>
               <span className="text-2xl font-light tracking-[0.2em]">
                 R$ {items.reduce((acc, item) => acc + (item.price * item.quantity), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
@@ -697,9 +713,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             <div className="bg-foreground text-background p-6 space-y-3 shadow-xl">
               <div className="flex items-center gap-3 text-green-400">
                 <ShieldCheck className="size-5" />
-                <p className="text-[11px] uppercase tracking-[0.2em] font-bold">Garantia Évora Luxury</p>
+                <p className="text-xs uppercase tracking-widest font-bold">Garantia Évora Luxury</p>
               </div>
-              <p className="text-[10px] text-background/70 uppercase tracking-widest leading-loose">
+              <p className="text-xs text-background/70 uppercase tracking-widest leading-loose">
                 Sua compra está protegida. Receba em 5 dias ou seu dinheiro de volta.
               </p>
             </div>
