@@ -111,30 +111,74 @@ function ProductPage() {
       <div className="container mx-auto px-0 md:px-4 lg:px-8">
         <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-2 lg:gap-20">
 
-          <section aria-label="Galeria do produto" className="space-y-4">
-            <div className="relative aspect-[3/4] overflow-hidden bg-muted">
-              <OptimizedImage src={product.images[selectedImage] || ""} alt={product.name} className="h-full w-full object-cover" width={600} height={800} priority />
-              <Button variant="secondary" size="icon" onClick={() => setSelectedImage((current) => current > 0 ? current - 1 : product.images.length - 1)} className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none size-12">
-                <ChevronLeft className="size-6" />
+          <section aria-label="Galeria do produto" className="relative space-y-4 md:sticky md:top-24">
+            {/* Carrossel Principal */}
+            <div className="relative aspect-[3/4] overflow-hidden bg-muted md:rounded-sm">
+              <div 
+                className="flex h-full w-full transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${selectedImage * 100}%)` }}
+              >
+                {product.images.map((image, index) => (
+                  <div key={index} className="h-full w-full flex-shrink-0">
+                    <OptimizedImage 
+                      src={image} 
+                      alt={`${product.name} - imagem ${index + 1}`} 
+                      className="h-full w-full object-cover" 
+                      width={600} 
+                      height={800} 
+                      priority={index === 0} 
+                    />
+                  </div>
+                ))}
+              </div>
+              
+              <Button 
+                variant="secondary" 
+                size="icon" 
+                onClick={() => setSelectedImage((current) => current > 0 ? current - 1 : product.images.length - 1)} 
+                className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full size-12 opacity-80 hover:opacity-100 transition-opacity bg-white/20 backdrop-blur-sm border-none md:flex hidden"
+              >
+                <ChevronLeft className="size-6 text-foreground" />
               </Button>
-              <Button variant="secondary" size="icon" onClick={() => setSelectedImage((current) => current < product.images.length - 1 ? current + 1 : 0)} className="absolute right-4 top-1/2 -translate-y-1/2 rounded-none size-12">
-                <ChevronRight className="size-6" />
+              <Button 
+                variant="secondary" 
+                size="icon" 
+                onClick={() => setSelectedImage((current) => current < product.images.length - 1 ? current + 1 : 0)} 
+                className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full size-12 opacity-80 hover:opacity-100 transition-opacity bg-white/20 backdrop-blur-sm border-none md:flex hidden"
+              >
+                <ChevronRight className="size-6 text-foreground" />
               </Button>
+
+              {/* Indicadores Mobile */}
+              <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-1.5 md:hidden">
+                {product.images.map((_, index) => (
+                  <div 
+                    key={index} 
+                    className={cn(
+                      "size-1.5 rounded-full transition-all duration-300",
+                      selectedImage === index ? "w-4 bg-foreground" : "bg-foreground/30"
+                    )}
+                  />
+                ))}
+              </div>
             </div>
 
-            <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide px-4 md:px-0">
+            {/* Miniaturas */}
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide px-4 md:px-0 snap-x">
               {product.images.map((image, index) => (
                 <button 
                   key={index} 
                   type="button" 
                   onClick={() => setSelectedImage(index)} 
-                  className={cn("relative aspect-[3/4] w-20 flex-shrink-0 overflow-hidden bg-muted md:w-24 border-2 transition-colors", selectedImage === index ? "border-foreground" : "border-transparent opacity-60")}
+                  className={cn(
+                    "relative aspect-[3/4] w-20 flex-shrink-0 overflow-hidden bg-muted md:w-24 border transition-all snap-start", 
+                    selectedImage === index ? "border-foreground ring-1 ring-foreground opacity-100" : "border-transparent opacity-40 hover:opacity-70"
+                  )}
                 >
                   <OptimizedImage src={image} alt={`${product.name} miniatura ${index + 1}`} className="h-full w-full object-cover" width={96} height={128} />
                 </button>
               ))}
             </div>
-
           </section>
 
           <section className="space-y-6 md:space-y-8 px-4 md:px-0">
