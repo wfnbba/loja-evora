@@ -629,11 +629,12 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                       <div className="flex justify-between items-start gap-4">
                         <h4 className="text-sm font-bold uppercase tracking-widest leading-relaxed line-clamp-2">{item.name}</h4>
                         <div className="flex flex-col items-end shrink-0">
-                          <p className={cn("text-[14px] font-bold tracking-wider", item.price === 0 && "text-green-600")}>
+                          <p className={cn("text-base font-bold tracking-wider", item.price === 0 && "text-green-600")}>
                             {item.price === 0 ? "GRÁTIS" : `R$ ${currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`}
                           </p>
                           {item.originalPrice && item.originalPrice > item.price && (
-                            <p className="text-[11px] text-muted-foreground/50 line-through tracking-tighter">
+                            <p className="text-xs text-muted-foreground/50 line-through tracking-tighter">
+
                               R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                             </p>
                           )}
