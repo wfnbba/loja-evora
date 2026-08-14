@@ -46,10 +46,10 @@ function Index() {
           <div className="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-3 md:gap-x-8 lg:grid-cols-4">
 
             {localProducts.map((product) => (
-              <Link key={product.id} to="/produtos/$productId" params={{ productId: product.id }} className="group">
+              <div key={product.id} className="group cursor-pointer">
                 <Card className="cursor-pointer border-none bg-transparent shadow-none">
                   <CardContent className="p-0">
-                    <div className="relative mb-4 aspect-[3/4] overflow-hidden bg-muted md:mb-6">
+                    <Link to="/produtos/$productId" params={{ productId: product.id }} className="relative mb-4 block aspect-[3/4] overflow-hidden bg-muted md:mb-6">
                       <OptimizedImage
                         src={product.images[0] || ""}
                         alt={product.name}
@@ -57,15 +57,19 @@ function Index() {
                         width={400}
                         height={533}
                       />
-                    </div>
+                    </Link>
                     <div className="space-y-1 text-center">
                       <h2 className="text-xs font-bold uppercase tracking-widest md:text-sm line-clamp-2 min-h-[2.5rem] flex items-center justify-center">
                         {product.name}
                       </h2>
                       <div className="mt-2">
-                        <div className="w-full rounded-none border border-foreground/20 text-xs uppercase tracking-widest py-3 flex items-center justify-center hover:bg-foreground hover:text-background transition-all">
+                        <Link 
+                          to="/produtos/$productId" 
+                          params={{ productId: product.id }}
+                          className="w-full rounded-none border border-foreground/20 text-xs uppercase tracking-widest py-3 flex items-center justify-center hover:bg-foreground hover:text-background transition-all"
+                        >
                           Ver Detalhes
-                        </div>
+                        </Link>
                       </div>
                       <div className="flex items-center justify-center gap-2 mt-2">
 
@@ -98,7 +102,7 @@ function Index() {
                     </div>
                   </CardContent>
                 </Card>
-              </Link>
+              </div>
             ))}
           </div>
         </section>
