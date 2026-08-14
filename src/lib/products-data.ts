@@ -37,10 +37,16 @@ import alvorada2 from "@/assets/products/alvorada-v2-2.jpg";
 import alvorada3 from "@/assets/products/alvorada-v2-3.jpg";
 import alvorada4 from "@/assets/products/alvorada-v2-4.jpg";
 
-import auroraCafe1 from "@/assets/products/aurora-cafe-1.jpg";
-import auroraCafe2 from "@/assets/products/aurora-cafe-2.jpg";
-import auroraCafe3 from "@/assets/products/aurora-cafe-3.jpg";
-import auroraCafe4 from "@/assets/products/aurora-cafe-4.jpg";
+import auroraCafe1 from "@/assets/products/aurora-cafe-v2-1.png.asset.json";
+import auroraCafe2 from "@/assets/products/aurora-cafe-v2-2.png.asset.json";
+import auroraCafe3 from "@/assets/products/aurora-cafe-v2-3.png.asset.json";
+import auroraCafe4 from "@/assets/products/aurora-cafe-v2-4.png.asset.json";
+import auroraCafe5 from "@/assets/products/aurora-cafe-v2-5.png.asset.json";
+import auroraCafe6 from "@/assets/products/aurora-cafe-v2-6.png.asset.json";
+import auroraCafe7 from "@/assets/products/aurora-cafe-v2-7.png.asset.json";
+import auroraCafe8 from "@/assets/products/aurora-cafe-v2-8.png.asset.json";
+import auroraCafe9 from "@/assets/products/aurora-cafe-v2-9.png.asset.json";
+import auroraCafe10 from "@/assets/products/aurora-cafe-v2-10.png.asset.json";
 
 import auroraMarfim1 from "@/assets/products/aurora-marfim-1.png.asset.json";
 import auroraMarfim2 from "@/assets/products/aurora-marfim-2.png.asset.json";
@@ -172,9 +178,20 @@ export const products: Product[] = [
     name: "Vestido Évora Aurora Café",
     price: 479,
     description: "Vestido midi em tom café, com cintura marcada e saia ampla. A tonalidade profunda atualiza uma silhueta clássica.",
-    images: [auroraCafe1, auroraCafe2, auroraCafe3, auroraCafe4],
+    images: [
+      auroraCafe1.url,
+      auroraCafe2.url,
+      auroraCafe3.url,
+      auroraCafe4.url,
+      auroraCafe5.url,
+      auroraCafe6.url,
+      auroraCafe7.url,
+      auroraCafe8.url,
+      auroraCafe9.url,
+      auroraCafe10.url
+    ],
     sizes,
-    reviews: [{ user: "Beatriz L.", comment: "A cor é sofisticada e o corte ficou certinho no corpo.", rating: 5, image: auroraCafe1 }],
+    reviews: [{ user: "Beatriz L.", comment: "A cor é sofisticada e o corte ficou certinho no corpo.", rating: 5, image: auroraCafe1.url }],
   },
   {
     id: "vestido-monument-noir",
