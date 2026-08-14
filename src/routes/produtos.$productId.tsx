@@ -229,16 +229,16 @@ function ProductPage() {
 
             {product.includedGift && (
               <div className="mt-4 space-y-4">
-                <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">Brinde Exclusivo Ganho</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Brinde Exclusivo Ganho</p>
                 <div className="group relative flex items-center justify-between border-2 border-dashed border-[#4a3f35]/30 p-5 bg-[#4a3f35]/5 transition-all hover:bg-[#4a3f35]/10 overflow-hidden cursor-default">
                   {/* Badge de Destaque */}
                   <div className="absolute -right-8 -top-8 size-20 rotate-45 bg-[#4a3f35] flex items-end justify-center pb-2">
-                    <span className="text-[8px] font-bold text-[#fdfbf7] uppercase tracking-tighter">GRÁTIS</span>
+                    <span className="text-[10px] font-bold text-[#fdfbf7] uppercase tracking-tighter">GRÁTIS</span>
                   </div>
                   
                   <div className="flex items-center gap-5">
                     {/* Seletor Visual de Cor para o Brinde */}
-                    <div className="relative flex size-12 items-center justify-center rounded-full border-2 border-foreground p-1 ring-1 ring-foreground ring-offset-2 shadow-lg bg-white">
+                    <div className="relative flex size-14 items-center justify-center rounded-full border-2 border-foreground p-1 ring-1 ring-foreground ring-offset-2 shadow-lg bg-white">
                       <span 
                         className="h-full w-full rounded-full shadow-inner"
                         style={{ backgroundColor: product.includedGift.colorValue || "#3d2b1f" }}
@@ -247,13 +247,14 @@ function ProductPage() {
                     </div>
                     
                     <div className="flex flex-col gap-1.5">
-                      <h4 className="text-[12px] font-bold uppercase tracking-[0.15em] text-[#4a3f35]">{product.includedGift.name}</h4>
+                      <h4 className="text-sm font-bold uppercase tracking-widest text-[#4a3f35] leading-tight">{product.includedGift.name}</h4>
                       <div className="flex items-center gap-3">
-                        <span className="text-[9px] font-medium uppercase tracking-widest text-[#4a3f35]/70">Cor: {product.includedGift.color}</span>
-                        <span className="text-[9px] font-medium uppercase tracking-widest text-[#4a3f35]/70">Tam: Único</span>
+                        <span className="text-[11px] font-bold uppercase tracking-widest text-[#4a3f35]/70">Cor: {product.includedGift.color}</span>
+                        <span className="text-[11px] font-bold uppercase tracking-widest text-[#4a3f35]/70">Tam: Único</span>
                       </div>
                     </div>
                   </div>
+
 
                   <div className="flex flex-col items-end gap-1 pr-4">
                     <span className="text-[10px] text-[#4a3f35]/40 line-through decoration-1 tracking-widest">R$ 49,90</span>
