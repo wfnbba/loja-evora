@@ -319,11 +319,12 @@ function ProductPage() {
                       const percentage = (count / totalForPercentage) * 100;
                       return (
                         <div key={star} className="flex items-center gap-4">
-                          <span className="w-4 text-xs font-light">{star}</span>
-                          <Star className="size-3 fill-current" />
-                          <Progress value={percentage} className="h-1 flex-1" />
-                          <span className="w-12 text-right text-[10px] tabular-nums text-muted-foreground">{count.toLocaleString("pt-BR")}</span>
+                          <span className="w-5 text-sm font-bold">{star}</span>
+                          <Star className="size-4 fill-current" />
+                          <Progress value={percentage} className="h-2 flex-1" />
+                          <span className="w-12 text-right text-xs tabular-nums text-muted-foreground font-medium">{count.toLocaleString("pt-BR")}</span>
                         </div>
+
                       );
                     })}
                   </div>
