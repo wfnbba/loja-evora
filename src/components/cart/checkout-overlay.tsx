@@ -278,7 +278,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col lg:flex-row h-full">
+      <div className="flex flex-1 flex-col lg:flex-row h-full overflow-hidden">
         {/* Coluna Esquerda: Formulário (ou QR Code) */}
         <div className="flex-1 overflow-y-auto custom-scrollbar p-6 md:p-10 lg:p-16 lg:border-r lg:border-border/50">
           {step === "form" ? (
