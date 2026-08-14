@@ -154,9 +154,11 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const totalItems = useCartStore((state) => state.totalItems());
 
   useEffect(() => {
+    setMounted(true);
     const handleOpenCart = () => setIsCartOpen(true);
     window.addEventListener('open-cart', handleOpenCart);
     return () => window.removeEventListener('open-cart', handleOpenCart);
@@ -181,7 +183,7 @@ function Header() {
               onClick={() => setIsCartOpen(true)}
               className="text-sm font-medium tracking-[0.2em] uppercase hover:bg-transparent px-0 cursor-pointer"
             >
-              Carrinho ({totalItems})
+              Carrinho ({mounted ? totalItems : 0})
             </Button>
           </div>
         </div>

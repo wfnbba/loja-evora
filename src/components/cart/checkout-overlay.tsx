@@ -243,36 +243,30 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
               const discountPercentage = item.originalPrice ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0;
               
               return (
-                <div key={`${item.id}-${item.size}`} className="flex gap-4">
-                  <div className="relative aspect-[3/4] w-14 shrink-0 overflow-hidden bg-muted border border-border/30">
-                    <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={56} height={75} />
-                    <span className="absolute -right-2 -top-2 flex size-5 items-center justify-center rounded-full bg-foreground text-background text-[10px] font-medium">
+                <div key={`${item.id}-${item.size}`} className="flex gap-4 items-center py-2 border-b border-border/10 last:border-0">
+                  <div className="relative aspect-[3/4] w-16 shrink-0 overflow-hidden bg-muted border border-border/30 rounded-sm">
+                    <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={64} height={85} />
+                    <span className="absolute -right-1 -top-1 flex size-5 items-center justify-center rounded-full bg-foreground text-background text-[10px] font-bold shadow-sm">
                       {item.quantity}
                     </span>
                   </div>
-                  <div className="flex flex-1 flex-col justify-center gap-1">
-                    <h4 className="text-[11px] font-bold uppercase tracking-widest leading-tight">{item.name}</h4>
+                  <div className="flex flex-1 flex-col justify-center gap-0.5">
+                    <h4 className="text-[11px] font-bold uppercase tracking-widest leading-tight line-clamp-1">{item.name}</h4>
                     <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Tamanho: {item.size}</p>
-                    <div className="flex flex-col gap-0.5">
-                      <div className="flex items-center gap-2">
-                        <p className="text-[11px] font-bold">
-                          R$ {currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                    
+                    <div className="flex items-center gap-2 mt-1">
+                      <p className="text-[11px] font-bold">
+                        R$ {currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                      </p>
+                      {item.originalPrice && (
+                        <p className="text-[9px] text-muted-foreground/50 line-through">
+                          R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                         </p>
-                        {item.originalPrice && (
-                          <p className="text-[9px] text-muted-foreground/50 line-through">
-                            R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                          </p>
-                        )}
-                      </div>
+                      )}
                       {discountAmount > 0 && (
-                        <div className="flex items-center gap-2">
-                          <span className="text-[8px] bg-green-100 text-green-700 px-1.5 py-0.5 font-bold uppercase tracking-tighter">
-                            {discountPercentage}% OFF
-                          </span>
-                          <span className="text-[8px] text-green-600 font-bold uppercase tracking-widest">
-                            Economize R$ {discountAmount.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                          </span>
-                        </div>
+                        <span className="text-[8px] bg-green-100 text-green-700 px-1 py-0.5 font-bold uppercase tracking-tighter">
+                          {discountPercentage}% OFF
+                        </span>
                       )}
                     </div>
                   </div>
@@ -302,13 +296,13 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
       <div className="flex flex-1 flex-col lg:flex-row h-full overflow-hidden">
         {/* Coluna Esquerda: Formulário (ou QR Code) */}
-        <div className="flex-1 overflow-y-auto custom-scrollbar p-6 md:p-10 lg:p-16 lg:border-r lg:border-border/50">
+        <div className="flex-1 overflow-y-auto custom-scrollbar p-4 md:p-8 lg:p-12 lg:border-r lg:border-border/50">
           {step === "form" ? (
-            <form onSubmit={handleCreatePayment} className="max-w-xl mx-auto space-y-12">
-              <div className="space-y-8">
-                <div className="flex items-center gap-3">
-                  <span className="flex size-7 md:size-8 items-center justify-center rounded-full bg-foreground text-background text-xs md:text-sm font-bold">1</span>
-                  <h3 className="text-sm md:text-base font-bold uppercase tracking-[0.25em]">Informações de Contato</h3>
+            <form onSubmit={handleCreatePayment} className="max-w-xl mx-auto space-y-10">
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 border-b border-border/50 pb-4">
+                  <span className="flex size-6 md:size-7 items-center justify-center rounded-full bg-foreground text-background text-[10px] md:text-xs font-bold">1</span>
+                  <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em]">Contato</h3>
                 </div>
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <div className="space-y-3">
@@ -337,10 +331,10 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 </div>
               </div>
 
-              <div className="space-y-8">
-                <div className="flex items-center gap-3">
-                  <span className="flex size-7 md:size-8 items-center justify-center rounded-full bg-foreground text-background text-xs md:text-sm font-bold">2</span>
-                  <h3 className="text-sm md:text-base font-bold uppercase tracking-[0.25em]">Endereço de Entrega</h3>
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 border-b border-border/50 pb-4">
+                  <span className="flex size-6 md:size-7 items-center justify-center rounded-full bg-foreground text-background text-[10px] md:text-xs font-bold">2</span>
+                  <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em]">Entrega</h3>
                 </div>
                 <div className="grid grid-cols-1 gap-6">
                   <div className="space-y-3">
@@ -476,10 +470,10 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 </div>
               </div>
 
-              <div className="space-y-8">
-                <div className="flex items-center gap-3">
-                  <span className="flex size-7 md:size-8 items-center justify-center rounded-full bg-foreground text-background text-xs md:text-sm font-bold">3</span>
-                  <h3 className="text-sm md:text-base font-bold uppercase tracking-[0.25em]">Pagamento Seguro</h3>
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 border-b border-border/50 pb-4">
+                  <span className="flex size-6 md:size-7 items-center justify-center rounded-full bg-foreground text-background text-[10px] md:text-xs font-bold">3</span>
+                  <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em]">Pagamento</h3>
                 </div>
                 <div className="border-2 border-foreground p-6 flex items-center justify-between">
                   <div className="flex items-center gap-4">
@@ -508,10 +502,10 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 >
                   {loading ? <Loader2 className="mr-2 size-5 animate-spin" /> : "Gerar PIX QR Code"}
                 </Button>
-                <div className="flex flex-col items-center gap-4 py-4 border-t border-border/50">
-                  <div className="flex items-center gap-4 opacity-70">
-                    <ShieldCheck className="size-4" />
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Pagamento 100% Criptografado</span>
+                <div className="flex flex-col items-center gap-4 py-8 border-t border-border/50 bg-muted/5">
+                  <div className="flex items-center gap-4 text-foreground/80">
+                    <ShieldCheck className="size-5 text-green-600" />
+                    <span className="text-[11px] font-bold uppercase tracking-[0.2em]">Pagamento Seguro & Criptografado</span>
                   </div>
                   <div className="flex items-center gap-6 opacity-60 scale-75 md:scale-90">
                     <img src={pixLogoAsset.url} alt="PIX" className="h-8 w-auto" />
@@ -588,40 +582,37 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 const discountPercentage = item.originalPrice ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0;
 
                 return (
-                  <div key={`${item.id}-${item.size}`} className="flex gap-6 group">
-                    <div className="relative aspect-[3/4] w-24 shrink-0 overflow-hidden bg-white border border-border/50 group-hover:border-foreground/30 transition-colors">
-                      <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={96} height={128} />
-                      <span className="absolute -right-3 -top-3 flex size-7 items-center justify-center rounded-full bg-foreground text-background text-[11px] font-bold shadow-lg">
+                  <div key={`${item.id}-${item.size}`} className="flex gap-5 group items-center py-2 border-b border-border/10 last:border-0">
+                    <div className="relative aspect-[3/4] w-20 shrink-0 overflow-hidden bg-white border border-border/50 group-hover:border-foreground/30 transition-colors rounded-sm">
+                      <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={80} height={107} />
+                      <span className="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-foreground text-background text-[10px] font-bold shadow-md">
                         {item.quantity}
                       </span>
                     </div>
-                    <div className="flex flex-1 flex-col justify-center gap-2">
-                      <h4 className="text-[12px] font-bold uppercase tracking-[0.2em] leading-relaxed">{item.name}</h4>
+                    <div className="flex flex-1 flex-col justify-center gap-1">
+                      <h4 className="text-[12px] font-bold uppercase tracking-[0.2em] leading-relaxed line-clamp-1">{item.name}</h4>
                       <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Tamanho: {item.size}</p>
                       
-                      <div className="flex flex-col gap-1 mt-1">
-                        <div className="flex items-center gap-3">
-                          <p className="text-[14px] font-bold tracking-wider">
-                            R$ {currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                      <div className="flex items-center gap-3 mt-1">
+                        <p className="text-[14px] font-bold tracking-wider">
+                          R$ {currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                        </p>
+                        {item.originalPrice && (
+                          <p className="text-[11px] text-muted-foreground/50 line-through tracking-tighter">
+                            R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                           </p>
-                          {item.originalPrice && (
-                            <p className="text-[11px] text-muted-foreground/50 line-through tracking-tighter">
-                              R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                            </p>
-                          )}
-                        </div>
-                        
+                        )}
                         {discountAmount > 0 && (
-                          <div className="flex flex-col gap-1">
-                            <span className="text-[9px] w-fit bg-green-100 text-green-700 px-2 py-0.5 font-bold uppercase tracking-widest">
-                              {discountPercentage}% OFF
-                            </span>
-                            <span className="text-[9px] text-green-600 font-bold uppercase tracking-[0.15em]">
-                              Você economiza R$ {discountAmount.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                            </span>
-                          </div>
+                          <span className="text-[9px] bg-green-100 text-green-700 px-2 py-0.5 font-bold uppercase tracking-widest">
+                            {discountPercentage}% OFF
+                          </span>
                         )}
                       </div>
+                      {discountAmount > 0 && (
+                        <span className="text-[9px] text-green-600 font-bold uppercase tracking-[0.15em]">
+                          Você economiza R$ {discountAmount.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                        </span>
+                      )}
                     </div>
                   </div>
                 );
