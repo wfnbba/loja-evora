@@ -79,9 +79,11 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
   const handleCreatePayment = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    const doc = formData.document.trim();
-    if (doc.length < 1) {
-      toast.error("Por favor, informe seu documento");
+    // Permite qualquer valor ou vazio para documento e telefone, conforme pedido do usuário
+    // Apenas validamos que o e-mail tem um formato mínimo e que o CEP tem 8 dígitos
+    
+    if (!formData.email.includes("@")) {
+      toast.error("E-mail inválido");
       return;
     }
 
