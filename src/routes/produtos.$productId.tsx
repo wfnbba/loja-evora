@@ -55,7 +55,16 @@ function ProductPage() {
 
   const addToCart = async () => {
     if (product.sizes.length > 0 && !selectedSize) {
-      toast.error("Por favor, selecione um tamanho");
+      toast.error("Adicione um tamanho primeiro", {
+        className: "bg-red-50 text-red-600 border-red-100",
+      });
+      return;
+    }
+    
+    if (product.colors && product.colors.length > 0 && !selectedColor) {
+      toast.error("Adicione uma cor primeiro", {
+        className: "bg-red-50 text-red-600 border-red-100",
+      });
       return;
     }
     
@@ -246,8 +255,12 @@ function ProductPage() {
             <div className="flex flex-col gap-4">
               <Button 
                 onClick={addToCart} 
-                disabled={product.sizes.length > 0 && !selectedSize} 
-                className="w-full rounded-none py-8 uppercase tracking-[0.2em] utmify"
+                className={cn(
+                  "w-full rounded-none py-8 uppercase tracking-[0.2em] transition-all duration-300 utmify",
+                  (!selectedSize || (product.colors && product.colors.length > 0 && !selectedColor)) 
+                    ? "bg-[#4a3f35]/40 hover:bg-[#4a3f35]/50" 
+                    : "bg-[#4a3f35] hover:bg-[#4a3f35]/90"
+                )}
               >
                 <ShoppingBag className="mr-3 size-5" />
                 {added ? "ADICIONADO AO CARRINHO" : "ADICIONAR AO CARRINHO"}
