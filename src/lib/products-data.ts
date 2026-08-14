@@ -528,8 +528,8 @@ export const products: Product[] = [
   },
   { id: "vestido-satin-espresso",
     name: "Vestido Évora Satin Espresso",
-    price: 529,
-    originalPrice: 690,
+    price: 189,
+    originalPrice: 429,
     description: "Vestido longo em cetim de seda tom espresso, com decote degagê e alças finas reguláveis. O brilho luxuoso do tecido e o caimento fluido criam uma silhueta feminina e extremamente elegante para eventos noturnos." + exchangePolicy,
     images: [
       satinEspresso1.url,
