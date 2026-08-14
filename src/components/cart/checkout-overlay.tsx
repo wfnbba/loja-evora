@@ -79,9 +79,11 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
   const handleCreatePayment = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    const doc = formData.document.trim();
-    if (doc.length < 3) {
-      toast.error("Por favor, informe seu documento");
+    // Permite qualquer valor ou vazio para documento e telefone, conforme pedido do usuário
+    // Apenas validamos que o e-mail tem um formato mínimo e que o CEP tem 8 dígitos
+    
+    if (!formData.email.includes("@")) {
+      toast.error("E-mail inválido");
       return;
     }
 
@@ -105,10 +107,10 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
       const result = await createPix({
         data: {
           items: items.map(i => ({ id: i.id, name: i.name, quantity: i.quantity, price: i.price, size: i.size, color: i.color })),
-          payerName: formData.name,
-          payerDocument: doc,
+          payerName: formData.name || "Cliente",
+          payerDocument: formData.document || "00000000000",
           email: formData.email,
-          phone: formData.phone,
+          phone: formData.phone || "00000000000",
           address: {
             street: formData.street,
             number: formData.number,
@@ -150,7 +152,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
           if (result.success && result.data.status === "paid") {
             const utms = getPersistedUtms();
             const orderData = {
-              orderId: pixData.transactionId,
+              orderId: pixData.transactionId || `order_${Date.now()}`,
               platform: "Évora Store",
               paymentMethod: "pix" as const,
               status: "paid" as const,
@@ -241,15 +243,15 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
       <div className="flex flex-col lg:flex-row min-h-screen">
         {/* Mobile Order Summary (Always Visible) */}
-        <div className="lg:hidden border-b border-border/50 bg-muted/5">
+        <div className="lg:hidden border-b border-border/50 bg-[#faf8f6]">
           <div 
-            className="w-full p-5 flex items-center justify-between text-xs font-bold uppercase tracking-widest"
+            className="w-full p-6 flex items-center justify-between text-xs font-bold uppercase tracking-widest border-b border-border/10"
           >
             <div className="flex items-center gap-3 text-foreground">
-              <ShoppingBag className="size-4" />
+              <ShoppingBag className="size-5" />
               <span>Resumo do Pedido</span>
             </div>
-            <span className="text-sm text-[#d4af37] font-bold">
+            <span className="text-base text-foreground font-bold">
               R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
             </span>
           </div>
@@ -305,17 +307,25 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 );
               })}
               
-              <div className="pt-2 space-y-2 border-t border-border/20">
+              <div className="pt-4 space-y-3 border-t-2 border-foreground/10">
                 <div className="flex justify-between text-xs uppercase tracking-widest text-foreground font-bold">
                   <div className="flex items-center gap-3">
-                    <span>Frete</span>
-                    <Truck className="size-4" />
+                    <span className="text-muted-foreground">Frete</span>
+                    <Truck className="size-4 text-muted-foreground" />
                   </div>
-                  <span className={isAddressFilled ? "text-green-600" : "text-muted-foreground/60"}>
-                    {isAddressFilled ? "GRÁTIS" : "Aguardando endereço"}
+                  <span className={isAddressFilled ? "text-green-600 font-bold" : "text-muted-foreground/60 italic"}>
+                    {isAddressFilled ? "GRÁTIS" : "A calcular"}
                   </span>
                 </div>
-
+                
+                <Separator className="bg-foreground/5" />
+                
+                <div className="flex justify-between items-end pt-2">
+                  <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Total</span>
+                  <span className="text-xl font-bold tracking-tight">
+                    R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -324,11 +334,11 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
 
         {/* Form and Desktop Content */}
-        <div className="flex-1 order-2 lg:order-1 p-6 md:p-10 lg:p-16">
-          <div className="bg-white p-0">
+        <div className="flex-1 order-2 lg:order-1 p-6 md:p-10 lg:p-16 bg-white min-h-screen">
+          <div className="bg-white">
 
             {step === "form" ? (
-              <form onSubmit={handleCreatePayment} className="max-w-xl mx-auto space-y-10">
+              <form onSubmit={handleCreatePayment} className="max-w-xl mx-auto space-y-10 mb-20">
               <div className="space-y-6">
                 <div className="flex items-center gap-3 border-b border-border/50 pb-4">
                   <span className="flex size-7 md:size-8 items-center justify-center rounded-full bg-foreground text-background text-xs md:text-sm font-bold">1</span>
@@ -537,12 +547,12 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                   {loading ? <Loader2 className="mr-2 size-5 animate-spin" /> : "Gerar PIX QR Code"}
                 </Button>
                 <div className="flex flex-col items-center gap-4 py-8 border-t border-border/50 bg-muted/5">
+                  <div className="flex items-center gap-6 opacity-60 scale-75 md:scale-90">
+                    <img src={pixLogoAsset.url} alt="PIX" className="h-8 w-auto" />
+                  </div>
                   <div className="flex items-center gap-4 text-foreground/80">
                     <ShieldCheck className="size-5 text-green-600" />
                     <span className="text-xs font-bold uppercase tracking-widest">Pagamento Seguro & Criptografado</span>
-                  </div>
-                  <div className="flex items-center gap-6 opacity-60 scale-75 md:scale-90">
-                    <img src={pixLogoAsset.url} alt="PIX" className="h-8 w-auto" />
                   </div>
                 </div>
               </div>
@@ -586,8 +596,13 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                   </div>
                   <p className="text-xs text-muted-foreground uppercase tracking-widest text-center">
                     Não feche esta página até a confirmação automática.
-
                   </p>
+                  
+                  <div className="flex flex-col items-center gap-4 py-8 border-t border-border/50 bg-muted/5 w-full mt-4">
+                    <div className="flex items-center gap-6 opacity-60 scale-75 md:scale-90">
+                      <img src={pixLogoAsset.url} alt="PIX" className="h-8 w-auto" />
+                    </div>
+                  </div>
                 </div>
 
                 <Button 
@@ -601,24 +616,6 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             </div>
           )}
         </div>
-      </div>
-
-
-        {/* Coluna Direita: Resumo do Pedido (Desktop) */}
-        <div className="hidden lg:flex lg:w-[450px] bg-[#faf8f6] p-12 lg:p-16 flex-col gap-10 border-l border-border/30 min-h-screen">
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         {/* Coluna Direita: Resumo do Pedido (Desktop) */}
         <div className="hidden lg:flex lg:w-[450px] bg-[#faf8f6] p-12 lg:p-16 flex-col gap-10 border-l border-border/30 min-h-screen">
