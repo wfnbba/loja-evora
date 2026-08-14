@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useCartStore } from "@/store/cart-store";
 import {
   Sheet,
@@ -7,8 +8,10 @@ import {
   SheetFooter,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingBag, ChevronLeft } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { CheckoutOverlay } from "./checkout-overlay";
+
 
 interface CartSheetProps {
   open: boolean;
@@ -17,16 +20,41 @@ interface CartSheetProps {
 
 export function CartSheet({ open, onOpenChange }: CartSheetProps) {
   const { items, removeItem, updateQuantity, totalPrice } = useCartStore();
+  const [showCheckout, setShowCheckout] = useState(false);
+
+  const handleOpenChange = (val: boolean) => {
+    onOpenChange(val);
+    if (!val) {
+      setTimeout(() => setShowCheckout(false), 300);
+    }
+  };
+
 
   return (
-    <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent className="flex w-full flex-col sm:max-w-md border-l border-border/50 bg-background p-0">
-        <SheetHeader className="border-b border-border/50 p-6">
-          <SheetTitle className="text-xs font-medium uppercase tracking-[0.2em]">Seu Carrinho</SheetTitle>
+    <Sheet open={open} onOpenChange={handleOpenChange}>
+      <SheetContent className="flex w-full flex-col sm:max-w-md border-l border-border/50 bg-background p-0 overflow-hidden">
+        <SheetHeader className="border-b border-border/50 p-6 flex-row items-center justify-between space-y-0">
+          <div className="flex items-center gap-4">
+            {showCheckout && (
+              <button 
+                onClick={() => setShowCheckout(false)}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <ChevronLeft className="size-4" />
+              </button>
+            )}
+            <SheetTitle className="text-xs font-medium uppercase tracking-[0.2em]">
+              {showCheckout ? "Checkout" : "Seu Carrinho"}
+            </SheetTitle>
+          </div>
         </SheetHeader>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          {items.length === 0 ? (
+
+        <div className="flex-1 overflow-y-auto relative">
+          {showCheckout ? (
+            <CheckoutOverlay onClose={() => handleOpenChange(false)} />
+          ) : items.length === 0 ? (
+
             <div className="flex h-full flex-col items-center justify-center space-y-4 text-center">
               <ShoppingBag className="size-12 text-muted-foreground/30" />
               <p className="text-sm font-light tracking-wide text-muted-foreground">Seu carrinho está vazio.</p>
@@ -39,7 +67,8 @@ export function CartSheet({ open, onOpenChange }: CartSheetProps) {
               </Button>
             </div>
           ) : (
-            <div className="space-y-8">
+            <div className="space-y-8 p-6">
+
               {items.map((item) => (
                 <div key={`${item.id}-${item.size}-${item.color}`} className="flex gap-4">
                   <div className="relative aspect-[3/4] w-20 shrink-0 overflow-hidden bg-muted">
@@ -87,7 +116,8 @@ export function CartSheet({ open, onOpenChange }: CartSheetProps) {
           )}
         </div>
 
-        {items.length > 0 && (
+        {items.length > 0 && !showCheckout && (
+
           <SheetFooter className="border-t border-border/50 p-6 flex-col sm:flex-col space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-medium uppercase tracking-[0.2em]">Total</span>
@@ -96,9 +126,13 @@ export function CartSheet({ open, onOpenChange }: CartSheetProps) {
               </span>
             </div>
             <Separator className="bg-border/50" />
-            <Button className="w-full rounded-none py-6 uppercase tracking-[0.2em] font-medium cursor-pointer">
+            <Button 
+              onClick={() => setShowCheckout(true)}
+              className="w-full rounded-none py-6 uppercase tracking-[0.2em] font-medium cursor-pointer"
+            >
               Finalizar Compra
             </Button>
+
             <p className="text-[10px] text-center text-muted-foreground tracking-wide">
               Taxas e frete calculados no checkout.
             </p>
