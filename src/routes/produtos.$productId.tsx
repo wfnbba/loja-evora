@@ -17,10 +17,7 @@ import { Progress } from "@/components/ui/progress";
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'wistia-player': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-        'media-id'?: string;
-        'aspect'?: string;
-      };
+      'wistia-player': any;
     }
   }
 }
