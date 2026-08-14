@@ -435,18 +435,20 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                       </div>
 
                       {/* Info de Frete e Prazo - Só aparece quando CEP está OK */}
-                      <div className="bg-foreground text-background p-6 space-y-3 animate-in fade-in zoom-in duration-500">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            <Truck className="size-5" />
-                            <span className="text-[12px] font-bold uppercase tracking-widest">Entrega Padrão</span>
+                      {formData.cep.length === 8 && (
+                        <div className="bg-foreground text-background p-6 space-y-3 animate-in fade-in zoom-in duration-500">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                              <Truck className="size-5" />
+                              <span className="text-[12px] font-bold uppercase tracking-widest">Entrega Padrão</span>
+                            </div>
+                            <span className="text-[12px] font-bold uppercase tracking-widest text-green-400">Grátis</span>
                           </div>
-                          <span className="text-[12px] font-bold uppercase tracking-widest text-green-400">Grátis</span>
+                          <p className="text-[10px] uppercase tracking-widest text-background/70">
+                            Previsão de entrega: <strong className="text-background">5 dias úteis</strong>
+                          </p>
                         </div>
-                        <p className="text-[10px] uppercase tracking-widest text-background/70">
-                          Previsão de entrega: <strong className="text-background">5 dias úteis</strong>
-                        </p>
-                      </div>
+                      )}
                     </div>
                   )}
                 </div>
