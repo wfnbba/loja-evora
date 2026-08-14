@@ -581,6 +581,8 @@ export const products: Product[] = [
       { name: "Terracota", value: "#a45a52" },
       { name: "Preto", value: "#000000" }
     ],
+    salesCount: 5124,
+    rating: 4.9,
     reviews: [
       { 
         user: "Mariana T.", 
