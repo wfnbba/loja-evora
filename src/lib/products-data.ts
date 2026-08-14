@@ -669,6 +669,7 @@ export const products: Product[] = [
   { id: "saia-renda-romantique",
     name: "Saia Évora Renda Romantique",
     price: 429,
+    originalPrice: 590,
     description: "Saia midi em renda guipure delicada com detalhes florais e transparência sutil. Possui forro em tom nude para destacar o desenho da renda, cós estruturado e fechamento por zíper invisível. Uma peça atemporal que exala feminilidade e elegância." + exchangePolicy,
     images: [
       saiaRenda1.url,
