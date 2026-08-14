@@ -259,7 +259,7 @@ function ProductPage() {
   );
 }
 
-function VideoPlayer({ src, poster }: { src: string; poster?: string }) {
+function VideoPlayer({ src, poster }: { src: string; poster?: string | undefined }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
