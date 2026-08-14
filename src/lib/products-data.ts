@@ -159,7 +159,15 @@ import feedbackAuroraCafe6 from "@/assets/feedbacks/aurora-cafe-6.json";
 import feedbackAuroraCafe7 from "@/assets/feedbacks/aurora-cafe-7.json";
 import feedbackAuroraCafe8 from "@/assets/feedbacks/aurora-cafe-8.json";
 import feedbackAuroraCafe9 from "@/assets/feedbacks/aurora-cafe-9.json";
-
+import feedbackMonumentNoir1 from "@/assets/feedbacks/monument-noir-1.json";
+import feedbackMonumentNoir2 from "@/assets/feedbacks/monument-noir-2.json";
+import feedbackMonumentNoir3 from "@/assets/feedbacks/monument-noir-3.json";
+import feedbackMonumentNoir4 from "@/assets/feedbacks/monument-noir-4.json";
+import feedbackMonumentNoir5 from "@/assets/feedbacks/monument-noir-5.json";
+import feedbackMonumentNoir6 from "@/assets/feedbacks/monument-noir-6.json";
+import feedbackMonumentNoir7 from "@/assets/feedbacks/monument-noir-7.json";
+import feedbackMonumentNoir8 from "@/assets/feedbacks/monument-noir-8.json";
+import feedbackMonumentNoir9 from "@/assets/feedbacks/monument-noir-9.json";
 
 
 
@@ -356,7 +364,63 @@ export const products: Product[] = [
     ],
     sizes,
     colors: [{ name: "Noir/Marfim", value: "#000000" }],
-    reviews: [{ user: "Isabela N.", comment: "Diferente de tudo que eu tinha. A modelagem chama atenção na medida.", rating: 5, image: monumentNoir1.url }],
+    reviews: [
+      { 
+        user: "Thais G.", 
+        comment: "O Monument Noir é uma verdadeira obra de arte. O contraste do preto com o marfim é lindíssimo e as fotos não fazem justiça à beleza real.", 
+        rating: 5, 
+        image: feedbackMonumentNoir1.url 
+      },
+      { 
+        user: "Larissa M.", 
+        comment: "Fiquei impressionada com o caimento. O detalhe no ombro dá um ar de alta costura. O unboxing da Évora é sempre um evento!", 
+        rating: 5, 
+        image: feedbackMonumentNoir2.url 
+      },
+      { 
+        user: "Bárbara S.", 
+        comment: "Veste super bem e o tecido é muito confortável, apesar de ser estruturado. Me senti poderosa com ele.", 
+        rating: 5, 
+        image: feedbackMonumentNoir3.url 
+      },
+      { 
+        user: "Carolina W.", 
+        comment: "A embalagem da marca já mostra o nível do produto. O vestido chegou perfeito e o caimento é impecável.", 
+        rating: 5, 
+        image: feedbackMonumentNoir4.url 
+      },
+      { 
+        user: "Júlia F.", 
+        comment: "O design assimétrico é o ponto alto. É uma peça única e muito elegante. Com certeza comprarei mais na Évora.", 
+        rating: 5, 
+        image: feedbackMonumentNoir5.url 
+      },
+      { 
+        user: "Natália O.", 
+        comment: "Me apaixonei por cada detalhe. O vestido é chique e moderno ao mesmo tempo. O atendimento foi nota 10.", 
+        rating: 5, 
+        image: feedbackMonumentNoir6.url 
+      },
+      { 
+        user: "Manuela V.", 
+        comment: "O capricho na caixa e no envio é surreal. O vestido Monument Noir superou todas as expectativas.", 
+        rating: 5, 
+        image: feedbackMonumentNoir7.url 
+      },
+      { 
+        user: "Viviane A.", 
+        comment: "A silhueta que esse vestido cria é maravilhosa. O marfim é muito iluminado e o preto é profundo. Perfeito!", 
+        rating: 5, 
+        image: feedbackMonumentNoir8.url 
+      },
+      { 
+        user: "Clara R.", 
+        comment: "Experiência de luxo do início ao fim. O produto é de altíssima qualidade. Recomendo de olhos fechados.", 
+        rating: 5, 
+        image: feedbackMonumentNoir9.url 
+      }
+    ],
+
   },
   {
     id: "colete-alvorada",
