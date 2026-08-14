@@ -743,4 +743,24 @@ export const products: Product[] = [
     ],
 
   },
+  {
+    id: "conjunto-rose",
+    name: "Conjunto Évora Rosé",
+    price: 489,
+    description: "Conjunto de alfaiataria em tom rosé composto por colete acinturado e saia longa fluida. Uma produção delicada, elegante e versátil para ocasiões especiais.",
+    images: [ig0, p1b, p1c, p1d],
+    sizes,
+    colors: [{ name: "Rosé", value: "#e2b6b1" }],
+    reviews: [{ user: "Mariana S.", comment: "O conjunto veste muito bem e a cor é linda pessoalmente.", rating: 5, image: p1b }],
+  },
+  {
+    id: "vestido-aurora-rose",
+    name: "Vestido Évora Aurora Rosé",
+    price: 459,
+    description: "Vestido midi rosé com decote fechado, cintura marcada e saia evasê. Um clássico leve que acompanha do almoço ao evento noturno.",
+    images: [ig2, p3b, p3c, p3d],
+    sizes,
+    colors: [{ name: "Rosé", value: "#e2b6b1" }],
+    reviews: [{ user: "Juliana F.", comment: "Caimento impecável e comprimento elegante. Usei e recebi muitos elogios.", rating: 5, image: p3b }],
+  },
 ];
