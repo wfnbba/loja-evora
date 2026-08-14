@@ -214,7 +214,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
 
   return (
-    <div className="flex h-full flex-col overflow-hidden bg-background">
+    <div className="fixed inset-0 z-[100] flex h-full flex-col overflow-hidden bg-background">
       {/* Header Mobile / Tablet */}
       <div className="lg:hidden border-b border-border/50 sticky top-0 bg-background z-30">
         <div className="p-5 flex items-center justify-between">
@@ -245,29 +245,32 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
               const discountPercentage = item.originalPrice ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0;
               
               return (
-                <div key={`${item.id}-${item.size}`} className="flex gap-4 items-center py-2 border-b border-border/10 last:border-0">
-                  <div className="relative aspect-[3/4] w-16 shrink-0 overflow-hidden bg-muted border border-border/30 rounded-sm">
-                    <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={64} height={85} />
-                    <span className="absolute -right-1 -top-1 flex size-5 items-center justify-center rounded-full bg-foreground text-background text-[10px] font-bold shadow-sm">
+                <div key={`${item.id}-${item.size}`} className="flex gap-4 py-3 border-b border-border/10 last:border-0">
+                  <div className="relative size-16 shrink-0 overflow-hidden bg-muted border border-border/30 rounded-sm">
+                    <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={64} height={64} />
+                    <span className="absolute -right-1 -top-1 flex size-5 items-center justify-center rounded-full bg-foreground text-background text-[9px] font-bold shadow-sm">
                       {item.quantity}
                     </span>
                   </div>
-                  <div className="flex flex-1 flex-col justify-center gap-0.5">
-                    <h4 className="text-[11px] font-bold uppercase tracking-widest leading-tight line-clamp-1">{item.name}</h4>
-                    <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Tamanho: {item.size}</p>
-                    
-                    <div className="flex items-center gap-2 mt-1">
-                      <p className="text-[11px] font-bold">
-                        R$ {currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                      </p>
-                      {item.originalPrice && (
-                        <p className="text-[9px] text-muted-foreground/50 line-through">
-                          R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                  <div className="flex flex-1 flex-col justify-center">
+                    <div className="flex justify-between items-start gap-2">
+                      <h4 className="text-[11px] font-bold uppercase tracking-widest leading-tight line-clamp-2">{item.name}</h4>
+                      <div className="flex flex-col items-end shrink-0">
+                        <p className="text-[11px] font-bold">
+                          R$ {currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                         </p>
-                      )}
+                        {item.originalPrice && item.originalPrice > item.price && (
+                          <p className="text-[9px] text-muted-foreground/50 line-through">
+                            R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between mt-1">
+                      <p className="text-[9px] text-muted-foreground uppercase tracking-widest">Tam: {item.size}</p>
                       {discountAmount > 0 && (
-                        <span className="text-[8px] bg-green-100 text-green-700 px-1 py-0.5 font-bold uppercase tracking-tighter">
-                          {discountPercentage}% OFF
+                        <span className="text-[8px] text-green-600 font-bold uppercase tracking-widest">
+                          -{discountPercentage}% OFF
                         </span>
                       )}
                     </div>
@@ -298,7 +301,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
       <div className="flex flex-1 flex-col lg:flex-row h-full overflow-hidden">
         {/* Coluna Esquerda: Formulário (ou QR Code) */}
-        <div className="flex-1 overflow-y-auto custom-scrollbar p-4 md:p-8 lg:p-12 lg:border-r lg:border-border/50">
+        <div className="flex-1 overflow-y-auto custom-scrollbar p-4 md:p-8 lg:p-12 lg:border-r lg:border-border/50 bg-[#fcfaf7]">
           {step === "form" ? (
             <form onSubmit={handleCreatePayment} className="max-w-xl mx-auto space-y-10">
               <div className="space-y-6">
@@ -584,37 +587,41 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 const discountPercentage = item.originalPrice ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0;
 
                 return (
-                  <div key={`${item.id}-${item.size}`} className="flex gap-5 group items-center py-2 border-b border-border/10 last:border-0">
-                    <div className="relative aspect-[3/4] w-20 shrink-0 overflow-hidden bg-white border border-border/50 group-hover:border-foreground/30 transition-colors rounded-sm">
-                      <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={80} height={107} />
+                  <div key={`${item.id}-${item.size}`} className="flex gap-5 py-4 border-b border-border/10 last:border-0">
+                    <div className="relative size-20 shrink-0 overflow-hidden bg-white border border-border/50 rounded-sm">
+                      <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={80} height={80} />
                       <span className="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-foreground text-background text-[10px] font-bold shadow-md">
                         {item.quantity}
                       </span>
                     </div>
-                    <div className="flex flex-1 flex-col justify-center gap-1">
-                      <h4 className="text-[12px] font-bold uppercase tracking-[0.2em] leading-relaxed line-clamp-1">{item.name}</h4>
-                      <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Tamanho: {item.size}</p>
-                      
-                      <div className="flex items-center gap-3 mt-1">
-                        <p className="text-[14px] font-bold tracking-wider">
-                          R$ {currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                        </p>
-                        {item.originalPrice && (
-                          <p className="text-[11px] text-muted-foreground/50 line-through tracking-tighter">
-                            R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                    <div className="flex flex-1 flex-col justify-center">
+                      <div className="flex justify-between items-start gap-4">
+                        <h4 className="text-[12px] font-bold uppercase tracking-[0.2em] leading-relaxed line-clamp-2">{item.name}</h4>
+                        <div className="flex flex-col items-end shrink-0">
+                          <p className="text-[14px] font-bold tracking-wider">
+                            R$ {currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                           </p>
-                        )}
+                          {item.originalPrice && item.originalPrice > item.price && (
+                            <p className="text-[11px] text-muted-foreground/50 line-through tracking-tighter">
+                              R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center justify-between mt-2">
+                        <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Tamanho: {item.size}</p>
                         {discountAmount > 0 && (
-                          <span className="text-[9px] bg-green-100 text-green-700 px-2 py-0.5 font-bold uppercase tracking-widest">
-                            {discountPercentage}% OFF
-                          </span>
+                          <div className="flex flex-col items-end">
+                            <span className="text-[9px] bg-green-100 text-green-700 px-2 py-0.5 font-bold uppercase tracking-widest">
+                              {discountPercentage}% OFF
+                            </span>
+                            <span className="text-[8px] text-green-600 font-bold uppercase tracking-widest mt-1">
+                              Economia de R$ {discountAmount.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                            </span>
+                          </div>
                         )}
                       </div>
-                      {discountAmount > 0 && (
-                        <span className="text-[9px] text-green-600 font-bold uppercase tracking-[0.15em]">
-                          Você economiza R$ {discountAmount.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                        </span>
-                      )}
                     </div>
                   </div>
                 );
