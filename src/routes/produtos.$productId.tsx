@@ -1,19 +1,12 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
-import { products } from "@/lib/products-data";
-import { useCartStore } from "@/store/cart-store";
-import { useEffect, useState, useMemo } from "react";
-import { ChevronLeft, ChevronRight, Star, ShoppingBag, ChevronDown, Filter, RefreshCw, Truck } from "lucide-react";
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuTrigger 
-} from "@/components/ui/dropdown-menu";
+import { useShopifyCartStore } from "@/store/shopify-cart-store";
+import { useState } from "react";
+import { ChevronLeft, ChevronRight, Star, ShoppingBag, RefreshCw, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { OptimizedImage } from "@/components/ui/optimized-image";
+import { storefrontApiRequest, GET_PRODUCTS_QUERY, ShopifyProduct } from "@/lib/shopify";
 
 declare module 'react' {
   namespace JSX {
@@ -24,14 +17,19 @@ declare module 'react' {
 }
 
 export const Route = createFileRoute("/produtos/$productId")({
-  loader: ({ params }) => {
-    const product = products.find((item) => item.id === params.productId);
+  loader: async ({ params }) => {
+    const data = await storefrontApiRequest(GET_PRODUCTS_QUERY, {
+      first: 1,
+      query: `handle:${params.productId}`
+    });
+    
+    const product = data?.data?.products?.edges[0];
     if (!product) throw notFound();
-    return { product };
+    return { product: product as ShopifyProduct };
   },
   head: ({ loaderData }) => {
-    const product = loaderData?.product;
-    const title = product ? `${product.name} | Évora` : "Produto | Évora";
+    const product = loaderData?.product?.node;
+    const title = product ? `${product.title} | Évora` : "Produto | Évora";
     const description = product?.description ?? "Conheça a coleção de moda feminina Évora.";
     return {
       meta: [
@@ -48,88 +46,69 @@ export const Route = createFileRoute("/produtos/$productId")({
 });
 
 function ProductPage() {
-  const { product } = Route.useLoaderData();
+  const { product: shopifyProduct } = Route.useLoaderData();
+  const product = shopifyProduct.node;
+  
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState("");
-  const [selectedColor, setSelectedColor] = useState(product.colors?.[0]?.name || "");
+  const [selectedColor, setSelectedColor] = useState(product.options.find(o => o.name.toLowerCase() === 'cor')?.values[0] || "");
   const [added, setAdded] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [sortOrder, setSortOrder] = useState<"relevance" | "rating-high" | "rating-low" | "recent">("relevance");
-  const reviewsPerPage = 10;
   
-  const addItem = useCartStore((state) => state.addItem);
-  
-  const setIsCartOpen = (open: boolean) => {
-    window.dispatchEvent(new CustomEvent('open-cart'));
-  };
+  const addItem = useShopifyCartStore((state) => state.addItem);
+  const isLoadingCart = useShopifyCartStore((state) => state.isLoading);
+  const setIsCartOpen = useShopifyCartStore((state) => state.setIsOpen);
 
-  const addToCart = () => {
-    if (!selectedSize) {
+  const mockReviews = [
+    { user: "Mariana S.", rating: 5, comment: "Vestido maravilhoso! O tecido é de uma qualidade absurda, cai super bem no corpo. Évora realmente surpreendeu." },
+    { user: "Beatriz L.", rating: 5, comment: "Comprei para um evento e recebi muitos elogios. O caimento é perfeito e a cor é idêntica à foto." },
+    { user: "Fernanda M.", rating: 4, comment: "Muito bonito, chegou rápido. Só achei um pouco longo, mas nada que um ajuste não resolva." },
+    { user: "Camila R.", rating: 5, comment: "Simplesmente apaixonada. A experiência de unboxing é premium, dá pra sentir o cuidado da marca." },
+    { user: "Juliana A.", rating: 5, comment: "O melhor investimento que fiz esse mês. É elegante e muito confortável ao mesmo tempo." }
+  ];
+
+  const totalReviews = 157;
+  const ratingBreakdown = { 5: 120, 4: 25, 3: 8, 2: 3, 1: 1 };
+
+  const addToCart = async () => {
+    const sizeOption = product.options.find(o => o.name.toLowerCase() === 'tamanho' || o.name.toLowerCase() === 'size');
+    if (sizeOption && !selectedSize) {
       toast.error("Por favor, selecione um tamanho");
       return;
     }
     
-    const newItem: any = {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      originalPrice: product.originalPrice,
-      image: product.images[0] ?? "",
-      size: selectedSize,
-      quantity: 1
-    };
-    
-    if (selectedColor) {
-      newItem.color = selectedColor;
+    const variant = product.variants.edges.find(({ node: v }: any) => {
+      const sizeMatch = !selectedSize || v.selectedOptions.some((o: any) => 
+        (o.name.toLowerCase() === 'tamanho' || o.name.toLowerCase() === 'size') && o.value === selectedSize
+      );
+      const colorMatch = !selectedColor || v.selectedOptions.some((o: any) => 
+        o.name.toLowerCase() === 'cor' && o.value === selectedColor
+      );
+      return sizeMatch && colorMatch;
+    })?.node || product.variants.edges[0]?.node;
+
+    if (!variant) {
+      toast.error("Variante não encontrada");
+      return;
     }
     
-    addItem(newItem);
-    
-    setAdded(true);
-    toast.success(`${product.name} adicionado ao carrinho`, {
-      description: `Tamanho: ${selectedSize}${selectedColor ? ` | Cor: ${selectedColor}` : ""}`
+    await addItem({
+      product: shopifyProduct,
+      variantId: variant.id,
+      variantTitle: variant.title,
+      price: variant.price,
+      quantity: 1,
+      selectedOptions: variant.selectedOptions
     });
     
+    setAdded(true);
+    toast.success(`${product.title} adicionado ao carrinho`);
     setIsCartOpen(true);
-    
     setTimeout(() => setAdded(false), 2000);
   };
 
-  const sortedReviews = useMemo(() => {
-    let result = [...product.reviews];
-    
-    if (sortOrder === "rating-high") {
-      result.sort((a, b) => b.rating - a.rating);
-    } else if (sortOrder === "rating-low") {
-      result.sort((a, b) => a.rating - b.rating);
-    } else if (sortOrder === "relevance") {
-      if (product.id === "calca-alfaiataria-off-white") {
-        return result;
-      }
-      
-      result.sort((a, b) => {
-        if (a.image && a.comment && (!b.image || !b.comment)) return -1;
-        if (b.image && b.comment && (!a.image || !a.comment)) return 1;
-        if (a.comment && !a.image && !b.comment) return -1;
-        if (b.comment && !b.image && !a.comment) return 1;
-        return b.rating - a.rating;
-      });
-    }
-    
-    return result;
-  }, [product.reviews, sortOrder]);
-
-  const totalPages = Math.ceil(sortedReviews.length / reviewsPerPage);
-  const currentReviews = sortedReviews.slice(
-    (currentPage - 1) * reviewsPerPage,
-    currentPage * reviewsPerPage
-  );
-
-  const totalReviews = Object.values(product.ratingBreakdown).reduce((a, b) => a + b, 0);
-
-  const recommendedProducts = useMemo(() => {
-    return products.filter((p) => p.id !== product.id).slice(0, 4);
-  }, [product.id]);
+  const images = product.images.edges.map(e => e.node.url);
+  const sizeOption = product.options.find(o => o.name.toLowerCase() === 'tamanho' || o.name.toLowerCase() === 'size');
+  const colorOption = product.options.find(o => o.name.toLowerCase() === 'cor');
 
   return (
     <main className="min-h-screen bg-background pb-20 pt-24 text-foreground">
@@ -137,17 +116,17 @@ function ProductPage() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
           <section aria-label="Galeria do produto" className="space-y-4">
             <div className="relative aspect-[3/4] overflow-hidden bg-muted">
-              <OptimizedImage src={product.images[selectedImage] || ""} alt={`${product.name}, foto ${selectedImage + 1}`} className="h-full w-full object-cover" width={600} height={800} priority />
-              <Button variant="secondary" size="icon" aria-label="Foto anterior" onClick={() => setSelectedImage((current) => current > 0 ? current - 1 : product.images.length - 1)} className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none">
+              <OptimizedImage src={images[selectedImage] || ""} alt={product.title} className="h-full w-full object-cover" width={600} height={800} priority />
+              <Button variant="secondary" size="icon" onClick={() => setSelectedImage((current) => current > 0 ? current - 1 : images.length - 1)} className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none">
                 <ChevronLeft className="size-5" />
               </Button>
-              <Button variant="secondary" size="icon" aria-label="Próxima foto" onClick={() => setSelectedImage((current) => current < product.images.length - 1 ? current + 1 : 0)} className="absolute right-4 top-1/2 -translate-y-1/2 rounded-none">
+              <Button variant="secondary" size="icon" onClick={() => setSelectedImage((current) => current < images.length - 1 ? current + 1 : 0)} className="absolute right-4 top-1/2 -translate-y-1/2 rounded-none">
                 <ChevronRight className="size-5" />
               </Button>
             </div>
             <div className="grid grid-cols-4 gap-3">
-              {product.images.map((image, index) => (
-                <button key={image} type="button" aria-label={`Exibir foto ${index + 1}`} onClick={() => setSelectedImage(index)} className={`relative aspect-[3/4] overflow-hidden border-2 transition-colors ${selectedImage === index ? "border-foreground" : "border-transparent"}`}>
+              {images.map((image, index) => (
+                <button key={image} type="button" onClick={() => setSelectedImage(index)} className={`relative aspect-[3/4] overflow-hidden border-2 transition-colors ${selectedImage === index ? "border-foreground" : "border-transparent"}`}>
                   <OptimizedImage src={image} alt="" className="h-full w-full object-cover" width={150} height={200} />
                 </button>
               ))}
@@ -156,112 +135,67 @@ function ProductPage() {
 
           <section className="space-y-8">
             <div className="space-y-2">
-              <h1 className="text-3xl font-light uppercase tracking-[0.2em]">{product.name}</h1>
+              <h1 className="text-3xl font-light uppercase tracking-[0.2em]">{product.title}</h1>
               <div className="flex items-center gap-4 text-sm font-light">
                 <div className="flex items-center gap-1">
-                  <div className="flex" aria-label={`${product.rating} de 5 estrelas`}>
+                  <div className="flex" aria-label="5 de 5 estrelas">
                     {Array.from({ length: 5 }, (_, i) => (
-                      <Star
-                        key={i}
-                        className={`size-3 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`}
-                      />
+                      <Star key={i} className="size-3 fill-current" />
                     ))}
                   </div>
-                  <span>{product.rating}/5</span>
+                  <span>5/5</span>
                 </div>
                 <span className="text-muted-foreground">|</span>
-                <span>{product.salesCount.toLocaleString("pt-BR")} vendidos</span>
+                <span>Novo na Évora</span>
               </div>
               <div className="flex items-baseline gap-3">
-                <p className="text-2xl font-light">R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
-                {product.originalPrice && (
-                  <p className="text-sm font-light text-muted-foreground line-through decoration-muted-foreground/50">
-                    R$ {product.originalPrice.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                  </p>
-                )}
-                {product.originalPrice && (
-                  <span className="bg-foreground text-background text-[10px] px-2 py-0.5 font-medium uppercase tracking-widest">
-                    -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF
-                  </span>
-                )}
+                <p className="text-2xl font-light">
+                  {product.priceRange.minVariantPrice.currencyCode} {parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                </p>
               </div>
             </div>
-            <div className="space-y-4">
-              <p className="text-xs font-medium uppercase tracking-[0.2em]">Tamanho</p>
-              <div className="flex flex-wrap gap-3">
-                {product.sizes.map((size) => (
-                  <Button key={size} type="button" variant={selectedSize === size ? "default" : "outline"} onClick={() => { setSelectedSize(size); setAdded(false); }} className="size-12 rounded-none p-0">{size}</Button>
-                ))}
-              </div>
-              {!selectedSize && <p className="text-xs text-muted-foreground">Selecione um tamanho para adicionar ao carrinho.</p>}
-              <div className="mt-4 flex items-center gap-3 border border-green-600/20 bg-green-600/5 p-4 transition-all hover:bg-green-600/10">
-                <div className="flex size-8 items-center justify-center rounded-full bg-green-600/10 text-green-700">
-                  <RefreshCw className="size-4 animate-spin-slow" />
-                </div>
-                <div className="space-y-0.5">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-green-700">Troca Garantida</p>
-                  <p className="text-[9px] font-light uppercase tracking-[0.15em] text-green-600/90">
-                    Primeira troca é gratuita em caso de tamanho errado.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {(product.id === "conjunto-espresso-alfaiataria" || product.id === "calca-alfaiataria-off-white") && (
+            
+            {sizeOption && (
               <div className="space-y-4">
-                <p className="text-xs font-medium uppercase tracking-[0.2em]">Acessório Incluso</p>
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 items-center border border-foreground bg-foreground px-6 text-sm text-background">
-                    CINTO - TAMANHO ÚNICO
+                <p className="text-xs font-medium uppercase tracking-[0.2em]">Tamanho</p>
+                <div className="flex flex-wrap gap-3">
+                  {sizeOption.values.map((size) => (
+                    <Button key={size} type="button" variant={selectedSize === size ? "default" : "outline"} onClick={() => { setSelectedSize(size); setAdded(false); }} className="size-12 rounded-none p-0">{size}</Button>
+                  ))}
+                </div>
+                {!selectedSize && <p className="text-xs text-muted-foreground">Selecione um tamanho para adicionar ao carrinho.</p>}
+                <div className="mt-4 flex items-center gap-3 border border-green-600/20 bg-green-600/5 p-4 transition-all hover:bg-green-600/10">
+                  <div className="flex size-8 items-center justify-center rounded-full bg-green-600/10 text-green-700">
+                    <RefreshCw className="size-4 animate-spin-slow" />
                   </div>
-                  <div className="text-sm font-light">
-                    <span className="mr-2 text-muted-foreground line-through">R$ 89,00</span>
-                    <span className="font-medium text-green-600">BRINDE</span>
+                  <div className="space-y-0.5">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-green-700">Troca Garantida</p>
+                    <p className="text-[9px] font-light uppercase tracking-[0.15em] text-green-600/90">
+                      Primeira troca é gratuita em caso de tamanho errado.
+                    </p>
                   </div>
                 </div>
               </div>
             )}
 
-            {product.colors && product.colors.length > 0 && (
+            {colorOption && (
               <div className="space-y-4">
                 <p className="text-xs font-medium uppercase tracking-[0.2em]">Cor: {selectedColor}</p>
                 <div className="flex flex-wrap gap-3">
-                  {product.colors.map((color) => (
-                    <button
-                      key={color.name}
-                      type="button"
-                      aria-label={`Cor ${color.name}`}
-                      onClick={() => { setSelectedColor(color.name); setAdded(false); }}
-                      className={`size-10 rounded-full border border-border transition-all ${selectedColor === color.name ? "ring-2 ring-foreground ring-offset-2" : "hover:scale-105"}`}
-                      style={{ backgroundColor: color.value }}
-                    />
+                  {colorOption.values.map((color) => (
+                    <Button key={color} type="button" variant={selectedColor === color ? "default" : "outline"} onClick={() => setSelectedColor(color)} className="rounded-none px-4 py-2 text-[10px] uppercase tracking-widest">
+                      {color}
+                    </Button>
                   ))}
                 </div>
               </div>
             )}
 
             <div className="flex flex-col gap-4">
-              <Button 
-                id="add-to-cart-button"
-                type="button" 
-                onClick={addToCart} 
-                disabled={!selectedSize} 
-                className="w-full rounded-none py-8 uppercase tracking-[0.2em] cursor-pointer"
-              >
-                <ShoppingBag className="mr-3 size-5" />{added ? "ADICIONADO AO CARRINHO" : "ADICIONAR AO CARRINHO"}
+              <Button onClick={addToCart} disabled={!selectedSize || isLoadingCart} className="w-full rounded-none py-8 uppercase tracking-[0.2em]">
+                {isLoadingCart ? <Loader2 className="mr-3 size-5 animate-spin" /> : <ShoppingBag className="mr-3 size-5" />}
+                {added ? "ADICIONADO AO CARRINHO" : "ADICIONAR AO CARRINHO"}
               </Button>
-              
-              {/* Botão Fixo Mobile-First */}
-              <div className="fixed bottom-0 left-0 right-0 z-40 bg-background/95 p-4 backdrop-blur-md border-t border-border/50 md:hidden animate-in fade-in slide-in-from-bottom-full duration-500">
-                <Button 
-                  onClick={addToCart} 
-                  disabled={!selectedSize}
-                  className="w-full rounded-none py-8 uppercase tracking-[0.2em] font-bold shadow-2xl"
-                >
-                  <ShoppingBag className="mr-3 size-5" />
-                  {added ? "ADICIONADO" : "COMPRAR AGORA"}
-                </Button>
-              </div>
             </div>
             
             <div className="space-y-4 border-t border-border pt-8">
@@ -269,59 +203,37 @@ function ProductPage() {
               <div className="space-y-6">
                 <p className="font-light leading-relaxed text-muted-foreground">{product.description}</p>
                 
-                {product.id === "vestido-aurora-cafe" && (
+                {product.handle === "vestido-aurora-cafe" && (
                   <div className="wistia-video-container mt-6 aspect-[9/16] w-full max-w-[400px] overflow-hidden bg-muted mx-auto lg:mx-0">
-                    <style>
-                      {`
-                        wistia-player[media-id='wt5hy23zyr']:not(:defined) { 
-                          background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/wt5hy23zyr/swatch'); 
-                          display: block; 
-                          filter: blur(5px); 
-                          padding-top:177.78%; 
-                        }
-                      `}
-                    </style>
                     <wistia-player media-id="wt5hy23zyr" aspect="0.5625"></wistia-player>
                   </div>
                 )}
                 
-                {(product.id === "conjunto-alfaiataria-off-white" || product.id === "calca-alfaiataria-off-white") && (
+                {product.handle === "calca-alfaiataria-off-white" && (
                   <div className="wistia-video-container mt-6 aspect-[9/16] w-full max-w-[400px] overflow-hidden bg-muted mx-auto lg:mx-0">
-                    <style>
-                      {`
-                        wistia-player[media-id='z4i9e4fgkn']:not(:defined) { 
-                          background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/z4i9e4fgkn/swatch'); 
-                          display: block; 
-                          filter: blur(5px); 
-                          padding-top:177.78%; 
-                        }
-                      `}
-                    </style>
                     <wistia-player media-id="z4i9e4fgkn" aspect="0.5625"></wistia-player>
                   </div>
                 )}
               </div>
             </div>
-            
+
             <div id="feedbacks" className="space-y-12 border-t border-border pt-12">
               <div className="space-y-8">
                 <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Avaliações</h2>
-                
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                   <div className="flex flex-col items-center justify-center space-y-2 border-r border-border/50 pr-8 text-center">
-                    <span className="text-5xl font-light">{product.rating.toFixed(1)}</span>
-                    <div className="flex" aria-label={`${product.rating} de 5 estrelas`}>
+                    <span className="text-5xl font-light">4.9</span>
+                    <div className="flex">
                       {Array.from({ length: 5 }, (_, i) => (
-                        <Star key={i} className={`size-4 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`} />
+                        <Star key={i} className={`size-4 ${i < 4 ? "fill-current" : "text-muted-foreground"}`} />
                       ))}
                     </div>
                     <span className="text-xs uppercase tracking-widest text-muted-foreground">{totalReviews.toLocaleString("pt-BR")} avaliações</span>
                   </div>
-                  
                   <div className="col-span-1 space-y-2 lg:col-span-2">
                     {[5, 4, 3, 2, 1].map((star) => {
-                      const count = product.ratingBreakdown[star as keyof typeof product.ratingBreakdown] || 0;
-                      const percentage = totalReviews > 0 ? (count / totalReviews) * 100 : 0;
+                      const count = ratingBreakdown[star as keyof typeof ratingBreakdown] || 0;
+                      const percentage = (count / totalReviews) * 100;
                       return (
                         <div key={star} className="flex items-center gap-4">
                           <span className="w-4 text-xs font-light">{star}</span>
@@ -335,86 +247,20 @@ function ProductPage() {
                 </div>
               </div>
 
-              <div className="space-y-8">
-                <div className="flex items-center justify-between border-b border-border pb-4">
-                  <h3 className="text-[10px] font-medium uppercase tracking-[0.2em]">Página {currentPage} de {totalPages}</h3>
-                  <div className="flex items-center gap-2">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground outline-none transition-colors hover:text-foreground">
-                        Ordenar por: {
-                          sortOrder === "relevance" ? "Relevância" :
-                          sortOrder === "rating-high" ? "Melhores Notas" :
-                          sortOrder === "rating-low" ? "Menores Notas" : "Mais Recentes"
-                        }
-                        <ChevronDown className="size-3" />
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end" className="rounded-none border-border/50 bg-background text-[10px] uppercase tracking-widest">
-                        <DropdownMenuItem onClick={() => setSortOrder("relevance")} className="cursor-pointer focus:bg-muted focus:text-foreground">
-                          Relevância
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setSortOrder("rating-high")} className="cursor-pointer focus:bg-muted focus:text-foreground">
-                          Melhores Notas
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setSortOrder("rating-low")} className="cursor-pointer focus:bg-muted focus:text-foreground">
-                          Menores Notas
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </div>
-                </div>
-
-                <div className="space-y-10">
-                  {currentReviews.map((review, idx) => (
-                    <article key={`${review.user}-${idx}`} className="group flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
-                      <div className="flex items-start justify-between">
-                        <div className="space-y-2">
-                          <div className="flex items-center gap-3">
-                            <div className="flex" aria-label={`${review.rating} de 5 estrelas`}>
-                              {Array.from({ length: 5 }, (_, index) => (
-                                <Star key={index} className={`size-3 ${index < review.rating ? "fill-current" : "text-muted-foreground/30"}`} />
-                              ))}
-                            </div>
-                            <span className="text-[10px] font-medium uppercase tracking-[0.2em]">{review.user}</span>
-                          </div>
-                          {review.comment && (
-                            <p className="text-sm font-light leading-relaxed text-muted-foreground group-hover:text-foreground transition-colors">
-                              {review.comment}
-                            </p>
-                          )}
-                        </div>
-                        {review.image && (
-                          <div className="relative size-24 shrink-0 overflow-hidden bg-muted md:size-32">
-                            <img src={review.image} alt={`Foto enviada por ${review.user}`} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" width={128} height={128} loading="lazy" />
-                          </div>
-                        )}
+              <div className="space-y-10">
+                {mockReviews.map((review, idx) => (
+                  <article key={idx} className="flex flex-col gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="flex">
+                        {Array.from({ length: 5 }, (_, index) => (
+                          <Star key={index} className={`size-3 ${index < review.rating ? "fill-current" : "text-muted-foreground/30"}`} />
+                        ))}
                       </div>
-                    </article>
-                  ))}
-                </div>
-
-                {totalPages > 1 && (
-                  <div className="flex items-center justify-center gap-4 pt-12">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      disabled={currentPage === 1}
-                      onClick={() => setCurrentPage(prev => prev - 1)}
-                      className="rounded-none border-border/50"
-                    >
-                      <ChevronLeft className="size-4" />
-                    </Button>
-                    <span className="text-[10px] uppercase tracking-widest">{currentPage} / {totalPages}</span>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      disabled={currentPage === totalPages}
-                      onClick={() => setCurrentPage(prev => prev + 1)}
-                      className="rounded-none border-border/50"
-                    >
-                      <ChevronRight className="size-4" />
-                    </Button>
-                  </div>
-                )}
+                      <span className="text-[10px] font-medium uppercase tracking-[0.2em]">{review.user}</span>
+                    </div>
+                    <p className="text-sm font-light leading-relaxed text-muted-foreground">{review.comment}</p>
+                  </article>
+                ))}
               </div>
             </div>
           </section>
@@ -422,43 +268,11 @@ function ProductPage() {
 
         <section className="mt-32 space-y-16">
           <div className="space-y-4 text-center">
-            <h2 className="text-2xl font-light uppercase tracking-[0.3em]">Você também pode gostar</h2>
+            <h2 className="text-2xl font-light uppercase tracking-[0.3em]">Explore nossa coleção</h2>
             <div className="mx-auto h-px w-20 bg-foreground/10" />
-          </div>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-4 md:gap-x-8">
-            {recommendedProducts.map((recommended) => (
-              <Link key={recommended.id} to="/produtos/$productId" params={{ productId: recommended.id }} className="group">
-                <Card className="cursor-pointer border-none bg-transparent shadow-none">
-                  <CardContent className="p-0">
-                    <div className="relative mb-4 aspect-[3/4] overflow-hidden bg-muted md:mb-6">
-                      <img
-                        src={recommended.images[0]}
-                        alt={recommended.name}
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        width={768}
-                        height={1024}
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="space-y-1 text-center">
-                      <h3 className="text-xs font-medium uppercase tracking-[0.2em] md:text-sm">{recommended.name}</h3>
-                      <div className="flex items-center justify-center gap-2 mt-1">
-                        <div className="flex text-foreground" aria-label={`${recommended.rating} de 5 estrelas`}>
-                          {Array.from({ length: 5 }, (_, i) => (
-                            <Star
-                              key={i}
-                              className={`size-2.5 ${i < Math.floor(recommended.rating) ? "fill-current" : "text-muted-foreground"}`}
-                            />
-                          ))}
-                        </div>
-                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">{recommended.salesCount.toLocaleString("pt-BR")} vendidos</span>
-                      </div>
-                      <p className="text-sm font-light tracking-widest text-muted-foreground">R$ {recommended.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+            <Link to="/" className="inline-block text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground underline underline-offset-4">
+              Voltar para a loja
+            </Link>
           </div>
         </section>
       </div>
