@@ -225,6 +225,11 @@ export interface Product {
     rating: number;
     image?: string;
   }[];
+  includedGift?: {
+    name: string;
+    color: string;
+    price: string;
+  };
 }
 
 
@@ -745,7 +750,7 @@ export const products: Product[] = [
     name: "Conjunto Évora Espresso Alfaiataria",
     price: 139,
     originalPrice: 349,
-    description: "Conjunto de alfaiataria premium composto por colete transpassado com cinto (brinde incluso) e calça wide leg. O tom espresso profundo e o corte impecável trazem uma sofisticação moderna e autoritária, ideal para a mulher que impõe presença. Acompanha cinto exclusivo em couro sintético no mesmo tom. *Acompanha cinto de brinde, tamanho único.*" + exchangePolicy,
+    description: "Conjunto de alfaiataria premium composto por colete transpassado com cinto e calça wide leg. O tom espresso profundo e o corte impecável trazem uma sofisticação moderna e autoritária, ideal para la mulher que impõe presença. Acompanha cinto exclusivo em couro sintético no mesmo tom." + exchangePolicy,
     images: [
       conjuntoEspresso1.url,
       conjuntoEspresso2.url,
@@ -759,6 +764,11 @@ export const products: Product[] = [
       conjuntoEspresso10.url
     ],
     sizes: ["Tamanho Único"],
+    includedGift: {
+      name: "Cinto Premium Espresso",
+      color: "Espresso",
+      price: "Grátis"
+    },
     colors: [{ name: "Espresso", value: "#3d2b1f" },],
     salesCount: 6842,
     rating: 4.9,
@@ -933,7 +943,7 @@ export const products: Product[] = [
     price: 99.0,
     originalPrice: 189.0,
     video: videoCalcaOffWhite.url,
-    description: "A peça que define a elegância moderna. Nossa Calça de Alfaiataria Off-White possui corte reto impecável, pregas frontais que alongam a silhueta e um caimento fluido que exala sofisticação. Ideal para compor looks minimalistas e poderosos. *Acompanha cinto preto de brinde para finalizar o visual com perfeição.*" + exchangePolicy,
+    description: "A peça que define a elegância moderna. Nossa Calça de Alfaiataria Off-White possui corte reto impecável, pregas frontais que alongam a silhueta e um caimento fluido que exala sofisticação. Ideal para compor looks minimalistas e poderosos." + exchangePolicy,
 
     images: [
       (calcaOffWhite1 as any).url,
@@ -946,7 +956,12 @@ export const products: Product[] = [
       (calcaOffWhite9 as any).url,
       (calcaOffWhite10 as any).url,
     ],
-    sizes: ["P", "M", "G", "GG"],
+    sizes: ["Tamanho Único"],
+    includedGift: {
+      name: "Cinto Black Classic",
+      color: "Preto",
+      price: "Grátis"
+    },
     rating: 4.8,
     salesCount: 1842,
     ratingBreakdown: { 5: 1245, 4: 98, 3: 25, 2: 6, 1: 4 },

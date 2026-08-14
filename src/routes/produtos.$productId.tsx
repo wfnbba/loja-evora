@@ -146,6 +146,21 @@ function ProductPage() {
               </div>
             )}
 
+            {product.includedGift && (
+              <div className="space-y-4">
+                <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">Acompanha Brinde</p>
+                <div className="flex items-center justify-between border border-border p-4 bg-muted/30">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[11px] font-bold uppercase tracking-wider">{product.includedGift.name}</span>
+                    <span className="text-[10px] font-light uppercase tracking-tight text-muted-foreground">Cor: {product.includedGift.color}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-medium text-green-600 uppercase tracking-widest bg-green-50 px-2 py-1 border border-green-100">{product.includedGift.price}</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {product.colors && product.colors.length > 0 && (
               <div className="space-y-4">
                 <p className="text-xs font-medium uppercase tracking-[0.2em]">Cor: {selectedColor}</p>
