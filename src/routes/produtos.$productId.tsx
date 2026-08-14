@@ -64,7 +64,7 @@ function ProductPage() {
       id: product.id,
       name: product.name,
       price: product.price,
-      originalPrice: product.originalPrice,
+      originalPrice: product.originalPrice ?? undefined,
       image: product.images[0] || "",
       size: selectedSize || "Único",
       color: selectedColor,
