@@ -107,6 +107,11 @@ import feedbackMarfim3 from "@/assets/feedbacks/marfim-3.json";
 import feedbackMarfim4 from "@/assets/feedbacks/marfim-4.json";
 import feedbackMarfim5 from "@/assets/feedbacks/marfim-5.json";
 import feedbackMarfim6 from "@/assets/feedbacks/marfim-6.json";
+import feedbackMarfim7 from "@/assets/feedbacks/aurora-marfim-6.json";
+import feedbackMarfim8 from "@/assets/feedbacks/aurora-marfim-7.json";
+import feedbackMarfim9 from "@/assets/feedbacks/aurora-marfim-8.json";
+import feedbackMarfim10 from "@/assets/feedbacks/aurora-marfim-9.json";
+import feedbackMarfim11 from "@/assets/feedbacks/aurora-marfim-10.json";
 
 import feedbackEspresso1 from "@/assets/feedbacks/espresso-1.json";
 import feedbackEspresso2 from "@/assets/feedbacks/espresso-2.json";
