@@ -150,7 +150,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 name: formData.name,
                 email: formData.email,
                 phone: formData.phone,
-                document: doc,
+                document: formData.document,
                 country: "BR",
                 address: {
                   street: formData.street,
