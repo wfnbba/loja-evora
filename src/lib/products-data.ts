@@ -59,10 +59,16 @@ import auroraMarfim8 from "@/assets/products/aurora-marfim-8.png.asset.json";
 import auroraMarfim9 from "@/assets/products/aurora-marfim-9.png.asset.json";
 import auroraMarfim10 from "@/assets/products/aurora-marfim-10.png.asset.json";
 
-import monumentNoir1 from "@/assets/products/monument-noir-1.jpg";
-import monumentNoir2 from "@/assets/products/monument-noir-2.jpg";
-import monumentNoir3 from "@/assets/products/monument-noir-3.jpg";
-import monumentNoir4 from "@/assets/products/monument-noir-4.jpg";
+import monumentNoir1 from "@/assets/products/monument-noir-v2-1.png.asset.json";
+import monumentNoir2 from "@/assets/products/monument-noir-v2-2.png.asset.json";
+import monumentNoir3 from "@/assets/products/monument-noir-v2-3.png.asset.json";
+import monumentNoir4 from "@/assets/products/monument-noir-v2-4.png.asset.json";
+import monumentNoir5 from "@/assets/products/monument-noir-v2-5.png.asset.json";
+import monumentNoir6 from "@/assets/products/monument-noir-v2-6.png.asset.json";
+import monumentNoir7 from "@/assets/products/monument-noir-v2-7.png.asset.json";
+import monumentNoir8 from "@/assets/products/monument-noir-v2-8.png.asset.json";
+import monumentNoir9 from "@/assets/products/monument-noir-v2-9.png.asset.json";
+import monumentNoir10 from "@/assets/products/monument-noir-v2-10.png.asset.json";
 
 import saiaRose1 from "@/assets/products/saia-rose-1.jpg";
 import saiaRose2 from "@/assets/products/saia-rose-2.jpg";
@@ -198,9 +204,20 @@ export const products: Product[] = [
     name: "Vestido Évora Monument Noir",
     price: 649,
     description: "Vestido longo de construção assimétrica em preto e marfim. O volume escultural no ombro transforma a peça em protagonista.",
-    images: [monumentNoir1, monumentNoir2, monumentNoir3, monumentNoir4],
+    images: [
+      monumentNoir1.url,
+      monumentNoir2.url,
+      monumentNoir3.url,
+      monumentNoir4.url,
+      monumentNoir5.url,
+      monumentNoir6.url,
+      monumentNoir7.url,
+      monumentNoir8.url,
+      monumentNoir9.url,
+      monumentNoir10.url
+    ],
     sizes,
-    reviews: [{ user: "Isabela N.", comment: "Diferente de tudo que eu tinha. A modelagem chama atenção na medida.", rating: 5, image: monumentNoir1 }],
+    reviews: [{ user: "Isabela N.", comment: "Diferente de tudo que eu tinha. A modelagem chama atenção na medida.", rating: 5, image: monumentNoir1.url }],
   },
   {
     id: "colete-alvorada",
