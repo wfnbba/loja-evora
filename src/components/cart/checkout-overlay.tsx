@@ -582,30 +582,51 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             </h3>
             
             <div className="space-y-8">
-              {items.map((item) => (
-                <div key={`${item.id}-${item.size}`} className="flex gap-6 group">
-                  <div className="relative aspect-[3/4] w-24 shrink-0 overflow-hidden bg-white border border-border/50 group-hover:border-foreground/30 transition-colors">
-                    <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
-                    <span className="absolute -right-3 -top-3 flex size-7 items-center justify-center rounded-full bg-foreground text-background text-[11px] font-bold shadow-lg">
-                      {item.quantity}
-                    </span>
-                  </div>
-                  <div className="flex flex-1 flex-col justify-center gap-2">
-                    <h4 className="text-[12px] font-bold uppercase tracking-[0.2em] leading-relaxed">{item.name}</h4>
-                    <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Variante: {item.size}</p>
-                    <div className="flex items-center gap-2">
-                      <p className="text-[13px] font-medium mt-1 tracking-wider">
-                        R$ {(item.price * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                      </p>
-                      {item.originalPrice && (
-                        <p className="text-[10px] text-muted-foreground/50 line-through mt-1">
-                          R$ {(item.originalPrice * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                        </p>
-                      )}
+              {items.map((item) => {
+                const originalPriceTotal = (item.originalPrice || item.price) * item.quantity;
+                const currentPriceTotal = item.price * item.quantity;
+                const discountAmount = originalPriceTotal - currentPriceTotal;
+                const discountPercentage = item.originalPrice ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0;
+
+                return (
+                  <div key={`${item.id}-${item.size}`} className="flex gap-6 group">
+                    <div className="relative aspect-[3/4] w-24 shrink-0 overflow-hidden bg-white border border-border/50 group-hover:border-foreground/30 transition-colors">
+                      <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
+                      <span className="absolute -right-3 -top-3 flex size-7 items-center justify-center rounded-full bg-foreground text-background text-[11px] font-bold shadow-lg">
+                        {item.quantity}
+                      </span>
+                    </div>
+                    <div className="flex flex-1 flex-col justify-center gap-2">
+                      <h4 className="text-[12px] font-bold uppercase tracking-[0.2em] leading-relaxed">{item.name}</h4>
+                      <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Tamanho: {item.size}</p>
+                      
+                      <div className="flex flex-col gap-1 mt-1">
+                        <div className="flex items-center gap-3">
+                          <p className="text-[14px] font-bold tracking-wider">
+                            R$ {currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                          </p>
+                          {item.originalPrice && (
+                            <p className="text-[11px] text-muted-foreground/50 line-through tracking-tighter">
+                              R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                            </p>
+                          )}
+                        </div>
+                        
+                        {discountAmount > 0 && (
+                          <div className="flex flex-col gap-1">
+                            <span className="text-[9px] w-fit bg-green-100 text-green-700 px-2 py-0.5 font-bold uppercase tracking-widest">
+                              {discountPercentage}% OFF
+                            </span>
+                            <span className="text-[9px] text-green-600 font-bold uppercase tracking-[0.15em]">
+                              Você economiza R$ {discountAmount.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                            </span>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
