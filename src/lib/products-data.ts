@@ -168,6 +168,14 @@ import feedbackMonumentNoir6 from "@/assets/feedbacks/monument-noir-6.json";
 import feedbackMonumentNoir7 from "@/assets/feedbacks/monument-noir-7.json";
 import feedbackMonumentNoir8 from "@/assets/feedbacks/monument-noir-8.json";
 import feedbackMonumentNoir9 from "@/assets/feedbacks/monument-noir-9.json";
+import feedbackAlvorada1 from "@/assets/feedbacks/alvorada-1.json";
+import feedbackAlvorada2 from "@/assets/feedbacks/alvorada-2.json";
+import feedbackAlvorada3 from "@/assets/feedbacks/alvorada-3.json";
+import feedbackAlvorada4 from "@/assets/feedbacks/alvorada-4.json";
+import feedbackAlvorada5 from "@/assets/feedbacks/alvorada-5.json";
+import feedbackAlvorada6 from "@/assets/feedbacks/alvorada-6.json";
+import feedbackAlvorada7 from "@/assets/feedbacks/alvorada-7.json";
+import feedbackAlvorada8 from "@/assets/feedbacks/alvorada-8.json";
 
 
 
@@ -443,16 +451,52 @@ export const products: Product[] = [
     colors: [{ name: "Off-White", value: "#faf9f6" }],
     reviews: [
       { 
-        user: "Carolina P.", 
-        comment: "O corte é impecável e a cor off-white é muito chique. Adorei a barra assimétrica.", 
+        user: "Beatriz L.", 
+        comment: "O colete Alvorada é perfeito! A alfaiataria é de primeiríssima qualidade e o caimento é muito elegante. Amei a experiência de unboxing.", 
         rating: 5, 
-        image: alvorada1.url 
+        image: feedbackAlvorada1.url 
       },
       { 
-        user: "Fernanda T.", 
-        comment: "Veste super bem e o tecido é de altíssima qualidade. Recomendo muito!", 
+        user: "Priscila M.", 
+        comment: "Veste super bem e dá um ar muito sofisticado ao look. O tecido é maravilhoso e a barra assimétrica é um charme extra.", 
         rating: 5, 
-        image: alvorada6.url 
+        image: feedbackAlvorada2.url 
+      },
+      { 
+        user: "Fernanda S.", 
+        comment: "Simplesmente apaixonada por cada detalhe. O capricho da Évora na embalagem e no produto é fora do comum.", 
+        rating: 5, 
+        image: feedbackAlvorada3.url 
+      },
+      { 
+        user: "Renata C.", 
+        comment: "O off-white mais lindo que já vi. O colete é estruturado e muito bem acabado. Chegou rápido e muito bem embalado.", 
+        rating: 5, 
+        image: feedbackAlvorada4.url 
+      },
+      { 
+        user: "Heloísa V.", 
+        comment: "Uma peça essencial no closet. Transmite muita autoridade e elegância. O atendimento da marca é excelente.", 
+        rating: 5, 
+        image: feedbackAlvorada5.url 
+      },
+      { 
+        user: "Camila R.", 
+        comment: "Ficou perfeito no corpo. Os botões são delicados e o corte é impecável. Com certeza vou comprar outras peças.", 
+        rating: 5, 
+        image: feedbackAlvorada6.url 
+      },
+      { 
+        user: "Patrícia D.", 
+        comment: "Recebi meu colete e estou encantada. A qualidade supera marcas famosas. A Évora está de parabéns!", 
+        rating: 5, 
+        image: feedbackAlvorada7.url 
+      },
+      { 
+        user: "Juliana B.", 
+        comment: "O caimento é divino e o toque do tecido é muito premium. O unboxing foi uma delícia, tudo muito cheiroso e bem feito.", 
+        rating: 5, 
+        image: feedbackAlvorada8.url 
       }
     ],
   },
