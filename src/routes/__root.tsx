@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/store/cart-store";
 import { CartSheet } from "@/components/cart/cart-sheet";
 import { useUtmTracking } from "@/hooks/use-utm-tracking";
-import { useCartSync } from "@/hooks/use-cart-sync";
 import logoAsset from "@/assets/logo.png.asset.json";
 import logoTextAsset from "@/assets/logo_text.png.asset.json";
 
@@ -107,7 +106,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   useUtmTracking();
-  useCartSync();
+
 
   const [mounted, setMounted] = useState(false);
   useLayoutEffect(() => {
