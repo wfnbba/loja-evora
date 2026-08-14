@@ -713,7 +713,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             <div className="bg-foreground text-background p-6 space-y-3 shadow-xl">
               <div className="flex items-center gap-3 text-green-400">
                 <ShieldCheck className="size-5" />
-                <p className="text-[11px] uppercase tracking-[0.2em] font-bold">Garantia Évora Luxury</p>
+                <p className="text-xs uppercase tracking-widest font-bold">Garantia Évora Luxury</p>
               </div>
               <p className="text-[10px] text-background/70 uppercase tracking-widest leading-loose">
                 Sua compra está protegida. Receba em 5 dias ou seu dinheiro de volta.
