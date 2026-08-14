@@ -265,22 +265,23 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 const discountPercentage = item.originalPrice ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0;
                 
                 return (
-                  <div key={`${item.id}-${item.size}-${item.color}`} className="flex gap-3 py-3 border-b border-border/10 last:border-0 relative">
-                    <div className="relative size-14 shrink-0 overflow-hidden bg-white border border-border/30 rounded-sm">
-                      <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={56} height={56} />
+                  <div key={`${item.id}-${item.size}-${item.color}`} className="flex gap-4 py-4 border-b border-border/10 last:border-0 relative">
+                    <div className="relative size-20 shrink-0 overflow-hidden bg-white border border-border/30 rounded-sm">
+                      <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={80} height={80} />
                     </div>
-                    <div className="flex flex-1 flex-col justify-center gap-1">
+                    <div className="flex flex-1 flex-col justify-center gap-2">
                       <div className="flex justify-between items-start">
-                        <h4 className="text-[10px] font-bold uppercase tracking-widest leading-tight w-2/3">{item.name}</h4>
+                        <h4 className="text-xs font-bold uppercase tracking-widest leading-tight w-2/3">{item.name}</h4>
                         <div className="flex flex-col items-end">
-                          <p className={cn("text-[10px] font-bold", item.price === 0 && "text-green-600")}>
+                          <p className={cn("text-xs font-bold", item.price === 0 && "text-green-600")}>
                             {item.price === 0 ? "GRÁTIS" : `R$ ${currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`}
                           </p>
                           {item.originalPrice && item.originalPrice > item.price && (
-                            <p className="text-[8px] text-muted-foreground/50 line-through">R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+                            <p className="text-[10px] text-muted-foreground/50 line-through">R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
                           )}
                         </div>
                       </div>
+
                       <div className="flex items-center justify-between">
                         <div className="flex flex-col gap-1">
                           <div className="flex items-center gap-2">
