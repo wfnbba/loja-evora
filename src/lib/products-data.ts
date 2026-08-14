@@ -930,6 +930,7 @@ export const products: Product[] = [
     salesCount: 1842,
     ratingBreakdown: { 5: 1245, 4: 98, 3: 25, 2: 6, 1: 4 },
     reviews: [
+      // 5 Estrelas - Com imagens e comentários detalhados
       { user: "Fernanda O.", comment: "Simplesmente apaixonada por essa calça! O tecido é maravilhoso e o cinto que veio de brinde é lindo e de ótima qualidade. Veste super bem.", rating: 5, image: feedbackCalcaOffWhite1.url },
       { user: "Juliana R.", comment: "A calça é perfeita, o off-white é bem chique. O cinto dá o toque final no look. Chegou muito bem embalada, experiência 10/10.", rating: 5, image: feedbackCalcaOffWhite2.url },
       { user: "Beatriz M.", comment: "Estava receosa por ser tamanho único, mas serviu perfeitamente! O tecido tem um caimento incrível e não é transparente.", rating: 5, image: feedbackCalcaOffWhite3.url },
@@ -939,18 +940,44 @@ export const products: Product[] = [
       { user: "Mariana L.", comment: "Melhor compra que já fiz. A calça é versátil e muito sofisticada. O brinde do cinto é um diferencial enorme.", rating: 5, image: feedbackCalcaOffWhite7.url },
       { user: "Rafaela K.", comment: "Veste muito bem e o material é de primeira. O cinto que acompanha é bem clássico. Recomendo muito!", rating: 5, image: feedbackCalcaOffWhite8.url },
       { user: "Amanda D.", comment: "Perfeição define. O tom off-white é exatamente como na foto. Amei o cinto de presente!", rating: 5, image: feedbackCalcaOffWhite9.url },
-      { user: "Bruna N.", comment: "A calça é maravilhosa, mas o suporte demorou 1 dia para me responder sobre a troca do tamanho. No fim deu tudo certo, a peça é linda.", rating: 4 },
-      { user: "Camila A.", comment: "Muito bonita! O tecido é excelente, mas o tom off-white é levemente mais amarelado do que eu imaginava pelas fotos.", rating: 4 },
-      { user: "Patrícia S.", comment: "Peça linda e clássica. Vale o investimento, apesar de não ser barata. Veste muito bem.", rating: 4 },
+      
+      // 4 Estrelas - 15 com comentário, resto apenas estrelas
+      { user: "Bruna N.", comment: "A calça é maravilhosa, mas o suporte demorou 1 dia para me responder sobre a troca do tamanho. No fim deu tudo certo.", rating: 4 },
+      { user: "Patrícia S.", comment: "Peça linda e clássica. Vale o investimento, apesar de não ser barata. Veste muito bem e o cinto é ótimo.", rating: 4 },
       { user: "Silvia B.", comment: "Veste muito bem, o corte é perfeito. Tive que fazer um pequeno ajuste na barra porque sou baixinha.", rating: 4 },
-      { user: "Vanessa V.", comment: "Gostei bastante da qualidade, mas achei que amassa um pouco fácil. Fora isso, é impecável.", rating: 4 },
-      { user: "Juliana A.", comment: "Bonita, mas achei o tecido um pouco quente para o verão. O cinto é um charme.", rating: 3 },
-      { user: "Mariana N.", comment: "Achei o corte um pouco largo na cintura para o meu corpo, vou precisar ajustar. O tecido é bom.", rating: 3 },
-      { user: "Luciana F.", comment: "Qualidade ok, mas esperava uma experiência de unboxing mais luxuosa pelo preço.", rating: 3 },
-      { user: "Beatriz R.", comment: "O acabamento interno em um dos bolsos veio com uma linha solta. Solicitei a troca, mas a peça em si é bonita.", rating: 2 },
-      { user: "Priscila B.", comment: "Infelizmente o caimento não ficou bom em mim. A cor off-white marca um pouco se não usar a lingerie certa.", rating: 2 },
-      { user: "Aline S.", comment: "O tamanho não condiz com a tabela de medidas para o meu biotipo. Tive que devolver.", rating: 1 },
-      { user: "Silvia A.", comment: "Achei o tecido muito fino para o valor cobrado. Esperava algo mais encorpado.", rating: 1 },
+      { user: "Vanessa V.", comment: "Gostei bastante da qualidade, mas achei que amassa um pouco fácil por ser tecido mais nobre. Fora isso, impecável.", rating: 4 },
+      { user: "Luciana M.", comment: "A entrega demorou um pouquinho mais que o esperado, mas a peça compensa muito. Qualidade nota 10.", rating: 4 },
+      { user: "Renata F.", comment: "O caimento é muito bom. O off-white é elegante, só achei que marca um pouquinho se não usar a peça íntima correta.", rating: 4 },
+      { user: "Cláudia T.", comment: "Maravilhosa! Só dou 4 estrelas porque a caixa chegou um pouco amassada, mas a calça estava intacta.", rating: 4 },
+      { user: "Letícia R.", comment: "Veste muito bem e o cinto de brinde é um charme. Ótima para trabalhar com elegância.", rating: 4 },
+      { user: "Aline G.", comment: "Gostei muito, o tecido é bem fluido. Achei a cintura levemente alta demais para o meu gosto, mas é linda.", rating: 4 },
+      { user: "Tatiane L.", comment: "Acabamento muito bem feito. É uma peça para a vida toda. Vale cada centavo.", rating: 4 },
+      { user: "Priscila C.", comment: "Chiquérrima. O cinto que acompanha é simples mas de bom gosto. Recomendo.", rating: 4 },
+      { user: "Daniela P.", comment: "A calça é um sonho. O tom de branco é perfeito, nem muito amarelado nem muito azulado.", rating: 4 },
+      { user: "Mônica A.", comment: "Muito satisfeita com a compra. A modelagem valoriza bastante o corpo.", rating: 4 },
+      { user: "Fabiola H.", comment: "Linda e confortável. O tecido não pinica e tem um toque sedoso.", rating: 4 },
+      { user: "Simone J.", comment: "Comprei para um evento e recebi mil elogios. A Évora está de parabéns.", rating: 4 },
+      { user: "Gisele W.", comment: "", rating: 4 },
+      { user: "Eliane K.", comment: "", rating: 4 },
+      { user: "Marta U.", comment: "", rating: 4 },
+
+      // 3 Estrelas - Alguns com comentário, outros não
+      { user: "Juliana A.", comment: "Bonita, mas achei o tecido um pouco quente para usar em dias de muito calor aqui no Rio.", rating: 3 },
+      { user: "Mariana N.", comment: "Achei o corte um pouco largo na cintura para o meu corpo, vou precisar mandar na costureira.", rating: 3 },
+      { user: "Luciana F.", comment: "Qualidade ok, mas esperava uma experiência de unboxing mais luxuosa pelo valor da peça.", rating: 3 },
+      { user: "Sandra P.", comment: "", rating: 3 },
+      { user: "Tereza Q.", comment: "", rating: 3 },
+      { user: "Vera Z.", comment: "", rating: 3 },
+
+      // 2 Estrelas - Apenas estrelas
+      { user: "Beatriz R.", comment: "", rating: 2 },
+      { user: "Priscila B.", comment: "", rating: 2 },
+      { user: "Rosa X.", comment: "", rating: 2 },
+
+      // 1 Estrela - Apenas estrelas
+      { user: "Aline S.", comment: "", rating: 1 },
+      { user: "Silvia A.", comment: "", rating: 1 },
+      { user: "Marlene V.", comment: "", rating: 1 },
     ],
   },
 ];
