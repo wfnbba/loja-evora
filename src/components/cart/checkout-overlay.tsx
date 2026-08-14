@@ -12,6 +12,7 @@ import { getPersistedUtms } from "@/hooks/use-utm-tracking";
 import { sendUtmifyOrder } from "@/lib/utmify.functions";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 interface CheckoutOverlayProps {
   onClose: () => void;
@@ -249,7 +250,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             {items.map((item) => (
               <div key={`${item.id}-${item.size}`} className="flex gap-4">
                 <div className="relative aspect-[3/4] w-14 shrink-0 overflow-hidden bg-muted border border-border/30">
-                  <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
+                  <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={56} height={75} />
                   <span className="absolute -right-2 -top-2 flex size-5 items-center justify-center rounded-full bg-foreground text-background text-[10px] font-medium">
                     {item.quantity}
                   </span>

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
 import { products } from "@/lib/products-data";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import heroMobileAsset from "@/assets/hero_mobile.png.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -31,7 +32,7 @@ function Index() {
             <div className="absolute inset-0 bg-foreground/10" />
           </div>
           <div className="absolute inset-0 md:hidden">
-            <img src={heroMobileAsset.url} alt="Coleção Évora" className="h-full w-full object-cover" width={800} height={1000} loading="eager" decoding="async" />
+            <OptimizedImage src={heroMobileAsset.url} alt="Coleção Évora" className="h-full w-full object-cover" width={800} height={1200} priority />
           </div>
           <div className="relative flex h-full items-end justify-center px-4 pb-[33%] md:pb-[25%]">
             <Button asChild className="rounded-none bg-background px-10 py-6 text-foreground uppercase tracking-widest transition-all duration-300 hover:bg-background/90">
@@ -48,14 +49,12 @@ function Index() {
                 <Card className="cursor-pointer border-none bg-transparent shadow-none">
                   <CardContent className="p-0">
                     <div className="relative mb-4 aspect-[3/4] overflow-hidden bg-muted md:mb-6">
-                      <img
+                      <OptimizedImage
                         src={product.images[0]}
                         alt={product.name}
                         className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                         width={400}
                         height={533}
-                        loading="lazy"
-                        decoding="async"
                       />
                     </div>
                     <div className="space-y-1 text-center">
