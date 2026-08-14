@@ -122,13 +122,19 @@ function ProductPage() {
               </Button>
             </div>
 
-            <div className="grid grid-cols-4 gap-3">
+            <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide px-4 md:px-0">
               {product.images.map((image, index) => (
-                <button key={image} type="button" onClick={() => setSelectedImage(index)} className={`relative aspect-[3/4] overflow-hidden border-2 transition-colors ${selectedImage === index ? "border-foreground" : "border-transparent"}`}>
-                  <OptimizedImage src={image} alt="" className="h-full w-full object-cover" width={150} height={200} />
+                <button 
+                  key={index} 
+                  type="button" 
+                  onClick={() => setSelectedImage(index)} 
+                  className={cn("relative aspect-[3/4] w-20 flex-shrink-0 overflow-hidden bg-muted md:w-24 border-2 transition-colors", selectedImage === index ? "border-foreground" : "border-transparent opacity-60")}
+                >
+                  <OptimizedImage src={image} alt={`${product.name} miniatura ${index + 1}`} className="h-full w-full object-cover" width={96} height={128} />
                 </button>
               ))}
             </div>
+
           </section>
 
           <section className="space-y-6 md:space-y-8">
