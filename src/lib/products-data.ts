@@ -7,9 +7,6 @@ import ig5 from "@/assets/products/ig-5.jpg";
 import p1b from "@/assets/products/p1-b.jpg";
 import p1c from "@/assets/products/p1-c.jpg";
 import p1d from "@/assets/products/p1-d.jpg";
-import p2b from "@/assets/products/p2-b.jpg";
-import p2c from "@/assets/products/p2-c.jpg";
-import p2d from "@/assets/products/p2-d.jpg";
 import p3b from "@/assets/products/p3-b.jpg";
 import p3c from "@/assets/products/p3-c.jpg";
 import p3d from "@/assets/products/p3-d.jpg";
@@ -70,10 +67,6 @@ import monumentNoir8 from "@/assets/products/monument-noir-v2-8.png.asset.json";
 import monumentNoir9 from "@/assets/products/monument-noir-v2-9.png.asset.json";
 import monumentNoir10 from "@/assets/products/monument-noir-v2-10.png.asset.json";
 
-import saiaRose1 from "@/assets/products/saia-rose-1.jpg";
-import saiaRose2 from "@/assets/products/saia-rose-2.jpg";
-import saiaRose3 from "@/assets/products/saia-rose-3.jpg";
-import saiaRose4 from "@/assets/products/saia-rose-4.jpg";
 
 import satinEspresso1 from "@/assets/products/satin-espresso-1.png.asset.json";
 import satinEspresso2 from "@/assets/products/satin-espresso-2.png.asset.json";
@@ -140,15 +133,6 @@ export const products: Product[] = [
     images: [ig0, p1b, p1c, p1d],
     sizes,
     reviews: [{ user: "Mariana S.", comment: "O conjunto veste muito bem e a cor é linda pessoalmente.", rating: 5, image: p1b }],
-  },
-  {
-    id: "camisa-laco-orquidea",
-    name: "Camisa Évora Orquídea",
-    price: 289,
-    description: "Camisa acetinada com mangas longas e laço amplo na gola. O brilho suave e o acabamento dos punhos deixam a peça feminina sem perder a sofisticação.",
-    images: [ig1, p2b, p2c, p2d],
-    sizes,
-    reviews: [{ user: "Clara M.", comment: "A camisa é ainda mais bonita ao vivo. O laço fica perfeito.", rating: 5, image: p2b }],
   },
   {
     id: "vestido-aurora-rose",
@@ -227,24 +211,6 @@ export const products: Product[] = [
     images: [alvorada1, alvorada2, alvorada3, alvorada4],
     sizes,
     reviews: [{ user: "Renata P.", comment: "O recorte é muito bonito e deixa qualquer look mais arrumado.", rating: 5, image: alvorada1 }],
-  },
-  {
-    id: "colete-rose",
-    name: "Colete Évora Rosé",
-    price: 299,
-    description: "Colete rosé acinturado com fechamento frontal delicado. Pode ser usado com a saia coordenada ou separado em produções urbanas.",
-    images: [ig0, p1c, p1d, p1b],
-    sizes,
-    reviews: [{ user: "Camila T.", comment: "Comprei para usar separado e combinou com várias peças que já tinha.", rating: 4, image: p1c }],
-  },
-  {
-    id: "saia-rose",
-    name: "Saia Évora Rosé",
-    price: 329,
-    description: "Saia longa rosé com cintura alta e caimento fluido. A linha vertical alonga e garante movimento elegante ao caminhar.",
-    images: [saiaRose2, saiaRose1, saiaRose3, saiaRose4],
-    sizes,
-    reviews: [{ user: "Natalia B.", comment: "Comprimento ótimo e tecido com peso bonito. Valeu a compra.", rating: 5, image: saiaRose2 }],
   },
   {
     id: "vestido-satin-espresso",
