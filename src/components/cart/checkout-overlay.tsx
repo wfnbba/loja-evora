@@ -596,8 +596,13 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                   </div>
                   <p className="text-xs text-muted-foreground uppercase tracking-widest text-center">
                     Não feche esta página até a confirmação automática.
-
                   </p>
+                  
+                  <div className="flex flex-col items-center gap-4 py-8 border-t border-border/50 bg-muted/5 w-full mt-4">
+                    <div className="flex items-center gap-6 opacity-60 scale-75 md:scale-90">
+                      <img src={pixLogoAsset.url} alt="PIX" className="h-8 w-auto" />
+                    </div>
+                  </div>
                 </div>
 
                 <Button 
