@@ -59,21 +59,22 @@ function Index() {
                       />
                     </div>
                     <div className="space-y-1 text-center">
-                      <h2 className="text-[10px] font-medium uppercase tracking-[0.2em] md:text-sm line-clamp-1">
-                        {product.name.length > 20 ? `${product.name.substring(0, 20)}...` : product.name}
+                      <h2 className="text-xs font-bold uppercase tracking-widest md:text-sm line-clamp-2 min-h-[2.5rem] flex items-center justify-center">
+                        {product.name}
                       </h2>
-                      <div className="mt-4">
+                      <div className="mt-2">
                         <Button 
                           asChild
                           variant="outline"
-                          className="w-full rounded-none border-foreground/20 text-[10px] uppercase tracking-[0.2em] py-5 hover:bg-foreground hover:text-background transition-all"
+                          className="w-full rounded-none border-foreground/20 text-xs uppercase tracking-widest py-6 hover:bg-foreground hover:text-background transition-all"
                         >
                           <Link to="/produtos/$productId" params={{ productId: product.id }}>
                             Ver Detalhes
                           </Link>
                         </Button>
                       </div>
-                      <div className="flex items-center justify-center gap-2 mt-1">
+                      <div className="flex items-center justify-center gap-2 mt-2">
+
                         <div className="flex text-foreground">
                           {Array.from({ length: 5 }, (_, i) => (
                             <Star
