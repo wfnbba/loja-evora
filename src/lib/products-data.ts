@@ -228,6 +228,7 @@ export interface Product {
   includedGift?: {
     name: string;
     color: string;
+    colorValue?: string;
     price: string;
   };
 }
