@@ -14,6 +14,17 @@ import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'wistia-player': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        'media-id'?: string;
+        'aspect'?: string;
+      };
+    }
+  }
+}
+
 export const Route = createFileRoute("/produtos/$productId")({
   loader: ({ params }) => {
     const product = products.find((item) => item.id === params.productId);
