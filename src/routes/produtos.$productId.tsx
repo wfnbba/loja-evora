@@ -239,15 +239,29 @@ function ProductPage() {
               </div>
             )}
 
-            <Button 
-              id="add-to-cart-button"
-              type="button" 
-              onClick={addToCart} 
-              disabled={!selectedSize} 
-              className="w-full rounded-none py-8 uppercase tracking-[0.2em] cursor-pointer"
-            >
-              <ShoppingBag className="mr-3 size-5" />{added ? "ADICIONADO AO CARRINHO" : "ADICIONAR AO CARRINHO"}
-            </Button>
+            <div className="flex flex-col gap-4">
+              <Button 
+                id="add-to-cart-button"
+                type="button" 
+                onClick={addToCart} 
+                disabled={!selectedSize} 
+                className="w-full rounded-none py-8 uppercase tracking-[0.2em] cursor-pointer"
+              >
+                <ShoppingBag className="mr-3 size-5" />{added ? "ADICIONADO AO CARRINHO" : "ADICIONAR AO CARRINHO"}
+              </Button>
+              
+              {/* Botão Fixo Mobile-First */}
+              <div className="fixed bottom-0 left-0 right-0 z-40 bg-background/95 p-4 backdrop-blur-md border-t border-border/50 md:hidden animate-in fade-in slide-in-from-bottom-full duration-500">
+                <Button 
+                  onClick={addToCart} 
+                  disabled={!selectedSize}
+                  className="w-full rounded-none py-8 uppercase tracking-[0.2em] font-bold shadow-2xl"
+                >
+                  <ShoppingBag className="mr-3 size-5" />
+                  {added ? "ADICIONADO" : "COMPRAR AGORA"}
+                </Button>
+              </div>
+            </div>
             
             <div className="space-y-4 border-t border-border pt-8">
               <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Descrição</h2>

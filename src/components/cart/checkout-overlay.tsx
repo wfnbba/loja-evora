@@ -204,23 +204,11 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
   }, [step, pixData, checkStatus, clearCart]);
 
   if (step === "success") {
-    return (
-      <div className="flex h-full flex-col items-center justify-center space-y-6 p-8 text-center animate-in fade-in zoom-in duration-500">
-        <div className="flex size-20 items-center justify-center rounded-full bg-green-50 text-green-600">
-          <CheckCircle2 className="size-10" />
-        </div>
-        <div className="space-y-2">
-          <h2 className="text-xl font-medium uppercase tracking-[0.2em]">Pagamento Confirmado</h2>
-          <p className="text-sm font-light text-muted-foreground">
-            Obrigada por escolher a Évora. Seu pedido já está sendo processado e você receberá atualizações em breve.
-          </p>
-        </div>
-        <Button onClick={onClose} className="w-full rounded-none uppercase tracking-widest py-6">
-          Voltar para a Loja
-        </Button>
-      </div>
-    );
+    // Redirecionamento automático para a página de obrigado após o sucesso
+    window.location.href = "/obrigado";
+    return null;
   }
+
 
   return (
     <div className="flex h-full flex-col overflow-hidden bg-background">
