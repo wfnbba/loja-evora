@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Star } from "lucide-react";
 import { products } from "@/lib/products-data";
 import heroMobileAsset from "@/assets/hero_mobile.png.asset.json";
 
