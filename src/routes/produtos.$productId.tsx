@@ -164,20 +164,126 @@ function ProductPage() {
               <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Descrição</h2>
               <p className="font-light leading-relaxed text-muted-foreground">{product.description}</p>
             </div>
-            <div className="space-y-6 border-t border-border pt-8">
-              <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Feedback das clientes</h2>
-              {product.reviews.map((review) => (
-                <article key={`${review.user}-${review.comment}`} className="flex gap-4">
-                  {review.image && <img src={review.image} alt={`Foto enviada por ${review.user}`} className="size-16 shrink-0 object-cover" width={64} height={64} loading="lazy" />}
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <div className="flex" aria-label={`${review.rating} de 5 estrelas`}>{Array.from({ length: review.rating }, (_, index) => <Star key={index} className="size-3 fill-current" />)}</div>
-                      <span className="text-xs font-medium uppercase tracking-[0.2em]">{review.user}</span>
+            <div className="space-y-12 border-t border-border pt-12">
+              <div className="space-y-8">
+                <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Avaliações</h2>
+                
+                <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                  <div className="flex flex-col items-center justify-center space-y-2 border-r border-border/50 pr-8 text-center">
+                    <span className="text-5xl font-light">{product.rating.toFixed(1)}</span>
+                    <div className="flex" aria-label={`${product.rating} de 5 estrelas`}>
+                      {Array.from({ length: 5 }, (_, i) => (
+                        <Star key={i} className={`size-4 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`} />
+                      ))}
                     </div>
-                    <p className="text-sm font-light italic text-muted-foreground">“{review.comment}”</p>
+                    <span className="text-xs uppercase tracking-widest text-muted-foreground">{totalReviews.toLocaleString("pt-BR")} avaliações</span>
                   </div>
-                </article>
-              ))}
+                  
+                  <div className="col-span-1 space-y-2 lg:col-span-2">
+                    {[5, 4, 3, 2, 1].map((star) => {
+                      const count = product.ratingBreakdown[star as keyof typeof product.ratingBreakdown] || 0;
+                      const percentage = totalReviews > 0 ? (count / totalReviews) * 100 : 0;
+                      return (
+                        <div key={star} className="flex items-center gap-4">
+                          <span className="w-4 text-xs font-light">{star}</span>
+                          <Star className="size-3 fill-current" />
+                          <Progress value={percentage} className="h-1 flex-1" />
+                          <span className="w-12 text-right text-[10px] tabular-nums text-muted-foreground">{count.toLocaleString("pt-BR")}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-8">
+                <div className="flex items-center justify-between border-b border-border pb-4">
+                  <h3 className="text-[10px] font-medium uppercase tracking-[0.2em]">Página {currentPage} de {totalPages}</h3>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Ordenar por: Relevância</span>
+                    <ChevronDown className="size-3 text-muted-foreground" />
+                  </div>
+                </div>
+
+                <div className="space-y-10">
+                  {currentReviews.map((review, idx) => (
+                    <article key={`${review.user}-${idx}`} className="group flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                      <div className="flex items-start justify-between">
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-3">
+                            <div className="flex" aria-label={`${review.rating} de 5 estrelas`}>
+                              {Array.from({ length: 5 }, (_, index) => (
+                                <Star key={index} className={`size-3 ${index < review.rating ? "fill-current" : "text-muted-foreground/30"}`} />
+                              ))}
+                            </div>
+                            <span className="text-[10px] font-medium uppercase tracking-[0.2em]">{review.user}</span>
+                          </div>
+                          {review.comment && (
+                            <p className="text-sm font-light leading-relaxed text-muted-foreground group-hover:text-foreground transition-colors">
+                              {review.comment}
+                            </p>
+                          )}
+                        </div>
+                        {review.image && (
+                          <div className="relative size-24 shrink-0 overflow-hidden bg-muted md:size-32">
+                            <img src={review.image} alt={`Foto enviada por ${review.user}`} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" width={128} height={128} loading="lazy" />
+                          </div>
+                        )}
+                      </div>
+                    </article>
+                  ))}
+                </div>
+
+                {totalPages > 1 && (
+                  <div className="flex items-center justify-center gap-4 pt-12">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        setCurrentPage((p) => Math.max(1, p - 1));
+                        window.scrollTo({ top: document.getElementById('feedbacks')?.offsetTop || 0, behavior: 'smooth' });
+                      }}
+                      disabled={currentPage === 1}
+                      className="rounded-none border-border/50 uppercase tracking-widest"
+                    >
+                      Anterior
+                    </Button>
+                    <div className="flex items-center gap-2">
+                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                        let pageNum = i + 1;
+                        if (totalPages > 5 && currentPage > 3) {
+                          pageNum = currentPage - 2 + i;
+                          if (pageNum > totalPages) pageNum = totalPages - (4 - i);
+                        }
+                        return (
+                          <button
+                            key={pageNum}
+                            onClick={() => {
+                              setCurrentPage(pageNum);
+                              window.scrollTo({ top: document.getElementById('feedbacks')?.offsetTop || 0, behavior: 'smooth' });
+                            }}
+                            className={`size-8 text-[10px] font-medium transition-colors ${currentPage === pageNum ? "bg-foreground text-background" : "hover:bg-muted"}`}
+                          >
+                            {pageNum}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        setCurrentPage((p) => Math.min(totalPages, p + 1));
+                        window.scrollTo({ top: document.getElementById('feedbacks')?.offsetTop || 0, behavior: 'smooth' });
+                      }}
+                      disabled={currentPage === totalPages}
+                      className="rounded-none border-border/50 uppercase tracking-widest"
+                    >
+                      Próximo
+                    </Button>
+                  </div>
+                )}
+              </div>
             </div>
           </section>
         </div>
