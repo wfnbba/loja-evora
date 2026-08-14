@@ -232,6 +232,7 @@ export interface Product {
     color: string;
     colorValue?: string;
     price: string;
+    image?: string;
   };
 }
 
