@@ -91,6 +91,16 @@ import saiaRenda7 from "@/assets/products/saia-renda-7.png.asset.json";
 import saiaRenda8 from "@/assets/products/saia-renda-8.png.asset.json";
 import saiaRenda9 from "@/assets/products/saia-renda-9.png.asset.json";
 import saiaRenda10 from "@/assets/products/saia-renda-10.png.asset.json";
+import conjuntoEspresso1 from "@/assets/products/conjunto-espresso-alfaiataria-1.png.asset.json";
+import conjuntoEspresso2 from "@/assets/products/conjunto-espresso-alfaiataria-2.png.asset.json";
+import conjuntoEspresso3 from "@/assets/products/conjunto-espresso-alfaiataria-3.png.asset.json";
+import conjuntoEspresso4 from "@/assets/products/conjunto-espresso-alfaiataria-4.png.asset.json";
+import conjuntoEspresso5 from "@/assets/products/conjunto-espresso-alfaiataria-5.png.asset.json";
+import conjuntoEspresso6 from "@/assets/products/conjunto-espresso-alfaiataria-6.png.asset.json";
+import conjuntoEspresso7 from "@/assets/products/conjunto-espresso-alfaiataria-7.png.asset.json";
+import conjuntoEspresso8 from "@/assets/products/conjunto-espresso-alfaiataria-8.png.asset.json";
+import conjuntoEspresso9 from "@/assets/products/conjunto-espresso-alfaiataria-9.png.asset.json";
+import conjuntoEspresso10 from "@/assets/products/conjunto-espresso-alfaiataria-10.png.asset.json";
 
 export interface Product {
   id: string;
