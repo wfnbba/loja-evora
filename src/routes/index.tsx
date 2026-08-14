@@ -31,7 +31,7 @@ function Index() {
             <div className="absolute inset-0 bg-foreground/10" />
           </div>
           <div className="absolute inset-0 md:hidden">
-            <img src={heroMobileAsset.url} alt="Coleção Évora" className="h-full w-full object-cover" width={1080} height={1350} />
+            <img src={heroMobileAsset.url} alt="Coleção Évora" className="h-full w-full object-cover" width={800} height={1000} loading="eager" decoding="async" />
           </div>
           <div className="relative flex h-full items-end justify-center px-4 pb-[33%] md:pb-[25%]">
             <Button asChild className="rounded-none bg-background px-10 py-6 text-foreground uppercase tracking-widest transition-all duration-300 hover:bg-background/90">
