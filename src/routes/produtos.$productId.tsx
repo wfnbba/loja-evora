@@ -162,7 +162,19 @@ function ProductPage() {
                 <span className="text-muted-foreground">|</span>
                 <span>{product.salesCount.toLocaleString("pt-BR")} vendidos</span>
               </div>
-              <p className="text-2xl font-light">R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+              <div className="flex items-baseline gap-3">
+                <p className="text-2xl font-light">R$ {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+                {product.originalPrice && (
+                  <p className="text-sm font-light text-muted-foreground line-through decoration-muted-foreground/50">
+                    R$ {product.originalPrice.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                  </p>
+                )}
+                {product.originalPrice && (
+                  <span className="bg-foreground text-background text-[10px] px-2 py-0.5 font-medium uppercase tracking-widest">
+                    -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF
+                  </span>
+                )}
+              </div>
             </div>
             <div className="space-y-4">
               <p className="text-xs font-medium uppercase tracking-[0.2em]">Tamanho</p>
