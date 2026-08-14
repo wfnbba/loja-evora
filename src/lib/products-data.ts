@@ -763,10 +763,10 @@ export const products: Product[] = [
       conjuntoEspresso9.url,
       conjuntoEspresso10.url
     ],
-    sizes: ["Tamanho Único"],
+    sizes,
     includedGift: {
-      name: "Cinto Premium Espresso",
-      color: "Espresso",
+      name: "Cinto Premium Évora",
+      color: "Marrom Escuro",
       price: "Grátis"
     },
     colors: [{ name: "Espresso", value: "#3d2b1f" }],
