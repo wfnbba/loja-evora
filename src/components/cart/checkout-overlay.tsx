@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useCartStore } from "@/store/cart-store";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { Copy, CheckCircle2, Loader2, QrCode, ShoppingBag, ShieldCheck, Truck, ChevronDown, ChevronUp } from "lucide-react";
+import { Copy, CheckCircle2, Loader2, QrCode, ShoppingBag, ShieldCheck, Truck, ChevronDown, ChevronUp, Plus, Minus, X } from "lucide-react";
 import { createPixPayment, checkPixStatus, updateTransactionStatus } from "@/lib/vexopay.functions";
 import { getAddressByCep } from "@/lib/cep.functions";
 import { useServerFn } from "@tanstack/react-start";
@@ -20,11 +20,11 @@ interface CheckoutOverlayProps {
 }
 
 export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
-  const { items, totalPrice, clearCart } = useCartStore();
+  const { items, totalPrice, clearCart, incrementQuantity, decrementQuantity, removeItem } = useCartStore();
   const [step, setStep] = useState<"form" | "payment" | "success">("form");
   const [loading, setLoading] = useState(false);
   const [pixData, setPixData] = useState<any>(null);
-  const [showOrderSummary, setShowOrderSummary] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 minutos em segundos
   const [isAddressFilled, setIsAddressFilled] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -206,6 +206,20 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
     return () => clearInterval(interval);
   }, [step, pixData, checkStatus, clearCart]);
 
+  useEffect(() => {
+    if (timeLeft <= 0) return;
+    const timer = setInterval(() => {
+      setTimeLeft(prev => prev - 1);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [timeLeft]);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
   if (step === "success") {
     // Redirecionamento automático para a página de obrigado após o sucesso
     window.location.href = "/obrigado";
@@ -215,81 +229,68 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
   return (
     <div className="fixed inset-0 z-[100] flex h-full flex-col overflow-hidden bg-background">
-      {/* Header Mobile / Tablet */}
-      <div className="lg:hidden border-b border-border/50 sticky top-0 bg-background z-30">
-        <div className="p-5 flex items-center justify-between">
-           <div className="flex flex-col">
-             <span className="text-[12px] font-bold uppercase tracking-[0.2em] text-foreground">Checkout Seguro</span>
-             <span className="text-[10px] text-muted-foreground uppercase tracking-widest mt-0.5">Loja Évora</span>
-           </div>
-           <button 
-             onClick={() => setShowOrderSummary(!showOrderSummary)}
-             className="flex items-center gap-2 text-[12px] font-medium uppercase tracking-widest text-foreground bg-muted/30 px-3 py-2 border border-border/50"
-           >
-             <ShoppingBag className="size-4" />
-             {showOrderSummary ? <ChevronUp className="size-3" /> : <ChevronDown className="size-3" />}
-             R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-           </button>
-        </div>
-        
-        {/* Resumo Mobile Expandível */}
-        <div className={cn(
-          "overflow-hidden transition-all duration-300 ease-in-out bg-muted/10 border-t border-border/30",
-          showOrderSummary ? "max-height-[500px] opacity-100" : "max-height-0 opacity-0 hidden"
-        )}>
-          <div className="p-5 space-y-4">
+      {/* Banner de Urgência */}
+      <div className="bg-[#1a1512] text-white py-3 px-4 text-center z-[110]">
+        <p className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] animate-pulse">
+          Preço garantido por apenas <span className="text-[#d4af37] mx-1">{formatTime(timeLeft)}</span> Devido a alta demanda.
+        </p>
+      </div>
+
+      <div className="flex flex-1 flex-col lg:flex-row h-full overflow-hidden">
+        {/* Mobile: Resumo do Pedido Explicito (sempre visível no topo no mobile) */}
+        <div className="lg:hidden border-b border-border/50 bg-muted/5 max-h-[40vh] overflow-y-auto">
+          <div className="p-4 space-y-4">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-[10px] font-bold uppercase tracking-[0.2em]">Seu Pedido</h3>
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em]">
+                R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+              </span>
+            </div>
             {items.map((item) => {
               const originalPriceTotal = (item.originalPrice || item.price) * item.quantity;
               const currentPriceTotal = item.price * item.quantity;
-              const discountAmount = originalPriceTotal - currentPriceTotal;
               const discountPercentage = item.originalPrice ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0;
               
               return (
-                <div key={`${item.id}-${item.size}`} className="flex gap-4 py-3 border-b border-border/10 last:border-0">
-                  <div className="relative size-16 shrink-0 overflow-hidden bg-muted border border-border/30 rounded-sm">
-                    <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={64} height={64} />
-                    <span className="absolute -right-1 -top-1 flex size-5 items-center justify-center rounded-full bg-foreground text-background text-[9px] font-bold shadow-sm">
-                      {item.quantity}
-                    </span>
+                <div key={`${item.id}-${item.size}`} className="flex gap-3 py-3 border-b border-border/10 last:border-0 relative">
+                  <div className="relative size-14 shrink-0 overflow-hidden bg-white border border-border/30 rounded-sm">
+                    <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={56} height={56} />
                   </div>
-                  <div className="flex flex-1 flex-col justify-center">
-                    <div className="flex justify-between items-start gap-2">
-                      <h4 className="text-[11px] font-bold uppercase tracking-widest leading-tight line-clamp-2">{item.name}</h4>
-                      <div className="flex flex-col items-end shrink-0">
-                        <p className="text-[11px] font-bold">
-                          R$ {currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                        </p>
+                  <div className="flex flex-1 flex-col justify-center gap-1">
+                    <div className="flex justify-between items-start">
+                      <h4 className="text-[10px] font-bold uppercase tracking-widest leading-tight w-2/3">{item.name}</h4>
+                      <div className="flex flex-col items-end">
+                        <p className="text-[10px] font-bold">R$ {currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
                         {item.originalPrice && item.originalPrice > item.price && (
-                          <p className="text-[9px] text-muted-foreground/50 line-through">
-                            R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                          </p>
+                          <p className="text-[8px] text-muted-foreground/50 line-through">R$ {originalPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
                         )}
                       </div>
                     </div>
-                    <div className="flex items-center justify-between mt-1">
-                      <p className="text-[9px] text-muted-foreground uppercase tracking-widest">Tam: {item.size}</p>
-                      {discountAmount > 0 && (
-                        <span className="text-[8px] text-green-600 font-bold uppercase tracking-widest">
-                          -{discountPercentage}% OFF
-                        </span>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <p className="text-[9px] text-muted-foreground uppercase tracking-widest">Tam: {item.size}</p>
+                        <div className="flex items-center border border-border/50 rounded-none bg-background">
+                          <button onClick={() => decrementQuantity(item.id, item.size)} className="p-1 hover:bg-muted"><Minus className="size-2" /></button>
+                          <span className="text-[9px] px-2 font-bold">{item.quantity}</span>
+                          <button onClick={() => incrementQuantity(item.id, item.size)} className="p-1 hover:bg-muted"><Plus className="size-2" /></button>
+                        </div>
+                      </div>
+                      {discountPercentage > 0 && (
+                        <span className="text-[8px] text-green-600 font-bold uppercase tracking-widest">-{discountPercentage}% OFF</span>
                       )}
                     </div>
                   </div>
+                  <button onClick={() => removeItem(item.id, item.size)} className="absolute -right-1 top-2 p-1 text-muted-foreground/40"><X className="size-3" /></button>
                 </div>
               );
             })}
-            <Separator className="bg-border/30" />
-            <div className="space-y-2 pb-2">
-              <div className="flex justify-between text-[11px] uppercase tracking-widest text-muted-foreground">
-                <span>Itens</span>
-                <span>R$ {items.reduce((acc, item) => acc + ((item.originalPrice || item.price) * item.quantity), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
-              </div>
-              <div className="flex justify-between text-[11px] uppercase tracking-widest text-muted-foreground">
-                <span>Desconto</span>
-                <span className="text-green-600">- R$ {items.reduce((acc, item) => acc + (item.originalPrice ? (item.originalPrice - item.price) * item.quantity : 0), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
-              </div>
-              <div className="flex justify-between text-[11px] uppercase tracking-widest text-foreground font-bold border-t border-border/20 pt-2 mt-1">
-                <span>Frete</span>
+            
+            <div className="pt-2 space-y-2 border-t border-border/20">
+              <div className="flex justify-between text-[10px] uppercase tracking-widest text-foreground font-bold">
+                <div className="flex items-center gap-2">
+                  <span>Frete</span>
+                  <Truck className="size-3" />
+                </div>
                 <span className={isAddressFilled ? "text-green-600" : "text-muted-foreground"}>
                   {isAddressFilled ? "GRÁTIS" : "Calculado no endereço"}
                 </span>
@@ -298,7 +299,6 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
           </div>
         </div>
       </div>
-
       <div className="flex flex-1 flex-col lg:flex-row h-full overflow-hidden">
         {/* Coluna Esquerda: Formulário (ou QR Code) */}
         <div className="flex-1 overflow-y-auto custom-scrollbar p-4 md:p-8 lg:p-12 lg:border-r lg:border-border/50 bg-[#fcfaf7]">
@@ -480,9 +480,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                   <span className="flex size-6 md:size-7 items-center justify-center rounded-full bg-foreground text-background text-[10px] md:text-xs font-bold">3</span>
                   <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em]">Pagamento</h3>
                 </div>
-                <div className="border-2 border-foreground p-6 flex items-center justify-between">
+                <div className="border border-border/50 p-6 flex items-center justify-between bg-white shadow-sm">
                   <div className="flex items-center gap-4">
-                    <div className="bg-foreground text-background p-3">
+                    <div className="bg-foreground text-background p-3 rounded-sm">
                       <QrCode className="size-6" />
                     </div>
                     <div className="space-y-1">
@@ -494,7 +494,6 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                     {isAddressFilled && (
                       <span className="text-[10px] font-bold uppercase tracking-widest text-green-600 animate-in fade-in duration-300">Frete Grátis</span>
                     )}
-                    <span className="text-[9px] uppercase tracking-widest text-muted-foreground">Promoção Évora</span>
                   </div>
                 </div>
               </div>
@@ -587,12 +586,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 const discountPercentage = item.originalPrice ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0;
 
                 return (
-                  <div key={`${item.id}-${item.size}`} className="flex gap-5 py-4 border-b border-border/10 last:border-0">
+                  <div key={`${item.id}-${item.size}`} className="flex gap-5 py-4 border-b border-border/10 last:border-0 relative group">
                     <div className="relative size-20 shrink-0 overflow-hidden bg-white border border-border/50 rounded-sm">
                       <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={80} height={80} />
-                      <span className="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-foreground text-background text-[10px] font-bold shadow-md">
-                        {item.quantity}
-                      </span>
                     </div>
                     <div className="flex flex-1 flex-col justify-center">
                       <div className="flex justify-between items-start gap-4">
@@ -610,19 +606,27 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                       </div>
                       
                       <div className="flex items-center justify-between mt-2">
-                        <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Tamanho: {item.size}</p>
-                        {discountAmount > 0 && (
-                          <div className="flex flex-col items-end">
-                            <span className="text-[9px] bg-green-100 text-green-700 px-2 py-0.5 font-bold uppercase tracking-widest">
-                              {discountPercentage}% OFF
-                            </span>
-                            <span className="text-[8px] text-green-600 font-bold uppercase tracking-widest mt-1">
-                              Economia de R$ {discountAmount.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                            </span>
+                        <div className="flex items-center gap-4">
+                          <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Tamanho: {item.size}</p>
+                          <div className="flex items-center border border-border/50 rounded-none bg-background">
+                            <button onClick={() => decrementQuantity(item.id, item.size)} className="p-1 hover:bg-muted"><Minus className="size-3" /></button>
+                            <span className="text-[11px] px-3 font-bold">{item.quantity}</span>
+                            <button onClick={() => incrementQuantity(item.id, item.size)} className="p-1 hover:bg-muted"><Plus className="size-3" /></button>
                           </div>
+                        </div>
+                        {discountAmount > 0 && (
+                          <span className="text-[9px] bg-green-100 text-green-700 px-2 py-0.5 font-bold uppercase tracking-widest">
+                            {discountPercentage}% OFF
+                          </span>
                         )}
                       </div>
                     </div>
+                    <button 
+                      onClick={() => removeItem(item.id, item.size)} 
+                      className="absolute -right-2 top-0 p-2 text-muted-foreground/40 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <X className="size-4" />
+                    </button>
                   </div>
                 );
               })}
@@ -641,10 +645,10 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
               </div>
               <div className="flex justify-between items-center text-[12px] uppercase tracking-[0.2em] font-bold">
                 <div className="flex items-center gap-3">
-                   <span className="text-muted-foreground">Frete Évora</span>
+                   <span className="text-muted-foreground">Frete</span>
                    <Truck className="size-4 text-muted-foreground" />
                 </div>
-                <span className={isAddressFilled ? "text-green-600" : "text-muted-foreground"}>
+                <span className={isAddressFilled ? "text-green-600 font-bold" : "text-muted-foreground font-normal italic"}>
                   {isAddressFilled ? "GRÁTIS" : "A calcular"}
                 </span>
               </div>
