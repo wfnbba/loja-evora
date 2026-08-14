@@ -961,7 +961,8 @@ export const products: Product[] = [
     sizes,
     includedGift: {
       name: "Cinto Premium Évora",
-      color: "Marrom Escuro",
+      color: "Preto",
+      colorValue: "#000000",
       price: "Grátis"
     },
     colors: [{ name: "Off-White", value: "#faf9f6" }],
