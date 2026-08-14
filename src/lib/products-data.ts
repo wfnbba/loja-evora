@@ -191,17 +191,17 @@ export interface Product {
   description: string;
   images: string[];
   sizes: string[];
-  colors?: { name: string; value: string },[];
+  colors?: { name: string; value: string }[];
   salesCount: number;
   rating: number;
-  ratingBreakdown: { 1: number; 2: number; 3: number; 4: number; 5: number; },;
+  ratingBreakdown: { 1: number; 2: number; 3: number; 4: number; 5: number; };
   reviews: {
     user: string;
     comment: string;
     rating: number;
     image?: string;
-  },[];
-},
+  }[];
+}
 
 const sizes = ["P", "M", "G", "GG"];
 const exchangePolicy = "";
