@@ -5,6 +5,8 @@ import ig3 from "@/assets/products/ig-3.jpg";
 import ig4 from "@/assets/products/ig-4.jpg";
 import ig5 from "@/assets/products/ig-5.jpg";
 import p1b from "@/assets/products/p1-b.jpg";
+import p1c from "@/assets/products/p1-c.jpg";
+import p1d from "@/assets/products/p1-d.jpg";
 import p3b from "@/assets/products/p3-b.jpg";
 import p3c from "@/assets/products/p3-c.jpg";
 import p3d from "@/assets/products/p3-d.jpg";
