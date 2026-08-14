@@ -120,6 +120,7 @@ export interface Product {
   description: string;
   images: string[];
   sizes: string[];
+  colors?: { name: string; value: string }[];
   reviews: {
     user: string;
     comment: string;
@@ -138,6 +139,7 @@ export const products: Product[] = [
     description: "Conjunto de alfaiataria em tom rosé composto por colete acinturado e saia longa fluida. Uma produção delicada, elegante e versátil para ocasiões especiais.",
     images: [ig0, p1b, p1c, p1d],
     sizes,
+    colors: [{ name: "Rosé", value: "#e2b6b1" }],
     reviews: [{ user: "Mariana S.", comment: "O conjunto veste muito bem e a cor é linda pessoalmente.", rating: 5, image: p1b }],
   },
   {
@@ -147,6 +149,7 @@ export const products: Product[] = [
     description: "Vestido midi rosé com decote fechado, cintura marcada e saia evasê. Um clássico leve que acompanha do almoço ao evento noturno.",
     images: [ig2, p3b, p3c, p3d],
     sizes,
+    colors: [{ name: "Rosé", value: "#e2b6b1" }],
     reviews: [{ user: "Juliana F.", comment: "Caimento impecável e comprimento elegante. Usei e recebi muitos elogios.", rating: 5, image: p3b }],
   },
   {
@@ -167,6 +170,7 @@ export const products: Product[] = [
       auroraMarfim10.url,
     ],
     sizes,
+    colors: [{ name: "Marfim", value: "#f5f5f0" }],
     reviews: [{ user: "Heloísa R.", comment: "Elegante sem esforço e o tecido não marca. Gostei muito.", rating: 5, image: auroraMarfim1.url }],
   },
   {
@@ -187,6 +191,7 @@ export const products: Product[] = [
       auroraCafe10.url
     ],
     sizes,
+    colors: [{ name: "Café", value: "#4b3621" }],
     reviews: [{ user: "Beatriz L.", comment: "A cor é sofisticada e o corte ficou certinho no corpo.", rating: 5, image: auroraCafe1.url }],
   },
   {
@@ -207,6 +212,7 @@ export const products: Product[] = [
       monumentNoir10.url
     ],
     sizes,
+    colors: [{ name: "Noir/Marfim", value: "#000000" }],
     reviews: [{ user: "Isabela N.", comment: "Diferente de tudo que eu tinha. A modelagem chama atenção na medida.", rating: 5, image: monumentNoir1.url }],
   },
   {
@@ -227,18 +233,9 @@ export const products: Product[] = [
       alvorada10.url
     ],
     sizes,
+    colors: [{ name: "Off-White", value: "#faf9f6" }],
     reviews: [
-      { 
-        user: "Carolina P.", 
-        comment: "O corte é impecável e a cor off-white é muito chique. Adorei a barra assimétrica.", 
-        rating: 5, 
-        image: alvorada1.url 
-      },
-      { 
-        user: "Fernanda T.", 
-        comment: "Veste super bem e o tecido é de altíssima qualidade. Recomendo muito!", 
-        rating: 5, 
-        image: alvorada6.url 
+...
       }
     ],
   },
@@ -257,18 +254,9 @@ export const products: Product[] = [
       satinEspresso7.url
     ],
     sizes,
+    colors: [{ name: "Espresso", value: "#3d2b1f" }],
     reviews: [
-      { 
-        user: "Fernanda L.", 
-        comment: "O brilho desse vestido é surreal. Veste como uma luva!", 
-        rating: 5, 
-        image: satinEspresso4.url 
-      },
-      { 
-        user: "Carolina M.", 
-        comment: "Comprei para um casamento e foi um sucesso. Muito chique.", 
-        rating: 5, 
-        image: satinEspresso1.url 
+...
       }
     ],
   },
@@ -290,18 +278,13 @@ export const products: Product[] = [
       saiaChiffon10.url
     ],
     sizes,
+    colors: [
+      { name: "Off-White", value: "#faf9f6" },
+      { name: "Terracota", value: "#a45a52" },
+      { name: "Preto", value: "#000000" }
+    ],
     reviews: [
-      { 
-        user: "Beatriz S.", 
-        comment: "A saia é maravilhosa, o tecido tem um movimento lindo ao andar.", 
-        rating: 5, 
-        image: saiaChiffon4.url 
-      },
-      { 
-        user: "Julia R.", 
-        comment: "Comprei a off-white e a cor é idêntica à foto. Muito elegante.", 
-        rating: 5, 
-        image: saiaChiffon1.url 
+...
       }
     ],
   },
@@ -323,18 +306,9 @@ export const products: Product[] = [
       saiaRenda10.url
     ],
     sizes,
+    colors: [{ name: "Renda Nude", value: "#e8d7c5" }],
     reviews: [
-      { 
-        user: "Larissa K.", 
-        comment: "A renda é de uma qualidade absurda. Parece uma joia no corpo.", 
-        rating: 5, 
-        image: saiaRenda1.url 
-      },
-      { 
-        user: "Monica V.", 
-        comment: "O forro é super confortável e o desenho da renda é divino. Amei cada detalhe.", 
-        rating: 5, 
-        image: saiaRenda10.url 
+...
       }
     ],
   },
@@ -356,18 +330,9 @@ export const products: Product[] = [
       conjuntoEspresso10.url
     ],
     sizes,
+    colors: [{ name: "Espresso", value: "#3d2b1f" }],
     reviews: [
-      { 
-        user: "Tatiana B.", 
-        comment: "O caimento da calça é surreal e o colete com cinto valoriza muito a cintura.", 
-        rating: 5, 
-        image: conjuntoEspresso3.url 
-      },
-      { 
-        user: "Alessandra G.", 
-        comment: "Tecido encorpado e cor maravilhosa. Um conjunto que transmite muito poder.", 
-        rating: 5, 
-        image: conjuntoEspresso1.url 
+...
       }
     ],
   },

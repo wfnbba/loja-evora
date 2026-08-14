@@ -32,6 +32,7 @@ function ProductPage() {
   const { product } = Route.useLoaderData();
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState("");
+  const [selectedColor, setSelectedColor] = useState(product.colors?.[0]?.name || "");
   const [added, setAdded] = useState(false);
 
   const addToCart = () => {
@@ -56,7 +57,7 @@ function ProductPage() {
             <div className="grid grid-cols-4 gap-3">
               {product.images.map((image, index) => (
                 <button key={image} type="button" aria-label={`Exibir foto ${index + 1}`} onClick={() => setSelectedImage(index)} className={`relative aspect-[3/4] overflow-hidden border-2 transition-colors ${selectedImage === index ? "border-foreground" : "border-transparent"}`}>
-                  <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" width={192} height={256} />
+                  <img src={image} alt="" className="h-full w-full object-cover" width={192} height={256} />
                 </button>
               ))}
             </div>
@@ -76,6 +77,25 @@ function ProductPage() {
               </div>
               {!selectedSize && <p className="text-xs text-muted-foreground">Selecione um tamanho para adicionar ao carrinho.</p>}
             </div>
+
+            {product.colors && product.colors.length > 0 && (
+              <div className="space-y-4">
+                <p className="text-sm font-medium uppercase tracking-widest">Cor: {selectedColor}</p>
+                <div className="flex flex-wrap gap-3">
+                  {product.colors.map((color) => (
+                    <button
+                      key={color.name}
+                      type="button"
+                      aria-label={`Cor ${color.name}`}
+                      onClick={() => { setSelectedColor(color.name); setAdded(false); }}
+                      className={`size-10 rounded-full border border-border transition-all ${selectedColor === color.name ? "ring-2 ring-foreground ring-offset-2" : "hover:scale-105"}`}
+                      style={{ backgroundColor: color.value }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
             <Button type="button" onClick={addToCart} disabled={!selectedSize} className="w-full rounded-none py-8 uppercase tracking-[0.2em]">
               <ShoppingBag className="mr-3 size-5" />{added ? "Adicionado ao carrinho" : "Adicionar ao carrinho"}
             </Button>
@@ -87,7 +107,7 @@ function ProductPage() {
               <h2 className="text-sm font-medium uppercase tracking-widest">Feedback das clientes</h2>
               {product.reviews.map((review) => (
                 <article key={`${review.user}-${review.comment}`} className="flex gap-4">
-                  {review.image && <img src={review.image} alt={`Foto enviada por ${review.user}`} className="size-16 shrink-0 object-cover" loading="lazy" width={64} height={64} />}
+                  {review.image && <img src={review.image} alt={`Foto enviada por ${review.user}`} className="size-16 shrink-0 object-cover" width={64} height={64} />}
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
                       <div className="flex" aria-label={`${review.rating} de 5 estrelas`}>{Array.from({ length: review.rating }, (_, index) => <Star key={index} className="size-3 fill-current" />)}</div>
