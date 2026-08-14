@@ -79,7 +79,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
   const handleCreatePayment = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    const doc = formData.document.replace(/\D/g, "");
+    const doc = formData.document.trim();
     if (doc.length < 3) {
       toast.error("Por favor, informe seu documento");
       return;
@@ -390,7 +390,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                         className="h-12 md:h-14 rounded-none border-border/80 focus-visible:ring-foreground bg-muted/5 text-sm md:text-base"
                         placeholder="000.000.000-00"
                         value={formData.document}
-                        onChange={(e) => setFormData({ ...formData, document: e.target.value.replace(/\D/g, "") })}
+                        onChange={(e) => setFormData({ ...formData, document: e.target.value })}
                       />
                     </div>
                     <div className="space-y-3">
