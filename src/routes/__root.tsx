@@ -12,6 +12,14 @@ import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/store/cart-store";
 import { CartSheet } from "@/components/cart/cart-sheet";
 import { useUtmTracking } from "@/hooks/use-utm-tracking";
+import { Menu } from "lucide-react";
+import { 
+  Sheet, 
+  SheetContent, 
+  SheetHeader, 
+  SheetTitle, 
+  SheetTrigger 
+} from "@/components/ui/sheet";
 import logoAsset from "@/assets/logo.png.asset.json";
 import logoTextAsset from "@/assets/logo_text.png.asset.json";
 
@@ -167,6 +175,7 @@ function FooterWrapper() {
 
 function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const totalItems = useCartStore((state) => state.totalItems());
 
@@ -177,24 +186,67 @@ function Header() {
     return () => window.removeEventListener('open-cart', handleOpenCart);
   }, []);
 
+  const navLinks = [
+    { name: "Início", href: "/" },
+    { name: "Vestidos", href: "/#colecao" },
+    { name: "Conjuntos", href: "/#colecao" },
+    { name: "Alfaiataria", href: "/#colecao" },
+    { name: "Acessórios", href: "/#colecao" },
+  ];
+
   return (
     <>
       <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur-md">
         <div className="container mx-auto flex h-20 items-center justify-between px-4 lg:px-8">
-          <Link to="/" className="flex items-center gap-2">
-            <img src={logoAsset.url} alt="Évora Logo" className="h-10 w-auto" />
-            <img src={logoTextAsset.url} alt="Évora" className="hidden h-6 w-auto md:block" />
-          </Link>
+          <div className="flex items-center gap-4">
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="md:hidden cursor-pointer">
+                  <Menu className="size-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+                <SheetHeader className="mb-8">
+                  <SheetTitle className="text-left font-light tracking-[0.2em] uppercase">Menu</SheetTitle>
+                </SheetHeader>
+                <nav className="flex flex-col gap-6">
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.name}
+                      to={link.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="text-lg font-light tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors border-b border-border/50 pb-4"
+                    >
+                      {link.name}
+                    </Link>
+                  ))}
+                </nav>
+              </SheetContent>
+            </Sheet>
+
+            <Link to="/" className="flex items-center gap-2">
+              <img src={logoAsset.url} alt="Évora Logo" className="h-10 w-auto" />
+              <img src={logoTextAsset.url} alt="Évora" className="hidden h-6 w-auto md:block" />
+            </Link>
+          </div>
+
           <nav className="hidden items-center gap-8 md:flex">
-            <Link to="/" className="text-sm font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Início</Link>
-            <a href="#" className="text-sm font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Coleções</a>
-            <a href="#" className="text-sm font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Sobre</a>
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.href}
+                className="text-xs font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors"
+              >
+                {link.name}
+              </Link>
+            ))}
           </nav>
+
           <div className="flex items-center gap-4">
             <Button 
               variant="ghost" 
               onClick={() => setIsCartOpen(true)}
-              className="text-sm font-medium tracking-[0.2em] uppercase hover:bg-transparent px-0 cursor-pointer"
+              className="text-xs font-medium tracking-[0.2em] uppercase hover:bg-transparent px-0 cursor-pointer"
             >
               Carrinho ({mounted ? totalItems : 0})
             </Button>
