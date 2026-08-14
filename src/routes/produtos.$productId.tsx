@@ -1,7 +1,7 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { useCartStore } from "@/store/cart-store";
-import { useState } from "react";
-import { ChevronLeft, ChevronRight, Star, ShoppingBag, RefreshCw } from "lucide-react";
+import { useState, useRef } from "react";
+import { ChevronLeft, ChevronRight, Star, ShoppingBag, RefreshCw, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Progress } from "@/components/ui/progress";
@@ -178,17 +178,7 @@ function ProductPage() {
                 {product.video && (
                   <div className="mt-8 space-y-4">
                     <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Vídeo do Produto</h2>
-                    <div className="relative mx-auto aspect-[9/16] w-full max-w-[320px] overflow-hidden rounded-lg bg-black shadow-xl lg:mx-0">
-                      <video
-                        src={product.video}
-                        controls
-                        playsInline
-                        className="h-full w-full object-cover"
-                        poster={product.images[0]}
-                      >
-                        Seu navegador não suporta a tag de vídeo.
-                      </video>
-                    </div>
+                    <VideoPlayer src={product.video} poster={product.images[0]} />
                   </div>
                 )}
               </div>
@@ -266,5 +256,50 @@ function ProductPage() {
         </section>
       </div>
     </main>
+  );
+}
+
+function VideoPlayer({ src, poster }: { src: string; poster?: string | undefined }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play();
+        setIsPlaying(true);
+      } else {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
+
+  return (
+    <div className="relative mx-auto aspect-[9/16] w-full max-w-[320px] overflow-hidden rounded-lg bg-black shadow-xl lg:mx-0 group cursor-pointer" onClick={togglePlay}>
+      <video
+        ref={videoRef}
+        src={src}
+        playsInline
+        className="h-full w-full object-cover"
+        poster={poster}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+        onEnded={() => setIsPlaying(false)}
+      >
+        Seu navegador não suporta a tag de vídeo.
+      </video>
+
+      {!isPlaying && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-[2px] transition-all duration-500 group-hover:bg-black/30">
+          <div className="flex size-20 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white shadow-2xl backdrop-blur-md transition-transform duration-500 group-hover:scale-110">
+            <Play className="ml-1 size-8 fill-current" />
+          </div>
+        </div>
+      )}
+
+      {/* Overlay sutil para indicar que é clicável mesmo rodando, aparece no hover */}
+      <div className={`absolute inset-0 bg-black/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${isPlaying ? 'block' : 'hidden'}`} />
+    </div>
   );
 }
