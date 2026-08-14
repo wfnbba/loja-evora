@@ -154,14 +154,16 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const totalItems = useCartStore((state) => state.totalItems());
+  // Usar hook de hidratação para evitar incompatibilidade no SSR
+  const [mounted, setMounted] = useState(false);
+  const totalItems = useShopifyCartStore((state) => state.items.reduce((acc, item) => acc + item.quantity, 0));
 
   useEffect(() => {
+    setMounted(true);
     const handleOpenCart = () => setIsCartOpen(true);
     window.addEventListener('open-cart', handleOpenCart);
     return () => window.removeEventListener('open-cart', handleOpenCart);
   }, []);
-
 
   return (
     <>
@@ -182,7 +184,7 @@ function Header() {
               onClick={() => setIsCartOpen(true)}
               className="text-sm font-medium tracking-[0.2em] uppercase hover:bg-transparent px-0 cursor-pointer"
             >
-              Carrinho ({totalItems})
+              Carrinho ({mounted ? totalItems : 0})
             </Button>
           </div>
         </div>
