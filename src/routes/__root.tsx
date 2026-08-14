@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode, useState, useLayoutEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { useCartStore } from "@/store/cart-store";
+import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import { CartSheet } from "@/components/cart/cart-sheet";
 import { useUtmTracking } from "@/hooks/use-utm-tracking";
 import { useCartSync } from "@/hooks/use-cart-sync";
@@ -156,7 +156,7 @@ function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   // Usar hook de hidratação para evitar incompatibilidade no SSR
   const [mounted, setMounted] = useState(false);
-  const totalItems = useShopifyCartStore((state) => state.items.reduce((acc, item) => acc + item.quantity, 0));
+  const totalItems = useShopifyCartStore((state: any) => state.items.reduce((acc: number, item: any) => acc + item.quantity, 0));
 
   useEffect(() => {
     setMounted(true);
