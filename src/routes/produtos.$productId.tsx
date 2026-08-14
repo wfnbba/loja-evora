@@ -130,7 +130,7 @@ function ProductPage() {
             <div className="grid grid-cols-4 gap-3">
               {product.images.map((image, index) => (
                 <button key={image} type="button" aria-label={`Exibir foto ${index + 1}`} onClick={() => setSelectedImage(index)} className={`relative aspect-[3/4] overflow-hidden border-2 transition-colors ${selectedImage === index ? "border-foreground" : "border-transparent"}`}>
-                  <img src={image} alt="" className="h-full w-full object-cover" width={192} height={256} loading="lazy" />
+                  <img src={image} alt="" className="h-full w-full object-cover" width={150} height={200} loading="lazy" decoding="async" />
                 </button>
               ))}
             </div>
