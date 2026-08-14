@@ -769,6 +769,8 @@ export const products: Product[] = [
     images: [ig0, p1b, p1c, p1d],
     sizes,
     colors: [{ name: "Rosé", value: "#e2b6b1" }],
+    salesCount: 843,
+    rating: 4.8,
     reviews: [{ user: "Mariana S.", comment: "O conjunto veste muito bem e a cor é linda pessoalmente.", rating: 5, image: p1b }],
   },
   {
