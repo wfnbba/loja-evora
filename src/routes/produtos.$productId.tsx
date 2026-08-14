@@ -18,14 +18,112 @@ declare module 'react' {
 
 export const Route = createFileRoute("/produtos/$productId")({
   loader: async ({ params }) => {
-    const data = await storefrontApiRequest(GET_PRODUCTS_QUERY, {
-      first: 1,
-      query: `handle:${params.productId}`
-    });
-    
-    const product = data?.data?.products?.edges[0];
-    if (!product) throw notFound();
-    return { product: product as ShopifyProduct };
+    try {
+      const data = await storefrontApiRequest(GET_PRODUCTS_QUERY, {
+        first: 1,
+        query: `handle:${params.productId}`
+      });
+      
+      const product = data?.data?.products?.edges[0];
+      if (product) return { product: product as ShopifyProduct, isLocal: false };
+      
+      // Fallback para produto local
+      const { products: localProducts } = await import("@/lib/products-data");
+      const lp = localProducts.find(p => p.id === params.productId);
+      
+      if (!lp) throw notFound();
+
+      const shopifyProduct: ShopifyProduct = {
+        node: {
+          id: `local-${lp.id}`,
+          title: lp.name,
+          description: lp.description,
+          handle: lp.id,
+          priceRange: {
+            minVariantPrice: {
+              amount: lp.price.toString(),
+              currencyCode: "BRL"
+            }
+          },
+          images: {
+            edges: lp.images.map(img => ({
+              node: {
+                url: img,
+                altText: lp.name
+              }
+            }))
+          },
+          variants: {
+            edges: lp.sizes.map(size => ({
+              node: {
+                id: `local-variant-${lp.id}-${size}`,
+                title: size,
+                price: {
+                  amount: lp.price.toString(),
+                  currencyCode: "BRL"
+                },
+                availableForSale: true,
+                selectedOptions: [{ name: "Tamanho", value: size }]
+              }
+            }))
+          },
+          options: [
+            { name: "Tamanho", values: lp.sizes },
+            ...(lp.colors ? [{ name: "Cor", values: lp.colors.map(c => c.name) }] : [])
+          ]
+        }
+      };
+
+      return { product: shopifyProduct, isLocal: true };
+    } catch (error) {
+      console.error("Error loading product, trying local:", error);
+      // Repetir lógica de fallback para erro de API
+      const { products: localProducts } = await import("@/lib/products-data");
+      const lp = localProducts.find(p => p.id === params.productId);
+      if (!lp) throw notFound();
+      
+      const shopifyProduct: ShopifyProduct = {
+        node: {
+          id: `local-${lp.id}`,
+          title: lp.name,
+          description: lp.description,
+          handle: lp.id,
+          priceRange: {
+            minVariantPrice: {
+              amount: lp.price.toString(),
+              currencyCode: "BRL"
+            }
+          },
+          images: {
+            edges: lp.images.map(img => ({
+              node: {
+                url: img,
+                altText: lp.name
+              }
+            }))
+          },
+          variants: {
+            edges: lp.sizes.map(size => ({
+              node: {
+                id: `local-variant-${lp.id}-${size}`,
+                title: size,
+                price: {
+                  amount: lp.price.toString(),
+                  currencyCode: "BRL"
+                },
+                availableForSale: true,
+                selectedOptions: [{ name: "Tamanho", value: size }]
+              }
+            }))
+          },
+          options: [
+            { name: "Tamanho", values: lp.sizes },
+            ...(lp.colors ? [{ name: "Cor", values: lp.colors.map(c => c.name) }] : [])
+          ]
+        }
+      };
+      return { product: shopifyProduct, isLocal: true };
+    }
   },
   head: ({ loaderData }) => {
     const product = loaderData?.product?.node;
@@ -46,7 +144,7 @@ export const Route = createFileRoute("/produtos/$productId")({
 });
 
 function ProductPage() {
-  const { product: shopifyProduct } = Route.useLoaderData();
+  const { product: shopifyProduct, isLocal } = Route.useLoaderData();
   const product = shopifyProduct.node;
   
   const [selectedImage, setSelectedImage] = useState(0);
@@ -192,7 +290,11 @@ function ProductPage() {
             )}
 
             <div className="flex flex-col gap-4">
-              <Button onClick={addToCart} disabled={!selectedSize || isLoadingCart} className="w-full rounded-none py-8 uppercase tracking-[0.2em]">
+              <Button 
+                onClick={addToCart} 
+                disabled={!selectedSize || isLoadingCart} 
+                className="w-full rounded-none py-8 uppercase tracking-[0.2em] utmify"
+              >
                 {isLoadingCart ? <Loader2 className="mr-3 size-5 animate-spin" /> : <ShoppingBag className="mr-3 size-5" />}
                 {added ? "ADICIONADO AO CARRINHO" : "ADICIONAR AO CARRINHO"}
               </Button>
