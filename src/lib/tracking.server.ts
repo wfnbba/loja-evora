@@ -34,12 +34,12 @@ export async function trackCustomerAndOrder(data: {
       .upsert({
         email: data.customer.email,
         name: data.customer.name,
-        phone: data.customer.phone,
-        document: data.customer.document,
+        phone: data.customer.phone ?? null,
+        document: data.customer.document ?? null,
         zip_code: data.customer.address.zipCode,
         street: data.customer.address.street,
         number: data.customer.address.number,
-        complement: data.customer.address.complement,
+        complement: data.customer.address.complement ?? null,
         neighborhood: data.customer.address.neighborhood,
         city: data.customer.address.city,
         state: data.customer.address.state,
@@ -72,7 +72,7 @@ export async function trackCustomerAndOrder(data: {
           product_name: item.name,
           quantity: item.quantity,
           price: item.price,
-          size: item.size,
+          size: item.size ?? null,
         }))
       );
 
