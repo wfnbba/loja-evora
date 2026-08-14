@@ -308,4 +308,37 @@ export const products: Product[] = [
       }
     ],
   },
+  {
+    id: "conjunto-espresso-alfaiataria",
+    name: "Conjunto Évora Espresso Alfaiataria",
+    price: 589,
+    description: "Conjunto de alfaiataria premium composto por colete transpassado com cinto e calça wide leg. O tom espresso profundo e o corte impecável trazem uma sofisticação moderna e autoritária, ideal para a mulher que impõe presença.",
+    images: [
+      conjuntoEspresso1.url,
+      conjuntoEspresso2.url,
+      conjuntoEspresso3.url,
+      conjuntoEspresso4.url,
+      conjuntoEspresso5.url,
+      conjuntoEspresso6.url,
+      conjuntoEspresso7.url,
+      conjuntoEspresso8.url,
+      conjuntoEspresso9.url,
+      conjuntoEspresso10.url
+    ],
+    sizes,
+    reviews: [
+      { 
+        user: "Tatiana B.", 
+        comment: "O caimento da calça é surreal e o colete com cinto valoriza muito a cintura.", 
+        rating: 5, 
+        image: conjuntoEspresso3.url 
+      },
+      { 
+        user: "Alessandra G.", 
+        comment: "Tecido encorpado e cor maravilhosa. Um conjunto que transmite muito poder.", 
+        rating: 5, 
+        image: conjuntoEspresso1.url 
+      }
+    ],
+  },
 ];
