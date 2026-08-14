@@ -152,7 +152,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
           if (result.success && result.data.status === "paid") {
             const utms = getPersistedUtms();
             const orderData = {
-              orderId: pixData.transactionId,
+              orderId: pixData.transactionId || `order_${Date.now()}`,
               platform: "Évora Store",
               paymentMethod: "pix" as const,
               status: "paid" as const,
