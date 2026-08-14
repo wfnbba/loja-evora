@@ -574,7 +574,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 <Button 
                   variant="outline" 
                   onClick={copyToClipboard}
-                  className="w-full rounded-none py-8 border-2 border-foreground uppercase tracking-[0.2em] font-bold group bg-foreground text-background hover:bg-foreground/90 transition-all"
+                  className="w-full rounded-none py-10 border-2 border-foreground uppercase tracking-widest font-bold group bg-foreground text-background hover:bg-foreground/90 transition-all"
                 >
                   <Copy className="mr-3 size-5" />
                   Copiar Código PIX
