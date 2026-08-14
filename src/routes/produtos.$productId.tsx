@@ -282,9 +282,10 @@ function ProductPage() {
 
             
             <div className="space-y-4 border-t border-border pt-8">
-              <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Descrição</h2>
+              <h2 className="text-sm font-bold uppercase tracking-widest">Descrição</h2>
               <div className="space-y-6">
-                <p className="font-light leading-relaxed text-muted-foreground">{product.description}</p>
+                <p className="text-sm md:text-base font-light leading-relaxed text-muted-foreground">{product.description}</p>
+
                 
                 {product.video && (
                   <div className="mt-8 space-y-4">
