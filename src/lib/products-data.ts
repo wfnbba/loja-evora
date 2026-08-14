@@ -298,7 +298,8 @@ export const products: Product[] = [
   },
   { id: "vestido-aurora-cafe",
     name: "Vestido Évora Aurora Café",
-    price: 479,
+    price: 129.90,
+    originalPrice: 379,
     description: "Vestido midi em tom café, com cintura marcada e saia ampla. A tonalidade profunda atualiza uma silhueta clássica." + exchangePolicy,
     images: [
       auroraCafe1.url,
