@@ -302,7 +302,9 @@ export const products: Product[] = [
     name: "Vestido Évora Aurora Café",
     price: 129.90,
     originalPrice: 379,
+    video: "wt5hy23zyr",
     description: "Vestido midi em tom café, com cintura marcada e saia ampla. A tonalidade profunda atualiza uma silhueta clássica." + exchangePolicy,
+
     images: [
       auroraCafe1.url,
       auroraCafe2.url,
@@ -926,7 +928,9 @@ export const products: Product[] = [
     name: "Calça Évora Alfaiataria Off-White",
     price: 389.0,
     originalPrice: 489,
+    video: "z4i9e4fgkn",
     description: "A peça que define a elegância moderna. Nossa Calça de Alfaiataria Off-White possui corte reto impecável, pregas frontais que alongam a silhueta e um caimento fluido que exala sofisticação. Ideal para compor looks minimalistas e poderosos. *Acompanha cinto preto de brinde para finalizar o visual com perfeição.*" + exchangePolicy,
+
     images: [
       (calcaOffWhite1 as any).url,
       (calcaOffWhite2 as any).url,
