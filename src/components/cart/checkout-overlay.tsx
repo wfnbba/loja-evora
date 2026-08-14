@@ -540,7 +540,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 <div className="flex flex-col items-center gap-4 py-8 border-t border-border/50 bg-muted/5">
                   <div className="flex items-center gap-4 text-foreground/80">
                     <ShieldCheck className="size-5 text-green-600" />
-                    <span className="text-[11px] font-bold uppercase tracking-[0.2em]">Pagamento Seguro & Criptografado</span>
+                    <span className="text-xs font-bold uppercase tracking-widest">Pagamento Seguro & Criptografado</span>
                   </div>
                   <div className="flex items-center gap-6 opacity-60 scale-75 md:scale-90">
                     <img src={pixLogoAsset.url} alt="PIX" className="h-8 w-auto" />
