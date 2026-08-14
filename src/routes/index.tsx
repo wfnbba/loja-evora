@@ -63,15 +63,9 @@ function Index() {
                         {product.name}
                       </h2>
                       <div className="mt-2">
-                        <Button 
-                          asChild
-                          variant="outline"
-                          className="w-full rounded-none border-foreground/20 text-xs uppercase tracking-widest py-6 hover:bg-foreground hover:text-background transition-all"
-                        >
-                          <Link to="/produtos/$productId" params={{ productId: product.id }}>
-                            Ver Detalhes
-                          </Link>
-                        </Button>
+                        <div className="w-full rounded-none border border-foreground/20 text-xs uppercase tracking-widest py-3 flex items-center justify-center hover:bg-foreground hover:text-background transition-all">
+                          Ver Detalhes
+                        </div>
                       </div>
                       <div className="flex items-center justify-center gap-2 mt-2">
 
