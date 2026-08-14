@@ -600,12 +600,14 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 <span>Descontos</span>
                 <span className="text-green-600">- R$ {items.reduce((acc, item) => acc + (item.originalPrice ? (item.originalPrice - item.price) * item.quantity : 0), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
               </div>
-              <div className="flex justify-between items-center text-[12px] uppercase tracking-[0.2em] text-green-600 font-bold">
+              <div className="flex justify-between items-center text-[12px] uppercase tracking-[0.2em] font-bold">
                 <div className="flex items-center gap-3">
-                   <span>Frete Évora</span>
-                   <Truck className="size-4" />
+                   <span className="text-muted-foreground">Frete Évora</span>
+                   <Truck className="size-4 text-muted-foreground" />
                 </div>
-                <span>GRÁTIS</span>
+                <span className={isAddressFilled ? "text-green-600" : "text-muted-foreground"}>
+                  {isAddressFilled ? "GRÁTIS" : "A calcular"}
+                </span>
               </div>
             </div>
             
