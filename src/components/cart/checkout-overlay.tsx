@@ -228,16 +228,17 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
 
   return (
-    <div className="fixed inset-0 z-[100] flex h-full flex-col overflow-hidden bg-background">
+    <div className="w-full">
       {/* Banner de Urgência */}
-      <div className="bg-[#1a1512] text-white py-3 px-4 text-center z-[110]">
+      <div className="bg-[#1a1512] text-white py-3 px-4 text-center rounded-none mb-8">
         <p className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] animate-pulse">
           Preço garantido por apenas <span className="text-[#d4af37] mx-1">{formatTime(timeLeft)}</span> Devido a alta demanda.
         </p>
       </div>
 
-      <div className="flex flex-1 flex-col lg:flex-row h-full overflow-hidden">
-        {/* Mobile: Resumo do Pedido Explicito (sempre visível no topo no mobile) */}
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+        {/* Mobile Order Summary - Collapsible */}
+        <div className="lg:hidden w-full">
         <div className="lg:hidden border-b border-border/50 bg-muted/5 max-h-[40vh] overflow-y-auto">
           <div className="p-4 space-y-4">
             <div className="flex items-center justify-between mb-2">
