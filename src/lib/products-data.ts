@@ -455,8 +455,8 @@ export const products: Product[] = [
   },
   { id: "colete-alvorada",
     name: "Colete Évora Alvorada",
-    price: 359,
-    originalPrice: 489,
+    price: 89,
+    originalPrice: 89,
     description: "Colete em alfaiataria premium off-white com fechamento frontal por botões delicados e barra assimétrica. Uma peça minimalista e sofisticada que redefine o conceito de elegância moderna. Perfeito para sobreposições ou usado como peça única, garantindo um visual polido e autoritário." + exchangePolicy,
     images: [
       alvorada1.url,
