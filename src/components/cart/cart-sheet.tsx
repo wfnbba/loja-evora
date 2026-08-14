@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Minus, Plus, Trash2, ShoppingBag, ChevronLeft } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { CheckoutOverlay } from "./checkout-overlay";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 interface CartSheetProps {
   open: boolean;
@@ -67,7 +68,7 @@ export function CartSheet({ open, onOpenChange }: CartSheetProps) {
               {items.map((item) => (
                 <div key={`${item.id}-${item.size}-${item.color}`} className="flex gap-6 lg:gap-8">
                   <div className="relative aspect-[3/4] w-24 lg:w-32 shrink-0 overflow-hidden bg-muted border border-border/20">
-                    <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
+                    <OptimizedImage src={item.image} alt={item.name} className="h-full w-full object-cover" width={128} height={170} />
                   </div>
                   <div className="flex flex-1 flex-col justify-between py-2">
                     <div className="space-y-2">
