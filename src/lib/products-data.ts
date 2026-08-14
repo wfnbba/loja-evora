@@ -244,40 +244,34 @@ export const products: Product[] = [
     colors: [{ name: "Marfim", value: "#f5f5f0" }],
     reviews: [
       { 
-        user: "Renata G.", 
-        comment: "Simplesmente apaixonada por cada detalhe. O vestido veste como uma luva e a experiência de unboxing foi incrível!", 
+        user: "Thais G.", 
+        comment: "O Aurora Marfim é simplesmente divino! A cor é um off-white muito elegante e o caimento no corpo é impecável. O unboxing foi uma experiência de luxo.", 
         rating: 5, 
-        image: feedbackMarfim1.url 
+        image: feedbackMarfim7.url 
       },
       { 
-        user: "Camila V.", 
-        comment: "O Aurora Marfim é o ápice da elegância. O tecido é maravilhoso e a cor é muito chique.", 
+        user: "Larissa M.", 
+        comment: "Fiquei impressionada com a qualidade do tecido e o acabamento. Veste muito bem e me senti super confiante com ele. A sacola da Évora é linda!", 
         rating: 5, 
-        image: feedbackMarfim2.url 
+        image: feedbackMarfim8.url 
       },
       { 
-        user: "Sonia M.", 
-        comment: "Recebi o meu hoje e estou encantada. A qualidade da Évora é indiscutível.", 
+        user: "Bárbara S.", 
+        comment: "O vestido dos sonhos! Chegou super rápido e muito bem embalado. A cor marfim é muito sofisticada, perfeita para eventos especiais.", 
         rating: 5, 
-        image: feedbackMarfim3.url 
+        image: feedbackMarfim9.url 
       },
       { 
-        user: "Letícia B.", 
-        comment: "Caimento impecável! Um investimento que vale cada centavo para quem busca sofisticação.", 
+        user: "Manuela V.", 
+        comment: "Acabei de receber e não poderia estar mais feliz. A modelagem da Évora é maravilhosa e valoriza muito o corpo. Recomendo demais!", 
         rating: 5, 
-        image: feedbackMarfim4.url 
+        image: feedbackMarfim10.url 
       },
       { 
-        user: "Paula S.", 
-        comment: "A modelagem valoriza muito o corpo. O detalhe da gola é um diferencial muito charmoso.", 
+        user: "Viviane A.", 
+        comment: "Experiência de compra maravilhosa. O vestido é ainda mais bonito pessoalmente. O cuidado com a embalagem mostra o carinho da marca.", 
         rating: 5, 
-        image: feedbackMarfim5.url 
-      },
-      { 
-        user: "Marta F.", 
-        comment: "Elegante e atemporal. A peça que faltava no meu guarda-roupa para ocasiões especiais.", 
-        rating: 5, 
-        image: feedbackMarfim6.url 
+        image: feedbackMarfim11.url 
       }
     ],
   },
