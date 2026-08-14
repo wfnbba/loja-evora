@@ -577,6 +577,8 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             )}
           </div>
         </div>
+      </div>
+
 
 
         {/* Coluna Direita: Resumo do Pedido (Desktop) */}
