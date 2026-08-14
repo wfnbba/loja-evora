@@ -190,6 +190,15 @@ import feedbackAlvorada5 from "@/assets/feedbacks/alvorada-5.json";
 import feedbackAlvorada6 from "@/assets/feedbacks/alvorada-6.json";
 import feedbackAlvorada7 from "@/assets/feedbacks/alvorada-7.json";
 import feedbackAlvorada8 from "@/assets/feedbacks/alvorada-8.json";
+import feedbackCalcaOffWhite1 from "@/assets/feedbacks/calca-off-white-feedback-1.json";
+import feedbackCalcaOffWhite2 from "@/assets/feedbacks/calca-off-white-feedback-2.json";
+import feedbackCalcaOffWhite3 from "@/assets/feedbacks/calca-off-white-feedback-3.json";
+import feedbackCalcaOffWhite4 from "@/assets/feedbacks/calca-off-white-feedback-4.json";
+import feedbackCalcaOffWhite5 from "@/assets/feedbacks/calca-off-white-feedback-5.json";
+import feedbackCalcaOffWhite6 from "@/assets/feedbacks/calca-off-white-feedback-6.json";
+import feedbackCalcaOffWhite7 from "@/assets/feedbacks/calca-off-white-feedback-7.json";
+import feedbackCalcaOffWhite8 from "@/assets/feedbacks/calca-off-white-feedback-8.json";
+import feedbackCalcaOffWhite9 from "@/assets/feedbacks/calca-off-white-feedback-9.json";
 
 
 
