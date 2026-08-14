@@ -229,6 +229,7 @@ export const products: Product[] = [
   { id: "vestido-aurora-marfim",
     name: "Vestido Évora Aurora Marfim",
     price: 459,
+    originalPrice: 589,
     description: "A versão marfim do vestido Aurora traz linhas limpas, cintura definida e movimento suave. Atemporal e fácil de combinar." + exchangePolicy,
     images: [
       auroraMarfim1.url,
