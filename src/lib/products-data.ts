@@ -26,6 +26,10 @@ import p8b from "@/assets/products/p8-b.jpg";
 import p8c from "@/assets/products/p8-c.jpg";
 import p8d from "@/assets/products/p8-d.jpg";
 
+// Importação dos vídeos locais
+import videoAuroraCafe from "@/assets/videos/vestido-aurora-cafe.mp4.asset.json";
+import videoCalcaOffWhite from "@/assets/videos/calca-off-white.mp4.asset.json";
+
 // Novos imports específicos
 import alvorada1 from "@/assets/products/alvorada-v3-1.png.asset.json";
 import alvorada2 from "@/assets/products/alvorada-v3-2.png.asset.json";
@@ -302,7 +306,7 @@ export const products: Product[] = [
     name: "Vestido Évora Aurora Café",
     price: 129.90,
     originalPrice: 379,
-    video: "wt5hy23zyr",
+    video: videoAuroraCafe.url,
     description: "Vestido midi em tom café, com cintura marcada e saia ampla. A tonalidade profunda atualiza uma silhueta clássica." + exchangePolicy,
 
     images: [
@@ -928,7 +932,7 @@ export const products: Product[] = [
     name: "Calça Évora Alfaiataria Off-White",
     price: 389.0,
     originalPrice: 489,
-    video: "z4i9e4fgkn",
+    video: videoCalcaOffWhite.url,
     description: "A peça que define a elegância moderna. Nossa Calça de Alfaiataria Off-White possui corte reto impecável, pregas frontais que alongam a silhueta e um caimento fluido que exala sofisticação. Ideal para compor looks minimalistas e poderosos. *Acompanha cinto preto de brinde para finalizar o visual com perfeição.*" + exchangePolicy,
 
     images: [
