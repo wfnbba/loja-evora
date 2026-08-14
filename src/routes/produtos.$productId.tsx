@@ -49,9 +49,9 @@ function ProductPage() {
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState(product.colors?.[0]?.name || "Única");
   const [added, setAdded] = useState(false);
+  const [giftAdded, setGiftAdded] = useState(true); // Brinde é automático
   
   const addItem = useCartStore((state) => state.addItem);
-
 
   const addToCart = async () => {
     if (product.sizes.length > 0 && !selectedSize) {
@@ -59,15 +59,31 @@ function ProductPage() {
       return;
     }
     
+    // Adicionar item principal
     addItem({
       id: product.id,
       name: product.name,
       price: product.price,
+      originalPrice: product.originalPrice,
       image: product.images[0] || "",
       size: selectedSize || "Único",
       color: selectedColor,
       quantity: 1
     });
+
+    // Adicionar brinde se disponível
+    if (product.includedGift) {
+      addItem({
+        id: `${product.id}-brinde`,
+        name: product.includedGift.name,
+        price: 0,
+        originalPrice: 49.90,
+        image: product.images[0] || "", // Poderia ser uma imagem do cinto se tivéssemos
+        size: "Único",
+        color: product.includedGift.color,
+        quantity: 1
+      });
+    }
     
     setAdded(true);
     toast.success(`${product.name} adicionado ao carrinho`);
