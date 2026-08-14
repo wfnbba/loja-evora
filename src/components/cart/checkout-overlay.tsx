@@ -79,9 +79,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
   const handleCreatePayment = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    const doc = formData.document.replace(/\D/g, "");
-    if (doc.length !== 11) {
-      toast.error("CPF deve ter 11 dígitos");
+    const doc = formData.document.trim();
+    if (doc.length < 3) {
+      toast.error("Por favor, informe seu documento");
       return;
     }
 
@@ -240,25 +240,21 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
 
       <div className="flex flex-col lg:flex-row min-h-screen">
-        {/* Mobile Order Summary (Collapsible) */}
+        {/* Mobile Order Summary (Always Visible) */}
         <div className="lg:hidden border-b border-border/50 bg-muted/5">
-          <button 
-            onClick={() => setIsSummaryOpen(!isSummaryOpen)}
-            className="w-full p-5 flex items-center justify-between text-xs font-bold uppercase tracking-widest hover:bg-muted/10 transition-colors"
+          <div 
+            className="w-full p-5 flex items-center justify-between text-xs font-bold uppercase tracking-widest"
           >
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 text-foreground">
               <ShoppingBag className="size-4" />
-              <span>{isSummaryOpen ? "Ocultar Resumo" : "Exibir Resumo"}</span>
-              {isSummaryOpen ? <ChevronUp className="size-4" /> : <ChevronDown className="size-4" />}
+              <span>Resumo do Pedido</span>
             </div>
             <span className="text-sm text-[#d4af37] font-bold">
               R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
             </span>
-          </button>
+          </div>
 
-
-          {isSummaryOpen && (
-            <div className="p-4 space-y-4 animate-in slide-in-from-top-2 duration-300">
+          <div className="p-4 space-y-4">
               {items.map((item) => {
                 const originalPriceTotal = (item.originalPrice || item.price) * item.quantity;
                 const currentPriceTotal = item.price * item.quantity;
@@ -322,8 +318,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
               </div>
             </div>
-          )}
+          </div>
         </div>
+
 
 
         {/* Form and Desktop Content */}
@@ -357,7 +354,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                       id="phone"
                       required
                       className="h-12 md:h-14 rounded-none border-border/80 focus-visible:ring-foreground bg-muted/5 text-sm md:text-base"
-                      placeholder="(00) 00000-0000"
+                      placeholder="Telefone"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     />
@@ -390,11 +387,11 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                       <Input
                         id="cpf"
                         required
-                        maxLength={11}
+                        maxLength={20}
                         className="h-12 md:h-14 rounded-none border-border/80 focus-visible:ring-foreground bg-muted/5 text-sm md:text-base"
                         placeholder="000.000.000-00"
                         value={formData.document}
-                        onChange={(e) => setFormData({ ...formData, document: e.target.value.replace(/\D/g, "") })}
+                        onChange={(e) => setFormData({ ...formData, document: e.target.value })}
                       />
                     </div>
                     <div className="space-y-3">
