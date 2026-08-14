@@ -108,6 +108,16 @@ import feedbackMarfim4 from "@/assets/feedbacks/marfim-4.json";
 import feedbackMarfim5 from "@/assets/feedbacks/marfim-5.json";
 import feedbackMarfim6 from "@/assets/feedbacks/marfim-6.json";
 
+import feedbackEspresso1 from "@/assets/feedbacks/espresso-1.json";
+import feedbackEspresso2 from "@/assets/feedbacks/espresso-2.json";
+import feedbackEspresso3 from "@/assets/feedbacks/espresso-3.json";
+import feedbackEspresso4 from "@/assets/feedbacks/espresso-4.json";
+import feedbackEspresso5 from "@/assets/feedbacks/espresso-5.json";
+import feedbackEspresso6 from "@/assets/feedbacks/espresso-6.json";
+import feedbackEspresso7 from "@/assets/feedbacks/espresso-7.json";
+import feedbackEspresso8 from "@/assets/feedbacks/espresso-8.json";
+
+
 
 import conjuntoEspresso1 from "@/assets/products/conjunto-espresso-alfaiataria-1.png.asset.json";
 import conjuntoEspresso2 from "@/assets/products/conjunto-espresso-alfaiataria-2.png.asset.json";
@@ -311,16 +321,52 @@ export const products: Product[] = [
     colors: [{ name: "Espresso", value: "#3d2b1f" }],
     reviews: [
       { 
-        user: "Fernanda L.", 
-        comment: "O brilho desse vestido é surreal. Veste como uma luva!", 
+        user: "Isabela R.", 
+        comment: "O brilho desse cetim é surreal! Fiquei impressionada com o caimento, me senti maravilhosa.", 
         rating: 5, 
-        image: satinEspresso4.url 
+        image: feedbackEspresso1.url 
       },
       { 
-        user: "Carolina M.", 
-        comment: "Comprei para um casamento e foi um sucesso. Muito chique.", 
+        user: "Fernanda L.", 
+        comment: "A cor Espresso é ainda mais linda ao vivo. Muito sofisticado!", 
         rating: 5, 
-        image: satinEspresso1.url 
+        image: feedbackEspresso2.url 
+      },
+      { 
+        user: "Beatriz M.", 
+        comment: "Cada detalhe da embalagem e do vestido mostra o carinho da marca. Amei a experiência.", 
+        rating: 5, 
+        image: feedbackEspresso3.url 
+      },
+      { 
+        user: "Mariana S.", 
+        comment: "Perfeito para eventos noturnos. Elegância pura!", 
+        rating: 5, 
+        image: feedbackEspresso4.url 
+      },
+      { 
+        user: "Julia C.", 
+        comment: "O decote degagê valoriza muito. Veste muito bem mesmo.", 
+        rating: 5, 
+        image: feedbackEspresso5.url 
+      },
+      { 
+        user: "Rafaela T.", 
+        comment: "Tecido de altíssima qualidade, não marca e tem um toque delicioso.", 
+        rating: 5, 
+        image: feedbackEspresso6.url 
+      },
+      { 
+        user: "Bruna A.", 
+        comment: "Chegou super rápido e o atendimento foi nota 10. O vestido é um sonho!", 
+        rating: 5, 
+        image: feedbackEspresso7.url 
+      },
+      { 
+        user: "Clarice P.", 
+        comment: "Simplesmente o vestido mais chique que já tive. Évora nunca decepciona.", 
+        rating: 5, 
+        image: feedbackEspresso8.url 
       }
     ],
   },
