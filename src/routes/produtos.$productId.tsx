@@ -137,7 +137,7 @@ function ProductPage() {
 
           </section>
 
-          <section className="space-y-6 md:space-y-8">
+          <section className="space-y-6 md:space-y-8 px-4 md:px-0">
             <div className="space-y-2">
               <h1 className="text-2xl md:text-3xl font-light uppercase tracking-widest">{product.name}</h1>
               <div className="flex items-center gap-4 text-sm font-medium">
