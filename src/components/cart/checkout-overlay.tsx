@@ -424,7 +424,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                           />
                         </div>
                         <div className="col-span-1 space-y-3">
-                          <Label htmlFor="number" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">Número</Label>
+                          <Label htmlFor="number" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">Número</Label>
                           <Input
                             id="number"
                             required
