@@ -80,7 +80,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
     e.preventDefault();
     
     const doc = formData.document.trim();
-    if (doc.length < 3) {
+    if (doc.length < 1) {
       toast.error("Por favor, informe seu documento");
       return;
     }
