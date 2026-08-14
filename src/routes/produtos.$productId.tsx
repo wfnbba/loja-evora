@@ -374,9 +374,10 @@ function ProductPage() {
                     >
                       Anterior
                     </Button>
-                    <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground">
+                    <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
                       Página {reviewPage} de {totalPages}
                     </span>
+
                     <Button
                       variant="outline"
                       size="sm"
