@@ -132,7 +132,6 @@ function RootShell({ children }: { children: ReactNode }) {
               <nav className="mb-8 flex justify-center gap-8">
                 <a href="#" className="text-xs font-medium tracking-widest uppercase hover:text-[#8a7d6e] transition-colors">Termos</a>
                 <a href="#" className="text-xs font-medium tracking-widest uppercase hover:text-[#8a7d6e] transition-colors">Privacidade</a>
-                <a href="https://www.instagram.com/pitaya.dress/" target="_blank" rel="noopener noreferrer" className="text-xs font-medium tracking-widest uppercase hover:text-[#8a7d6e] transition-colors">Instagram</a>
               </nav>
               <p className="text-xs tracking-widest font-light text-[#8a7d6e]">
                 © 2026 ÉVORA. TODOS OS DIREITOS RESERVADOS.
