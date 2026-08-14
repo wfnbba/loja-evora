@@ -36,11 +36,35 @@ function ProductPage() {
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState(product.colors?.[0]?.name || "");
   const [added, setAdded] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const reviewsPerPage = 10;
 
   const addToCart = () => {
     if (!selectedSize) return;
     setAdded(true);
   };
+
+  const sortedReviews = useMemo(() => {
+    return [...product.reviews].sort((a, b) => {
+      // Prioridade 1: Comentário + Imagem
+      if (a.image && a.comment && (!b.image || !b.comment)) return -1;
+      if (b.image && b.comment && (!a.image || !a.comment)) return 1;
+      
+      // Prioridade 2: Apenas comentário
+      if (a.comment && !a.image && !b.comment) return -1;
+      if (b.comment && !b.image && !a.comment) return 1;
+      
+      return 0;
+    });
+  }, [product.reviews]);
+
+  const totalPages = Math.ceil(sortedReviews.length / reviewsPerPage);
+  const currentReviews = sortedReviews.slice(
+    (currentPage - 1) * reviewsPerPage,
+    currentPage * reviewsPerPage
+  );
+
+  const totalReviews = Object.values(product.ratingBreakdown).reduce((a, b) => a + b, 0);
 
   return (
     <main className="min-h-screen bg-background pb-20 pt-24 text-foreground">
