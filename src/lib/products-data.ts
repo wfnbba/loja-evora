@@ -228,6 +228,7 @@ export interface Product {
   includedGift?: {
     name: string;
     color: string;
+    colorValue?: string;
     price: string;
   };
 }
@@ -767,6 +768,7 @@ export const products: Product[] = [
     includedGift: {
       name: "Cinto Premium Évora",
       color: "Marrom Escuro",
+      colorValue: "#3d2b1f",
       price: "Grátis"
     },
     colors: [{ name: "Espresso", value: "#3d2b1f" }],
@@ -959,7 +961,8 @@ export const products: Product[] = [
     sizes,
     includedGift: {
       name: "Cinto Premium Évora",
-      color: "Marrom Escuro",
+      color: "Preto",
+      colorValue: "#000000",
       price: "Grátis"
     },
     colors: [{ name: "Off-White", value: "#faf9f6" }],
