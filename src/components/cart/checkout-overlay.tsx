@@ -217,7 +217,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
         <div className="p-5 flex items-center justify-between">
            <div className="flex flex-col">
              <span className="text-[12px] font-bold uppercase tracking-[0.2em] text-foreground">Checkout Seguro</span>
-             <span className="text-[10px] text-muted-foreground uppercase tracking-widest mt-0.5">Évora Luxury Store</span>
+             <span className="text-[10px] text-muted-foreground uppercase tracking-widest mt-0.5">Loja Évora</span>
            </div>
            <button 
              onClick={() => setShowOrderSummary(!showOrderSummary)}
