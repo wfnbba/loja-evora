@@ -143,7 +143,7 @@ function ProductPage() {
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
                       <div className="flex" aria-label={`${review.rating} de 5 estrelas`}>{Array.from({ length: review.rating }, (_, index) => <Star key={index} className="size-3 fill-current" />)}</div>
-                      <span className="text-xs font-medium uppercase tracking-widest">{review.user}</span>
+                      <span className="text-xs font-medium uppercase tracking-[0.2em]">{review.user}</span>
                     </div>
                     <p className="text-sm font-light italic text-muted-foreground">“{review.comment}”</p>
                   </div>
