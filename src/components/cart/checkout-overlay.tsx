@@ -296,13 +296,13 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
       <div className="flex flex-1 flex-col lg:flex-row h-full overflow-hidden">
         {/* Coluna Esquerda: Formulário (ou QR Code) */}
-        <div className="flex-1 overflow-y-auto custom-scrollbar p-6 md:p-10 lg:p-16 lg:border-r lg:border-border/50">
+        <div className="flex-1 overflow-y-auto custom-scrollbar p-4 md:p-8 lg:p-12 lg:border-r lg:border-border/50">
           {step === "form" ? (
-            <form onSubmit={handleCreatePayment} className="max-w-xl mx-auto space-y-12">
-              <div className="space-y-8">
-                <div className="flex items-center gap-3">
-                  <span className="flex size-7 md:size-8 items-center justify-center rounded-full bg-foreground text-background text-xs md:text-sm font-bold">1</span>
-                  <h3 className="text-sm md:text-base font-bold uppercase tracking-[0.25em]">Informações de Contato</h3>
+            <form onSubmit={handleCreatePayment} className="max-w-xl mx-auto space-y-10">
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 border-b border-border/50 pb-4">
+                  <span className="flex size-6 md:size-7 items-center justify-center rounded-full bg-foreground text-background text-[10px] md:text-xs font-bold">1</span>
+                  <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em]">Contato</h3>
                 </div>
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <div className="space-y-3">
@@ -331,10 +331,10 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 </div>
               </div>
 
-              <div className="space-y-8">
-                <div className="flex items-center gap-3">
-                  <span className="flex size-7 md:size-8 items-center justify-center rounded-full bg-foreground text-background text-xs md:text-sm font-bold">2</span>
-                  <h3 className="text-sm md:text-base font-bold uppercase tracking-[0.25em]">Endereço de Entrega</h3>
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 border-b border-border/50 pb-4">
+                  <span className="flex size-6 md:size-7 items-center justify-center rounded-full bg-foreground text-background text-[10px] md:text-xs font-bold">2</span>
+                  <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em]">Entrega</h3>
                 </div>
                 <div className="grid grid-cols-1 gap-6">
                   <div className="space-y-3">
@@ -470,10 +470,10 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 </div>
               </div>
 
-              <div className="space-y-8">
-                <div className="flex items-center gap-3">
-                  <span className="flex size-7 md:size-8 items-center justify-center rounded-full bg-foreground text-background text-xs md:text-sm font-bold">3</span>
-                  <h3 className="text-sm md:text-base font-bold uppercase tracking-[0.25em]">Pagamento Seguro</h3>
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 border-b border-border/50 pb-4">
+                  <span className="flex size-6 md:size-7 items-center justify-center rounded-full bg-foreground text-background text-[10px] md:text-xs font-bold">3</span>
+                  <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em]">Pagamento</h3>
                 </div>
                 <div className="border-2 border-foreground p-6 flex items-center justify-between">
                   <div className="flex items-center gap-4">
