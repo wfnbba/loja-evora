@@ -568,7 +568,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
               
               <div className="w-full max-w-sm space-y-8">
                 <div className="text-center space-y-3">
-                  <p className="text-[12px] font-bold uppercase tracking-[0.2em]">Copie o código abaixo se preferir:</p>
+                  <p className="text-sm font-bold uppercase tracking-widest">Copie o código abaixo se preferir:</p>
                 </div>
                 
                 <Button 
