@@ -168,6 +168,14 @@ import feedbackMonumentNoir6 from "@/assets/feedbacks/monument-noir-6.json";
 import feedbackMonumentNoir7 from "@/assets/feedbacks/monument-noir-7.json";
 import feedbackMonumentNoir8 from "@/assets/feedbacks/monument-noir-8.json";
 import feedbackMonumentNoir9 from "@/assets/feedbacks/monument-noir-9.json";
+import feedbackAlvorada1 from "@/assets/feedbacks/alvorada-1.json";
+import feedbackAlvorada2 from "@/assets/feedbacks/alvorada-2.json";
+import feedbackAlvorada3 from "@/assets/feedbacks/alvorada-3.json";
+import feedbackAlvorada4 from "@/assets/feedbacks/alvorada-4.json";
+import feedbackAlvorada5 from "@/assets/feedbacks/alvorada-5.json";
+import feedbackAlvorada6 from "@/assets/feedbacks/alvorada-6.json";
+import feedbackAlvorada7 from "@/assets/feedbacks/alvorada-7.json";
+import feedbackAlvorada8 from "@/assets/feedbacks/alvorada-8.json";
 
 
 
