@@ -81,7 +81,11 @@ function Index() {
                             />
                           ))}
                         </div>
-                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">{product.salesCount > 100 ? "+100 vendas" : "Novo"}</span>
+                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                          {product.salesCount >= 100 
+                            ? `+${Math.floor(product.salesCount / 100) * 100} vendas` 
+                            : "Novo"}
+                        </span>
                       </div>
                       <div className="flex items-center justify-center gap-2 text-[10px] tracking-widest mt-1">
                         <p className="font-light text-muted-foreground">
