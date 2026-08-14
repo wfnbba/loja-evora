@@ -128,7 +128,7 @@ export function CartSheet({ open, onOpenChange }: CartSheetProps) {
             <Separator className="bg-border/50" />
             <Button 
               onClick={() => setShowCheckout(true)}
-              className="w-full rounded-none py-6 uppercase tracking-[0.2em] font-medium cursor-pointer"
+              className="w-full rounded-none py-6 uppercase tracking-[0.2em] font-medium cursor-pointer utmify"
             >
               Finalizar Compra
             </Button>

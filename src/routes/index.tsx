@@ -60,6 +60,16 @@ function Index() {
                     </div>
                     <div className="space-y-1 text-center">
                       <h2 className="text-xs font-medium uppercase tracking-[0.2em] md:text-sm">{product.name}</h2>
+                      <div className="mt-3">
+                        <Button 
+                          asChild
+                          className="w-full rounded-none bg-foreground text-background text-[10px] uppercase tracking-[0.2em] py-5 hover:bg-foreground/90 transition-all"
+                        >
+                          <Link to="/produtos/$productId" params={{ productId: product.id }}>
+                            ADICIONAR AO CARRINHO
+                          </Link>
+                        </Button>
+                      </div>
                       <div className="flex items-center justify-center gap-2 mt-1">
                         <div className="flex text-foreground" aria-label={`${product.rating} de 5 estrelas`}>
                           {Array.from({ length: 5 }, (_, i) => (

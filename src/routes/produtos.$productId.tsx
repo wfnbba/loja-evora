@@ -1,11 +1,7 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { products } from "@/lib/products-data";
-import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/store/cart-store";
-import { toast } from "sonner";
-import { Card, CardContent } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { useState, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { ChevronLeft, ChevronRight, Star, ShoppingBag, ChevronDown, Filter } from "lucide-react";
 import { 
   DropdownMenu, 
@@ -13,6 +9,10 @@ import {
   DropdownMenuItem, 
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { Card, CardContent } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
 
 export const Route = createFileRoute("/produtos/$productId")({
   loader: ({ params }) => {
@@ -49,6 +49,10 @@ function ProductPage() {
   const reviewsPerPage = 10;
   
   const addItem = useCartStore((state) => state.addItem);
+  
+  const setIsCartOpen = (open: boolean) => {
+    window.dispatchEvent(new CustomEvent('open-cart'));
+  };
 
   const addToCart = () => {
     if (!selectedSize) {
@@ -76,33 +80,28 @@ function ProductPage() {
       description: `Tamanho: ${selectedSize}${selectedColor ? ` | Cor: ${selectedColor}` : ""}`
     });
     
+    setIsCartOpen(true);
+    
     setTimeout(() => setAdded(false), 2000);
   };
 
   const sortedReviews = useMemo(() => {
     let result = [...product.reviews];
     
-    // Aplicar ordenação
     if (sortOrder === "rating-high") {
       result.sort((a, b) => b.rating - a.rating);
     } else if (sortOrder === "rating-low") {
       result.sort((a, b) => a.rating - b.rating);
     } else if (sortOrder === "relevance") {
-      // Para este produto específico, respeitar a ordem do array definida nos dados
       if (product.id === "calca-alfaiataria-off-white") {
         return result;
       }
       
       result.sort((a, b) => {
-        // Prioridade 1: Comentário + Imagem
         if (a.image && a.comment && (!b.image || !b.comment)) return -1;
         if (b.image && b.comment && (!a.image || !a.comment)) return 1;
-        
-        // Prioridade 2: Apenas comentário
         if (a.comment && !a.image && !b.comment) return -1;
         if (b.comment && !b.image && !a.comment) return 1;
-        
-        // Prioridade 3: Rating (estrelas)
         return b.rating - a.rating;
       });
     }
@@ -117,6 +116,10 @@ function ProductPage() {
   );
 
   const totalReviews = Object.values(product.ratingBreakdown).reduce((a, b) => a + b, 0);
+
+  const recommendedProducts = useMemo(() => {
+    return products.filter((p) => p.id !== product.id).slice(0, 4);
+  }, [product.id]);
 
   return (
     <main className="min-h-screen bg-background pb-20 pt-24 text-foreground">
@@ -190,7 +193,6 @@ function ProductPage() {
               </div>
             )}
 
-
             {product.colors && product.colors.length > 0 && (
               <div className="space-y-4">
                 <p className="text-xs font-medium uppercase tracking-[0.2em]">Cor: {selectedColor}</p>
@@ -210,8 +212,9 @@ function ProductPage() {
             )}
 
             <Button type="button" onClick={addToCart} disabled={!selectedSize} className="w-full rounded-none py-8 uppercase tracking-[0.2em] cursor-pointer">
-              <ShoppingBag className="mr-3 size-5" />{added ? "Adicionado ao carrinho" : "Adicionar ao carrinho"}
+              <ShoppingBag className="mr-3 size-5" />{added ? "ADICIONADO AO CARRINHO" : "ADICIONAR AO CARRINHO"}
             </Button>
+            
             <div className="space-y-4 border-t border-border pt-8">
               <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Descrição</h2>
               <div className="space-y-6">
@@ -246,6 +249,7 @@ function ProductPage() {
                 )}
               </div>
             </div>
+            
             <div id="feedbacks" className="space-y-12 border-t border-border pt-12">
               <div className="space-y-8">
                 <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Avaliações</h2>
@@ -339,48 +343,22 @@ function ProductPage() {
                   <div className="flex items-center justify-center gap-4 pt-12">
                     <Button
                       variant="outline"
-                      size="sm"
-                      onClick={() => {
-                        setCurrentPage((p) => Math.max(1, p - 1));
-                        window.scrollTo({ top: document.getElementById('feedbacks')?.offsetTop || 0, behavior: 'smooth' });
-                      }}
+                      size="icon"
                       disabled={currentPage === 1}
-                      className="rounded-none border-border/50 uppercase tracking-widest"
+                      onClick={() => setCurrentPage(prev => prev - 1)}
+                      className="rounded-none border-border/50"
                     >
-                      Anterior
+                      <ChevronLeft className="size-4" />
                     </Button>
-                    <div className="flex items-center gap-2">
-                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                        let pageNum = i + 1;
-                        if (totalPages > 5 && currentPage > 3) {
-                          pageNum = currentPage - 2 + i;
-                          if (pageNum > totalPages) pageNum = totalPages - (4 - i);
-                        }
-                        return (
-                          <button
-                            key={pageNum}
-                            onClick={() => {
-                              setCurrentPage(pageNum);
-                              window.scrollTo({ top: document.getElementById('feedbacks')?.offsetTop || 0, behavior: 'smooth' });
-                            }}
-                            className={`size-8 text-[10px] font-medium transition-colors ${currentPage === pageNum ? "bg-foreground text-background" : "hover:bg-muted"}`}
-                          >
-                            {pageNum}
-                          </button>
-                        );
-                      })}
-                    </div>
+                    <span className="text-[10px] uppercase tracking-widest">{currentPage} / {totalPages}</span>
                     <Button
                       variant="outline"
-                      size="sm"
-                      onClick={() => {
-                        setCurrentPage((p) => Math.min(totalPages, p + 1));
-                        window.scrollTo({ top: document.getElementById('feedbacks')?.offsetTop || 0, behavior: 'smooth' });
-                      }}
+                      size="icon"
                       disabled={currentPage === totalPages}
-                      className="rounded-none border-border/50 uppercase tracking-widest"
+                      onClick={() => setCurrentPage(prev => prev + 1)}
+                      className="rounded-none border-border/50"
                     >
-                      Próximo
+                      <ChevronRight className="size-4" />
                     </Button>
                   </div>
                 )}
@@ -389,45 +367,45 @@ function ProductPage() {
           </section>
         </div>
 
-        <section className="mt-32 border-t border-border/50 pt-20">
-          <h2 className="mb-16 text-center text-2xl font-light uppercase tracking-[0.3em]">Você também pode gostar</h2>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-8 lg:grid-cols-4">
-            {products
-              .filter((p) => p.id !== product.id)
-              .slice(0, 4)
-              .map((recommended) => (
-                <Link key={recommended.id} to="/produtos/$productId" params={{ productId: recommended.id }} className="group">
-                  <Card className="cursor-pointer border-none bg-transparent shadow-none">
-                    <CardContent className="p-0">
-                      <div className="relative mb-4 aspect-[3/4] overflow-hidden bg-muted md:mb-6">
-                        <img
-                          src={recommended.images[0]}
-                          alt={recommended.name}
-                          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          width={768}
-                          height={1024}
-                          loading="lazy"
-                        />
-                      </div>
-                      <div className="space-y-1 text-center">
-                        <h3 className="text-xs font-medium uppercase tracking-[0.2em] md:text-sm">{recommended.name}</h3>
-                        <div className="flex items-center justify-center gap-2 mt-1">
-                          <div className="flex text-foreground" aria-label={`${recommended.rating} de 5 estrelas`}>
-                            {Array.from({ length: 5 }, (_, i) => (
-                              <Star
-                                key={i}
-                                className={`size-2.5 ${i < Math.floor(recommended.rating) ? "fill-current" : "text-muted-foreground"}`}
-                              />
-                            ))}
-                          </div>
-                          <span className="text-[10px] uppercase tracking-widest text-muted-foreground">{recommended.salesCount.toLocaleString("pt-BR")} vendidos</span>
+        <section className="mt-32 space-y-16">
+          <div className="space-y-4 text-center">
+            <h2 className="text-2xl font-light uppercase tracking-[0.3em]">Você também pode gostar</h2>
+            <div className="mx-auto h-px w-20 bg-foreground/10" />
+          </div>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-4 md:gap-x-8">
+            {recommendedProducts.map((recommended) => (
+              <Link key={recommended.id} to="/produtos/$productId" params={{ productId: recommended.id }} className="group">
+                <Card className="cursor-pointer border-none bg-transparent shadow-none">
+                  <CardContent className="p-0">
+                    <div className="relative mb-4 aspect-[3/4] overflow-hidden bg-muted md:mb-6">
+                      <img
+                        src={recommended.images[0]}
+                        alt={recommended.name}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        width={768}
+                        height={1024}
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="space-y-1 text-center">
+                      <h3 className="text-xs font-medium uppercase tracking-[0.2em] md:text-sm">{recommended.name}</h3>
+                      <div className="flex items-center justify-center gap-2 mt-1">
+                        <div className="flex text-foreground" aria-label={`${recommended.rating} de 5 estrelas`}>
+                          {Array.from({ length: 5 }, (_, i) => (
+                            <Star
+                              key={i}
+                              className={`size-2.5 ${i < Math.floor(recommended.rating) ? "fill-current" : "text-muted-foreground"}`}
+                            />
+                          ))}
                         </div>
-                        <p className="text-sm font-light tracking-widest text-muted-foreground">R$ {recommended.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">{recommended.salesCount.toLocaleString("pt-BR")} vendidos</span>
                       </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              ))}
+                      <p className="text-sm font-light tracking-widest text-muted-foreground">R$ {recommended.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
           </div>
         </section>
       </div>
