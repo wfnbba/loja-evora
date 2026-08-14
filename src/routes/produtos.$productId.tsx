@@ -205,10 +205,11 @@ function ProductPage() {
                           style={{ backgroundColor: color.value }}
                         />
                         {selectedColor === color.name && (
-                          <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[8px] font-bold uppercase tracking-widest whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                          <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold uppercase tracking-widest whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
                             {color.name}
                           </span>
                         )}
+
                       </button>
                     ))
                   ) : (
