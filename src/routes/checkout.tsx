@@ -41,7 +41,6 @@ function CheckoutPage() {
       <main>
         <CheckoutOverlay onClose={() => navigate({ to: "/" })} />
       </main>
-
     </div>
   );
 }
