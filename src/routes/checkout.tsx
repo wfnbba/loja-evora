@@ -38,14 +38,10 @@ function CheckoutPage() {
           </div>
         </div>
       </header>
-      <main className="container mx-auto py-8 lg:py-12">
+      <main>
         <CheckoutOverlay onClose={() => navigate({ to: "/" })} />
       </main>
-      <footer className="py-8 text-center border-t border-border/50 mt-12">
-        <p className="text-[10px] tracking-[0.2em] font-light text-muted-foreground uppercase">
-          © 2026 ÉVORA. TODOS OS DIREITOS RESERVADOS.
-        </p>
-      </footer>
+
     </div>
   );
 }

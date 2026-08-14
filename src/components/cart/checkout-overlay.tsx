@@ -236,9 +236,10 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
         </p>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-        {/* Mobile Order Summary */}
-        <div className="lg:hidden border-b border-border/50 bg-muted/5 max-h-[40vh] overflow-y-auto">
+      <div className="flex flex-col lg:flex-row min-h-screen">
+        {/* Mobile Order Summary (Collapsible) */}
+        <div className="lg:hidden border-b border-border/50 bg-muted/5">
+
           <div className="p-4 space-y-4">
             <div className="flex items-center justify-between mb-2">
               <h3 className="text-[10px] font-bold uppercase tracking-[0.2em]">Seu Pedido</h3>
@@ -307,8 +308,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
         </div>
 
         {/* Form and Desktop Content */}
-        <div className="flex-1 order-2 lg:order-1">
-          <div className="bg-white p-6 md:p-10 border border-border/50 shadow-sm">
+        <div className="flex-1 order-2 lg:order-1 p-6 md:p-10 lg:p-16">
+          <div className="bg-white p-0">
+
             {step === "form" ? (
               <form onSubmit={handleCreatePayment} className="max-w-xl mx-auto space-y-10">
               <div className="space-y-6">
@@ -697,5 +699,6 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
     </div>
   );
 }
+
 
 
