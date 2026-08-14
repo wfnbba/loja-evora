@@ -247,45 +247,33 @@ function ProductPage() {
                 
                 {product.id === "vestido-aurora-cafe" && (
                   <div className="wistia-video-container mt-6 aspect-[9/16] w-full max-w-[400px] overflow-hidden bg-muted mx-auto lg:mx-0">
-                    <div 
-                      dangerouslySetInnerHTML={{ 
-                        __html: `
-                          <script src="https://fast.wistia.com/player.js" async></script>
-                          <script src="https://fast.wistia.com/embed/wt5hy23zyr.js" async type="module"></script>
-                          <style>
-                            wistia-player[media-id='wt5hy23zyr']:not(:defined) { 
-                              background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/wt5hy23zyr/swatch'); 
-                              display: block; 
-                              filter: blur(5px); 
-                              padding-top:177.78%; 
-                            }
-                          </style>
-                          <wistia-player media-id="wt5hy23zyr" aspect="0.5625"></wistia-player>
-                        `
-                      }}
-                    />
+                    <style>
+                      {`
+                        wistia-player[media-id='wt5hy23zyr']:not(:defined) { 
+                          background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/wt5hy23zyr/swatch'); 
+                          display: block; 
+                          filter: blur(5px); 
+                          padding-top:177.78%; 
+                        }
+                      `}
+                    </style>
+                    <wistia-player media-id="wt5hy23zyr" aspect="0.5625"></wistia-player>
                   </div>
                 )}
                 
                 {(product.id === "conjunto-alfaiataria-off-white" || product.id === "calca-alfaiataria-off-white") && (
                   <div className="wistia-video-container mt-6 aspect-[9/16] w-full max-w-[400px] overflow-hidden bg-muted mx-auto lg:mx-0">
-                    <div 
-                      dangerouslySetInnerHTML={{ 
-                        __html: `
-                          <script src="https://fast.wistia.com/player.js" async></script>
-                          <script src="https://fast.wistia.com/embed/z4i9e4fgkn.js" async type="module"></script>
-                          <style>
-                            wistia-player[media-id='z4i9e4fgkn']:not(:defined) { 
-                              background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/z4i9e4fgkn/swatch'); 
-                              display: block; 
-                              filter: blur(5px); 
-                              padding-top:177.78%; 
-                            }
-                          </style>
-                          <wistia-player media-id="z4i9e4fgkn" aspect="0.5625"></wistia-player>
-                        `
-                      }}
-                    />
+                    <style>
+                      {`
+                        wistia-player[media-id='z4i9e4fgkn']:not(:defined) { 
+                          background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/z4i9e4fgkn/swatch'); 
+                          display: block; 
+                          filter: blur(5px); 
+                          padding-top:177.78%; 
+                        }
+                      `}
+                    </style>
+                    <wistia-player media-id="z4i9e4fgkn" aspect="0.5625"></wistia-player>
                   </div>
                 )}
               </div>
