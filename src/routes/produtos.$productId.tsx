@@ -221,8 +221,8 @@ function ProductPage() {
                     <div className="relative flex size-12 items-center justify-center rounded-full border-2 border-foreground p-1 ring-1 ring-foreground ring-offset-2 shadow-lg bg-white">
                       <span 
                         className="h-full w-full rounded-full shadow-inner"
-                        style={{ backgroundColor: "#3d2b1f" }} // Marrom Escuro
-                        title="Marrom Escuro"
+                        style={{ backgroundColor: product.includedGift.colorValue || "#3d2b1f" }}
+                        title={product.includedGift.color}
                       />
                     </div>
                     
