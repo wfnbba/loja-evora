@@ -64,9 +64,25 @@ function ProductPage() {
   const addItem = useShopifyCartStore((state) => state.addItem);
   const isLoadingCart = useShopifyCartStore((state) => state.isLoading);
   
-  const setIsCartOpen = (open: boolean) => {
-    window.dispatchEvent(new CustomEvent('open-cart'));
-  };
+  const setIsCartOpen = useShopifyCartStore((state) => state.setIsOpen);
+
+  // Estados para feedbacks mockados
+  const [currentPage, setCurrentPage] = useState(1);
+  const [sortOrder, setSortOrder] = useState<"relevance" | "rating-high" | "rating-low" | "recent">("relevance");
+  const reviewsPerPage = 10;
+  
+  const mockReviews = [
+    { user: "Mariana S.", rating: 5, comment: "Vestido maravilhoso! O tecido é de uma qualidade absurda, cai super bem no corpo. Évora realmente surpreendeu." },
+    { user: "Beatriz L.", rating: 5, comment: "Comprei para um evento e recebi muitos elogios. O caimento é perfeito e a cor é idêntica à foto." },
+    { user: "Fernanda M.", rating: 4, comment: "Muito bonito, chegou rápido. Só achei um pouco longo, mas nada que um ajuste não resolva." },
+    { user: "Camila R.", rating: 5, comment: "Simplesmente apaixonada. A experiência de unboxing é premium, dá pra sentir o cuidado da marca." },
+    { user: "Juliana A.", rating: 5, comment: "O melhor investimento que fiz esse mês. É elegante e muito confortável ao mesmo tempo." }
+  ];
+
+  const totalReviews = 157;
+  const ratingBreakdown = { 5: 120, 4: 25, 3: 8, 2: 3, 1: 1 };
+  const totalPages = Math.ceil(mockReviews.length / reviewsPerPage) || 1;
+  const currentReviews = mockReviews;
 
   const addToCart = async () => {
     const sizeOption = product.options.find(o => o.name.toLowerCase() === 'tamanho' || o.name.toLowerCase() === 'size');
@@ -75,7 +91,6 @@ function ProductPage() {
       return;
     }
     
-    // Encontrar a variante correta baseada nas opções selecionadas
     const variant = product.variants.edges.find(({ node: v }: any) => {
       const sizeMatch = !selectedSize || v.selectedOptions.some((o: any) => 
         (o.name.toLowerCase() === 'tamanho' || o.name.toLowerCase() === 'size') && o.value === selectedSize
@@ -109,42 +124,6 @@ function ProductPage() {
   const images = product.images.edges.map(e => e.node.url);
   const sizeOption = product.options.find(o => o.name.toLowerCase() === 'tamanho' || o.name.toLowerCase() === 'size');
   const colorOption = product.options.find(o => o.name.toLowerCase() === 'cor');
-
-  const sortedReviews = useMemo(() => {
-    let result = [...product.reviews];
-    
-    if (sortOrder === "rating-high") {
-      result.sort((a, b) => b.rating - a.rating);
-    } else if (sortOrder === "rating-low") {
-      result.sort((a, b) => a.rating - b.rating);
-    } else if (sortOrder === "relevance") {
-      if (product.id === "calca-alfaiataria-off-white") {
-        return result;
-      }
-      
-      result.sort((a, b) => {
-        if (a.image && a.comment && (!b.image || !b.comment)) return -1;
-        if (b.image && b.comment && (!a.image || !a.comment)) return 1;
-        if (a.comment && !a.image && !b.comment) return -1;
-        if (b.comment && !b.image && !a.comment) return 1;
-        return b.rating - a.rating;
-      });
-    }
-    
-    return result;
-  }, [product.reviews, sortOrder]);
-
-  const totalPages = Math.ceil(sortedReviews.length / reviewsPerPage);
-  const currentReviews = sortedReviews.slice(
-    (currentPage - 1) * reviewsPerPage,
-    currentPage * reviewsPerPage
-  );
-
-  const totalReviews = Object.values(product.ratingBreakdown).reduce((a, b) => a + b, 0);
-
-  const recommendedProducts = useMemo(() => {
-    return products.filter((p) => p.id !== product.id).slice(0, 4);
-  }, [product.id]);
 
   return (
     <main className="min-h-screen bg-background pb-20 pt-24 text-foreground">
@@ -315,10 +294,10 @@ function ProductPage() {
                 
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                   <div className="flex flex-col items-center justify-center space-y-2 border-r border-border/50 pr-8 text-center">
-                    <span className="text-5xl font-light">{product.rating.toFixed(1)}</span>
-                    <div className="flex" aria-label={`${product.rating} de 5 estrelas`}>
+                    <span className="text-5xl font-light">4.9</span>
+                    <div className="flex" aria-label="4.9 de 5 estrelas">
                       {Array.from({ length: 5 }, (_, i) => (
-                        <Star key={i} className={`size-4 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`} />
+                        <Star key={i} className={`size-4 ${i < 4 ? "fill-current" : "text-muted-foreground"}`} />
                       ))}
                     </div>
                     <span className="text-xs uppercase tracking-widest text-muted-foreground">{totalReviews.toLocaleString("pt-BR")} avaliações</span>
@@ -326,8 +305,8 @@ function ProductPage() {
                   
                   <div className="col-span-1 space-y-2 lg:col-span-2">
                     {[5, 4, 3, 2, 1].map((star) => {
-                      const count = product.ratingBreakdown[star as keyof typeof product.ratingBreakdown] || 0;
-                      const percentage = totalReviews > 0 ? (count / totalReviews) * 100 : 0;
+                      const count = ratingBreakdown[star as keyof typeof ratingBreakdown] || 0;
+                      const percentage = (count / totalReviews) * 100;
                       return (
                         <div key={star} className="flex items-center gap-4">
                           <span className="w-4 text-xs font-light">{star}</span>
