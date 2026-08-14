@@ -105,7 +105,14 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
     try {
       const result = await createPix({
         data: {
-          items: items.map(i => ({ id: i.id, name: i.name, quantity: i.quantity, price: i.price, size: i.size, color: i.color })),
+          items: [...items, ...(formData.street.length > 3 ? [{
+            id: 'shipping-premium',
+            name: 'Frete Premium Évora',
+            price: 0,
+            quantity: 1,
+            size: 'Express',
+            color: 'Logística'
+          }] : [])].map(i => ({ id: i.id, name: i.name, quantity: i.quantity, price: i.price, size: i.size, color: i.color })),
           payerName: formData.name || "Cliente",
           payerDocument: formData.document || "00000000000",
           email: formData.email,
