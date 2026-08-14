@@ -413,7 +413,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                     <div className="space-y-6 animate-in fade-in slide-in-from-top-2 duration-300">
                       <div className="grid grid-cols-3 gap-6">
                         <div className="col-span-2 space-y-3">
-                          <Label htmlFor="street" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">Rua / Avenida</Label>
+                          <Label htmlFor="street" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">Rua / Avenida</Label>
                           <Input
                             id="street"
                             required
