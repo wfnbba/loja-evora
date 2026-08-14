@@ -14,14 +14,6 @@ import {
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu";
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'wistia-player': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & { 'media-id'?: string; 'aspect'?: string }, HTMLElement>;
-    }
-  }
-}
-
 export const Route = createFileRoute("/produtos/$productId")({
   loader: ({ params }) => {
     const product = products.find((item) => item.id === params.productId);
