@@ -601,6 +601,8 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             </div>
           )}
         </div>
+      </div>
+
 
         {/* Coluna Direita: Resumo do Pedido (Desktop) */}
         <div className="hidden lg:flex lg:w-[450px] bg-[#faf8f6] p-12 lg:p-16 flex-col gap-10 border-l border-border/30 min-h-screen">
