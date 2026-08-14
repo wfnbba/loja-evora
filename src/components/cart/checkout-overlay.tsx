@@ -307,17 +307,25 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 );
               })}
               
-              <div className="pt-2 space-y-2 border-t border-border/20">
+              <div className="pt-4 space-y-3 border-t-2 border-foreground/10">
                 <div className="flex justify-between text-xs uppercase tracking-widest text-foreground font-bold">
                   <div className="flex items-center gap-3">
-                    <span>Frete</span>
-                    <Truck className="size-4" />
+                    <span className="text-muted-foreground">Frete</span>
+                    <Truck className="size-4 text-muted-foreground" />
                   </div>
-                  <span className={isAddressFilled ? "text-green-600" : "text-muted-foreground/60"}>
-                    {isAddressFilled ? "GRÁTIS" : "Aguardando endereço"}
+                  <span className={isAddressFilled ? "text-green-600 font-bold" : "text-muted-foreground/60 italic"}>
+                    {isAddressFilled ? "GRÁTIS" : "A calcular"}
                   </span>
                 </div>
-
+                
+                <Separator className="bg-foreground/5" />
+                
+                <div className="flex justify-between items-end pt-2">
+                  <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Total</span>
+                  <span className="text-xl font-bold tracking-tight">
+                    R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
