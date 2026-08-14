@@ -98,16 +98,16 @@ import saiaRenda5 from "@/assets/products/saia-renda-5.png.asset.json";
 import saiaRenda6 from "@/assets/products/saia-renda-6.png.asset.json";
 import saiaRenda7 from "@/assets/products/saia-renda-7.png.asset.json";
 import saiaRenda8 from "@/assets/products/saia-renda-8.png.asset.json";
-import calcaOffWhite1 from "@/assets/products/calca-alfaiataria-off-white-1.png.asset.json" with { type: "json" };
-import calcaOffWhite2 from "@/assets/products/calca-alfaiataria-off-white-2.png.asset.json" with { type: "json" };
-import calcaOffWhite3 from "@/assets/products/calca-alfaiataria-off-white-3.png.asset.json" with { type: "json" };
-import calcaOffWhite4 from "@/assets/products/calca-alfaiataria-off-white-4.png.asset.json" with { type: "json" };
-import calcaOffWhite5 from "@/assets/products/calca-alfaiataria-off-white-5.png.asset.json" with { type: "json" };
-import calcaOffWhite6 from "@/assets/products/calca-alfaiataria-off-white-6.png.asset.json" with { type: "json" };
-import calcaOffWhite7 from "@/assets/products/calca-alfaiataria-off-white-7.png.asset.json" with { type: "json" };
-import calcaOffWhite8 from "@/assets/products/calca-alfaiataria-off-white-8.png.asset.json" with { type: "json" };
-import calcaOffWhite9 from "@/assets/products/calca-alfaiataria-off-white-9.png.asset.json" with { type: "json" };
-import calcaOffWhite10 from "@/assets/products/calca-alfaiataria-off-white-10.png.asset.json" with { type: "json" };
+import calcaOffWhite1 from "@/assets/products/calca-alfaiataria-off-white-1.png.asset.json";
+import calcaOffWhite2 from "@/assets/products/calca-alfaiataria-off-white-2.png.asset.json";
+import calcaOffWhite3 from "@/assets/products/calca-alfaiataria-off-white-3.png.asset.json";
+import calcaOffWhite4 from "@/assets/products/calca-alfaiataria-off-white-4.png.asset.json";
+import calcaOffWhite5 from "@/assets/products/calca-alfaiataria-off-white-5.png.asset.json";
+import calcaOffWhite6 from "@/assets/products/calca-alfaiataria-off-white-6.png.asset.json";
+import calcaOffWhite7 from "@/assets/products/calca-alfaiataria-off-white-7.png.asset.json";
+import calcaOffWhite8 from "@/assets/products/calca-alfaiataria-off-white-8.png.asset.json";
+import calcaOffWhite9 from "@/assets/products/calca-alfaiataria-off-white-9.png.asset.json";
+import calcaOffWhite10 from "@/assets/products/calca-alfaiataria-off-white-10.png.asset.json";
 import saiaRenda9 from "@/assets/products/saia-renda-9.png.asset.json";
 import saiaRenda10 from "@/assets/products/saia-renda-10.png.asset.json";
 
@@ -907,16 +907,16 @@ export const products: Product[] = [
     price: 649.0,
     description: "Uma composição de elegância absoluta para a mulher que não abre mão da sofisticação. O Conjunto Évora Alfaiataria Off-White une a leveza da camisa fluida à estrutura impecável da calça de alfaiataria com pregas. Um visual atemporal que transita perfeitamente entre o ambiente corporativo e eventos sociais refinados. O corte clássico valoriza a silhueta com conforto e distinção." + exchangePolicy,
     images: [
-      calcaOffWhite1.url,
-      calcaOffWhite2.url,
-      calcaOffWhite3.url,
-      calcaOffWhite4.url,
-      calcaOffWhite5.url,
-      calcaOffWhite6.url,
-      calcaOffWhite7.url,
-      calcaOffWhite8.url,
-      calcaOffWhite9.url,
-      calcaOffWhite10.url,
+      (calcaOffWhite1 as any).url,
+      (calcaOffWhite2 as any).url,
+      (calcaOffWhite3 as any).url,
+      (calcaOffWhite4 as any).url,
+      (calcaOffWhite5 as any).url,
+      (calcaOffWhite6 as any).url,
+      (calcaOffWhite7 as any).url,
+      (calcaOffWhite8 as any).url,
+      (calcaOffWhite9 as any).url,
+      (calcaOffWhite10 as any).url,
     ],
     sizes,
     rating: 4.9,
