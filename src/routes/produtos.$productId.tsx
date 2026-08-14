@@ -119,7 +119,7 @@ function ProductPage() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
           <section aria-label="Galeria do produto" className="space-y-4">
             <div className="relative aspect-[3/4] overflow-hidden bg-muted">
-              <img src={product.images[selectedImage]} alt={`${product.name}, foto ${selectedImage + 1}`} className="h-full w-full object-cover" width={768} height={1024} loading="lazy" />
+              <img src={product.images[selectedImage]} alt={`${product.name}, foto ${selectedImage + 1}`} className="h-full w-full object-cover" width={600} height={800} loading="eager" decoding="async" />
               <Button variant="secondary" size="icon" aria-label="Foto anterior" onClick={() => setSelectedImage((current) => current > 0 ? current - 1 : product.images.length - 1)} className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none">
                 <ChevronLeft className="size-5" />
               </Button>
@@ -130,7 +130,7 @@ function ProductPage() {
             <div className="grid grid-cols-4 gap-3">
               {product.images.map((image, index) => (
                 <button key={image} type="button" aria-label={`Exibir foto ${index + 1}`} onClick={() => setSelectedImage(index)} className={`relative aspect-[3/4] overflow-hidden border-2 transition-colors ${selectedImage === index ? "border-foreground" : "border-transparent"}`}>
-                  <img src={image} alt="" className="h-full w-full object-cover" width={192} height={256} loading="lazy" />
+                  <img src={image} alt="" className="h-full w-full object-cover" width={150} height={200} loading="lazy" decoding="async" />
                 </button>
               ))}
             </div>
@@ -217,17 +217,8 @@ function ProductPage() {
                     <div 
                       dangerouslySetInnerHTML={{ 
                         __html: `
-                          <script src="https://fast.wistia.com/player.js" async></script>
-                          <script src="https://fast.wistia.com/embed/wt5hy23zyr.js" async type="module"></script>
-                          <style>
-                            wistia-player[media-id='wt5hy23zyr']:not(:defined) { 
-                              background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/wt5hy23zyr/swatch'); 
-                              display: block; 
-                              filter: blur(5px); 
-                              padding-top:177.78%; 
-                            }
-                          </style>
-                          <wistia-player media-id="wt5hy23zyr" aspect="0.5625"></wistia-player>
+                          <iframe src="https://fast.wistia.net/embed/iframe/wt5hy23zyr?videoFoam=true" title="Wistia video player" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="100%" height="100%"></iframe>
+                          <script src="https://fast.wistia.net/assets/external/E-v1.js" async></script>
                         `
                       }}
                     />
@@ -239,17 +230,8 @@ function ProductPage() {
                     <div 
                       dangerouslySetInnerHTML={{ 
                         __html: `
-                          <script src="https://fast.wistia.com/player.js" async></script>
-                          <script src="https://fast.wistia.com/embed/z4i9e4fgkn.js" async type="module"></script>
-                          <style>
-                            wistia-player[media-id='z4i9e4fgkn']:not(:defined) { 
-                              background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/z4i9e4fgkn/swatch'); 
-                              display: block; 
-                              filter: blur(5px); 
-                              padding-top:177.78%; 
-                            }
-                          </style>
-                          <wistia-player media-id="z4i9e4fgkn" aspect="0.5625"></wistia-player>
+                          <iframe src="https://fast.wistia.net/embed/iframe/z4i9e4fgkn?videoFoam=true" title="Wistia video player" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="100%" height="100%"></iframe>
+                          <script src="https://fast.wistia.net/assets/external/E-v1.js" async></script>
                         `
                       }}
                     />

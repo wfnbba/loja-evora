@@ -925,7 +925,7 @@ export const products: Product[] = [
       (calcaOffWhite9 as any).url,
       (calcaOffWhite10 as any).url,
     ],
-    sizes: ["Tamanho Único"],
+    sizes: ["P", "M", "G", "GG"],
     rating: 4.9,
     salesCount: 1842,
     ratingBreakdown: { 5: 145, 4: 28, 3: 5, 2: 0, 1: 0 },
