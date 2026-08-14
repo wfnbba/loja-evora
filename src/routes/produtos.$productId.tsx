@@ -299,7 +299,8 @@ function ProductPage() {
 
             <div id="feedbacks" className="space-y-12 border-t border-border pt-12">
               <div className="space-y-8">
-                <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Avaliações</h2>
+                <h2 className="text-sm font-bold uppercase tracking-widest">Avaliações</h2>
+
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                   <div className="flex flex-col items-center justify-center space-y-2 border-r border-border/50 pr-8 text-center">
                     <span className="text-5xl font-light">{product.rating.toFixed(1)}</span>
