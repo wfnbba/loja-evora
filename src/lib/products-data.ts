@@ -357,6 +357,8 @@ export const products: Product[] = [
     ],
     sizes,
     colors: [{ name: "Noir/Marfim", value: "#000000" }],
+    salesCount: 1587,
+    rating: 4.7,
     reviews: [
       { 
         user: "Thais G.", 
