@@ -29,10 +29,16 @@ import p8d from "@/assets/products/p8-d.jpg";
 // Novos imports específicos
 
 
-import alvorada1 from "@/assets/products/alvorada-v2-1.jpg";
-import alvorada2 from "@/assets/products/alvorada-v2-2.jpg";
-import alvorada3 from "@/assets/products/alvorada-v2-3.jpg";
-import alvorada4 from "@/assets/products/alvorada-v2-4.jpg";
+import alvorada1 from "@/assets/products/alvorada-v3-1.png.asset.json";
+import alvorada2 from "@/assets/products/alvorada-v3-2.png.asset.json";
+import alvorada3 from "@/assets/products/alvorada-v3-3.png.asset.json";
+import alvorada4 from "@/assets/products/alvorada-v3-4.png.asset.json";
+import alvorada5 from "@/assets/products/alvorada-v3-5.png.asset.json";
+import alvorada6 from "@/assets/products/alvorada-v3-6.png.asset.json";
+import alvorada7 from "@/assets/products/alvorada-v3-7.png.asset.json";
+import alvorada8 from "@/assets/products/alvorada-v3-8.png.asset.json";
+import alvorada9 from "@/assets/products/alvorada-v3-9.png.asset.json";
+import alvorada10 from "@/assets/products/alvorada-v3-10.png.asset.json";
 
 import auroraCafe1 from "@/assets/products/aurora-cafe-v2-1.png.asset.json";
 import auroraCafe2 from "@/assets/products/aurora-cafe-v2-2.png.asset.json";
@@ -206,11 +212,35 @@ export const products: Product[] = [
   {
     id: "colete-alvorada",
     name: "Colete Évora Alvorada",
-    price: 319,
-    description: "Colete marfim com fechamento frontal deslocado e barra levemente assimétrica. Alfaiataria moderna para composições claras ou contrastantes.",
-    images: [alvorada1, alvorada2, alvorada3, alvorada4],
+    price: 359,
+    description: "Colete em alfaiataria premium off-white com fechamento frontal por botões delicados e barra assimétrica. Uma peça minimalista e sofisticada que redefine o conceito de elegância moderna. Perfeito para sobreposições ou usado como peça única, garantindo um visual polido e autoritário.",
+    images: [
+      alvorada1.url,
+      alvorada2.url,
+      alvorada3.url,
+      alvorada4.url,
+      alvorada5.url,
+      alvorada6.url,
+      alvorada7.url,
+      alvorada8.url,
+      alvorada9.url,
+      alvorada10.url
+    ],
     sizes,
-    reviews: [{ user: "Renata P.", comment: "O recorte é muito bonito e deixa qualquer look mais arrumado.", rating: 5, image: alvorada1 }],
+    reviews: [
+      { 
+        user: "Carolina P.", 
+        comment: "O corte é impecável e a cor off-white é muito chique. Adorei a barra assimétrica.", 
+        rating: 5, 
+        image: alvorada1.url 
+      },
+      { 
+        user: "Fernanda T.", 
+        comment: "Veste super bem e o tecido é de altíssima qualidade. Recomendo muito!", 
+        rating: 5, 
+        image: alvorada6.url 
+      }
+    ],
   },
   {
     id: "vestido-satin-espresso",
