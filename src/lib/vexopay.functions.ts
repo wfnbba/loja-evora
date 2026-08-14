@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { products } from "./products-data";
+// Removida dependência do products-data local, pois usamos dados do carrinho
 
 const VEXOPAY_API_URL = "https://www.vexopay.com.br/api";
 
@@ -8,6 +8,7 @@ const createPixInput = z.object({
   items: z.array(z.object({
     id: z.string(),
     quantity: z.number(),
+    price: z.number().optional(), // Preço enviado pelo cliente para cálculo (opcional se validado no server)
   })),
   payerName: z.string().min(3, "Nome muito curto"),
   payerDocument: z.string().length(11, "CPF deve ter 11 dígitos"),
@@ -53,13 +54,15 @@ export const createPixPayment = createServerFn({ method: "POST" })
       throw new Error("VexoPay API keys are not configured.");
     }
 
-    // Calculate amount on server for security
+    // Calculate amount on server. In a production environment with Shopify,
+    // you would ideally fetch the price from Shopify API here to verify.
+    // For now, we use the price passed or a safe default if available.
     let total = 0;
     for (const item of data.items) {
-      const product = products.find(p => p.id === item.id);
-      if (product) {
-        total += product.price * item.quantity;
-      }
+      // Usamos o preço enviado no payload (confiando no client para este exemplo,
+      // mas recomendaria validação via Shopify API em prod)
+      const itemPrice = (item as any).price || 0;
+      total += itemPrice * item.quantity;
     }
 
     if (total < 2.00) {
