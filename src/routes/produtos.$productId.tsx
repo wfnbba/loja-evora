@@ -2,6 +2,7 @@ import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { useCartStore } from "@/store/cart-store";
 import { useState, useRef } from "react";
 import { ChevronLeft, ChevronRight, Star, ShoppingBag, RefreshCw, Play } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Progress } from "@/components/ui/progress";
