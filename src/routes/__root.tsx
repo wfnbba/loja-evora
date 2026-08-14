@@ -113,7 +113,6 @@ function RootShell({ children }: { children: ReactNode }) {
         <div className="min-h-screen bg-[#fdfbf7] text-[#4a3f35]">
           <Header />
           {children}
-          {children}
           <footer className="border-t border-border/50 bg-background py-20">
             <div className="container mx-auto px-4 text-center lg:px-8">
               <img src={logoAsset.url} alt="Évora Logo" className="mx-auto mb-8 h-8 w-auto opacity-50" />
