@@ -164,11 +164,6 @@ function FooterWrapper() {
     </footer>
   );
 }
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
