@@ -95,7 +95,7 @@ function Index() {
                         </p>
 
                         {product.originalPrice && (
-                          <p className="text-[10px] md:text-xs text-muted-foreground/50 line-through">
+                          <p className="text-xs md:text-sm text-muted-foreground/50 line-through">
                             R$ {product.originalPrice.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                           </p>
                         )}
