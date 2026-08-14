@@ -306,10 +306,10 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             </div>
           </div>
         </div>
-      </div>
-      <div className="flex flex-1 flex-col lg:flex-row h-full overflow-hidden">
-        {/* Coluna Esquerda: Formulário (ou QR Code) */}
-        <div className="flex-1 overflow-y-auto custom-scrollbar p-4 md:p-8 lg:p-12 lg:border-r lg:border-border/50 bg-[#fcfaf7]">
+
+        {/* Form and Desktop Content */}
+        <div className="flex-1 order-2 lg:order-1">
+          <div className="bg-white p-6 md:p-10 border border-border/50 shadow-sm">
           {step === "form" ? (
             <form onSubmit={handleCreatePayment} className="max-w-xl mx-auto space-y-10">
               <div className="space-y-6">
