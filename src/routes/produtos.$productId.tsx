@@ -223,7 +223,13 @@ function ProductPage() {
               </div>
             )}
 
-            <Button type="button" onClick={addToCart} disabled={!selectedSize} className="w-full rounded-none py-8 uppercase tracking-[0.2em] cursor-pointer">
+            <Button 
+              id="add-to-cart-button"
+              type="button" 
+              onClick={addToCart} 
+              disabled={!selectedSize} 
+              className="w-full rounded-none py-8 uppercase tracking-[0.2em] cursor-pointer"
+            >
               <ShoppingBag className="mr-3 size-5" />{added ? "ADICIONADO AO CARRINHO" : "ADICIONAR AO CARRINHO"}
             </Button>
             
