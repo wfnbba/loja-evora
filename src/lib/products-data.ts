@@ -101,6 +101,14 @@ import saiaRenda8 from "@/assets/products/saia-renda-8.png.asset.json";
 import saiaRenda9 from "@/assets/products/saia-renda-9.png.asset.json";
 import saiaRenda10 from "@/assets/products/saia-renda-10.png.asset.json";
 
+import feedbackMarfim1 from "@/assets/feedbacks/marfim-1.json";
+import feedbackMarfim2 from "@/assets/feedbacks/marfim-2.json";
+import feedbackMarfim3 from "@/assets/feedbacks/marfim-3.json";
+import feedbackMarfim4 from "@/assets/feedbacks/marfim-4.json";
+import feedbackMarfim5 from "@/assets/feedbacks/marfim-5.json";
+import feedbackMarfim6 from "@/assets/feedbacks/marfim-6.json";
+
+
 import conjuntoEspresso1 from "@/assets/products/conjunto-espresso-alfaiataria-1.png.asset.json";
 import conjuntoEspresso2 from "@/assets/products/conjunto-espresso-alfaiataria-2.png.asset.json";
 import conjuntoEspresso3 from "@/assets/products/conjunto-espresso-alfaiataria-3.png.asset.json";
