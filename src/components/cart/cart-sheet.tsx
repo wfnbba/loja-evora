@@ -64,7 +64,9 @@ export function CartSheet({ open, onOpenChange }: CartSheetProps) {
                   <div className="flex flex-1 flex-col justify-between py-2">
                     <div className="space-y-2">
                       <div className="flex items-start justify-between gap-4">
-                        <h3 className="text-[11px] lg:text-xs font-medium uppercase tracking-[0.2em] leading-relaxed line-clamp-2">{item.name}</h3>
+                        <h3 className="text-[11px] lg:text-xs font-medium uppercase tracking-[0.2em] leading-relaxed line-clamp-2">
+                          {item.id.includes('-brinde') ? 'BRINDE: ' : ''}{item.name}
+                        </h3>
                         <button 
                           onClick={() => removeItem(item.id, item.size, item.color)}
                           className="text-muted-foreground hover:text-foreground transition-colors"

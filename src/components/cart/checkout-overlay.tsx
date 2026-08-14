@@ -271,7 +271,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                     </div>
                     <div className="flex flex-1 flex-col justify-center gap-2">
                       <div className="flex justify-between items-start">
-                        <h4 className="text-xs font-bold uppercase tracking-widest leading-tight w-2/3">{item.name}</h4>
+                        <h4 className="text-xs font-bold uppercase tracking-widest leading-tight w-2/3">
+                          {item.id.includes('-brinde') ? 'BRINDE: ' : ''}{item.name}
+                        </h4>
                         <div className="flex flex-col items-end">
                           <p className={cn("text-xs font-bold", item.price === 0 && "text-green-600")}>
                             {item.price === 0 ? "GRÁTIS" : `R$ ${currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`}
@@ -627,7 +629,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                     </div>
                     <div className="flex flex-1 flex-col justify-center">
                       <div className="flex justify-between items-start gap-4">
-                        <h4 className="text-sm font-bold uppercase tracking-widest leading-relaxed line-clamp-2">{item.name}</h4>
+                        <h4 className="text-sm font-bold uppercase tracking-widest leading-relaxed line-clamp-2">
+                          {item.id.includes('-brinde') ? 'BRINDE: ' : ''}{item.name}
+                        </h4>
                         <div className="flex flex-col items-end shrink-0">
                           <p className={cn("text-base font-bold tracking-wider", item.price === 0 && "text-green-600")}>
                             {item.price === 0 ? "GRÁTIS" : `R$ ${currentPriceTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`}

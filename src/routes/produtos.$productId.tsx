@@ -93,7 +93,7 @@ function ProductPage() {
         name: product.includedGift.name,
         price: 0,
         originalPrice: 49.90,
-        image: product.images[0] || "", // Poderia ser uma imagem do cinto se tivéssemos
+        image: product.includedGift.image || product.images[0] || "",
         size: "Único",
         color: product.includedGift.color,
         quantity: 1
