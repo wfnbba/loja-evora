@@ -63,7 +63,7 @@ function Index() {
                       <div className="mt-3">
                         <Button 
                           asChild
-                          className="w-full rounded-none bg-foreground text-background text-[10px] uppercase tracking-[0.2em] py-5 hover:bg-foreground/90 transition-all"
+                          className="w-full rounded-none bg-foreground text-background text-[10px] uppercase tracking-[0.2em] py-5 hover:bg-foreground/90 transition-all utmify"
                         >
                           <Link to="/produtos/$productId" params={{ productId: product.id }}>
                             ADICIONAR AO CARRINHO
