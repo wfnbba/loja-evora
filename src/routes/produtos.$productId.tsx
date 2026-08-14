@@ -347,7 +347,7 @@ function ProductPage() {
                     )}
 
                     {review.image && (
-                      <div className="relative mt-2 aspect-square w-32 overflow-hidden bg-muted">
+                      <div className="relative mt-2 aspect-square w-40 overflow-hidden bg-muted">
                         <OptimizedImage
                           src={review.image}
                           alt={`Avaliação de ${review.user}`}
