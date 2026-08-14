@@ -278,6 +278,8 @@ export const products: Product[] = [
     ],
     sizes,
     colors: [{ name: "Café", value: "#4b3621" }],
+    salesCount: 2154,
+    rating: 4.9,
     reviews: [
       { 
         user: "Mariana V.", 
