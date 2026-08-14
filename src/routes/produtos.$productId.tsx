@@ -55,7 +55,16 @@ function ProductPage() {
 
   const addToCart = async () => {
     if (product.sizes.length > 0 && !selectedSize) {
-      toast.error("Por favor, selecione um tamanho");
+      toast.error("Adicione um tamanho primeiro", {
+        className: "bg-red-50 text-red-600 border-red-100",
+      });
+      return;
+    }
+    
+    if (product.colors && product.colors.length > 0 && !selectedColor) {
+      toast.error("Adicione uma cor primeiro", {
+        className: "bg-red-50 text-red-600 border-red-100",
+      });
       return;
     }
     
