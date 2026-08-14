@@ -6,7 +6,13 @@ import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useState, useMemo } from "react";
-import { ChevronLeft, ChevronRight, Star, ShoppingBag, ChevronDown } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, ShoppingBag, ChevronDown, Filter } from "lucide-react";
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuTrigger 
+} from "@/components/ui/dropdown-menu";
 
 export const Route = createFileRoute("/produtos/$productId")({
   loader: ({ params }) => {
@@ -39,6 +45,7 @@ function ProductPage() {
   const [selectedColor, setSelectedColor] = useState(product.colors?.[0]?.name || "");
   const [added, setAdded] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortOrder, setSortOrder] = useState<"relevance" | "rating-high" | "rating-low" | "recent">("relevance");
   const reviewsPerPage = 10;
   
   const addItem = useCartStore((state) => state.addItem);
@@ -73,18 +80,30 @@ function ProductPage() {
   };
 
   const sortedReviews = useMemo(() => {
-    return [...product.reviews].sort((a, b) => {
-      // Prioridade 1: Comentário + Imagem
-      if (a.image && a.comment && (!b.image || !b.comment)) return -1;
-      if (b.image && b.comment && (!a.image || !a.comment)) return 1;
-      
-      // Prioridade 2: Apenas comentário
-      if (a.comment && !a.image && !b.comment) return -1;
-      if (b.comment && !b.image && !a.comment) return 1;
-      
-      return 0;
-    });
-  }, [product.reviews]);
+    let result = [...product.reviews];
+    
+    // Aplicar ordenação
+    if (sortOrder === "rating-high") {
+      result.sort((a, b) => b.rating - a.rating);
+    } else if (sortOrder === "rating-low") {
+      result.sort((a, b) => a.rating - b.rating);
+    } else if (sortOrder === "relevance") {
+      result.sort((a, b) => {
+        // Prioridade 1: Comentário + Imagem
+        if (a.image && a.comment && (!b.image || !b.comment)) return -1;
+        if (b.image && b.comment && (!a.image || !a.comment)) return 1;
+        
+        // Prioridade 2: Apenas comentário
+        if (a.comment && !a.image && !b.comment) return -1;
+        if (b.comment && !b.image && !a.comment) return 1;
+        
+        // Prioridade 3: Rating (estrelas)
+        return b.rating - a.rating;
+      });
+    }
+    
+    return result;
+  }, [product.reviews, sortOrder]);
 
   const totalPages = Math.ceil(sortedReviews.length / reviewsPerPage);
   const currentReviews = sortedReviews.slice(
@@ -228,8 +247,27 @@ function ProductPage() {
                 <div className="flex items-center justify-between border-b border-border pb-4">
                   <h3 className="text-[10px] font-medium uppercase tracking-[0.2em]">Página {currentPage} de {totalPages}</h3>
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Ordenar por: Relevância</span>
-                    <ChevronDown className="size-3 text-muted-foreground" />
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground outline-none transition-colors hover:text-foreground">
+                        Ordenar por: {
+                          sortOrder === "relevance" ? "Relevância" :
+                          sortOrder === "rating-high" ? "Melhores Notas" :
+                          sortOrder === "rating-low" ? "Menores Notas" : "Mais Recentes"
+                        }
+                        <ChevronDown className="size-3" />
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" className="rounded-none border-border/50 bg-background text-[10px] uppercase tracking-widest">
+                        <DropdownMenuItem onClick={() => setSortOrder("relevance")} className="cursor-pointer focus:bg-muted focus:text-foreground">
+                          Relevância
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setSortOrder("rating-high")} className="cursor-pointer focus:bg-muted focus:text-foreground">
+                          Melhores Notas
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setSortOrder("rating-low")} className="cursor-pointer focus:bg-muted focus:text-foreground">
+                          Menores Notas
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </div>
                 </div>
 
