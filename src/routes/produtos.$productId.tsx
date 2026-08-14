@@ -239,17 +239,8 @@ function ProductPage() {
                     <div 
                       dangerouslySetInnerHTML={{ 
                         __html: `
-                          <script src="https://fast.wistia.com/player.js" async></script>
-                          <script src="https://fast.wistia.com/embed/z4i9e4fgkn.js" async type="module"></script>
-                          <style>
-                            wistia-player[media-id='z4i9e4fgkn']:not(:defined) { 
-                              background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/z4i9e4fgkn/swatch'); 
-                              display: block; 
-                              filter: blur(5px); 
-                              padding-top:177.78%; 
-                            }
-                          </style>
-                          <wistia-player media-id="z4i9e4fgkn" aspect="0.5625"></wistia-player>
+                          <iframe src="https://fast.wistia.net/embed/iframe/z4i9e4fgkn?videoFoam=true" title="Wistia video player" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="100%" height="100%"></iframe>
+                          <script src="https://fast.wistia.net/assets/external/E-v1.js" async></script>
                         `
                       }}
                     />
