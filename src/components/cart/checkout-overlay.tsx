@@ -365,8 +365,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
               <div className="space-y-6">
                 <div className="flex items-center gap-3 border-b border-border/50 pb-4">
-                  <span className="flex size-6 md:size-7 items-center justify-center rounded-full bg-foreground text-background text-[10px] md:text-xs font-bold">2</span>
-                  <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em]">Entrega</h3>
+                  <span className="flex size-7 md:size-8 items-center justify-center rounded-full bg-foreground text-background text-xs md:text-sm font-bold">2</span>
+                  <h3 className="text-sm md:text-base font-bold uppercase tracking-widest">Entrega</h3>
+
                 </div>
                 <div className="grid grid-cols-1 gap-6">
                   <div className="space-y-3">
