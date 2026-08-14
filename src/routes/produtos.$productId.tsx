@@ -289,7 +289,8 @@ function ProductPage() {
                 
                 {product.video && (
                   <div className="mt-8 space-y-4">
-                    <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Vídeo do Produto</h2>
+                    <h2 className="text-sm font-bold uppercase tracking-widest">Vídeo do Produto</h2>
+
                     <VideoPlayer src={product.video} poster={product.images[0]} />
                   </div>
                 )}
