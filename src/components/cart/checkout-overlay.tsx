@@ -482,7 +482,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                   disabled={loading} 
                   className="w-full rounded-none py-10 md:py-12 text-sm md:text-base uppercase tracking-[0.3em] font-bold bg-foreground text-background hover:bg-foreground/90 transition-all shadow-xl utmify"
                 >
-                  {loading ? <Loader2 className="mr-2 size-5 animate-spin" /> : "Finalizar Compra"}
+                  {loading ? <Loader2 className="mr-2 size-5 animate-spin" /> : "Gerar PIX QR Code"}
                 </Button>
                 <div className="flex flex-col items-center gap-4 py-4 border-t border-border/50">
                   <div className="flex items-center gap-4 opacity-70">
