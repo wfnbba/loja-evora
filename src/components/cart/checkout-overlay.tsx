@@ -523,7 +523,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                   </div>
                   <div className="flex flex-col items-end gap-1">
                     {isAddressFilled && (
-                      <span className="text-[10px] font-bold uppercase tracking-widest text-green-600 animate-in fade-in duration-300">Frete Grátis</span>
+                      <span className="text-xs font-bold uppercase tracking-widest text-green-600 animate-in fade-in duration-300">Frete Grátis</span>
                     )}
                   </div>
                 </div>
