@@ -81,6 +81,16 @@ import saiaChiffon7 from "@/assets/products/saia-chiffon-7.png.asset.json";
 import saiaChiffon8 from "@/assets/products/saia-chiffon-8.png.asset.json";
 import saiaChiffon9 from "@/assets/products/saia-chiffon-9.png.asset.json";
 import saiaChiffon10 from "@/assets/products/saia-chiffon-10.png.asset.json";
+import saiaRenda1 from "@/assets/products/saia-renda-1.png.asset.json";
+import saiaRenda2 from "@/assets/products/saia-renda-2.png.asset.json";
+import saiaRenda3 from "@/assets/products/saia-renda-3.png.asset.json";
+import saiaRenda4 from "@/assets/products/saia-renda-4.png.asset.json";
+import saiaRenda5 from "@/assets/products/saia-renda-5.png.asset.json";
+import saiaRenda6 from "@/assets/products/saia-renda-6.png.asset.json";
+import saiaRenda7 from "@/assets/products/saia-renda-7.png.asset.json";
+import saiaRenda8 from "@/assets/products/saia-renda-8.png.asset.json";
+import saiaRenda9 from "@/assets/products/saia-renda-9.png.asset.json";
+import saiaRenda10 from "@/assets/products/saia-renda-10.png.asset.json";
 
 export interface Product {
   id: string;
@@ -252,6 +262,39 @@ export const products: Product[] = [
         comment: "Comprei a off-white e a cor é idêntica à foto. Muito elegante.", 
         rating: 5, 
         image: saiaChiffon1.url 
+      }
+    ],
+  },
+  {
+    id: "saia-renda-romantique",
+    name: "Saia Évora Renda Romantique",
+    price: 429,
+    description: "Saia midi em renda guipure delicada com detalhes florais e transparência sutil. Possui forro em tom nude para destacar o desenho da renda, cós estruturado e fechamento por zíper invisível. Uma peça atemporal que exala feminilidade e elegância.",
+    images: [
+      saiaRenda1.url,
+      saiaRenda2.url,
+      saiaRenda3.url,
+      saiaRenda4.url,
+      saiaRenda5.url,
+      saiaRenda6.url,
+      saiaRenda7.url,
+      saiaRenda8.url,
+      saiaRenda9.url,
+      saiaRenda10.url
+    ],
+    sizes,
+    reviews: [
+      { 
+        user: "Larissa K.", 
+        comment: "A renda é de uma qualidade absurda. Parece uma joia no corpo.", 
+        rating: 5, 
+        image: saiaRenda1.url 
+      },
+      { 
+        user: "Monica V.", 
+        comment: "O forro é super confortável e o desenho da renda é divino. Amei cada detalhe.", 
+        rating: 5, 
+        image: saiaRenda10.url 
       }
     ],
   },
