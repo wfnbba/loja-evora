@@ -159,7 +159,15 @@ import feedbackAuroraCafe6 from "@/assets/feedbacks/aurora-cafe-6.json";
 import feedbackAuroraCafe7 from "@/assets/feedbacks/aurora-cafe-7.json";
 import feedbackAuroraCafe8 from "@/assets/feedbacks/aurora-cafe-8.json";
 import feedbackAuroraCafe9 from "@/assets/feedbacks/aurora-cafe-9.json";
-
+import feedbackMonumentNoir1 from "@/assets/feedbacks/monument-noir-1.json";
+import feedbackMonumentNoir2 from "@/assets/feedbacks/monument-noir-2.json";
+import feedbackMonumentNoir3 from "@/assets/feedbacks/monument-noir-3.json";
+import feedbackMonumentNoir4 from "@/assets/feedbacks/monument-noir-4.json";
+import feedbackMonumentNoir5 from "@/assets/feedbacks/monument-noir-5.json";
+import feedbackMonumentNoir6 from "@/assets/feedbacks/monument-noir-6.json";
+import feedbackMonumentNoir7 from "@/assets/feedbacks/monument-noir-7.json";
+import feedbackMonumentNoir8 from "@/assets/feedbacks/monument-noir-8.json";
+import feedbackMonumentNoir9 from "@/assets/feedbacks/monument-noir-9.json";
 
 
 
