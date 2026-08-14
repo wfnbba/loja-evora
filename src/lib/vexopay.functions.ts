@@ -101,7 +101,7 @@ export const createPixPayment = createServerFn({ method: "POST" })
             zipCode: data.address.zipCode,
             street: data.address.street,
             number: data.address.number,
-            complement: data.address.complement,
+            complement: data.address.complement ?? undefined,
             neighborhood: data.address.neighborhood,
             city: data.address.city,
             state: data.address.state
@@ -113,7 +113,7 @@ export const createPixPayment = createServerFn({ method: "POST" })
           name: i.name,
           quantity: i.quantity,
           price: i.price || 0,
-          size: i.size
+          size: i.size ?? undefined
         })),
         totalAmount: total
       }).catch(err => console.error("Tracking error during PIX creation:", err));
