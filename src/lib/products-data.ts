@@ -380,8 +380,8 @@ export const products: Product[] = [
   },
   { id: "vestido-monument-noir",
     name: "Vestido Évora Monument Noir",
-    price: 649,
-    originalPrice: 890,
+    price: 189,
+    originalPrice: 189,
     description: "Vestido longo de construção assimétrica em preto e marfim. O volume escultural no ombro transforma a peça em protagonista." + exchangePolicy,
     images: [
       monumentNoir1.url,
