@@ -480,9 +480,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                   <span className="flex size-6 md:size-7 items-center justify-center rounded-full bg-foreground text-background text-[10px] md:text-xs font-bold">3</span>
                   <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em]">Pagamento</h3>
                 </div>
-                <div className="border-2 border-foreground p-6 flex items-center justify-between">
+                <div className="border border-border/50 p-6 flex items-center justify-between bg-white shadow-sm">
                   <div className="flex items-center gap-4">
-                    <div className="bg-foreground text-background p-3">
+                    <div className="bg-foreground text-background p-3 rounded-sm">
                       <QrCode className="size-6" />
                     </div>
                     <div className="space-y-1">
@@ -494,7 +494,6 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                     {isAddressFilled && (
                       <span className="text-[10px] font-bold uppercase tracking-widest text-green-600 animate-in fade-in duration-300">Frete Grátis</span>
                     )}
-                    
                   </div>
                 </div>
               </div>
