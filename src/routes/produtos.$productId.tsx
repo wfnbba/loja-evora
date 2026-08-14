@@ -1,8 +1,7 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
-import { products } from "@/lib/products-data";
-import { useCartStore } from "@/store/cart-store";
+import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import { useEffect, useState, useMemo } from "react";
-import { ChevronLeft, ChevronRight, Star, ShoppingBag, ChevronDown, Filter, RefreshCw, Truck } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, ShoppingBag, ChevronDown, Filter, RefreshCw, Truck, Loader2 } from "lucide-react";
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -14,6 +13,7 @@ import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { OptimizedImage } from "@/components/ui/optimized-image";
+import { storefrontApiRequest, GET_PRODUCTS_QUERY, ShopifyProduct } from "@/lib/shopify";
 
 declare module 'react' {
   namespace JSX {
@@ -24,14 +24,19 @@ declare module 'react' {
 }
 
 export const Route = createFileRoute("/produtos/$productId")({
-  loader: ({ params }) => {
-    const product = products.find((item) => item.id === params.productId);
+  loader: async ({ params }) => {
+    const data = await storefrontApiRequest(GET_PRODUCTS_QUERY, {
+      first: 1,
+      query: `handle:${params.productId}`
+    });
+    
+    const product = data?.data?.products?.edges[0];
     if (!product) throw notFound();
-    return { product };
+    return { product: product as ShopifyProduct };
   },
   head: ({ loaderData }) => {
-    const product = loaderData?.product;
-    const title = product ? `${product.name} | Évora` : "Produto | Évora";
+    const product = loaderData?.product?.node;
+    const title = product ? `${product.title} | Évora` : "Produto | Évora";
     const description = product?.description ?? "Conheça a coleção de moda feminina Évora.";
     return {
       meta: [
@@ -48,52 +53,62 @@ export const Route = createFileRoute("/produtos/$productId")({
 });
 
 function ProductPage() {
-  const { product } = Route.useLoaderData();
+  const { product: shopifyProduct } = Route.useLoaderData();
+  const product = shopifyProduct.node;
+  
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState("");
-  const [selectedColor, setSelectedColor] = useState(product.colors?.[0]?.name || "");
+  const [selectedColor, setSelectedColor] = useState(product.options.find(o => o.name.toLowerCase() === 'cor')?.values[0] || "");
   const [added, setAdded] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [sortOrder, setSortOrder] = useState<"relevance" | "rating-high" | "rating-low" | "recent">("relevance");
-  const reviewsPerPage = 10;
   
-  const addItem = useCartStore((state) => state.addItem);
+  const addItem = useShopifyCartStore((state) => state.addItem);
+  const isLoadingCart = useShopifyCartStore((state) => state.isLoading);
   
   const setIsCartOpen = (open: boolean) => {
     window.dispatchEvent(new CustomEvent('open-cart'));
   };
 
-  const addToCart = () => {
-    if (!selectedSize) {
+  const addToCart = async () => {
+    const sizeOption = product.options.find(o => o.name.toLowerCase() === 'tamanho' || o.name.toLowerCase() === 'size');
+    if (sizeOption && !selectedSize) {
       toast.error("Por favor, selecione um tamanho");
       return;
     }
     
-    const newItem: any = {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      originalPrice: product.originalPrice,
-      image: product.images[0] ?? "",
-      size: selectedSize,
-      quantity: 1
-    };
-    
-    if (selectedColor) {
-      newItem.color = selectedColor;
+    // Encontrar a variante correta baseada nas opções selecionadas
+    const variant = product.variants.edges.find(({ node: v }: any) => {
+      const sizeMatch = !selectedSize || v.selectedOptions.some((o: any) => 
+        (o.name.toLowerCase() === 'tamanho' || o.name.toLowerCase() === 'size') && o.value === selectedSize
+      );
+      const colorMatch = !selectedColor || v.selectedOptions.some((o: any) => 
+        o.name.toLowerCase() === 'cor' && o.value === selectedColor
+      );
+      return sizeMatch && colorMatch;
+    })?.node || product.variants.edges[0]?.node;
+
+    if (!variant) {
+      toast.error("Variante não encontrada");
+      return;
     }
     
-    addItem(newItem);
-    
-    setAdded(true);
-    toast.success(`${product.name} adicionado ao carrinho`, {
-      description: `Tamanho: ${selectedSize}${selectedColor ? ` | Cor: ${selectedColor}` : ""}`
+    await addItem({
+      product: shopifyProduct,
+      variantId: variant.id,
+      variantTitle: variant.title,
+      price: variant.price,
+      quantity: 1,
+      selectedOptions: variant.selectedOptions
     });
     
+    setAdded(true);
+    toast.success(`${product.title} adicionado ao carrinho`);
     setIsCartOpen(true);
-    
     setTimeout(() => setAdded(false), 2000);
   };
+
+  const images = product.images.edges.map(e => e.node.url);
+  const sizeOption = product.options.find(o => o.name.toLowerCase() === 'tamanho' || o.name.toLowerCase() === 'size');
+  const colorOption = product.options.find(o => o.name.toLowerCase() === 'cor');
 
   const sortedReviews = useMemo(() => {
     let result = [...product.reviews];
