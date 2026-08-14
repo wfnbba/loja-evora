@@ -306,11 +306,12 @@ function ProductPage() {
                     <span className="text-5xl font-light">{product.rating.toFixed(1)}</span>
                     <div className="flex">
                       {Array.from({ length: 5 }, (_, i) => (
-                        <Star key={i} className={`size-4 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`} />
+                        <Star key={i} className={`size-5 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`} />
                       ))}
                     </div>
-                    <span className="text-xs uppercase tracking-widest text-muted-foreground">{product.reviews.length.toLocaleString("pt-BR")} avaliações</span>
+                    <span className="text-sm uppercase tracking-widest text-muted-foreground font-medium">{product.reviews.length.toLocaleString("pt-BR")} avaliações</span>
                   </div>
+
                   <div className="col-span-1 space-y-2 lg:col-span-2">
                     {[5, 4, 3, 2, 1].map((star) => {
                       const count = product.ratingBreakdown[star as keyof typeof product.ratingBreakdown] || 0;
