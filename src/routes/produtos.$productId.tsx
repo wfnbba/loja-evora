@@ -337,14 +337,15 @@ function ProductPage() {
                     <div className="flex items-center gap-3">
                       <div className="flex">
                         {Array.from({ length: 5 }, (_, index) => (
-                          <Star key={index} className={`size-3 ${index < review.rating ? "fill-current text-[#4a3f35]" : "text-muted-foreground/30"}`} />
+                          <Star key={index} className={`size-4 ${index < review.rating ? "fill-current text-[#4a3f35]" : "text-muted-foreground/30"}`} />
                         ))}
                       </div>
-                      <span className="text-[10px] font-medium uppercase tracking-[0.2em]">{review.user}</span>
+                      <span className="text-xs md:text-sm font-bold uppercase tracking-widest">{review.user}</span>
                     </div>
                     {review.comment && (
-                      <p className="text-sm font-light leading-relaxed text-muted-foreground">{review.comment}</p>
+                      <p className="text-sm md:text-base font-light leading-relaxed text-muted-foreground">{review.comment}</p>
                     )}
+
                     {review.image && (
                       <div className="relative mt-2 aspect-square w-32 overflow-hidden bg-muted">
                         <OptimizedImage
