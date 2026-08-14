@@ -5,6 +5,7 @@ import { Star, Loader2 } from "lucide-react";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import heroMobileAsset from "@/assets/hero_mobile.png.asset.json";
 import { useShopifyProducts } from "@/hooks/use-shopify-products";
+import { useCartStore } from "@/store/cart-store";
 
 export const Route = createFileRoute("/")({
   head: () => ({

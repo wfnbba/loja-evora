@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useShopifyCartStore } from "@/store/shopify-cart-store";
+import { useCartStore } from "@/store/cart-store";
+import { CheckoutOverlay } from "./checkout-overlay";
 import {
   Sheet,
   SheetContent,
@@ -18,7 +19,12 @@ interface CartSheetProps {
 }
 
 export function CartSheet({ open, onOpenChange }: CartSheetProps) {
-  const { items, removeItem, updateQuantity, isLoading, checkoutUrl } = useShopifyCartStore();
+  const { items, removeItem, updateQuantity, totalPrice } = useCartStore();
+  const [showCheckout, setShowCheckout] = useState(false);
+
+  if (showCheckout) {
+    return <CheckoutOverlay onClose={() => setShowCheckout(false)} />;
+  }
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -45,11 +51,11 @@ export function CartSheet({ open, onOpenChange }: CartSheetProps) {
           ) : (
             <div className="space-y-8 p-6 lg:p-10">
               {items.map((item) => (
-                <div key={item.variantId} className="flex gap-6 lg:gap-8">
+                <div key={`${item.id}-${item.size}`} className="flex gap-6 lg:gap-8">
                   <div className="relative aspect-[3/4] w-24 lg:w-32 shrink-0 overflow-hidden bg-muted border border-border/20">
                     <OptimizedImage 
-                      src={item.product.node.images.edges[0]?.node?.url || ""} 
-                      alt={item.product.node.title} 
+                      src={item.image} 
+                      alt={item.name} 
                       className="h-full w-full object-cover" 
                       width={128} 
                       height={170} 
@@ -58,38 +64,35 @@ export function CartSheet({ open, onOpenChange }: CartSheetProps) {
                   <div className="flex flex-1 flex-col justify-between py-2">
                     <div className="space-y-2">
                       <div className="flex items-start justify-between gap-4">
-                        <h3 className="text-[11px] lg:text-xs font-medium uppercase tracking-[0.2em] leading-relaxed line-clamp-2">{item.product.node.title}</h3>
+                        <h3 className="text-[11px] lg:text-xs font-medium uppercase tracking-[0.2em] leading-relaxed line-clamp-2">{item.name}</h3>
                         <button 
-                          onClick={() => removeItem(item.variantId)}
-                          disabled={isLoading}
-                          className="text-muted-foreground hover:text-foreground transition-colors disabled:opacity-50"
+                          onClick={() => removeItem(item.id, item.size, item.color)}
+                          className="text-muted-foreground hover:text-foreground transition-colors"
                         >
                           <Trash2 className="size-4" />
                         </button>
                       </div>
                       <p className="text-[10px] text-muted-foreground uppercase tracking-widest">
-                        {item.variantTitle !== "Default Title" ? item.variantTitle : "Tamanho Único"}
+                        Tamanho: {item.size} {item.color ? `| Cor: ${item.color}` : ''}
                       </p>
                       <p className="text-sm font-light tracking-widest">
-                        {item.price.currencyCode} {parseFloat(item.price.amount).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                        R$ {item.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                       </p>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="flex items-center border border-border/50">
                         <button
-                          onClick={() => updateQuantity(item.variantId, Math.max(1, item.quantity - 1))}
-                          disabled={isLoading}
-                          className="flex size-8 items-center justify-center hover:bg-muted transition-colors disabled:opacity-50"
+                          onClick={() => updateQuantity(item.id, item.size, Math.max(1, item.quantity - 1), item.color)}
+                          className="flex size-8 items-center justify-center hover:bg-muted transition-colors"
                         >
                           <Minus className="size-3" />
                         </button>
                         <span className="w-10 text-center text-[10px] tabular-nums font-medium">
-                          {isLoading ? <Loader2 className="mx-auto size-3 animate-spin" /> : item.quantity}
+                          {item.quantity}
                         </span>
                         <button
-                          onClick={() => updateQuantity(item.variantId, item.quantity + 1)}
-                          disabled={isLoading}
-                          className="flex size-8 items-center justify-center hover:bg-muted transition-colors disabled:opacity-50"
+                          onClick={() => updateQuantity(item.id, item.size, item.quantity + 1, item.color)}
+                          className="flex size-8 items-center justify-center hover:bg-muted transition-colors"
                         >
                           <Plus className="size-3" />
                         </button>
@@ -107,17 +110,16 @@ export function CartSheet({ open, onOpenChange }: CartSheetProps) {
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-medium uppercase tracking-[0.2em]">Total Estimado</span>
               <span className="text-xl font-light tracking-[0.2em]">
-                {items[0]?.price.currencyCode || 'BRL'} {items.reduce((acc, item) => acc + (parseFloat(item.price.amount) * item.quantity), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                R$ {totalPrice().toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
               </span>
             </div>
             <Separator className="bg-border/50" />
             <Button 
               id="checkout-button"
-              asChild
-              disabled={isLoading || !checkoutUrl}
-              className="w-full rounded-none py-8 uppercase tracking-[0.2em] font-medium cursor-pointer bg-foreground text-background hover:bg-foreground/90 transition-all disabled:opacity-50"
+              onClick={() => setShowCheckout(true)}
+              className="w-full rounded-none py-8 uppercase tracking-[0.2em] font-medium cursor-pointer bg-foreground text-background hover:bg-foreground/90 transition-all utmify"
             >
-              <a href={checkoutUrl || "#"}>{isLoading ? "PROCESSANDO..." : "Finalizar Compra"}</a>
+              Finalizar Compra
             </Button>
           </SheetFooter>
         )}
