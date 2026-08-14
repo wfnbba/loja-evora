@@ -438,7 +438,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
                       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                         <div className="space-y-3">
-                          <Label htmlFor="complement" className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-foreground">Complemento (opcional)</Label>
+                          <Label htmlFor="complement" className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">Complemento (opcional)</Label>
                           <Input
                             id="complement"
                             className="h-12 md:h-14 rounded-none border-border/80 focus-visible:ring-foreground bg-muted/5 text-sm md:text-base"
