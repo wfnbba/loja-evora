@@ -2,7 +2,7 @@ import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { products } from "@/lib/products-data";
 import { useCartStore } from "@/store/cart-store";
 import { useEffect, useState, useMemo } from "react";
-import { ChevronLeft, ChevronRight, Star, ShoppingBag, ChevronDown, Filter } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, ShoppingBag, ChevronDown, Filter, RefreshCw, Truck } from "lucide-react";
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
