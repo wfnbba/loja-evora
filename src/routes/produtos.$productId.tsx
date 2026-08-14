@@ -319,17 +319,19 @@ function ProductPage() {
               </div>
 
               <div className="space-y-10">
-                {product.reviews.slice(0, 10).map((review, idx) => (
-                  <article key={idx} className="flex flex-col gap-4">
+                {currentReviews.map((review, idx) => (
+                  <article key={idx} className="flex flex-col gap-4 border-b border-border/50 pb-8 last:border-0">
                     <div className="flex items-center gap-3">
                       <div className="flex">
                         {Array.from({ length: 5 }, (_, index) => (
-                          <Star key={index} className={`size-3 ${index < review.rating ? "fill-current" : "text-muted-foreground/30"}`} />
+                          <Star key={index} className={`size-3 ${index < review.rating ? "fill-current text-[#4a3f35]" : "text-muted-foreground/30"}`} />
                         ))}
                       </div>
                       <span className="text-[10px] font-medium uppercase tracking-[0.2em]">{review.user}</span>
                     </div>
-                    <p className="text-sm font-light leading-relaxed text-muted-foreground">{review.comment}</p>
+                    {review.comment && (
+                      <p className="text-sm font-light leading-relaxed text-muted-foreground">{review.comment}</p>
+                    )}
                     {review.image && (
                       <div className="relative mt-2 aspect-square w-32 overflow-hidden bg-muted">
                         <OptimizedImage
@@ -343,6 +345,38 @@ function ProductPage() {
                     )}
                   </article>
                 ))}
+
+                {totalPages > 1 && (
+                  <div className="flex items-center justify-center gap-4 pt-8">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        setReviewPage(p => Math.max(1, p - 1));
+                        document.getElementById('feedbacks')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      disabled={reviewPage === 1}
+                      className="rounded-none border-[#4a3f35]/20 text-[#4a3f35] hover:bg-[#4a3f35]/5"
+                    >
+                      Anterior
+                    </Button>
+                    <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground">
+                      Página {reviewPage} de {totalPages}
+                    </span>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        setReviewPage(p => Math.min(totalPages, p + 1));
+                        document.getElementById('feedbacks')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      disabled={reviewPage === totalPages}
+                      className="rounded-none border-[#4a3f35]/20 text-[#4a3f35] hover:bg-[#4a3f35]/5"
+                    >
+                      Próxima
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
           </section>
