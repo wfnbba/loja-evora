@@ -50,6 +50,12 @@ function ProductPage() {
   const [selectedColor, setSelectedColor] = useState(product.colors?.[0]?.name || "Única");
   const [added, setAdded] = useState(false);
   const [giftAdded, setGiftAdded] = useState(true); // Brinde é automático
+  const [reviewPage, setReviewPage] = useState(1);
+  const reviewsPerPage = 10;
+  
+  const totalReviews = product.reviews.length;
+  const totalPages = Math.ceil(totalReviews / reviewsPerPage);
+  const currentReviews = product.reviews.slice((reviewPage - 1) * reviewsPerPage, reviewPage * reviewsPerPage);
   
   const addItem = useCartStore((state) => state.addItem);
 
