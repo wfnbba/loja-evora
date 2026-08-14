@@ -150,6 +150,18 @@ import feedbackEspressoAlfaiataria8 from "@/assets/feedbacks/espresso-alfaiatari
 import feedbackEspressoAlfaiataria9 from "@/assets/feedbacks/espresso-alfaiataria-9.json";
 import feedbackEspressoAlfaiataria10 from "@/assets/feedbacks/espresso-alfaiataria-10.json";
 
+import feedbackAuroraCafe1 from "@/assets/feedbacks/aurora-cafe-1.json";
+import feedbackAuroraCafe2 from "@/assets/feedbacks/aurora-cafe-2.json";
+import feedbackAuroraCafe3 from "@/assets/feedbacks/aurora-cafe-3.json";
+import feedbackAuroraCafe4 from "@/assets/feedbacks/aurora-cafe-4.json";
+import feedbackAuroraCafe5 from "@/assets/feedbacks/aurora-cafe-5.json";
+import feedbackAuroraCafe6 from "@/assets/feedbacks/aurora-cafe-6.json";
+import feedbackAuroraCafe7 from "@/assets/feedbacks/aurora-cafe-7.json";
+import feedbackAuroraCafe8 from "@/assets/feedbacks/aurora-cafe-8.json";
+import feedbackAuroraCafe9 from "@/assets/feedbacks/aurora-cafe-9.json";
+
+
+
 
 export interface Product {
   id: string;
@@ -267,7 +279,63 @@ export const products: Product[] = [
     ],
     sizes,
     colors: [{ name: "Café", value: "#4b3621" }],
-    reviews: [{ user: "Beatriz L.", comment: "A cor é sofisticada e o corte ficou certinho no corpo.", rating: 5, image: auroraCafe1.url }],
+    reviews: [
+      { 
+        user: "Mariana V.", 
+        comment: "O vestido é simplesmente perfeito! A cor café é muito chique e o caimento da saia é divino. O unboxing foi uma experiência de luxo.", 
+        rating: 5, 
+        image: feedbackAuroraCafe1.url 
+      },
+      { 
+        user: "Camila R.", 
+        comment: "Tô apaixonada! O tecido é encorpado e de muita qualidade. Chegou super rápido e a embalagem é maravilhosa.", 
+        rating: 5, 
+        image: feedbackAuroraCafe2.url 
+      },
+      { 
+        user: "Luciana S.", 
+        comment: "Ficou perfeito no corpo. A cintura marcada valoriza muito a silhueta. Dá pra ver que é uma peça de alto padrão.", 
+        rating: 5, 
+        image: feedbackAuroraCafe3.url 
+      },
+      { 
+        user: "Beatriz M.", 
+        comment: "Me senti muito elegante com esse vestido. A cor é sofisticada e o corte é impecável. A Évora arrasa demais!", 
+        rating: 5, 
+        image: feedbackAuroraCafe4.url 
+      },
+      { 
+        user: "Renata G.", 
+        comment: "O atendimento da loja é impecável e o produto superou minhas expectativas. Recomendo muito!", 
+        rating: 5, 
+        image: feedbackAuroraCafe5.url 
+      },
+      { 
+        user: "Fernanda L.", 
+        comment: "Simplesmente a melhor compra que já fiz. O caimento é surreal de bom. O tom de marrom é muito moderno.", 
+        rating: 5, 
+        image: feedbackAuroraCafe6.url 
+      },
+      { 
+        user: "Patrícia B.", 
+        comment: "O capricho da marca em cada detalhe é notável. O vestido veste como uma luva. Amei!", 
+        rating: 5, 
+        image: feedbackAuroraCafe7.url 
+      },
+      { 
+        user: "Juliana K.", 
+        comment: "A fluidez da saia é linda. É o vestido ideal para ocasiões que pedem sofisticação e discrição.", 
+        rating: 5, 
+        image: feedbackAuroraCafe8.url 
+      },
+      { 
+        user: "Sofia D.", 
+        comment: "Experiência de compra maravilhosa. A embalagem personalizada da Évora é um diferencial enorme.", 
+        rating: 5, 
+        image: feedbackAuroraCafe9.url 
+      }
+    ],
+
   },
   {
     id: "vestido-monument-noir",
