@@ -7,6 +7,8 @@ import { toast } from "sonner";
 import { Copy, CheckCircle2, Loader2, QrCode } from "lucide-react";
 import { createPixPayment, checkPixStatus } from "@/lib/vexopay.functions";
 import { useServerFn } from "@tanstack/react-start";
+import { getPersistedUtms } from "@/hooks/use-utm-tracking";
+import { sendUtmifyOrder } from "@/lib/utmify.functions";
 
 interface CheckoutOverlayProps {
   onClose: () => void;
@@ -24,6 +26,8 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
   const createPix = useServerFn(createPixPayment);
   const checkStatus = useServerFn(checkPixStatus);
+  const sendToUtmify = useServerFn(sendUtmifyOrder);
+
 
   const handleCreatePayment = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -72,6 +76,48 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             data: { transactionId: pixData.transactionId } 
           });
           if (result.success && result.data.status === "paid") {
+            // Send order to UTMify
+            const utms = getPersistedUtms();
+            
+            // Format order for UTMify
+            const orderData = {
+              orderId: pixData.transactionId,
+              platform: "Évora Store",
+              paymentMethod: "pix" as const,
+              status: "paid" as const,
+              createdAt: new Date().toISOString().replace('T', ' ').split('.')[0],
+              approvedDate: new Date().toISOString().replace('T', ' ').split('.')[0],
+              customer: {
+                name: formData.name,
+                email: "customer@evora.com.br", // We could collect email, but using a placeholder if not present
+                phone: null,
+                document: formData.document,
+                country: "BR",
+              },
+              products: items.map(item => ({
+                id: item.id,
+                name: item.name,
+                quantity: item.quantity,
+                priceInCents: Math.round(item.price * 100)
+              })),
+              trackingParameters: {
+                src: utms.src || null,
+                sck: utms.sck || null,
+                utm_source: utms.utm_source || null,
+                utm_campaign: utms.utm_campaign || null,
+                utm_medium: utms.utm_medium || null,
+                utm_content: utms.utm_content || null,
+                utm_term: utms.utm_term || null,
+              },
+              commission: {
+                totalPriceInCents: Math.round(totalPrice() * 100),
+                gatewayFeeInCents: Math.round(totalPrice() * 0.03 * 100), // Estimating 3%
+                userCommissionInCents: Math.round(totalPrice() * 0.97 * 100)
+              }
+            };
+
+            sendToUtmify({ data: orderData }).catch(err => console.error("UTMify error:", err));
+
             setStep("success");
             clearCart();
             clearInterval(interval);

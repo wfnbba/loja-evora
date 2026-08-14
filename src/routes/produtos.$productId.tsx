@@ -1,11 +1,7 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { products } from "@/lib/products-data";
-import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/store/cart-store";
-import { toast } from "sonner";
-import { Card, CardContent } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { useState, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { ChevronLeft, ChevronRight, Star, ShoppingBag, ChevronDown, Filter } from "lucide-react";
 import { 
   DropdownMenu, 
@@ -49,8 +45,12 @@ function ProductPage() {
   const reviewsPerPage = 10;
   
   const addItem = useCartStore((state) => state.addItem);
-
-  const addToCart = () => {
+  const setIsCartOpen = (open: boolean) => {
+    // We need a way to open the cart sheet from here
+    // In __root.tsx, the Header manages the state.
+    // Let's check if cart-store can handle visibility or use a custom event.
+    window.dispatchEvent(new CustomEvent('open-cart'));
+  };
     if (!selectedSize) {
       toast.error("Por favor, selecione um tamanho");
       return;
@@ -210,7 +210,7 @@ function ProductPage() {
             )}
 
             <Button type="button" onClick={addToCart} disabled={!selectedSize} className="w-full rounded-none py-8 uppercase tracking-[0.2em] cursor-pointer">
-              <ShoppingBag className="mr-3 size-5" />{added ? "Adicionado ao carrinho" : "Adicionar ao carrinho"}
+              <ShoppingBag className="mr-3 size-5" />{added ? "ADICIONADO AO CARRINHO" : "ADICIONAR AO CARRINHO"}
             </Button>
             <div className="space-y-4 border-t border-border pt-8">
               <h2 className="text-xs font-medium uppercase tracking-[0.2em]">Descrição</h2>

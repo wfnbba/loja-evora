@@ -141,6 +141,13 @@ function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const totalItems = useCartStore((state) => state.totalItems());
 
+  useEffect(() => {
+    const handleOpenCart = () => setIsCartOpen(true);
+    window.addEventListener('open-cart', handleOpenCart);
+    return () => window.removeEventListener('open-cart', handleOpenCart);
+  }, []);
+
+
   return (
     <>
       <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur-md">
