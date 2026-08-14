@@ -181,4 +181,34 @@ export const products: Product[] = [
     sizes,
     reviews: [{ user: "Natalia B.", comment: "Comprimento ótimo e tecido com peso bonito. Valeu a compra.", rating: 5, image: saiaRose2 }],
   },
+  {
+    id: "vestido-satin-espresso",
+    name: "Vestido Évora Satin Espresso",
+    price: 529,
+    description: "Vestido longo em cetim de seda tom espresso, com decote degagê e alças finas reguláveis. O brilho luxuoso do tecido e o caimento fluido criam uma silhueta feminina e extremamente elegante para eventos noturnos.",
+    images: [
+      satinEspresso1.url,
+      satinEspresso2.url,
+      satinEspresso3.url,
+      satinEspresso4.url,
+      satinEspresso5.url,
+      satinEspresso6.url,
+      satinEspresso7.url
+    ],
+    sizes,
+    reviews: [
+      { 
+        user: "Fernanda L.", 
+        comment: "O brilho desse vestido é surreal. Veste como uma luva!", 
+        rating: 5, 
+        image: satinEspresso4.url 
+      },
+      { 
+        user: "Carolina M.", 
+        comment: "Comprei para um casamento e foi um sucesso. Muito chique.", 
+        rating: 5, 
+        image: satinEspresso1.url 
+      }
+    ],
+  },
 ];
