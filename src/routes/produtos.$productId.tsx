@@ -183,7 +183,8 @@ function ProductPage() {
 
             {product.colors && (
               <div className="space-y-4">
-                <p className="text-xs font-medium uppercase tracking-[0.2em]">Cor: {selectedColor}</p>
+                <p className="text-xs font-bold uppercase tracking-widest">Cor: {selectedColor}</p>
+
                 <div className="flex flex-wrap gap-4">
                   {product.colors.length > 0 ? (
                     product.colors.map((color) => (
