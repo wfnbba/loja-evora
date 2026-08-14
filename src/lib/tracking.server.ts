@@ -5,13 +5,13 @@ export async function trackCustomerAndOrder(data: {
   customer: {
     email: string;
     name: string;
-    phone?: string;
-    document?: string;
+    phone?: string | null;
+    document?: string | null;
     address: {
       zipCode: string;
       street: string;
       number: string;
-      complement?: string;
+      complement?: string | null;
       neighborhood: string;
       city: string;
       state: string;
@@ -23,7 +23,7 @@ export async function trackCustomerAndOrder(data: {
     name: string;
     quantity: number;
     price: number;
-    size?: string;
+    size?: string | null;
   }>;
   totalAmount: number;
 }) {
