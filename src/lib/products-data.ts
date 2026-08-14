@@ -37,10 +37,16 @@ import alvorada2 from "@/assets/products/alvorada-v2-2.jpg";
 import alvorada3 from "@/assets/products/alvorada-v2-3.jpg";
 import alvorada4 from "@/assets/products/alvorada-v2-4.jpg";
 
-import auroraCafe1 from "@/assets/products/aurora-cafe-1.jpg";
-import auroraCafe2 from "@/assets/products/aurora-cafe-2.jpg";
-import auroraCafe3 from "@/assets/products/aurora-cafe-3.jpg";
-import auroraCafe4 from "@/assets/products/aurora-cafe-4.jpg";
+import auroraCafe1 from "@/assets/products/aurora-cafe-v2-1.png.asset.json";
+import auroraCafe2 from "@/assets/products/aurora-cafe-v2-2.png.asset.json";
+import auroraCafe3 from "@/assets/products/aurora-cafe-v2-3.png.asset.json";
+import auroraCafe4 from "@/assets/products/aurora-cafe-v2-4.png.asset.json";
+import auroraCafe5 from "@/assets/products/aurora-cafe-v2-5.png.asset.json";
+import auroraCafe6 from "@/assets/products/aurora-cafe-v2-6.png.asset.json";
+import auroraCafe7 from "@/assets/products/aurora-cafe-v2-7.png.asset.json";
+import auroraCafe8 from "@/assets/products/aurora-cafe-v2-8.png.asset.json";
+import auroraCafe9 from "@/assets/products/aurora-cafe-v2-9.png.asset.json";
+import auroraCafe10 from "@/assets/products/aurora-cafe-v2-10.png.asset.json";
 
 import auroraMarfim1 from "@/assets/products/aurora-marfim-1.png.asset.json";
 import auroraMarfim2 from "@/assets/products/aurora-marfim-2.png.asset.json";
