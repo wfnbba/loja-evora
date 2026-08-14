@@ -91,7 +91,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
       return;
     }
 
-    if (formData.cep.length !== 8) {
+    if (formData.cep && formData.cep.length > 0 && formData.cep.length !== 8) {
       toast.error("CEP inválido");
       return;
     }
