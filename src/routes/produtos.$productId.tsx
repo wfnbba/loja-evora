@@ -58,16 +58,6 @@ function ProductPage() {
   
   const addItem = useCartStore((state) => state.addItem);
 
-  const mockReviews = [
-    { user: "Mariana S.", rating: 5, comment: "Vestido maravilhoso! O tecido é de uma qualidade absurda, cai super bem no corpo. Évora realmente surpreendeu." },
-    { user: "Beatriz L.", rating: 5, comment: "Comprei para um evento e recebi muitos elogios. O caimento é perfeito e a cor é idêntica à foto." },
-    { user: "Fernanda M.", rating: 4, comment: "Muito bonito, chegou rápido. Só achei um pouco longo, mas nada que um ajuste não resolva." },
-    { user: "Camila R.", rating: 5, comment: "Simplesmente apaixonada. A experiência de unboxing é premium, dá pra sentir o cuidado da marca." },
-    { user: "Juliana A.", rating: 5, comment: "O melhor investimento que fiz esse mês. É elegante e muito confortável ao mesmo tempo." }
-  ];
-
-  const totalReviews = 157;
-  const ratingBreakdown = { 5: 120, 4: 25, 3: 8, 2: 3, 1: 1 };
 
   const addToCart = async () => {
     if (product.sizes.length > 0 && !selectedSize) {

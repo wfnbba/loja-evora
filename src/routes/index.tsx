@@ -58,7 +58,9 @@ function Index() {
                       />
                     </div>
                     <div className="space-y-1 text-center">
-                      <h2 className="text-xs font-medium uppercase tracking-[0.2em] md:text-sm">{product.name}</h2>
+                      <h2 className="text-[10px] font-medium uppercase tracking-[0.2em] md:text-sm line-clamp-1">
+                        {product.name.length > 20 ? `${product.name.substring(0, 20)}...` : product.name}
+                      </h2>
                       <div className="mt-4">
                         <Button 
                           asChild
