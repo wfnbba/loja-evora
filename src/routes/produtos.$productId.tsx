@@ -458,6 +458,36 @@ function ProductPage() {
             </Link>
           </div>
         </section>
+        <section className="mt-32 space-y-16 px-4 md:px-0">
+          <div className="space-y-6 text-center">
+            <h2 className="text-2xl md:text-3xl font-light uppercase tracking-[0.3em]">Você também pode gostar</h2>
+            <div className="mx-auto h-px w-20 bg-foreground/10" />
+          </div>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-4">
+            {localProducts
+              .filter(p => p.id !== product.id)
+              .slice(0, 4)
+              .map(p => (
+                <Link key={p.id} to="/produtos/$productId" params={{ productId: p.id }} className="group space-y-4">
+                  <div className="relative aspect-[3/4] overflow-hidden bg-muted">
+                    <OptimizedImage 
+                      src={p.images[0] || ""} 
+                      alt={p.name} 
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                      width={300} 
+                      height={400} 
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <h3 className="text-xs font-bold uppercase tracking-widest line-clamp-1">{p.name}</h3>
+                    <p className="text-sm font-light tracking-widest">
+                      R$ {p.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+          </div>
+        </section>
       </div>
     </main>
   );
@@ -502,7 +532,6 @@ function VideoPlayer({ src, poster }: { src: string; poster?: string | undefined
         </div>
       )}
 
-      {/* Overlay sutil para indicar que é clicável mesmo rodando, aparece no hover */}
       <div className={`absolute inset-0 bg-black/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${isPlaying ? 'block' : 'hidden'}`} />
     </div>
   );
