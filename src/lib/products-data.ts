@@ -71,6 +71,17 @@ import satinEspresso5 from "@/assets/products/satin-espresso-5.png.asset.json";
 import satinEspresso6 from "@/assets/products/satin-espresso-6.png.asset.json";
 import satinEspresso7 from "@/assets/products/satin-espresso-7.png.asset.json";
 
+import saiaChiffon1 from "@/assets/products/saia-chiffon-1.png.asset.json";
+import saiaChiffon2 from "@/assets/products/saia-chiffon-2.png.asset.json";
+import saiaChiffon3 from "@/assets/products/saia-chiffon-3.png.asset.json";
+import saiaChiffon4 from "@/assets/products/saia-chiffon-4.png.asset.json";
+import saiaChiffon5 from "@/assets/products/saia-chiffon-5.png.asset.json";
+import saiaChiffon6 from "@/assets/products/saia-chiffon-6.png.asset.json";
+import saiaChiffon7 from "@/assets/products/saia-chiffon-7.png.asset.json";
+import saiaChiffon8 from "@/assets/products/saia-chiffon-8.png.asset.json";
+import saiaChiffon9 from "@/assets/products/saia-chiffon-9.png.asset.json";
+import saiaChiffon10 from "@/assets/products/saia-chiffon-10.png.asset.json";
+
 export interface Product {
   id: string;
   name: string;
