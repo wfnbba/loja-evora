@@ -210,7 +210,7 @@ function ProductPage() {
             {product.includedGift && (
               <div className="mt-4 space-y-4">
                 <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">Brinde Exclusivo Ganho</p>
-                <div className="group relative flex items-center justify-between border-2 border-dashed border-[#4a3f35]/30 p-5 bg-[#4a3f35]/5 transition-all hover:bg-[#4a3f35]/10 overflow-hidden">
+                <div className="group relative flex items-center justify-between border-2 border-dashed border-[#4a3f35]/30 p-5 bg-[#4a3f35]/5 transition-all hover:bg-[#4a3f35]/10 overflow-hidden cursor-default">
                   {/* Badge de Destaque */}
                   <div className="absolute -right-8 -top-8 size-20 rotate-45 bg-[#4a3f35] flex items-end justify-center pb-2">
                     <span className="text-[8px] font-bold text-[#fdfbf7] uppercase tracking-tighter">GRÁTIS</span>
@@ -218,7 +218,7 @@ function ProductPage() {
                   
                   <div className="flex items-center gap-5">
                     {/* Seletor Visual de Cor para o Brinde */}
-                    <div className="relative flex size-12 items-center justify-center rounded-full border-2 border-foreground p-1 ring-1 ring-foreground ring-offset-2 shadow-lg">
+                    <div className="relative flex size-12 items-center justify-center rounded-full border-2 border-foreground p-1 ring-1 ring-foreground ring-offset-2 shadow-lg bg-white">
                       <span 
                         className="h-full w-full rounded-full shadow-inner"
                         style={{ backgroundColor: "#3d2b1f" }} // Marrom Escuro
