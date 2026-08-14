@@ -677,11 +677,12 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
           <div className="space-y-8 pt-8 mt-auto border-t border-border/50">
             <div className="space-y-4">
-              <div className="flex justify-between items-center text-[12px] uppercase tracking-[0.2em] text-muted-foreground">
+              <div className="flex justify-between items-center text-xs uppercase tracking-widest text-muted-foreground">
                 <span>Subtotal</span>
                 <span>R$ {items.reduce((acc, item) => acc + ((item.originalPrice || item.price) * item.quantity), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
               </div>
-              <div className="flex justify-between items-center text-[12px] uppercase tracking-[0.2em] text-muted-foreground">
+              <div className="flex justify-between items-center text-xs uppercase tracking-widest text-muted-foreground">
+
                 <span>Descontos</span>
                 <span className="text-green-600">- R$ {items.reduce((acc, item) => acc + (item.originalPrice ? (item.originalPrice - item.price) * item.quantity : 0), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
               </div>
