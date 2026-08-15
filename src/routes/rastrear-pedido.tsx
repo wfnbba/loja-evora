@@ -5,11 +5,7 @@ import { Check, ChevronRight, Loader2, PackageCheck, Search, ShieldCheck } from 
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  lookupOrderTracking,
-  recoverTrackingByCpf,
-  type OrderTrackingResult,
-} from "@/lib/order-tracking.functions";
+import { lookupOrderTracking, recoverTrackingByCpf, type OrderTrackingResult } from "@/lib/order-tracking.functions";
 
 const searchSchema = z.object({
   codigo: z.string().trim().optional().catch(undefined),
@@ -97,8 +93,7 @@ const TRACKING_STEPS = [
   {
     after: 25 * DAY,
     title: "A caminho da sua região",
-    description:
-      "O pedido está em trânsito para a unidade de distribuição mais próxima do endereço de entrega.",
+    description: "O pedido está em trânsito para a unidade de distribuição mais próxima do endereço de entrega.",
   },
   {
     after: 27 * DAY,
@@ -280,15 +275,12 @@ function TrackOrderPage() {
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
       <header className="mx-auto max-w-2xl text-center">
-        <p className="text-xs font-medium uppercase tracking-[0.28em] text-[#92745f]">
-          Acompanhe sua compra
-        </p>
+        <p className="text-xs font-medium uppercase tracking-[0.28em] text-[#92745f]">Acompanhe sua compra</p>
         <h1 className="mt-4 text-3xl font-light uppercase tracking-[0.16em] text-[#3b3029] sm:text-4xl">
           Rastrear pedido
         </h1>
         <p className="mx-auto mt-5 max-w-xl text-base font-light leading-relaxed text-[#76665a]">
-          Digite o número recebido após a confirmação do pagamento para visualizar somente as etapas
-          já concluídas do seu pedido.
+          Digite o número recebido após a confirmação do pagamento.
         </p>
       </header>
 
@@ -315,11 +307,7 @@ function TrackOrderPage() {
               disabled={isLookingUp}
               className="h-12 min-w-36 bg-[#4a3f35] px-6 text-xs uppercase tracking-[0.18em] text-white hover:bg-[#352c26]"
             >
-              {isLookingUp ? (
-                <Loader2 className="size-4 animate-spin" />
-              ) : (
-                <Search className="size-4" />
-              )}
+              {isLookingUp ? <Loader2 className="size-4 animate-spin" /> : <Search className="size-4" />}
               Consultar
             </Button>
           </div>
@@ -419,9 +407,7 @@ function TrackOrderPage() {
               </p>
               <h2 className="mt-2 text-2xl font-light text-[#3b3029]">Histórico do pedido</h2>
             </div>
-            <p className="text-sm font-light text-[#76665a]">
-              Compra confirmada em {formatDate(tracking.purchasedAt)}
-            </p>
+            <p className="text-sm font-light text-[#76665a]">Compra confirmada em {formatDate(tracking.purchasedAt)}</p>
           </div>
 
           <ol className="mt-8">
@@ -447,12 +433,8 @@ function TrackOrderPage() {
                   </span>
                   <div className={`min-w-0 pt-1 ${isCurrent ? "opacity-100" : "opacity-75"}`}>
                     <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-                      <h3 className="text-base font-medium text-[#3b3029] sm:text-lg">
-                        {step.title}
-                      </h3>
-                      <time className="shrink-0 text-xs text-[#8a796c]">
-                        {formatDate(reachedAt.toISOString())}
-                      </time>
+                      <h3 className="text-base font-medium text-[#3b3029] sm:text-lg">{step.title}</h3>
+                      <time className="shrink-0 text-xs text-[#8a796c]">{formatDate(reachedAt.toISOString())}</time>
                     </div>
                     <p className="mt-2 text-sm font-light leading-relaxed text-[#76665a] sm:text-base">
                       {step.description}
