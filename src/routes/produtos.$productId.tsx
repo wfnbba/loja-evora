@@ -1,4 +1,4 @@
-import { createFileRoute, notFound, Link, useRouter } from "@tanstack/react-router";
+import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { useCartStore } from "@/store/cart-store";
 import { useState, useRef } from "react";
 import { ChevronLeft, ChevronRight, Star, ShoppingBag, RefreshCw, Play } from "lucide-react";
@@ -44,10 +44,6 @@ export const Route = createFileRoute("/produtos/$productId")({
 function ProductPage() {
   const loaderData = Route.useLoaderData();
   const product = loaderData.product;
-  const router = useRouter();
-  const isCheckoutMode = router.state.location.pathname.startsWith("/checkout") || router.state.location.pathname === "/checkout";
-
-  if (isCheckoutMode) return null;
   
   const [selectedImage, setSelectedImage] = useState(0);
   const thumbnailsRef = useRef<HTMLDivElement>(null);

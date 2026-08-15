@@ -133,9 +133,11 @@ function RootShell({ children }: { children: ReactNode }) {
         )}
       </head>
       <body>
-        <div className="min-h-screen bg-[#fdfbf7] text-[#4a3f35]">
+        <div className="min-h-screen bg-[#fdfbf7] text-[#4a3f35] flex flex-col">
           <HeaderWrapper />
-          {children}
+          <main className="flex-1">
+            <Outlet />
+          </main>
           <FooterWrapper />
         </div>
         <Scripts />

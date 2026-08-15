@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
@@ -21,11 +21,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const router = useRouter();
-  const isCheckoutMode = router.state.location.pathname.startsWith("/checkout") || router.state.location.pathname === "/checkout";
-
-  if (isCheckoutMode) return null;
-
   return (
     <div className="pt-20">
       <main>
