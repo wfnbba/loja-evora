@@ -46,6 +46,7 @@ function ProductPage() {
   const product = loaderData.product;
   
   const [selectedImage, setSelectedImage] = useState(0);
+  const thumbnailsRef = useRef<HTMLDivElement>(null);
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState(product.colors?.[0]?.name || "Única");
   const [added, setAdded] = useState(false);
