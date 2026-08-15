@@ -1335,7 +1335,7 @@ export const products: Product[] = [
     rating: 4.8,
     ratingBreakdown: {"1": 0, "2": 0, "3": 4, "4": 5, "5": 56},
     reviews: [
-      { user: "Soraia S.", comment: "Gente, que peça! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0, image: p3b },
+      { user: "Soraia S.", comment: "Gente, que peça! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0 },
       { user: "Gabriela S.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
       { user: "Paula A.", comment: "Muito feliz com a compra, a peça é divina.", rating: 5.0 },
       { user: "Juliana L.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0 },
