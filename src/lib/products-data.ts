@@ -148,8 +148,6 @@ import feedbackChiffon7 from "@/assets/feedbacks/chiffon-7.json";
 import feedbackChiffon8 from "@/assets/feedbacks/chiffon-8.json";
 import feedbackChiffon9 from "@/assets/feedbacks/chiffon-9.json";
 
-
-
 import conjuntoEspresso1 from "@/assets/products/conjunto-espresso-alfaiataria-1.png.asset.json";
 import conjuntoEspresso2 from "@/assets/products/conjunto-espresso-alfaiataria-2.png.asset.json";
 import conjuntoEspresso3 from "@/assets/products/conjunto-espresso-alfaiataria-3.png.asset.json";
@@ -208,8 +206,6 @@ import feedbackCalcaOffWhiteeee7 from "@/assets/feedbacks/calca-off-white-feedba
 import feedbackCalcaOffWhiteeee8 from "@/assets/feedbacks/calca-off-white-feedback-8.json";
 import feedbackCalcaOffWhiteeee9 from "@/assets/feedbacks/calca-off-white-feedback-9.json";
 
-
-
 export interface Product {
   id: string;
   name: string;
@@ -222,7 +218,7 @@ export interface Product {
   salesCount: number;
   rating: number;
   video?: string;
-  ratingBreakdown: { 1: number; 2: number; 3: number; 4: number; 5: number; };
+  ratingBreakdown: { 1: number; 2: number; 3: number; 4: number; 5: number };
   reviews: {
     user: string;
     comment: string;
@@ -279,60 +275,181 @@ export function getProductReviewsPage(product: Product, page: number, perPage: n
   return reviews;
 }
 
-
 const sizes = ["PP", "P", "M", "G", "GG", "XGG"];
 const numericSizes = ["34", "36", "38", "40", "42", "44", "46"];
 const exchangePolicy = "";
 
 export const products: Product[] = [
-  { id: "vestido-aurora-marfim",
+  {
+    id: "vestido-aurora-marfim",
     name: "Vestido Évora Aurora Marfim",
     price: 89,
     originalPrice: 179,
-    description: "A versão marfim do vestido Aurora traz linhas limpas, cintura definida e movimento suave. Atemporal e fácil de combinar." + exchangePolicy,
-    images: [auroraMarfim1.url, auroraMarfim2.url, auroraMarfim3.url, auroraMarfim4.url, auroraMarfim5.url, auroraMarfim6.url, auroraMarfim7.url, auroraMarfim8.url, auroraMarfim9.url, auroraMarfim10.url],
+    description:
+      "A versão marfim do vestido Aurora traz linhas limpas, cintura definida e movimento suave. Atemporal e fácil de combinar." +
+      exchangePolicy,
+    images: [
+      auroraMarfim1.url,
+      auroraMarfim2.url,
+      auroraMarfim3.url,
+      auroraMarfim4.url,
+      auroraMarfim5.url,
+      auroraMarfim6.url,
+      auroraMarfim7.url,
+      auroraMarfim8.url,
+      auroraMarfim9.url,
+      auroraMarfim10.url,
+    ],
     sizes,
     colors: [{ name: "Marfim", value: "#f5f5f0" }],
     salesCount: 3421,
     rating: 4.8,
-    ratingBreakdown: {"1": 0, "2": 1, "3": 20, "4": 24, "5": 297},
+    ratingBreakdown: { "1": 0, "2": 1, "3": 20, "4": 24, "5": 297 },
     reviews: [
-      { user: "Isabela P.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0, image: feedbackMarfim1.url },
-      { user: "Flávia S.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 5.0, image: feedbackMarfim2.url },
-      { user: "Mônica S.", comment: "Gente, que peça! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0, image: feedbackMarfim3.url },
-      { user: "Renata A.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0, image: feedbackMarfim4.url },
-      { user: "Amanda F.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0, image: feedbackMarfim5.url },
-      { user: "Paula L.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0, image: feedbackMarfim6.url },
-      { user: "Gisele F.", comment: "O caimento é surreal de bom, valoriza muito o corpo.", rating: 5.0, image: feedbackMarfim7.url },
-      { user: "Zilda G.", comment: "Simplesmente amei! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0, image: feedbackMarfim8.url },
-      { user: "Tereza F.", comment: "Experiência ótima. Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0, image: feedbackMarfim9.url },
-      { user: "Tânia L.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0, image: feedbackMarfim10.url },
+      {
+        user: "Isabela P.",
+        comment: "Qualidade que surpreende, o acabamento interno é perfeito.",
+        rating: 5.0,
+        image: feedbackMarfim1.url,
+      },
+      {
+        user: "Flávia S.",
+        comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.",
+        rating: 5.0,
+        image: feedbackMarfim2.url,
+      },
+      {
+        user: "Mônica S.",
+        comment:
+          "Gente, que peça! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+        image: feedbackMarfim3.url,
+      },
+      {
+        user: "Renata A.",
+        comment: "Peça coringa, combina com tudo no meu armário.",
+        rating: 5.0,
+        image: feedbackMarfim4.url,
+      },
+      {
+        user: "Amanda F.",
+        comment: "O corte é perfeito, valoriza as curvas sem marcar.",
+        rating: 5.0,
+        image: feedbackMarfim5.url,
+      },
+      {
+        user: "Paula L.",
+        comment: "Caimento fluido e elegante, nota máxima.",
+        rating: 5.0,
+        image: feedbackMarfim6.url,
+      },
+      {
+        user: "Gisele F.",
+        comment: "O caimento é surreal de bom, valoriza muito o corpo.",
+        rating: 5.0,
+        image: feedbackMarfim7.url,
+      },
+      {
+        user: "Zilda G.",
+        comment:
+          "Simplesmente amei! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+        image: feedbackMarfim8.url,
+      },
+      {
+        user: "Tereza F.",
+        comment:
+          "Experiência ótima. Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+        image: feedbackMarfim9.url,
+      },
+      {
+        user: "Tânia L.",
+        comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.",
+        rating: 5.0,
+        image: feedbackMarfim10.url,
+      },
       { user: "Vanessa S.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
       { user: "Jéssica L.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
       { user: "Soraia G.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
       { user: "Rosana G.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0 },
-      { user: "Viviane S.", comment: "Muito satisfeita. O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.", rating: 5.0 },
-      { user: "Soraia L.", comment: "Simplesmente amei! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
+      {
+        user: "Viviane S.",
+        comment:
+          "Muito satisfeita. O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.",
+        rating: 5.0,
+      },
+      {
+        user: "Soraia L.",
+        comment:
+          "Simplesmente amei! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
       { user: "Rafaela G.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
-      { user: "Mariana A.", comment: "Simplesmente amei! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
-      { user: "Jéssica R.", comment: "Uau! A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0 },
+      {
+        user: "Mariana A.",
+        comment:
+          "Simplesmente amei! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
+      {
+        user: "Jéssica R.",
+        comment:
+          "Uau! A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+      },
       { user: "Mônica S.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
-      { user: "Mônica L.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 5.0 },
+      { user: "Mônica L.", comment: "O tamanho serviu perfeitamente, sem apertar.", rating: 5.0 },
       { user: "Marta S.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0 },
       { user: "Alessandra S.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
-      { user: "Sabrina S.", comment: "Gente, que peça! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
+      {
+        user: "Sabrina S.",
+        comment:
+          "Gente, que peça! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
       { user: "Márcia S.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 5.0 },
-      { user: "Maria Eduarda G.", comment: "Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamenchi como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
-      { user: "Tereza F.", comment: "Gente, que peça! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
-      { user: "Viviane F.", comment: "Achei incrível. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
-      { user: "Fabiana G.", comment: "Achei incrível. O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.", rating: 5.0 },
-      { user: "Zilda R.", comment: "Gente, que peça! A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
+      {
+        user: "Maria Eduarda G.",
+        comment:
+          "Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamenchi como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
+      {
+        user: "Tereza F.",
+        comment:
+          "Gente, que peça! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
+      {
+        user: "Viviane F.",
+        comment:
+          "Achei incrível. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
+      {
+        user: "Fabiana G.",
+        comment:
+          "Achei incrível. O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.",
+        rating: 5.0,
+      },
+      {
+        user: "Zilda R.",
+        comment:
+          "Gente, que peça! A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
       { user: "Milena G.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
       { user: "Maria Eduarda S.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0 },
       { user: "Amanda S.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 4.0 },
       { user: "Sueli P.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 4.0 },
       { user: "Bianca R.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 4.0 },
-      { user: "Paula P.", comment: "Simplesmente amei! A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 4.0 },
+      {
+        user: "Paula P.",
+        comment:
+          "Simplesmente amei! A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 4.0,
+      },
       { user: "Janaina S.", comment: "Caimento fluido e elegante, nota máxima.", rating: 4.0 },
       { user: "Zilda O.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 3.0 },
       { user: "Adriana O.", comment: "A cor pessoalmente é ainda mais bonita que no site.", rating: 3.0 },
@@ -343,29 +460,100 @@ export const products: Product[] = [
       { user: "Beatriz R.", comment: "O tecido não me agradou muito, achei um pouco áspero.", rating: 2.0 },
     ],
   },
-  { id: "vestido-aurora-cafe",
+  {
+    id: "vestido-aurora-cafe",
     name: "Vestido Évora Aurora Café",
     price: 89,
     originalPrice: 179,
     video: videoAuroraCafe.url,
-    description: "Vestido midi em tom café, com cintura marcada e saia ampla. A tonalidade profunda atualiza uma silhueta clássica." + exchangePolicy,
-    images: [auroraCafe1.url, auroraCafe2.url, auroraCafe3.url, auroraCafe4.url, auroraCafe5.url, auroraCafe6.url, auroraCafe7.url, auroraCafe8.url, auroraCafe9.url, auroraCafe10.url],
+    description:
+      "Vestido midi em tom café, com cintura marcada e saia ampla. A tonalidade profunda atualiza uma silhueta clássica." +
+      exchangePolicy,
+    images: [
+      auroraCafe1.url,
+      auroraCafe2.url,
+      auroraCafe3.url,
+      auroraCafe4.url,
+      auroraCafe5.url,
+      auroraCafe6.url,
+      auroraCafe7.url,
+      auroraCafe8.url,
+      auroraCafe9.url,
+      auroraCafe10.url,
+    ],
     sizes,
     colors: [{ name: "Café", value: "#4b3621" }],
     salesCount: 2154,
     rating: 4.8,
-    ratingBreakdown: {"1": 0, "2": 0, "3": 4, "4": 35, "5": 176},
+    ratingBreakdown: { "1": 0, "2": 0, "3": 4, "4": 35, "5": 176 },
     reviews: [
-      { user: "Jéssica G.", comment: "Uau! A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 5.0, image: feedbackAuroraCafe1.url },
-      { user: "Renata S.", comment: "Simplesmente amei! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0, image: feedbackAuroraCafe2.url },
-      { user: "Priscila P.", comment: "Uau! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0, image: feedbackAuroraCafe3.url },
-      { user: "Priscila S.", comment: "Uau! Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 5.0, image: feedbackAuroraCafe4.url },
-      { user: "Letícia S.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0, image: feedbackAuroraCafe5.url },
-      { user: "Vanessa S.", comment: "O caimento é surreal de bom, valoriza muito o corpo.", rating: 5.0, image: feedbackAuroraCafe6.url },
-      { user: "Glória S.", comment: "Experiência ótima. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0, image: feedbackAuroraCafe7.url },
-      { user: "Márcia S.", comment: "O caimento é surreal de bom, valoriza muito o corpo.", rating: 5.0, image: feedbackAuroraCafe8.url },
-      { user: "Rosana A.", comment: "Muito satisfeita. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0, image: feedbackAuroraCafe9.url },
-      { user: "Camila S.", comment: "Achei incrível. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0, image: feedbackAuroraCafe1.url },
+      {
+        user: "Jéssica G.",
+        comment:
+          "Uau! A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 5.0,
+        image: feedbackAuroraCafe1.url,
+      },
+      {
+        user: "Renata S.",
+        comment:
+          "Simplesmente amei! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+        image: feedbackAuroraCafe2.url,
+      },
+      {
+        user: "Priscila P.",
+        comment:
+          "Uau! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+        image: feedbackAuroraCafe3.url,
+      },
+      {
+        user: "Priscila S.",
+        comment:
+          "Uau! Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 5.0,
+        image: feedbackAuroraCafe4.url,
+      },
+      {
+        user: "Letícia S.",
+        comment: "Tecido fresco e leve, ideal para o verão.",
+        rating: 5.0,
+        image: feedbackAuroraCafe5.url,
+      },
+      {
+        user: "Vanessa S.",
+        comment: "O caimento é surreal de bom, valoriza muito o corpo.",
+        rating: 5.0,
+        image: feedbackAuroraCafe6.url,
+      },
+      {
+        user: "Glória S.",
+        comment:
+          "Experiência ótima. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+        image: feedbackAuroraCafe7.url,
+      },
+      {
+        user: "Márcia S.",
+        comment: "O caimento é surreal de bom, valoriza muito o corpo.",
+        rating: 5.0,
+        image: feedbackAuroraCafe8.url,
+      },
+      {
+        user: "Rosana A.",
+        comment:
+          "Muito satisfeita. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+        image: feedbackAuroraCafe9.url,
+      },
+      {
+        user: "Camila S.",
+        comment:
+          "Achei incrível. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+        image: feedbackAuroraCafe1.url,
+      },
       { user: "Isabela O.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0 },
       { user: "Eliane S.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
       { user: "Carla F.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
@@ -373,27 +561,92 @@ export const products: Product[] = [
       { user: "Fabiana O.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
       { user: "Luana R.", comment: "Ficou ótimo no busto, muito confortável.", rating: 5.0 },
       { user: "Janaina F.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
-      { user: "Olívia R.", comment: "A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 5.0 },
+      {
+        user: "Olívia R.",
+        comment:
+          "A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 5.0,
+      },
       { user: "Bruna L.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0 },
-      { user: "Juliana S.", comment: "Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0 },
-      { user: "Patrícia L.", comment: "Simplesmente amei! A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0 },
+      {
+        user: "Juliana S.",
+        comment:
+          "Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+      },
+      {
+        user: "Patrícia L.",
+        comment:
+          "Simplesmente amei! A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+      },
       { user: "Lourdes G.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 5.0 },
       { user: "Iara F.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
-      { user: "Priscila A.", comment: "Uau! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0 },
-      { user: "Jéssica S.", comment: "Simplesmente amei! Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.", rating: 5.0 },
-      { user: "Zilda R.", comment: "O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
-      { user: "Aline F.", comment: "Uau! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
+      {
+        user: "Priscila A.",
+        comment:
+          "Uau! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+      },
+      {
+        user: "Jéssica S.",
+        comment:
+          "Simplesmente amei! Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.",
+        rating: 5.0,
+      },
+      {
+        user: "Zilda R.",
+        comment:
+          "O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
+      {
+        user: "Aline F.",
+        comment:
+          "Uau! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
       { user: "Aline L.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
-      { user: "Eliane S.", comment: "Gente, que peça! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
+      {
+        user: "Eliane S.",
+        comment:
+          "Gente, que peça! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
       { user: "Letícia O.", comment: "A cor pessoalmente é ainda mais bonita que no site.", rating: 5.0 },
       { user: "Débora R.", comment: "Ficou ótimo no busto, muito confortável.", rating: 5.0 },
       { user: "Marta S.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 5.0 },
       { user: "Carla R.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 4.0 },
-      { user: "Bianca S.", comment: "Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 4.0 },
-      { user: "Paloma O.", comment: "Experiência ótima. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 4.0 },
-      { user: "Beatriz L.", comment: "Muito satisfeita. O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.", rating: 4.0 },
-      { user: "Débora S.", comment: "Simplesmente amei! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 4.0 },
-      { user: "Helena F.", comment: "Achei incrível. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 4.0 },
+      {
+        user: "Bianca S.",
+        comment:
+          "Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 4.0,
+      },
+      {
+        user: "Paloma O.",
+        comment:
+          "Experiência ótima. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 4.0,
+      },
+      {
+        user: "Beatriz L.",
+        comment:
+          "Muito satisfeita. O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.",
+        rating: 4.0,
+      },
+      {
+        user: "Débora S.",
+        comment:
+          "Simplesmente amei! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 4.0,
+      },
+      {
+        user: "Helena F.",
+        comment:
+          "Achei incrível. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 4.0,
+      },
       { user: "Karine O.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 3.0 },
       { user: "Olívia S.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 3.0 },
       { user: "Adriana F.", comment: "Caimento fluido e elegante, nota máxima.", rating: 3.0 },
@@ -401,42 +654,129 @@ export const products: Product[] = [
       { user: "Adriana G.", comment: "A cor é um pouco diferente do que eu esperava pela foto.", rating: 2.0 },
       { user: "Sheila R.", comment: "", rating: 1.0 },
     ],
-
   },
-  { id: "vestido-monument-noir",
+  {
+    id: "vestido-monument-noir",
     name: "Vestido Évora Monument Noir",
     price: 189,
     originalPrice: 189,
-    description: "Vestido longo de construção assimétrica em preto e marfim. O volume escultural no ombro transforma a peça em protagonista." + exchangePolicy,
-    images: [monumentNoir1.url, monumentNoir2.url, monumentNoir3.url, monumentNoir4.url, monumentNoir5.url, monumentNoir6.url, monumentNoir7.url, monumentNoir8.url, monumentNoir9.url, monumentNoir10.url],
+    description:
+      "Vestido longo de construção assimétrica em preto e marfim. O volume escultural no ombro transforma a peça em protagonista." +
+      exchangePolicy,
+    images: [
+      monumentNoir1.url,
+      monumentNoir2.url,
+      monumentNoir3.url,
+      monumentNoir4.url,
+      monumentNoir5.url,
+      monumentNoir6.url,
+      monumentNoir7.url,
+      monumentNoir8.url,
+      monumentNoir9.url,
+      monumentNoir10.url,
+    ],
     sizes,
     colors: [{ name: "Noir/Marfim", value: "#000000" }],
     salesCount: 1587,
     rating: 4.8,
-    ratingBreakdown: {"1": 0, "2": 0, "3": 4, "4": 23, "5": 131},
+    ratingBreakdown: { "1": 0, "2": 0, "3": 4, "4": 23, "5": 131 },
     reviews: [
-      { user: "Silvana S.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0, image: feedbackMonumentNoir1.url },
-      { user: "Vanessa A.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0, image: feedbackMonumentNoir2.url },
-      { user: "Neusa F.", comment: "Achei incrível. Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.", rating: 5.0, image: feedbackMonumentNoir3.url },
-      { user: "Milena L.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0, image: feedbackMonumentNoir4.url },
-      { user: "Fabiana L.", comment: "Achei incrível. Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0, image: feedbackMonumentNoir5.url },
-      { user: "Flávia S.", comment: "Gente, que peça! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0, image: feedbackMonumentNoir6.url },
-      { user: "Débora L.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0, image: feedbackMonumentNoir7.url },
-      { user: "Luciana A.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 5.0, image: feedbackMonumentNoir8.url },
-      { user: "Cássia P.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 5.0, image: feedbackMonumentNoir9.url },
-      { user: "Soraia S.", comment: "Gente, que peça! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0, image: feedbackMonumentNoir1.url },
+      {
+        user: "Silvana S.",
+        comment: "Chegou tudo certinho e a peça é um encanto.",
+        rating: 5.0,
+        image: feedbackMonumentNoir1.url,
+      },
+      {
+        user: "Vanessa A.",
+        comment: "Qualidade que surpreende, o acabamento interno é perfeito.",
+        rating: 5.0,
+        image: feedbackMonumentNoir2.url,
+      },
+      {
+        user: "Neusa F.",
+        comment:
+          "Achei incrível. Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.",
+        rating: 5.0,
+        image: feedbackMonumentNoir3.url,
+      },
+      {
+        user: "Milena L.",
+        comment: "O luxo em forma de roupa, me senti uma rainha.",
+        rating: 5.0,
+        image: feedbackMonumentNoir4.url,
+      },
+      {
+        user: "Fabiana L.",
+        comment:
+          "Achei incrível. Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+        image: feedbackMonumentNoir5.url,
+      },
+      {
+        user: "Flávia S.",
+        comment:
+          "Gente, que peça! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+        image: feedbackMonumentNoir6.url,
+      },
+      {
+        user: "Débora L.",
+        comment: "Simplesmente perfeito, superou minhas expectativas.",
+        rating: 5.0,
+        image: feedbackMonumentNoir7.url,
+      },
+      {
+        user: "Luciana A.",
+        comment: "Entrega super rápida e produto de altíssima qualidade.",
+        rating: 5.0,
+        image: feedbackMonumentNoir8.url,
+      },
+      {
+        user: "Cássia P.",
+        comment: "O tamanho serviu perfeitamente, sem apertar.",
+        rating: 5.0,
+        image: feedbackMonumentNoir9.url,
+      },
+      {
+        user: "Soraia S.",
+        comment:
+          "Gente, que peça! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+        image: feedbackMonumentNoir1.url,
+      },
       { user: "Glória R.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
       { user: "Juliana A.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 5.0 },
       { user: "Adriana S.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
       { user: "Luciana R.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 4.0 },
-      { user: "Regina O.", comment: "O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 4.0 },
+      {
+        user: "Regina O.",
+        comment:
+          "O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 4.0,
+      },
       { user: "Soraia P.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 4.0 },
-      { user: "Renata S.", comment: "Gente, que peça! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 4.0 },
+      {
+        user: "Renata S.",
+        comment:
+          "Gente, que peça! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 4.0,
+      },
       { user: "Gisele O.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 4.0 },
       { user: "Bianca R.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 4.0 },
       { user: "Neusa S.", comment: "Ficou ótimo no busto, muito confortável.", rating: 4.0 },
-      { user: "Débora O.", comment: "Gente, que peça! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 4.0 },
-      { user: "Daiane L.", comment: "Simplesmente amei! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 4.0 },
+      {
+        user: "Débora O.",
+        comment:
+          "Gente, que peça! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 4.0,
+      },
+      {
+        user: "Daiane L.",
+        comment:
+          "Simplesmente amei! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 4.0,
+      },
       { user: "Eliane S.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 4.0 },
       { user: "Tânia G.", comment: "O caimento é surreal de bom, valoriza muito o corpo.", rating: 3.0 },
       { user: "Paloma P.", comment: "O caimento é surreal de bom, valoriza muito o corpo.", rating: 3.0 },
@@ -446,96 +786,334 @@ export const products: Product[] = [
       { user: "Mônica A.", comment: "Achei o acabamento da barra um pouco simples.", rating: 2.0 },
       { user: "Fabiana M.", comment: "", rating: 1.0 },
     ],
-
   },
-  { id: "colete-alvorada",
+  {
+    id: "colete-alvorada",
     name: "Colete Évora Alvorada",
     price: 89,
     originalPrice: 89,
-    description: "Colete em alfaiataria premium off-white com fechamento frontal por botões delicados e barra assimétrica. Uma peça minimalista e sofisticada que redefine o conceito de elegância moderna. Perfeito para sobreposições ou usado como peça única, garantindo um visual polido e autoritário." + exchangePolicy,
-    images: [alvorada1.url, alvorada2.url, alvorada3.url, alvorada4.url, alvorada5.url, alvorada6.url, alvorada7.url, alvorada8.url, alvorada9.url, alvorada10.url],
+    description:
+      "Colete em alfaiataria premium off-white com fechamento frontal por botões delicados e barra assimétrica. Uma peça minimalista e sofisticada que redefine o conceito de elegância moderna. Perfeito para sobreposições ou usado como peça única, garantindo um visual polido e autoritário." +
+      exchangePolicy,
+    images: [
+      alvorada1.url,
+      alvorada2.url,
+      alvorada3.url,
+      alvorada4.url,
+      alvorada5.url,
+      alvorada6.url,
+      alvorada7.url,
+      alvorada8.url,
+      alvorada9.url,
+      alvorada10.url,
+    ],
     sizes,
     colors: [{ name: "Off-White", value: "#faf9f6" }],
     salesCount: 4231,
     rating: 4.8,
-    ratingBreakdown: {"1": 0, "2": 0, "3": 4, "4": 76, "5": 343},
+    ratingBreakdown: { "1": 0, "2": 0, "3": 4, "4": 76, "5": 343 },
     reviews: [
-      { user: "Verônica A.", comment: "Uau! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0, image: feedbackAlvoradaa1.url },
-      { user: "Larissa S.", comment: "Gente, que peça! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0, image: feedbackAlvoradaa2.url },
-      { user: "Maria Eduarda R.", comment: "Simplesmente amei! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0, image: feedbackAlvoradaa3.url },
-      { user: "Tereza R.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 5.0, image: feedbackAlvoradaa4.url },
-      { user: "Cristiane R.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0, image: feedbackAlvoradaa5.url },
-      { user: "Renata S.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0, image: feedbackAlvoradaa6.url },
-      { user: "Regina P.", comment: "Achei incrível. Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0, image: feedbackAlvoradaa7.url },
-      { user: "Regina S.", comment: "Uau! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0, image: feedbackAlvoradaa8.url },
-      { user: "Larissa A.", comment: "Experiência ótima. Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0, image: feedbackAlvoradaa1.url },
-      { user: "Cássia R.", comment: "Muito satisfeita. Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamenchi como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0, image: feedbackAlvoradaa2.url },
+      {
+        user: "Verônica A.",
+        comment:
+          "Uau! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+        image: feedbackAlvoradaa1.url,
+      },
+      {
+        user: "Larissa S.",
+        comment:
+          "Gente, que peça! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+        image: feedbackAlvoradaa2.url,
+      },
+      {
+        user: "Maria Eduarda R.",
+        comment:
+          "Simplesmente amei! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+        image: feedbackAlvoradaa3.url,
+      },
+      {
+        user: "Tereza R.",
+        comment: "O tamanho serviu perfeitamente, sem apertar.",
+        rating: 5.0,
+        image: feedbackAlvoradaa4.url,
+      },
+      {
+        user: "Cristiane R.",
+        comment: "Simplesmente perfeito, superou minhas expectativas.",
+        rating: 5.0,
+        image: feedbackAlvoradaa5.url,
+      },
+      {
+        user: "Renata S.",
+        comment: "Chegou tudo certinho e a peça é um encanto.",
+        rating: 5.0,
+        image: feedbackAlvoradaa6.url,
+      },
+      {
+        user: "Regina P.",
+        comment:
+          "Achei incrível. Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+        image: feedbackAlvoradaa7.url,
+      },
+      {
+        user: "Regina S.",
+        comment:
+          "Uau! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+        image: feedbackAlvoradaa8.url,
+      },
+      {
+        user: "Larissa A.",
+        comment:
+          "Experiência ótima. Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+        image: feedbackAlvoradaa1.url,
+      },
+      {
+        user: "Cássia R.",
+        comment:
+          "Muito satisfeita. Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamenchi como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+        image: feedbackAlvoradaa2.url,
+      },
       { user: "Soraia R.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
-      { user: "Tereza S.", comment: "Gente, que peça! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0 },
+      {
+        user: "Tereza S.",
+        comment:
+          "Gente, que peça! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+      },
       { user: "Marta G.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
-      { user: "Aline P.", comment: "Uau! Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 5.0 },
-      { user: "Ana Paula P.", comment: "Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 5.0 },
-      { user: "Regina P.", comment: "A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
+      {
+        user: "Aline P.",
+        comment:
+          "Uau! Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 5.0,
+      },
+      {
+        user: "Ana Paula P.",
+        comment:
+          "Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 5.0,
+      },
+      {
+        user: "Regina P.",
+        comment:
+          "A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
       { user: "Glória O.", comment: "Muito feliz com a compra, a peça é divina.", rating: 5.0 },
-      { user: "Daiane L.", comment: "Simplesmente amei! Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.", rating: 5.0 },
+      {
+        user: "Daiane L.",
+        comment:
+          "Simplesmente amei! Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.",
+        rating: 5.0,
+      },
       { user: "Karine F.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 4.0 },
       { user: "Vitória O.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 4.0 },
-      { user: "Carolina G.", comment: "Uau! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 4.0 },
+      {
+        user: "Carolina G.",
+        comment:
+          "Uau! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 4.0,
+      },
       { user: "Mônica G.", comment: "O caimento é surreal de bom, valoriza muito o corpo.", rating: 4.0 },
       { user: "Tânia A.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 4.0 },
-      { user: "Andréia A.", comment: "Uau! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamenchi como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 4.0 },
+      {
+        user: "Andréia A.",
+        comment:
+          "Uau! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamenchi como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 4.0,
+      },
       { user: "Sandra O.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 4.0 },
-      { user: "Daniela S.", comment: "Gente, que peça! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 4.0 },
+      {
+        user: "Daniela S.",
+        comment:
+          "Gente, que peça! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 4.0,
+      },
       { user: "Cláudia S.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 3.0 },
       { user: "Iara R.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 3.0 },
       { user: "Cláudia A.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 3.0 },
       { user: "Regina S.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 3.0 },
     ],
   },
-  { id: "vestido-satin-espresso",
+  {
+    id: "vestido-satin-espresso",
     name: "Vestido Évora Satin Espresso",
     price: 189,
     originalPrice: 429,
-    description: "Vestido longo em cetim de seda tom espresso, com decote degagê e alças finas reguláveis. O brilho luxuoso do tecido e o caimento fluido criam uma silhueta feminina e extremamente elegante para eventos noturnos." + exchangePolicy,
-    images: [satinEspresso1.url, satinEspresso2.url, satinEspresso3.url, satinEspresso4.url, satinEspresso5.url, satinEspresso6.url, satinEspresso7.url],
+    description:
+      "Vestido longo em cetim de seda tom espresso, com decote degagê e alças finas reguláveis. O brilho luxuoso do tecido e o caimento fluido criam uma silhueta feminina e extremamente elegante para eventos noturnos." +
+      exchangePolicy,
+    images: [
+      satinEspresso1.url,
+      satinEspresso2.url,
+      satinEspresso3.url,
+      satinEspresso4.url,
+      satinEspresso5.url,
+      satinEspresso6.url,
+      satinEspresso7.url,
+    ],
     sizes,
     colors: [{ name: "Espresso", value: "#3d2b1f" }],
     salesCount: 2845,
     rating: 4.8,
-    ratingBreakdown: {"1": 0, "2": 0, "3": 4, "4": 48, "5": 232},
+    ratingBreakdown: { "1": 0, "2": 0, "3": 4, "4": 48, "5": 232 },
     reviews: [
-      { user: "Adriana P.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 5.0, image: feedbackEspresso1.url },
-      { user: "Rosana O.", comment: "Experiência ótima. Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0, image: feedbackEspresso2.url },
-      { user: "Aline F.", comment: "Experiência ótima. Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0, image: feedbackEspresso3.url },
-      { user: "Cássia A.", comment: "Achei incrível. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0, image: feedbackEspresso4.url },
-      { user: "Renata F.", comment: "Muito satisfeita. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0, image: feedbackEspresso5.url },
-      { user: "Luana O.", comment: "A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0, image: feedbackEspresso6.url },
-      { user: "Taís O.", comment: "Achei incrível. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0, image: feedbackEspresso7.url },
-      { user: "Bruna R.", comment: "Muito satisfeita. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0, image: feedbackEspresso8.url },
-      { user: "Débora L.", comment: "Ficou ótimo no busto, muito confortável.", rating: 5.0, image: feedbackEspresso1.url },
-      { user: "Zilda L.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0, image: feedbackEspresso2.url },
-      { user: "Marta S.", comment: "Gente, que peça! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muiito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0 },
-      { user: "Marta L.", comment: "Achei incrível. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0 },
-      { user: "Iara F.", comment: "Achei incrível. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
-      { user: "Márcia S.", comment: "Simplesmente amei! O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.", rating: 5.0 },
-      { user: "Flávia S.", comment: "Simplesmente amei! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
-      { user: "Helena P.", comment: "Gente, que peça! O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 5.0 },
+      {
+        user: "Adriana P.",
+        comment: "O tamanho serviu perfeitamente, sem apertar.",
+        rating: 5.0,
+        image: feedbackEspresso1.url,
+      },
+      {
+        user: "Rosana O.",
+        comment:
+          "Experiência ótima. Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+        image: feedbackEspresso2.url,
+      },
+      {
+        user: "Aline F.",
+        comment:
+          "Experiência ótima. Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+        image: feedbackEspresso3.url,
+      },
+      {
+        user: "Cássia A.",
+        comment:
+          "Achei incrível. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+        image: feedbackEspresso4.url,
+      },
+      {
+        user: "Renata F.",
+        comment:
+          "Muito satisfeita. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+        image: feedbackEspresso5.url,
+      },
+      {
+        user: "Luana O.",
+        comment:
+          "A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+        image: feedbackEspresso6.url,
+      },
+      {
+        user: "Taís O.",
+        comment:
+          "Achei incrível. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+        image: feedbackEspresso7.url,
+      },
+      {
+        user: "Bruna R.",
+        comment:
+          "Muito satisfeita. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+        image: feedbackEspresso8.url,
+      },
+      {
+        user: "Débora L.",
+        comment: "Ficou ótimo no busto, muito confortável.",
+        rating: 5.0,
+        image: feedbackEspresso1.url,
+      },
+      {
+        user: "Zilda L.",
+        comment: "Caimento fluido e elegante, nota máxima.",
+        rating: 5.0,
+        image: feedbackEspresso2.url,
+      },
+      {
+        user: "Marta S.",
+        comment:
+          "Gente, que peça! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muiito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+      },
+      {
+        user: "Marta L.",
+        comment:
+          "Achei incrível. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+      },
+      {
+        user: "Iara F.",
+        comment:
+          "Achei incrível. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
+      {
+        user: "Márcia S.",
+        comment:
+          "Simplesmente amei! O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.",
+        rating: 5.0,
+      },
+      {
+        user: "Flávia S.",
+        comment:
+          "Simplesmente amei! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
+      {
+        user: "Helena P.",
+        comment:
+          "Gente, que peça! O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 5.0,
+      },
       { user: "Mônica A.", comment: "Ficou ótimo no busto, muito confortável.", rating: 5.0 },
-      { user: "Paloma A.", comment: "Uau! Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.", rating: 5.0 },
+      {
+        user: "Paloma A.",
+        comment:
+          "Uau! Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.",
+        rating: 5.0,
+      },
       { user: "Jéssica F.", comment: "O caimento é surreal de bom, valoriza muito o corpo.", rating: 5.0 },
       { user: "Ana Paula S.", comment: "O caimento é surreal de bom, valoriza muito o corpo.", rating: 5.0 },
-      { user: "Camila L.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 5.0 },
-      { user: "Amanda A.", comment: "Uau! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!", rating: 5.0 },
+      { user: "Camila L.", comment: "O tamanho serviu perfeitamente, sem apertar.", rating: 5.0 },
+      {
+        user: "Amanda A.",
+        comment:
+          "Uau! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!",
+        rating: 5.0,
+      },
       { user: "Sandra L.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
       { user: "Carla L.", comment: "Ficou ótimo no busto, muito confortável.", rating: 5.0 },
       { user: "Cássia F.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
       { user: "Patrícia G.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
-      { user: "Cássia S.", comment: "Simplesmente amei! Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.", rating: 4.0 },
-      { user: "Zilda R.", comment: "Uau! Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 4.0 },
-      { user: "Mônica O.", comment: "Experiência ótima. Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 4.0 },
+      {
+        user: "Cássia S.",
+        comment:
+          "Simplesmente amei! Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.",
+        rating: 4.0,
+      },
+      {
+        user: "Zilda R.",
+        comment:
+          "Uau! Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 4.0,
+      },
+      {
+        user: "Mônica O.",
+        comment:
+          "Experiência ótima. Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 4.0,
+      },
       { user: "Ana Paula A.", comment: "Amei cada detalhe, a costura é impecável.", rating: 4.0 },
       { user: "Olívia S.", comment: "Ficou ótimo no busto, muito confortável.", rating: 4.0 },
-      { user: "Paloma R.", comment: "Gente, que peça! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 4.0 },
+      {
+        user: "Paloma R.",
+        comment:
+          "Gente, que peça! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 4.0,
+      },
       { user: "Cláudia L.", comment: "Caimento fluido e elegante, nota máxima.", rating: 3.0 },
       { user: "Amanda F.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 3.0 },
       { user: "Mariana S.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 3.0 },
@@ -544,12 +1122,26 @@ export const products: Product[] = [
       { user: "Maria Eduarda G.", comment: "A cor é um pouco diferente do que eu esperava pela foto.", rating: 2.0 },
     ],
   },
-  { id: "saia-chiffon-fluida",
+  {
+    id: "saia-chiffon-fluida",
     name: "Saia Évora Chiffon Fluida",
     price: 159,
     originalPrice: 159,
-    description: "Saia midi em chiffon de alta qualidade com modelagem em camadas e caimento leve. Possui forro interno e cós com elástico para maior conforto. Uma peça versátil que transita do casual ao sofisticado com elegância." + exchangePolicy,
-    images: [saiaChiffon1.url, saiaChiffon2.url, saiaChiffon3.url, saiaChiffon4.url, saiaChiffon5.url, saiaChiffon6.url, saiaChiffon7.url, saiaChiffon8.url, saiaChiffon9.url, saiaChiffon10.url],
+    description:
+      "Saia midi em chiffon de alta qualidade com modelagem em camadas e caimento leve. Possui forro interno e cós com elástico para maior conforto. Uma peça versátil que transita do casual ao sofisticado com elegância." +
+      exchangePolicy,
+    images: [
+      saiaChiffon1.url,
+      saiaChiffon2.url,
+      saiaChiffon3.url,
+      saiaChiffon4.url,
+      saiaChiffon5.url,
+      saiaChiffon6.url,
+      saiaChiffon7.url,
+      saiaChiffon8.url,
+      saiaChiffon9.url,
+      saiaChiffon10.url,
+    ],
     sizes: numericSizes,
     colors: [
       { name: "Off-White", value: "#faf9f6" },
@@ -558,108 +1150,343 @@ export const products: Product[] = [
     ],
     salesCount: 5124,
     rating: 4.8,
-    ratingBreakdown: {"1": 0, "2": 6, "3": 29, "4": 26, "5": 451},
+    ratingBreakdown: { "1": 0, "2": 6, "3": 29, "4": 26, "5": 451 },
     reviews: [
-      { user: "Mariana S.", comment: "A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
+      {
+        user: "Mariana S.",
+        comment:
+          "A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
       { user: "Adriana R.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
       { user: "Lourdes S.", comment: "A cor pessoalmente é ainda mais bonita que no site.", rating: 5.0 },
       { user: "Raquel O.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
-      { user: "Renata P.", comment: "Simplesmente amei! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0 },
-      { user: "Letícia O.", comment: "Muito satisfeita. O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 5.0 },
+      {
+        user: "Renata P.",
+        comment:
+          "Simplesmente amei! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+      },
+      {
+        user: "Letícia O.",
+        comment:
+          "Muito satisfeita. O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 5.0,
+      },
       { user: "Denise R.", comment: "", rating: 4.0 },
-      { user: "Flávia P.", comment: "Achei incrível. A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
+      {
+        user: "Flávia P.",
+        comment:
+          "Achei incrível. A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
       { user: "Jéssica F.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
       { user: "Milena O.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0 },
       { user: "Mônica P.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 5.0 },
-      { user: "Viviane O.", comment: "Simplesmente amei! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
+      {
+        user: "Viviane O.",
+        comment:
+          "Simplesmente amei! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
       { user: "Elis\u00e2ngela M.", comment: "", rating: 4.0 },
       { user: "Fernanda L.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
-      { user: "Tânia L.", comment: "Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
+      {
+        user: "Tânia L.",
+        comment:
+          "Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
       { user: "Vanessa L.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
-      { user: "Janaina P.", comment: "Gente, que peça! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0 },
+      {
+        user: "Janaina P.",
+        comment:
+          "Gente, que peça! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+      },
       { user: "Cláudia P.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
       { user: "M\u00f4nica A.", comment: "", rating: 4.0 },
-      { user: "Olívia S.", comment: "Simplesmente amei! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
+      {
+        user: "Olívia S.",
+        comment:
+          "Simplesmente amei! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
       { user: "Janaina L.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 5.0 },
-      { user: "Aline S.", comment: "Simplesmente amei! Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.", rating: 5.0 },
+      {
+        user: "Aline S.",
+        comment:
+          "Simplesmente amei! Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.",
+        rating: 5.0,
+      },
       { user: "Márcia S.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
-      { user: "Alessandra R.", comment: "A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
-      { user: "Fabiana P.", comment: "Experiência ótima. Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0 },
+      {
+        user: "Alessandra R.",
+        comment:
+          "A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
+      {
+        user: "Fabiana P.",
+        comment:
+          "Experiência ótima. Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+      },
       { user: "Nilza S.", comment: "", rating: 3.0 },
       { user: "Débora G.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
-      { user: "Tatiane P.", comment: "Simplesmente amei! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!", rating: 5.0 },
+      {
+        user: "Tatiane P.",
+        comment:
+          "Simplesmente amei! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!",
+        rating: 5.0,
+      },
       { user: "Fernanda G.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
       { user: "Fabiana P.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 5.0 },
       { user: "Milena L.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
-      { user: "Sueli F.", comment: "Gente, que peça! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
-      { user: "Renata F.", comment: "Gente, que peça! A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muiito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muiito bem protegido.", rating: 5.0 },
+      {
+        user: "Sueli F.",
+        comment:
+          "Gente, que peça! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
+      {
+        user: "Renata F.",
+        comment:
+          "Gente, que peça! A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muiito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muiito bem protegido.",
+        rating: 5.0,
+      },
       { user: "Rafaela S.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
-      { user: "Cristiane A.", comment: "Gente, que peça! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
+      {
+        user: "Cristiane A.",
+        comment:
+          "Gente, que peça! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
       { user: "Márcia P.", comment: "Ficou ótimo no busto, muito confortável.", rating: 5.0 },
       { user: "Paula S.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
       { user: "Sueli O.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
       { user: "Sueli O.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 3.0 },
-      { user: "Neusa O.", comment: "Achei incrível. Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
+      {
+        user: "Neusa O.",
+        comment:
+          "Achei incrível. Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
       { user: "Maria Eduarda O.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 4.0 },
-      { user: "Amanda F.", comment: "Uau! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0 },
+      {
+        user: "Amanda F.",
+        comment:
+          "Uau! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+      },
       { user: "Mariana G.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
-      { user: "Bruna F.", comment: "Achei incrível. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0 },
-      { user: "Tatiane P.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0, image: feedbackChiffon1.url },
-      { user: "Vitória G.", comment: "Muito satisfeita. Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0 },
+      {
+        user: "Bruna F.",
+        comment:
+          "Achei incrível. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+      },
+      {
+        user: "Tatiane P.",
+        comment: "O tecido é uma delícia na pele, muito macio.",
+        rating: 5.0,
+        image: feedbackChiffon1.url,
+      },
+      {
+        user: "Vitória G.",
+        comment:
+          "Muito satisfeita. Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+      },
       { user: "Cristiane S.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0 },
-      { user: "Ana Paula G.", comment: "Experiência ótima. A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muiito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 5.0 },
-      { user: "Rosana P.", comment: "Achei incrível. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
-      { user: "Daiane G.", comment: "Muito satisfeita. O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0 },
-      { user: "Flávia G.", comment: "Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0 },
+      {
+        user: "Ana Paula G.",
+        comment:
+          "Experiência ótima. A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muiito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 5.0,
+      },
+      {
+        user: "Rosana P.",
+        comment:
+          "Achei incrível. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
+      {
+        user: "Daiane G.",
+        comment:
+          "Muito satisfeita. O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+      },
+      {
+        user: "Flávia G.",
+        comment:
+          "Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+      },
       { user: "Amanda L.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
       { user: "Sueli M.", comment: "", rating: 4.0 },
       { user: "Viviane L.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0 },
-      { user: "Rafaela O.", comment: "Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0 },
-      { user: "Mariana G.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 5.0 },
+      {
+        user: "Rafaela O.",
+        comment:
+          "Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+      },
+      { user: "Mariana G.", comment: "O tamanho serviu perfeitamente, sem apertar.", rating: 5.0 },
       { user: "Maria F.", comment: "", rating: 4.0 },
       { user: "Lourdes F.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
-      { user: "Paloma A.", comment: "Achei incrível. O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 5.0 },
+      {
+        user: "Paloma A.",
+        comment:
+          "Achei incrível. O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 5.0,
+      },
       { user: "Eliane S.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0 },
       { user: "Helena R.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
       { user: "Larissa S.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
-      { user: "Carla S.", comment: "Simplesmente amei! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!", rating: 5.0 },
+      {
+        user: "Carla S.",
+        comment:
+          "Simplesmente amei! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!",
+        rating: 5.0,
+      },
       { user: "Fl\u00e1via A.", comment: "", rating: 3.0 },
-      { user: "Bianca R.", comment: "Achei incrível. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
-      { user: "Cláudia L.", comment: "Uau! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0 },
-      { user: "Zilda A.", comment: "Simplesmente amei! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
-      { user: "Sabrina S.", comment: "A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
-      { user: "Taís S.", comment: "Achei incrível. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
-      { user: "Glória F.", comment: "Gente, que peça! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0 },
-      { user: "Fernanda R.", comment: "Uau! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
-      { user: "Olívia F.", comment: "Gente, que peça! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 4.0 },
+      {
+        user: "Bianca R.",
+        comment:
+          "Achei incrível. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
+      {
+        user: "Cláudia L.",
+        comment:
+          "Uau! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+      },
+      {
+        user: "Zilda A.",
+        comment:
+          "Simplesmente amei! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
+      {
+        user: "Sabrina S.",
+        comment:
+          "A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
+      {
+        user: "Taís S.",
+        comment:
+          "Achei incrível. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
+      {
+        user: "Glória F.",
+        comment:
+          "Gente, que peça! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+      },
+      {
+        user: "Fernanda R.",
+        comment:
+          "Uau! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
+      {
+        user: "Olívia F.",
+        comment:
+          "Gente, que peça! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 4.0,
+      },
       { user: "Rita N.", comment: "", rating: 4.0 },
       { user: "Cláudia S.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0 },
       { user: "Letícia G.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
-      { user: "Vanessa S.", comment: "Simplesmente amei! O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.", rating: 5.0 },
-      { user: "Gabriela A.", comment: "Experiência ótima. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
-      { user: "Ivone L.", comment: "Simplesmente amei! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
-      { user: "Márcia R.", comment: "Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
-      { user: "Karine A.", comment: "Experiência ótima. O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0 },
-      { user: "Paloma S.", comment: "Experiência ótima. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
-      { user: "Luciana F.", comment: "Uau! Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 5.0 },
+      {
+        user: "Vanessa S.",
+        comment:
+          "Simplesmente amei! O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.",
+        rating: 5.0,
+      },
+      {
+        user: "Gabriela A.",
+        comment:
+          "Experiência ótima. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
+      {
+        user: "Ivone L.",
+        comment:
+          "Simplesmente amei! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
+      {
+        user: "Márcia R.",
+        comment:
+          "Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
+      {
+        user: "Karine A.",
+        comment:
+          "Experiência ótima. O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+      },
+      {
+        user: "Paloma S.",
+        comment:
+          "Experiência ótima. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
+      {
+        user: "Luciana F.",
+        comment:
+          "Uau! Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 5.0,
+      },
       { user: "Silvana P.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0 },
-      { user: "Paula O.", comment: "Uau! O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 5.0 },
+      {
+        user: "Paula O.",
+        comment:
+          "Uau! O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 5.0,
+      },
       { user: "Karine R.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
-      { user: "Bianca L.", comment: "Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
+      {
+        user: "Bianca L.",
+        comment:
+          "Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
       { user: "Angela G.", comment: "", rating: 2.0 },
       { user: "Eliana M.", comment: "", rating: 3.0 },
       { user: "Sueli S.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
       { user: "Gislaine F.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
-      { user: "Cristiane A.", comment: "Gente, que peça! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0 },
+      {
+        user: "Cristiane A.",
+        comment:
+          "Gente, que peça! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+      },
       { user: "Adriana L.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
       { user: "Maria F.", comment: "", rating: 3.0 },
       { user: "Paloma S.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0 },
       { user: "Tereza P.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0 },
       { user: "Cássia F.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
       { user: "Tânia L.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
-      { user: "Sabrina O.", comment: "Muito satisfeita. A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 5.0 },
+      {
+        user: "Sabrina O.",
+        comment:
+          "Muito satisfeita. A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 5.0,
+      },
       { user: "Gisele S.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0 },
-      { user: "Priscila P.", comment: "Achei incrível. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
+      {
+        user: "Priscila P.",
+        comment:
+          "Achei incrível. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
       { user: "Jéssica S.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
       { user: "Helena R.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
       { user: "Carolina S.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 5.0 },
@@ -671,173 +1498,605 @@ export const products: Product[] = [
       { user: "Patrícia S.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 5.0 },
       { user: "Cl\u00e1udia R.", comment: "", rating: 3.0 },
       { user: "Flávia L.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0 },
-      { user: "Raquel L.", comment: "Simplesmente amei! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
-      { user: "Sueli A.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 5.0, image: feedbackChiffon1.url },
-      { user: "Rosana R.", comment: "Achei incrível. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
+      {
+        user: "Raquel L.",
+        comment:
+          "Simplesmente amei! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
+      {
+        user: "Sueli A.",
+        comment: "A cor é maravilhosa e o tecido é muito confortável.",
+        rating: 5.0,
+        image: feedbackChiffon1.url,
+      },
+      {
+        user: "Rosana R.",
+        comment:
+          "Achei incrível. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
       { user: "Luciana P.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0 },
       { user: "Lourdes F.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0 },
-      { user: "Cássia L.", comment: "Achei incrível. Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0 },
+      {
+        user: "Cássia L.",
+        comment:
+          "Achei incrível. Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+      },
       { user: "Verônica S.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
       { user: "Paula A.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
       { user: "Mônica S.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
-      { user: "Flávia G.", comment: "Achei incrível. Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.", rating: 5.0 },
-      { user: "Tereza R.", comment: "Achei incrível. Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 5.0 },
+      {
+        user: "Flávia G.",
+        comment:
+          "Achei incrível. Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.",
+        rating: 5.0,
+      },
+      {
+        user: "Tereza R.",
+        comment:
+          "Achei incrível. Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 5.0,
+      },
       { user: "Olívia S.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0 },
-      { user: "Carla O.", comment: "Simplesmente amei! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0 },
-      { user: "Daniela G.", comment: "Achei incrível. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
+      {
+        user: "Carla O.",
+        comment:
+          "Simplesmente amei! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+      },
+      {
+        user: "Daniela G.",
+        comment:
+          "Achei incrível. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
       { user: "Patrícia A.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 5.0 },
-      { user: "Daniela S.", comment: "A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
-      { user: "Adriana S.", comment: "Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0 },
+      {
+        user: "Daniela S.",
+        comment:
+          "A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
+      {
+        user: "Adriana S.",
+        comment:
+          "Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+      },
       { user: "Verônica S.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
       { user: "Débora S.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
-      { user: "Taís G.", comment: "Achei incrível. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
+      {
+        user: "Taís G.",
+        comment:
+          "Achei incrível. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
       { user: "Bruna L.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0 },
-      { user: "Bruna G.", comment: "O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
+      {
+        user: "Bruna G.",
+        comment:
+          "O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
       { user: "Adriana A.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
       { user: "Daiane G.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
       { user: "Maria Eduarda F.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
       { user: "Karine P.", comment: "O caimento é surreal de bom, valoriza muito o corpo.", rating: 5.0 },
       { user: "Ursula S.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
-      { user: "Patrícia O.", comment: "Uau! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
+      {
+        user: "Patrícia O.",
+        comment:
+          "Uau! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
       { user: "Alessandra L.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 5.0 },
       { user: "Lourdes P.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
-      { user: "Paloma S.", comment: "Experiência ótima. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
-      { user: "Adriana O.", comment: "Simplesmente amei! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
+      {
+        user: "Paloma S.",
+        comment:
+          "Experiência ótima. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
+      {
+        user: "Adriana O.",
+        comment:
+          "Simplesmente amei! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
       { user: "Glória S.", comment: "O caimento é surreal de bom, valoriza muito o corpo.", rating: 5.0 },
       { user: "Michele L.", comment: "", rating: 3.0 },
-      { user: "Glória R.", comment: "Uau! A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
+      {
+        user: "Glória R.",
+        comment:
+          "Uau! A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
       { user: "Verônica P.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
-      { user: "Andréia L.", comment: "Muito satisfeita. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0 },
+      {
+        user: "Andréia L.",
+        comment:
+          "Muito satisfeita. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+      },
       { user: "Luciana O.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
       { user: "Jéssica R.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 5.0 },
       { user: "Raquel P.", comment: "Muito feliz com a compra, a peça é divina.", rating: 5.0 },
       { user: "Luciana L.", comment: "O caimento é surreal de bom, valoriza muito o corpo.", rating: 5.0 },
       { user: "Cristiane A.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
       { user: "Regina G.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
-      { user: "Gislaine A.", comment: "Experiência ótima. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
+      {
+        user: "Gislaine A.",
+        comment:
+          "Experiência ótima. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
       { user: "Marta S.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
-      { user: "Bruna O.", comment: "Muito satisfeita. Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 5.0 },
+      {
+        user: "Bruna O.",
+        comment:
+          "Muito satisfeita. Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 5.0,
+      },
       { user: "Sandra S.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
-      { user: "Janaina O.", comment: "Simplesmente amei! Fiquei surpresa com a qualidadde do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
-      { user: "Paloma S.", comment: "Uau! A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 5.0 },
-      { user: "Amanda S.", comment: "Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muiito tempo sentada. O acabamento nos ombros e decote é muiito delicado e bem finalizado. Nota dez!", rating: 5.0 },
+      {
+        user: "Janaina O.",
+        comment:
+          "Simplesmente amei! Fiquei surpresa com a qualidadde do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
+      {
+        user: "Paloma S.",
+        comment:
+          "Uau! A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 5.0,
+      },
+      {
+        user: "Amanda S.",
+        comment:
+          "Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muiito tempo sentada. O acabamento nos ombros e decote é muiito delicado e bem finalizado. Nota dez!",
+        rating: 5.0,
+      },
       { user: "Cássia S.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
-      { user: "Olívia P.", comment: "Experiência ótima. Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0 },
+      {
+        user: "Olívia P.",
+        comment:
+          "Experiência ótima. Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+      },
       { user: "Simone S.", comment: "", rating: 4.0 },
-      { user: "Sabrina L.", comment: "Muito satisfeita. Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0 },
-      { user: "Raquel A.", comment: "Simplesmente amei! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
-      { user: "Priscila S.", comment: "A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0 },
-      { user: "Renata P.", comment: "Simplesmente amei! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
-      { user: "Isabela P.", comment: "Achei incrível. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
+      {
+        user: "Sabrina L.",
+        comment:
+          "Muito satisfeita. Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+      },
+      {
+        user: "Raquel A.",
+        comment:
+          "Simplesmente amei! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
+      {
+        user: "Priscila S.",
+        comment:
+          "A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+      },
+      {
+        user: "Renata P.",
+        comment:
+          "Simplesmente amei! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
+      {
+        user: "Isabela P.",
+        comment:
+          "Achei incrível. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
       { user: "Gislaine P.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 5.0 },
-      { user: "Iara P.", comment: "Uau! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0 },
-      { user: "Cássia R.", comment: "O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 4.0 },
+      {
+        user: "Iara P.",
+        comment:
+          "Uau! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+      },
+      {
+        user: "Cássia R.",
+        comment:
+          "O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 4.0,
+      },
       { user: "Alessandra R.", comment: "", rating: 3.0 },
-      { user: "Zilda O.", comment: "Achei incrível. Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0 },
+      {
+        user: "Zilda O.",
+        comment:
+          "Achei incrível. Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+      },
       { user: "Mara C.", comment: "", rating: 3.0 },
-      { user: "Alessandra S.", comment: "Simplesmente amei! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
+      {
+        user: "Alessandra S.",
+        comment:
+          "Simplesmente amei! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
       { user: "Renata O.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
-      { user: "Juliana P.", comment: "Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0 },
-      { user: "Neusa P.", comment: "Experiência ótima. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
-      { user: "Helena A.", comment: "Experiência ótima. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
+      {
+        user: "Juliana P.",
+        comment:
+          "Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+      },
+      {
+        user: "Neusa P.",
+        comment:
+          "Experiência ótima. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
+      {
+        user: "Helena A.",
+        comment:
+          "Experiência ótima. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
       { user: "Camila A.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
-      { user: "Alessandra S.", comment: "A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
-      { user: "Janaina L.", comment: "Experiência ótima. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
-      { user: "Glória S.", comment: "Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 5.0 },
+      {
+        user: "Alessandra S.",
+        comment:
+          "A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
+      {
+        user: "Janaina L.",
+        comment:
+          "Experiência ótima. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
+      {
+        user: "Glória S.",
+        comment:
+          "Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 5.0,
+      },
       { user: "Letícia A.", comment: "O caimento é surreal de bom, valoriza muito o corpo.", rating: 5.0 },
-      { user: "Luana G.", comment: "Gente, que peça! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0 },
+      {
+        user: "Luana G.",
+        comment:
+          "Gente, que peça! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+      },
       { user: "Cláudia P.", comment: "O caimento é surreal de bom, valoriza muito o corpo.", rating: 5.0 },
-      { user: "Gabriela S.", comment: "O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 5.0 },
-      { user: "Amanda G.", comment: "Gente, que peça! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0 },
+      {
+        user: "Gabriela S.",
+        comment:
+          "O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 5.0,
+      },
+      {
+        user: "Amanda G.",
+        comment:
+          "Gente, que peça! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+      },
       { user: "Paula F.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0 },
       { user: "Daniela F.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
-      { user: "Edna A.", comment: "Achei incrível. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
+      {
+        user: "Edna A.",
+        comment:
+          "Achei incrível. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
       { user: "Glória S.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
-      { user: "Alessandra F.", comment: "Achei incrível. A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 5.0 },
-      { user: "Tatiane S.", comment: "Gente, que peça! O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.", rating: 5.0 },
+      {
+        user: "Alessandra F.",
+        comment:
+          "Achei incrível. A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 5.0,
+      },
+      {
+        user: "Tatiane S.",
+        comment:
+          "Gente, que peça! O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.",
+        rating: 5.0,
+      },
       { user: "Tatiane P.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
-      { user: "Neusa O.", comment: "Gente, que peça! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
+      {
+        user: "Neusa O.",
+        comment:
+          "Gente, que peça! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
       { user: "Cássia L.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
       { user: "Tânia L.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
-      { user: "Larissa G.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0, image: feedbackChiffon1.url },
+      {
+        user: "Larissa G.",
+        comment: "O corte é perfeito, valoriza as curvas sem marcar.",
+        rating: 5.0,
+        image: feedbackChiffon1.url,
+      },
       { user: "Ana Paula G.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
-      { user: "Daiane R.", comment: "Achei incrível. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
+      {
+        user: "Daiane R.",
+        comment:
+          "Achei incrível. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
       { user: "Daniela R.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
       { user: "Helena R.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
-      { user: "Sueli G.", comment: "A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
-      { user: "Silvana S.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 5.0 },
-      { user: "Karine S.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 5.0 },
-      { user: "Adriana S.", comment: "Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
-      { user: "Patrícia S.", comment: "Experiência ótima. Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!", rating: 5.0 },
+      {
+        user: "Sueli G.",
+        comment:
+          "A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
+      { user: "Silvana S.", comment: "O tamanho serviu perfeitamente, sem apertar.", rating: 5.0 },
+      { user: "Karine S.", comment: "O tamanho serviu perfeitamente, sem apertar.", rating: 5.0 },
+      {
+        user: "Adriana S.",
+        comment:
+          "Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
+      {
+        user: "Patrícia S.",
+        comment:
+          "Experiência ótima. Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!",
+        rating: 5.0,
+      },
       { user: "Lourdes P.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 5.0 },
-      { user: "Tatiane P.", comment: "Uau! A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0 },
+      {
+        user: "Tatiane P.",
+        comment:
+          "Uau! A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+      },
       { user: "Gisele S.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
       { user: "Alessandra S.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0 },
       { user: "Lourdes S.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0 },
-      { user: "Rosana O.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0, image: feedbackChiffon1.url },
-      { user: "Gisele R.", comment: "Experiência ótima. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
-      { user: "Karine S.", comment: "Gente, que peça! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
+      {
+        user: "Rosana O.",
+        comment: "Simplesmente perfeito, superou minhas expectativas.",
+        rating: 5.0,
+        image: feedbackChiffon1.url,
+      },
+      {
+        user: "Gisele R.",
+        comment:
+          "Experiência ótima. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
+      {
+        user: "Karine S.",
+        comment:
+          "Gente, que peça! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
       { user: "F\u00e1tima A.", comment: "", rating: 4.0 },
       { user: "Cristiane L.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
-      { user: "Camila O.", comment: "Simplesmente amei! O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.", rating: 5.0 },
-      { user: "Renata O.", comment: "Simplesmente amei! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0 },
-      { user: "Jéssica P.", comment: "Experiência ótima. O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 5.0 },
+      {
+        user: "Camila O.",
+        comment:
+          "Simplesmente amei! O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.",
+        rating: 5.0,
+      },
+      {
+        user: "Renata O.",
+        comment:
+          "Simplesmente amei! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+      },
+      {
+        user: "Jéssica P.",
+        comment:
+          "Experiência ótima. O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 5.0,
+      },
       { user: "Cláudia S.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
-      { user: "Débora S.", comment: "Achei incrível. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
+      {
+        user: "Débora S.",
+        comment:
+          "Achei incrível. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
       { user: "Elizabeth C.", comment: "", rating: 4.0 },
-      { user: "Lourdes S.", comment: "Experiência ótima. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
+      {
+        user: "Lourdes S.",
+        comment:
+          "Experiência ótima. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
       { user: "Fernanda F.", comment: "O caimento é surreal de bom, valoriza muito o corpo.", rating: 5.0 },
-      { user: "Cássia A.", comment: "A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
-      { user: "Tereza G.", comment: "A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
-      { user: "Viviane A.", comment: "Uau! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0 },
-      { user: "Renata A.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0, image: feedbackChiffon1.url },
+      {
+        user: "Cássia A.",
+        comment:
+          "A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
+      {
+        user: "Tereza G.",
+        comment:
+          "A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
+      {
+        user: "Viviane A.",
+        comment:
+          "Uau! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+      },
+      {
+        user: "Renata A.",
+        comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.",
+        rating: 5.0,
+        image: feedbackChiffon1.url,
+      },
       { user: "Raquel P.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0 },
       { user: "Nair R.", comment: "", rating: 4.0 },
-      { user: "Tereza G.", comment: "Simplesmente amei! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0 },
+      {
+        user: "Tereza G.",
+        comment:
+          "Simplesmente amei! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+      },
       { user: "Bianca S.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
-      { user: "Fabiana P.", comment: "Muito satisfeita. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
+      {
+        user: "Fabiana P.",
+        comment:
+          "Muito satisfeita. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
       { user: "Marlene M.", comment: "", rating: 3.0 },
-      { user: "Tânia F.", comment: "Muito satisfeita. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
+      {
+        user: "Tânia F.",
+        comment:
+          "Muito satisfeita. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
       { user: "Carolina O.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
       { user: "Daiane S.", comment: "A cor pessoalmente é ainda mais bonita que no site.", rating: 5.0 },
-      { user: "Raquel A.", comment: "Achei incrível. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0, image: feedbackChiffon1.url },
-      { user: "Isabela F.", comment: "Experiência ótima. A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 5.0 },
-      { user: "Patrícia O.", comment: "Muito satisfeita. O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muiitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muiito em outras ocasiões especiais.", rating: 5.0 },
+      {
+        user: "Raquel A.",
+        comment:
+          "Achei incrível. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+        image: feedbackChiffon1.url,
+      },
+      {
+        user: "Isabela F.",
+        comment:
+          "Experiência ótima. A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 5.0,
+      },
+      {
+        user: "Patrícia O.",
+        comment:
+          "Muito satisfeita. O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muiitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muiito em outras ocasiões especiais.",
+        rating: 5.0,
+      },
       { user: "Vanessa S.", comment: "", rating: 2.0 },
-      { user: "Sabrina O.", comment: "Simplesmente amei! Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 4.0 },
-      { user: "Soraia S.", comment: "Achei incrível. Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 5.0 },
-      { user: "Carolina F.", comment: "Gente, que peça! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
-      { user: "Amanda F.", comment: "Achei incrível. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
+      {
+        user: "Sabrina O.",
+        comment:
+          "Simplesmente amei! Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 4.0,
+      },
+      {
+        user: "Soraia S.",
+        comment:
+          "Achei incrível. Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 5.0,
+      },
+      {
+        user: "Carolina F.",
+        comment:
+          "Gente, que peça! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
+      {
+        user: "Amanda F.",
+        comment:
+          "Achei incrível. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
       { user: "Neusa G.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
       { user: "Vitória P.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
       { user: "Isabela G.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0 },
-      { user: "Edna G.", comment: "Experiência ótima. O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.", rating: 5.0 },
+      {
+        user: "Edna G.",
+        comment:
+          "Experiência ótima. O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.",
+        rating: 5.0,
+      },
       { user: "Suzana G.", comment: "", rating: 4.0 },
-      { user: "Renata O.", comment: "Muito satisfeita. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
+      {
+        user: "Renata O.",
+        comment:
+          "Muito satisfeita. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
       { user: "Priscila G.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
       { user: "Maria Eduarda P.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0 },
-      { user: "Larissa S.", comment: "Gente, que peça! O caimento é bem fluido, exatamenchi como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0 },
-      { user: "Sabrina O.", comment: "Uau! A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
+      {
+        user: "Larissa S.",
+        comment:
+          "Gente, que peça! O caimento é bem fluido, exatamenchi como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+      },
+      {
+        user: "Sabrina O.",
+        comment:
+          "Uau! A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
       { user: "Renata O.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0 },
       { user: "Jéssica S.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
       { user: "Márcia L.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
       { user: "C\u00edntia R.", comment: "", rating: 4.0 },
-      { user: "Carla R.", comment: "Achei incrível. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
-      { user: "Fernanda S.", comment: "Experiência ótima. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0 },
+      {
+        user: "Carla R.",
+        comment:
+          "Achei incrível. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
+      {
+        user: "Fernanda S.",
+        comment:
+          "Experiência ótima. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+      },
       { user: "Camila M.", comment: "", rating: 3.0 },
-      { user: "Cássia R.", comment: "Muito satisfeita. Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0 },
+      {
+        user: "Cássia R.",
+        comment:
+          "Muito satisfeita. Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+      },
       { user: "Rosemeire M.", comment: "", rating: 3.0 },
       { user: "Sabrina F.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 5.0 },
-      { user: "Carla P.", comment: "Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.", rating: 5.0 },
+      {
+        user: "Carla P.",
+        comment:
+          "Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.",
+        rating: 5.0,
+      },
       { user: "Ivone G.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0 },
-      { user: "Sandra R.", comment: "Achei incrível. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0, image: feedbackChiffon1.url },
-      { user: "Andréia P.", comment: "A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0 },
+      {
+        user: "Sandra R.",
+        comment:
+          "Achei incrível. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+        image: feedbackChiffon1.url,
+      },
+      {
+        user: "Andréia P.",
+        comment:
+          "A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+      },
       { user: "Olívia F.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
-      { user: "Daniela S.", comment: "Muito satisfeita. Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.", rating: 5.0 },
-      { user: "Sueli G.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 5.0 },
-      { user: "Sabrina L.", comment: "Gente, que peça! O tecido é muiito macio e a cor é divinal. O corte é moderno e valoriza muiito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 5.0 },
+      {
+        user: "Daniela S.",
+        comment:
+          "Muito satisfeita. Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.",
+        rating: 5.0,
+      },
+      { user: "Sueli G.", comment: "O tamanho serviu perfeitamente, sem apertar.", rating: 5.0 },
+      {
+        user: "Sabrina L.",
+        comment:
+          "Gente, que peça! O tecido é muiito macio e a cor é divinal. O corte é moderno e valoriza muiito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 5.0,
+      },
       { user: "Fabiana S.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
-      { user: "Débora R.", comment: "Uau! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
+      {
+        user: "Débora R.",
+        comment:
+          "Uau! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
       { user: "Aline S.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
       { user: "D\u00e9bora B.", comment: "", rating: 3.0 },
       { user: "Patrícia L.", comment: "Muito feliz com a compra, a peça é divina.", rating: 5.0 },
@@ -846,55 +2105,160 @@ export const products: Product[] = [
       { user: "Val\u00e9ria A.", comment: "", rating: 3.0 },
       { user: "Cláudia S.", comment: "Ficou ótimo no busto, muito confortável.", rating: 5.0 },
       { user: "Patrícia L.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0 },
-      { user: "Isabela S.", comment: "A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
+      {
+        user: "Isabela S.",
+        comment:
+          "A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
       { user: "Tânia L.", comment: "A cor pessoalmente é ainda mais bonita que no site.", rating: 5.0 },
-      { user: "Bruna S.", comment: "Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0 },
+      {
+        user: "Bruna S.",
+        comment:
+          "Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+      },
       { user: "Ivone S.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
-      { user: "Carolina F.", comment: "Experiência ótima. O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0 },
+      {
+        user: "Carolina F.",
+        comment:
+          "Experiência ótima. O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+      },
       { user: "Aparecida S.", comment: "", rating: 3.0 },
-      { user: "Mônica L.", comment: "Achei incrível. Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
-      { user: "Glória S.", comment: "Achei incrível. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
+      {
+        user: "Mônica L.",
+        comment:
+          "Achei incrível. Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
+      {
+        user: "Glória S.",
+        comment:
+          "Achei incrível. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
       { user: "Fernanda F.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 5.0 },
       { user: "Vanessa R.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
       { user: "Rafaela R.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 5.0 },
       { user: "Verônica G.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
       { user: "Paula P.", comment: "A cor pessoalmente é ainda mais bonita que no site.", rating: 5.0 },
-      { user: "Edna G.", comment: "Simplesmente amei! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
+      {
+        user: "Edna G.",
+        comment:
+          "Simplesmente amei! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
       { user: "Beatriz R.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 5.0 },
       { user: "Rosemeire M.", comment: "", rating: 2.0 },
       { user: "Sueli L.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
       { user: "Alessandra L.", comment: "Muito feliz com a compra, a peça é divina.", rating: 5.0 },
       { user: "Denise C.", comment: "", rating: 2.0 },
-      { user: "Sueli P.", comment: "Simplesmente amei! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0 },
+      {
+        user: "Sueli P.",
+        comment:
+          "Simplesmente amei! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+      },
       { user: "Sueli S.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0 },
       { user: "Amanda F.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
       { user: "Mônica F.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
-      { user: "Letícia P.", comment: "Muito satisfeita. Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!", rating: 5.0 },
-      { user: "Cristiane S.", comment: "Uau! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!", rating: 5.0 },
+      {
+        user: "Letícia P.",
+        comment:
+          "Muito satisfeita. Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!",
+        rating: 5.0,
+      },
+      {
+        user: "Cristiane S.",
+        comment:
+          "Uau! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!",
+        rating: 5.0,
+      },
       { user: "Paula S.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
       { user: "Milena F.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
       { user: "Lucilene P.", comment: "", rating: 3.0 },
       { user: "Jaqueline F.", comment: "", rating: 4.0 },
-      { user: "Bianca A.", comment: "Achei incrível. O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0 },
-      { user: "Jéssica G.", comment: "Simplesmente amei! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
-      { user: "Paula R.", comment: "Experiência ótima. A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 5.0 },
+      {
+        user: "Bianca A.",
+        comment:
+          "Achei incrível. O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+      },
+      {
+        user: "Jéssica G.",
+        comment:
+          "Simplesmente amei! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
+      {
+        user: "Paula R.",
+        comment:
+          "Experiência ótima. A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 5.0,
+      },
       { user: "Regina G.", comment: "A cor pessoalmente é ainda mais bonita que no site.", rating: 5.0 },
       { user: "Vitória G.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
       { user: "Paloma C.", comment: "", rating: 3.0 },
-      { user: "Patrícia O.", comment: "Achei incrível. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
+      {
+        user: "Patrícia O.",
+        comment:
+          "Achei incrível. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
       { user: "Marta P.", comment: "", rating: 4.0 },
-      { user: "Olívia G.", comment: "Uau! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
-      { user: "Márcia F.", comment: "Muito satisfeita. O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.", rating: 5.0 },
-      { user: "Iara F.", comment: "Simplesmente amei! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
+      {
+        user: "Olívia G.",
+        comment:
+          "Uau! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
+      {
+        user: "Márcia F.",
+        comment:
+          "Muito satisfeita. O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.",
+        rating: 5.0,
+      },
+      {
+        user: "Iara F.",
+        comment:
+          "Simplesmente amei! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
       { user: "Carla F.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
-      { user: "Glória G.", comment: "Muito satisfeita. Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0 },
+      {
+        user: "Glória G.",
+        comment:
+          "Muito satisfeita. Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+      },
       { user: "Alessandra F.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
-      { user: "Bianca S.", comment: "Simplesmente amei! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!", rating: 5.0 },
+      {
+        user: "Bianca S.",
+        comment:
+          "Simplesmente amei! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!",
+        rating: 5.0,
+      },
       { user: "Eliana V.", comment: "", rating: 4.0 },
-      { user: "Regina G.", comment: "Gente, que peça! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0 },
-      { user: "Bianca G.", comment: "Experiência ótima. A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 5.0 },
+      {
+        user: "Regina G.",
+        comment:
+          "Gente, que peça! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+      },
+      {
+        user: "Bianca G.",
+        comment:
+          "Experiência ótima. A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 5.0,
+      },
       { user: "Letícia G.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 3.0 },
-      { user: "Rafaela R.", comment: "Experiência ótima. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhozo na caixa.", rating: 5.0 },
+      {
+        user: "Rafaela R.",
+        comment:
+          "Experiência ótima. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhozo na caixa.",
+        rating: 5.0,
+      },
       { user: "Tatiane R.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 5.0 },
       { user: "Bruna A.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0 },
       { user: "Neusa R.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
@@ -909,354 +2273,1178 @@ export const products: Product[] = [
       { user: "Nair L.", comment: "", rating: 4.0 },
       { user: "Cássia A.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
       { user: "Cl\u00e1udia R.", comment: "", rating: 3.0 },
-      { user: "Glória L.", comment: "Simplesmente amei! O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.", rating: 5.0 },
+      {
+        user: "Glória L.",
+        comment:
+          "Simplesmente amei! O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.",
+        rating: 5.0,
+      },
       { user: "Fernanda S.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
-      { user: "Neusa S.", comment: "Experiência ótima. Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 5.0 },
-      { user: "Gisele S.", comment: "O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0 },
+      {
+        user: "Neusa S.",
+        comment:
+          "Experiência ótima. Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 5.0,
+      },
+      {
+        user: "Gisele S.",
+        comment:
+          "O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+      },
       { user: "Aline S.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 5.0 },
       { user: "Verônica O.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
       { user: "Raquel P.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 5.0 },
       { user: "Amanda F.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 5.0 },
-      { user: "Maria Eduarda S.", comment: "Simplesmente amei! Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.", rating: 5.0 },
-      { user: "Luciana S.", comment: "Achei incrível. O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 5.0 },
+      {
+        user: "Maria Eduarda S.",
+        comment:
+          "Simplesmente amei! Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.",
+        rating: 5.0,
+      },
+      {
+        user: "Luciana S.",
+        comment:
+          "Achei incrível. O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 5.0,
+      },
       { user: "Ursula R.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 5.0 },
-      { user: "Márcia R.", comment: "Gente, que peça! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!", rating: 5.0 },
-      { user: "Glória S.", comment: "Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 5.0 },
+      {
+        user: "Márcia R.",
+        comment:
+          "Gente, que peça! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!",
+        rating: 5.0,
+      },
+      {
+        user: "Glória S.",
+        comment:
+          "Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 5.0,
+      },
       { user: "Angela A.", comment: "", rating: 3.0 },
       { user: "Andréia L.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
-      { user: "Juliana R.", comment: "Uau! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
+      {
+        user: "Juliana R.",
+        comment:
+          "Uau! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
       { user: "Rafaela F.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 5.0 },
       { user: "Silvia M.", comment: "", rating: 4.0 },
-      { user: "Cássia S.", comment: "Gente, que peça! Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.", rating: 5.0 },
-      { user: "Luciana A.", comment: "A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muiito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 5.0, image: feedbackChiffon1.url },
+      {
+        user: "Cássia S.",
+        comment:
+          "Gente, que peça! Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.",
+        rating: 5.0,
+      },
+      {
+        user: "Luciana A.",
+        comment:
+          "A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muiito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 5.0,
+        image: feedbackChiffon1.url,
+      },
       { user: "Ana Paula S.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
       { user: "Adriana S.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
       { user: "Olívia L.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
       { user: "Edna R.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
       { user: "Iara S.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
-      { user: "Priscila S.", comment: "Achei incrível. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
+      {
+        user: "Priscila S.",
+        comment:
+          "Achei incrível. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
       { user: "Jéssica F.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
-      { user: "Taís A.", comment: "Achei incrível. A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
+      {
+        user: "Taís A.",
+        comment:
+          "Achei incrível. A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
       { user: "Josiane M.", comment: "", rating: 4.0 },
-      { user: "Flávia A.", comment: "Simplesmente amei! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0 },
+      {
+        user: "Flávia A.",
+        comment:
+          "Simplesmente amei! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+      },
       { user: "Vitória S.", comment: "A cor pessoalmente é ainda mais bonita que no site.", rating: 5.0 },
       { user: "Isabela A.", comment: "Ficou ótimo no busto, muito confortável.", rating: 5.0 },
-      { user: "Edna S.", comment: "Muito satisfeita. Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0 },
-      { user: "Vitória S.", comment: "Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0 },
+      {
+        user: "Edna S.",
+        comment:
+          "Muito satisfeita. Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+      },
+      {
+        user: "Vitória S.",
+        comment:
+          "Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+      },
       { user: "Iara S.", comment: "A cor pessoalmente é ainda mais bonita que no site.", rating: 5.0 },
-      { user: "Gabriela P.", comment: "A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0 },
-      { user: "Priscila G.", comment: "Gente, que peça! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0 },
+      {
+        user: "Gabriela P.",
+        comment:
+          "A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+      },
+      {
+        user: "Priscila G.",
+        comment:
+          "Gente, que peça! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+      },
       { user: "Gabriela S.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
-      { user: "Priscila L.", comment: "Achei incrível. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0 },
+      {
+        user: "Priscila L.",
+        comment:
+          "Achei incrível. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+      },
       { user: "Zilda L.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
       { user: "Priscila S.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 5.0 },
       { user: "Priscila F.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0 },
       { user: "Cláudia S.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0 },
       { user: "Rafaela S.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
       { user: "Let\u00edcia A.", comment: "", rating: 3.0 },
-      { user: "Silvana R.", comment: "Gente, que peça! A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 5.0 },
-      { user: "Luana S.", comment: "O tecido é maravilhozo, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.", rating: 5.0 },
+      {
+        user: "Silvana R.",
+        comment:
+          "Gente, que peça! A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 5.0,
+      },
+      {
+        user: "Luana S.",
+        comment:
+          "O tecido é maravilhozo, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.",
+        rating: 5.0,
+      },
       { user: "Juliana P.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
-      { user: "Priscila P.", comment: "Uau! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
+      {
+        user: "Priscila P.",
+        comment:
+          "Uau! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
       { user: "Flávia S.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
       { user: "Ant\u00f4nia M.", comment: "", rating: 3.0 },
       { user: "Ursula O.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 5.0 },
       { user: "Karine F.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 5.0 },
-      { user: "Andréia S.", comment: "Muito satisfeita. O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 5.0 },
+      {
+        user: "Andréia S.",
+        comment:
+          "Muito satisfeita. O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 5.0,
+      },
       { user: "Juliana P.", comment: "Muito feliz com a compra, a peça é divina.", rating: 5.0 },
-      { user: "Daiane F.", comment: "Gente, que peça! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
-      { user: "Milena L.", comment: "Achei incrível. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0 },
+      {
+        user: "Daiane F.",
+        comment:
+          "Gente, que peça! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
+      {
+        user: "Milena L.",
+        comment:
+          "Achei incrível. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+      },
       { user: "Olívia R.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
       { user: "Renata F.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
       { user: "Edna A.", comment: "", rating: 4.0 },
-      { user: "Karine S.", comment: "Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!", rating: 5.0 },
+      {
+        user: "Karine S.",
+        comment:
+          "Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!",
+        rating: 5.0,
+      },
       { user: "Fernanda F.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0 },
-      { user: "Tatiane S.", comment: "Simplesmente amei! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0 },
+      {
+        user: "Tatiane S.",
+        comment:
+          "Simplesmente amei! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+      },
       { user: "Luciana R.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
       { user: "Luana F.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0 },
       { user: "Luana S.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0 },
       { user: "Márcia S.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
-      { user: "Vitória F.", comment: "Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 5.0 },
-      { user: "Taís R.", comment: "Gente, que peça! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
-      { user: "Cláudia G.", comment: "Gente, que peça! A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
+      {
+        user: "Vitória F.",
+        comment:
+          "Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 5.0,
+      },
+      {
+        user: "Taís R.",
+        comment:
+          "Gente, que peça! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
+      {
+        user: "Cláudia G.",
+        comment:
+          "Gente, que peça! A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
       { user: "Fabiana C.", comment: "", rating: 3.0 },
       { user: "Silvana R.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0 },
       { user: "Daniela S.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
-      { user: "Viviane S.", comment: "Uau! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
+      {
+        user: "Viviane S.",
+        comment:
+          "Uau! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
       { user: "Taís A.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
       { user: "Noemi M.", comment: "", rating: 2.0 },
-      { user: "Aline F.", comment: "Uau! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0 },
+      {
+        user: "Aline F.",
+        comment:
+          "Uau! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+      },
       { user: "Milena P.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
-      { user: "Daniela S.", comment: "Muito satisfeita. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
-      { user: "Paula O.", comment: "Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
-      { user: "Alessandra L.", comment: "Simplesmente amei! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
-      { user: "Andréia F.", comment: "Achei incrível. Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!", rating: 5.0 },
+      {
+        user: "Daniela S.",
+        comment:
+          "Muito satisfeita. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
+      {
+        user: "Paula O.",
+        comment:
+          "Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
+      {
+        user: "Alessandra L.",
+        comment:
+          "Simplesmente amei! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
+      {
+        user: "Andréia F.",
+        comment:
+          "Achei incrível. Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!",
+        rating: 5.0,
+      },
       { user: "Letícia A.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0 },
       { user: "Cl\u00e1udia P.", comment: "", rating: 3.0 },
       { user: "Vitória A.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
       { user: "Verônica S.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
       { user: "Alessandra G.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
       { user: "Glória S.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
-      { user: "Taís P.", comment: "Experiência ótima. A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
-      { user: "Paloma F.", comment: "Simplesmente amei! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
-      { user: "Bianca S.", comment: "A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0 },
+      {
+        user: "Taís P.",
+        comment:
+          "Experiência ótima. A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
+      {
+        user: "Paloma F.",
+        comment:
+          "Simplesmente amei! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
+      {
+        user: "Bianca S.",
+        comment:
+          "A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+      },
       { user: "Mônica R.", comment: "Muito feliz com a compra, a peça é divina.", rating: 5.0 },
       { user: "Soraia S.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
       { user: "Débora R.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
       { user: "Bruna P.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
-      { user: "Maria Eduarda L.", comment: "O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0 },
+      {
+        user: "Maria Eduarda L.",
+        comment:
+          "O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+      },
       { user: "Isabela S.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
       { user: "Débora R.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
       { user: "Iara G.", comment: "Ficou ótimo no busto, muito confortável.", rating: 5.0 },
       { user: "D\u00e9bora M.", comment: "", rating: 3.0 },
-      { user: "Vanessa P.", comment: "Gente, que peça! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
-      { user: "Maria Eduarda L.", comment: "Gente, que peça! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
-      { user: "Sabrina S.", comment: "Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!", rating: 5.0 },
-      { user: "Tereza S.", comment: "Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
-      { user: "Gabriela A.", comment: "Muito satisfeita. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
+      {
+        user: "Vanessa P.",
+        comment:
+          "Gente, que peça! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
+      {
+        user: "Maria Eduarda L.",
+        comment:
+          "Gente, que peça! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
+      {
+        user: "Sabrina S.",
+        comment:
+          "Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!",
+        rating: 5.0,
+      },
+      {
+        user: "Tereza S.",
+        comment:
+          "Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
+      {
+        user: "Gabriela A.",
+        comment:
+          "Muito satisfeita. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
       { user: "Karine L.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 3.0 },
-      { user: "Fabiana S.", comment: "Gente, que peça! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
+      {
+        user: "Fabiana S.",
+        comment:
+          "Gente, que peça! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
       { user: "Bruna P.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0 },
-      { user: "Tatiane S.", comment: "O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0 },
+      {
+        user: "Tatiane S.",
+        comment:
+          "O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+      },
       { user: "Maria Eduarda S.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
-      { user: "Gislaine A.", comment: "Muito satisfeita. Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0, image: feedbackChiffon1.url },
+      {
+        user: "Gislaine A.",
+        comment:
+          "Muito satisfeita. Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+        image: feedbackChiffon1.url,
+      },
       { user: "Mônica G.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0 },
-      { user: "Fabiana P.", comment: "Gente, que peça! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muiito bem feitas. A cor é exatamente como na foto, um tom muiito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
+      {
+        user: "Fabiana P.",
+        comment:
+          "Gente, que peça! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muiito bem feitas. A cor é exatamente como na foto, um tom muiito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
       { user: "Juliana R.", comment: "Muito feliz com a compra, a peça é divina.", rating: 5.0 },
       { user: "Luciana S.", comment: "Muito feliz com a compra, a peça é divina.", rating: 5.0 },
       { user: "Glória F.", comment: "Ficou ótimo no busto, muito confortável.", rating: 5.0 },
-      { user: "Vanessa L.", comment: "A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
+      {
+        user: "Vanessa L.",
+        comment:
+          "A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
       { user: "Luana G.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
-      { user: "Andréia L.", comment: "Uau! Amei o detalhe das mangas e o decote. O pano é muiito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0 },
+      {
+        user: "Andréia L.",
+        comment:
+          "Uau! Amei o detalhe das mangas e o decote. O pano é muiito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+      },
       { user: "Neusa O.", comment: "A cor pessoalmente é ainda mais bonita que no site.", rating: 5.0 },
-      { user: "Priscila G.", comment: "Simplesmente amei! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 4.0 },
+      {
+        user: "Priscila G.",
+        comment:
+          "Simplesmente amei! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 4.0,
+      },
       { user: "Aline O.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0 },
       { user: "Olívia O.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 5.0 },
-      { user: "Ivone P.", comment: "Simplesmente amei! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!", rating: 5.0 },
-      { user: "Viviane F.", comment: "Gente, que peça! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0 },
-      { user: "Débora R.", comment: "Gente, que peça! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0 },
+      {
+        user: "Ivone P.",
+        comment:
+          "Simplesmente amei! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!",
+        rating: 5.0,
+      },
+      {
+        user: "Viviane F.",
+        comment:
+          "Gente, que peça! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+      },
+      {
+        user: "Débora R.",
+        comment:
+          "Gente, que peça! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+      },
       { user: "Bruna A.", comment: "A cor pessoalmente é ainda mais bonita que no site.", rating: 5.0 },
-      { user: "Regina O.", comment: "A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0 },
-      { user: "Vitória S.", comment: "Achei incrível. A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 5.0 },
+      {
+        user: "Regina O.",
+        comment:
+          "A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+      },
+      {
+        user: "Vitória S.",
+        comment:
+          "Achei incrível. A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 5.0,
+      },
       { user: "Paula F.", comment: "O caimento é surreal de bom, valoriza muito o corpo.", rating: 5.0 },
       { user: "Tatiane A.", comment: "O caimento é surreal de bom, valoriza muito o corpo.", rating: 5.0 },
       { user: "Ana Paula S.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
-      { user: "Glória F.", comment: "Gente, que peça! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0 },
-      { user: "Flávia R.", comment: "Uau! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
-      { user: "Silvana G.", comment: "Simplesmente amei! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0 },
-      { user: "Marta S.", comment: "Achei incrível. O tecido é maravilhozo, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.", rating: 5.0 },
+      {
+        user: "Glória F.",
+        comment:
+          "Gente, que peça! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+      },
+      {
+        user: "Flávia R.",
+        comment:
+          "Uau! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
+      {
+        user: "Silvana G.",
+        comment:
+          "Simplesmente amei! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+      },
+      {
+        user: "Marta S.",
+        comment:
+          "Achei incrível. O tecido é maravilhozo, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.",
+        rating: 5.0,
+      },
       { user: "Tatiane P.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
       { user: "Soraia A.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
-      { user: "Sandra A.", comment: "Muito satisfeita. Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.", rating: 5.0, image: feedbackChiffon1.url },
+      {
+        user: "Sandra A.",
+        comment:
+          "Muito satisfeita. Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.",
+        rating: 5.0,
+        image: feedbackChiffon1.url,
+      },
       { user: "Suzana S.", comment: "", rating: 3.0 },
-      { user: "Silvana S.", comment: "Simplesmente amei! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0 },
+      {
+        user: "Silvana S.",
+        comment:
+          "Simplesmente amei! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+      },
       { user: "Viviane S.", comment: "A cor pessoalmente é ainda mais bonita que no site.", rating: 5.0 },
       { user: "Neusa G.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 3.0 },
       { user: "Sabrina O.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 5.0 },
       { user: "Andr\u00e9ia P.", comment: "", rating: 4.0 },
-      { user: "Bruna A.", comment: "Simplesmente amei! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0 },
-      { user: "Sueli O.", comment: "Achei incrível. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
+      {
+        user: "Bruna A.",
+        comment:
+          "Simplesmente amei! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+      },
+      {
+        user: "Sueli O.",
+        comment:
+          "Achei incrível. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
       { user: "Daniela R.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 5.0 },
       { user: "Juliana S.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
-      { user: "Soraia A.", comment: "Gente, que peça! A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muiito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0 },
+      {
+        user: "Soraia A.",
+        comment:
+          "Gente, que peça! A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muiito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+      },
       { user: "Beatriz S.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
       { user: "J\u00falia C.", comment: "", rating: 4.0 },
       { user: "M\u00e1rcia A.", comment: "", rating: 2.0 },
       { user: "Roberta P.", comment: "", rating: 3.0 },
       { user: "Verônica L.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
-      { user: "Vanessa S.", comment: "Achei incrível. Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 5.0 },
-      { user: "Luana F.", comment: "Achei incrível. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
-      { user: "Camila S.", comment: "Gente, que peça! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
-      { user: "Cristiane P.", comment: "Muito satisfeita. A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
-      { user: "Maria Eduarda L.", comment: "Gente, que peça! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
-      { user: "Luciana S.", comment: "Uau! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
-      { user: "Patrícia G.", comment: "Experiência ótima. Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
-      { user: "Taís S.", comment: "Experiência ótima. Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.", rating: 5.0 }
+      {
+        user: "Vanessa S.",
+        comment:
+          "Achei incrível. Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 5.0,
+      },
+      {
+        user: "Luana F.",
+        comment:
+          "Achei incrível. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
+      {
+        user: "Camila S.",
+        comment:
+          "Gente, que peça! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
+      {
+        user: "Cristiane P.",
+        comment:
+          "Muito satisfeita. A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
+      {
+        user: "Maria Eduarda L.",
+        comment:
+          "Gente, que peça! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
+      {
+        user: "Luciana S.",
+        comment:
+          "Uau! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
+      {
+        user: "Patrícia G.",
+        comment:
+          "Experiência ótima. Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
+      {
+        user: "Taís S.",
+        comment:
+          "Experiência ótima. Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.",
+        rating: 5.0,
+      },
     ],
   },
-  { id: "saia-renda-romantique",
+  {
+    id: "saia-renda-romantique",
     name: "Saia Évora Renda Romantique",
     price: 169,
     originalPrice: 169,
-    description: "Saia midi em renda guipure delicada com detalhes florais e transparência sutil. Possui forro em tom nude para destacar o desenho da renda, cós estruturado e fechamento por zíper invisível. Uma peça atemporal que exala feminilidade e elegância." + exchangePolicy,
-    images: [saiaRendaaa1.url, saiaRendaaa2.url, saiaRendaaa3.url, saiaRendaaa4.url, saiaRendaaa5.url, saiaRendaaa6.url, saiaRendaaa7.url, saiaRendaaa8.url, saiaRendaaa9.url, saiaRendaaa10.url],
+    description:
+      "Saia midi em renda guipure delicada com detalhes florais e transparência sutil. Possui forro em tom nude para destacar o desenho da renda, cós estruturado e fechamento por zíper invisível. Uma peça atemporal que exala feminilidade e elegância." +
+      exchangePolicy,
+    images: [
+      saiaRendaaa1.url,
+      saiaRendaaa2.url,
+      saiaRendaaa3.url,
+      saiaRendaaa4.url,
+      saiaRendaaa5.url,
+      saiaRendaaa6.url,
+      saiaRendaaa7.url,
+      saiaRendaaa8.url,
+      saiaRendaaa9.url,
+      saiaRendaaa10.url,
+    ],
     sizes: numericSizes,
     colors: [{ name: "Renda Nude", value: "#e8d7c5" }],
     salesCount: 1243,
     rating: 4.81,
-    ratingBreakdown: {"1": 0, "2": 0, "3": 4, "4": 16, "5": 104},
+    ratingBreakdown: { "1": 0, "2": 0, "3": 4, "4": 16, "5": 104 },
     reviews: [
-      { user: "Jéssica S.", comment: "Uau! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0 },
+      {
+        user: "Jéssica S.",
+        comment:
+          "Uau! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+      },
       { user: "Cláudia S.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
       { user: "Edna S.", comment: "O caimento é surreal de bom, valoriza muito o corpo.", rating: 5.0 },
       { user: "Daniela P.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
-      { user: "Amanda G.", comment: "Achei incrível. A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
+      {
+        user: "Amanda G.",
+        comment:
+          "Achei incrível. A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
       { user: "Olívia S.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
-      { user: "Olívia L.", comment: "O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 5.0 },
+      {
+        user: "Olívia L.",
+        comment:
+          "O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 5.0,
+      },
       { user: "Karine A.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
       { user: "Denise M.", comment: "", rating: 4.0 },
-      { user: "Helena P.", comment: "Simplesmente amei! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
+      {
+        user: "Helena P.",
+        comment:
+          "Simplesmente amei! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
       { user: "Aline S.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
-      { user: "Vitória P.", comment: "Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 4.0 },
-      { user: "Cássia S.", comment: "Experiência ótima. O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0 },
-      { user: "Adriana L.", comment: "Simplesmente amei! O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 5.0, image: saiaRendaaa1.url },
+      {
+        user: "Vitória P.",
+        comment:
+          "Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 4.0,
+      },
+      {
+        user: "Cássia S.",
+        comment:
+          "Experiência ótima. O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+      },
+      {
+        user: "Adriana L.",
+        comment:
+          "Simplesmente amei! O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 5.0,
+        image: saiaRendaaa1.url,
+      },
       { user: "Mirella C.", comment: "", rating: 4.0 },
-      { user: "Aline L.", comment: "Gente, que peça! Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.", rating: 5.0 },
+      {
+        user: "Aline L.",
+        comment:
+          "Gente, que peça! Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.",
+        rating: 5.0,
+      },
       { user: "Adriana F.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
       { user: "Aline S.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
       { user: "Vitória R.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
       { user: "Ana Paula S.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
       { user: "Gabriela F.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 5.0 },
-      { user: "Vanessa S.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0, image: saiaRendaaa1.url },
-      { user: "Bruna S.", comment: "Gente, que peça! A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 5.0 },
+      {
+        user: "Vanessa S.",
+        comment: "Amei cada detalhe, a costura é impecável.",
+        rating: 5.0,
+        image: saiaRendaaa1.url,
+      },
+      {
+        user: "Bruna S.",
+        comment:
+          "Gente, que peça! A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 5.0,
+      },
       { user: "Carolina P.", comment: "Muito feliz com a compra, a peça é divina.", rating: 5.0 },
       { user: "Jéssica S.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
       { user: "Gislaine F.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
-      { user: "Silvana S.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0, image: saiaRendaaa1.url },
-      { user: "Rosana A.", comment: "Achei incrível. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
+      {
+        user: "Silvana S.",
+        comment: "O corte é perfeito, valoriza as curvas sem marcar.",
+        rating: 5.0,
+        image: saiaRendaaa1.url,
+      },
+      {
+        user: "Rosana A.",
+        comment:
+          "Achei incrível. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
       { user: "Iara S.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
       { user: "Rosana L.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
-      { user: "Letícia F.", comment: "Experiência ótima. A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 5.0 },
+      {
+        user: "Letícia F.",
+        comment:
+          "Experiência ótima. A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 5.0,
+      },
       { user: "Paula S.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
-      { user: "Patrícia P.", comment: "A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
+      {
+        user: "Patrícia P.",
+        comment:
+          "A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
       { user: "Tereza S.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
       { user: "Adriana F.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
       { user: "Mariana A.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 3.0 },
-      { user: "Sandra R.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0, image: saiaRendaaa1.url },
-      { user: "Edna S.", comment: "Experiência ótima. Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.", rating: 5.0 },
+      {
+        user: "Sandra R.",
+        comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.",
+        rating: 5.0,
+        image: saiaRendaaa1.url,
+      },
+      {
+        user: "Edna S.",
+        comment:
+          "Experiência ótima. Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.",
+        rating: 5.0,
+      },
       { user: "Sabrina P.", comment: "Ficou ótimo no busto, muito confortável.", rating: 5.0 },
       { user: "Luana R.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
       { user: "Carla P.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
-      { user: "Larissa S.", comment: "O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0 },
+      {
+        user: "Larissa S.",
+        comment:
+          "O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+      },
       { user: "Vanessa S.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 5.0 },
-      { user: "Lourdes S.", comment: "Uau! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0 },
+      {
+        user: "Lourdes S.",
+        comment:
+          "Uau! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+      },
       { user: "Flávia F.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0 },
-      { user: "Flávia S.", comment: "Experiência ótima. Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0 },
-      { user: "Beatriz S.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 5.0 },
+      {
+        user: "Flávia S.",
+        comment:
+          "Experiência ótima. Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+      },
+      { user: "Beatriz S.", comment: "O tamanho serviu perfeitamente, sem apertar.", rating: 5.0 },
       { user: "Vanessa M.", comment: "", rating: 4.0 },
       { user: "Jana\u00edna B.", comment: "", rating: 4.0 },
-      { user: "Mônica S.", comment: "Achei incrível. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
-      { user: "Letícia P.", comment: "O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0 },
-      { user: "Bianca F.", comment: "Muito satisfeita. Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 4.0 },
-      { user: "Janaina G.", comment: "Gente, que peça! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
-      { user: "Janaina F.", comment: "Muito satisfeita. A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
-      { user: "Débora R.", comment: "Uau! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0 },
-      { user: "Gislaine R.", comment: "Achei incrível. O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0 },
+      {
+        user: "Mônica S.",
+        comment:
+          "Achei incrível. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
+      {
+        user: "Letícia P.",
+        comment:
+          "O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+      },
+      {
+        user: "Bianca F.",
+        comment:
+          "Muito satisfeita. Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 4.0,
+      },
+      {
+        user: "Janaina G.",
+        comment:
+          "Gente, que peça! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
+      {
+        user: "Janaina F.",
+        comment:
+          "Muito satisfeita. A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
+      {
+        user: "Débora R.",
+        comment:
+          "Uau! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+      },
+      {
+        user: "Gislaine R.",
+        comment:
+          "Achei incrível. O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+      },
       { user: "J\u00falia C.", comment: "", rating: 4.0 },
       { user: "Tha\u00eds G.", comment: "", rating: 4.0 },
       { user: "Cristiane P.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0 },
       { user: "Alessandra F.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
-      { user: "Fabiana A.", comment: "Uau! Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.", rating: 5.0 },
-      { user: "Soraia S.", comment: "Gente, que peça! Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidadde que entrega.", rating: 5.0 },
+      {
+        user: "Fabiana A.",
+        comment:
+          "Uau! Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.",
+        rating: 5.0,
+      },
+      {
+        user: "Soraia S.",
+        comment:
+          "Gente, que peça! Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidadde que entrega.",
+        rating: 5.0,
+      },
       { user: "Zilda G.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0, image: saiaRendaaa1.url },
       { user: "Milena S.", comment: "O caimento é surreal de bom, valoriza muito o corpo.", rating: 3.0 },
       { user: "Camila P.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
-      { user: "Silvana S.", comment: "Gente, que peça! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
-      { user: "Ana Paula L.", comment: "Muito satisfeita. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
-      { user: "Ursula L.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 5.0 },
-      { user: "Larissa G.", comment: "Muito satisfeita. O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0 },
+      {
+        user: "Silvana S.",
+        comment:
+          "Gente, que peça! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
+      {
+        user: "Ana Paula L.",
+        comment:
+          "Muito satisfeita. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
+      { user: "Ursula L.", comment: "O tamanho serviu perfeitamente, sem apertar.", rating: 5.0 },
+      {
+        user: "Larissa G.",
+        comment:
+          "Muito satisfeita. O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+      },
       { user: "Adriana S.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 3.0 },
       { user: "Fabiana S.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
-      { user: "Karine S.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 3.0 },
+      { user: "Karine S.", comment: "O tamanho serviu perfeitamente, sem apertar.", rating: 3.0 },
       { user: "Adriana G.", comment: "A cor pessoalmente é ainda mais bonita que no site.", rating: 4.0 },
-      { user: "Lourdes A.", comment: "Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0 },
-      { user: "Luana F.", comment: "Achei incrível. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
+      {
+        user: "Lourdes A.",
+        comment:
+          "Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+      },
+      {
+        user: "Luana F.",
+        comment:
+          "Achei incrível. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
       { user: "Ursula S.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
-      { user: "Carolina S.", comment: "Muito satisfeita. Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0 },
-      { user: "Ana Paula A.", comment: "Uau! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0, image: saiaRendaaa1.url },
-      { user: "Sabrina S.", comment: "Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.", rating: 5.0 },
-      { user: "Juliana S.", comment: "Uau! Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.", rating: 5.0, image: saiaRendaaa1.url },
-      { user: "Débora O.", comment: "Achei incrível. O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0 },
-      { user: "Tereza S.", comment: "Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0 },
+      {
+        user: "Carolina S.",
+        comment:
+          "Muito satisfeita. Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+      },
+      {
+        user: "Ana Paula A.",
+        comment:
+          "Uau! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+        image: saiaRendaaa1.url,
+      },
+      {
+        user: "Sabrina S.",
+        comment:
+          "Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.",
+        rating: 5.0,
+      },
+      {
+        user: "Juliana S.",
+        comment:
+          "Uau! Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.",
+        rating: 5.0,
+        image: saiaRendaaa1.url,
+      },
+      {
+        user: "Débora O.",
+        comment:
+          "Achei incrível. O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+      },
+      {
+        user: "Tereza S.",
+        comment:
+          "Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+      },
       { user: "Ursula G.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
-      { user: "Ivone S.", comment: "Uau! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
-      { user: "Jéssica S.", comment: "Muito satisfeita. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
-      { user: "Camila A.", comment: "Experiência ótima. Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!", rating: 5.0 },
-      { user: "Helena S.", comment: "Achei incrível. O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 5.0 },
+      {
+        user: "Ivone S.",
+        comment:
+          "Uau! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
+      {
+        user: "Jéssica S.",
+        comment:
+          "Muito satisfeita. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
+      {
+        user: "Camila A.",
+        comment:
+          "Experiência ótima. Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!",
+        rating: 5.0,
+      },
+      {
+        user: "Helena S.",
+        comment:
+          "Achei incrível. O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 5.0,
+      },
       { user: "Gisele S.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
-      { user: "Andréia L.", comment: "Uau! A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 5.0 },
-      { user: "Milena S.", comment: "Gente, que peça! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0 },
-      { user: "Rafaela F.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0, image: saiaRendaaa1.url },
+      {
+        user: "Andréia L.",
+        comment:
+          "Uau! A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 5.0,
+      },
+      {
+        user: "Milena S.",
+        comment:
+          "Gente, que peça! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+      },
+      {
+        user: "Rafaela F.",
+        comment: "Simplesmente perfeito, superou minhas expectativas.",
+        rating: 5.0,
+        image: saiaRendaaa1.url,
+      },
       { user: "Gabriela M.", comment: "", rating: 4.0 },
-      { user: "Carolina P.", comment: "Simplesmente amei! A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0 },
+      {
+        user: "Carolina P.",
+        comment:
+          "Simplesmente amei! A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+      },
       { user: "La\u00eds S.", comment: "", rating: 4.0 },
-      { user: "Gislaine S.", comment: "Achei incrível. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhozo na caixa.", rating: 5.0 },
+      {
+        user: "Gislaine S.",
+        comment:
+          "Achei incrível. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhozo na caixa.",
+        rating: 5.0,
+      },
       { user: "Graziela B.", comment: "", rating: 4.0 },
       { user: "Sueli P.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
-      { user: "Silvana S.", comment: "Achei incrível. A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 5.0 },
+      {
+        user: "Silvana S.",
+        comment:
+          "Achei incrível. A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 5.0,
+      },
       { user: "Eliane P.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0 },
-      { user: "Lourdes S.", comment: "Simplesmente amei! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
+      {
+        user: "Lourdes S.",
+        comment:
+          "Simplesmente amei! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
       { user: "Larissa M.", comment: "", rating: 4.0 },
       { user: "Priscila O.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
       { user: "Sabrina F.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
-      { user: "Gabriela G.", comment: "Simplesmente amei! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
+      {
+        user: "Gabriela G.",
+        comment:
+          "Simplesmente amei! A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
       { user: "Sabrina O.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
       { user: "Larissa O.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0 },
-      { user: "Ivone G.", comment: "Simplesmente amei! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
-      { user: "Amanda S.", comment: "Simplesmente amei! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
-      { user: "Bruna P.", comment: "Uau! A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
-      { user: "Larissa G.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 5.0, image: saiaRendaaa1.url },
-      { user: "Lourdes L.", comment: "Achei incrível. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
+      {
+        user: "Ivone G.",
+        comment:
+          "Simplesmente amei! Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
+      {
+        user: "Amanda S.",
+        comment:
+          "Simplesmente amei! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
+      {
+        user: "Bruna P.",
+        comment:
+          "Uau! A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
+      {
+        user: "Larissa G.",
+        comment: "Entrega super rápida e produto de altíssima qualidade.",
+        rating: 5.0,
+        image: saiaRendaaa1.url,
+      },
+      {
+        user: "Lourdes L.",
+        comment:
+          "Achei incrível. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
       { user: "Tereza A.", comment: "", rating: 4.0 },
       { user: "Glória A.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
-      { user: "Olívia F.", comment: "Experiência ótima. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 4.0 },
-      { user: "Daiane A.", comment: "Uau! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0 },
+      {
+        user: "Olívia F.",
+        comment:
+          "Experiência ótima. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 4.0,
+      },
+      {
+        user: "Daiane A.",
+        comment:
+          "Uau! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+      },
       { user: "Lourdes L.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
       { user: "Daniela L.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
-      { user: "Letícia L.", comment: "Muito satisfeita. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
+      {
+        user: "Letícia L.",
+        comment:
+          "Muito satisfeita. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
       { user: "Regina G.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
-      { user: "Silvana A.", comment: "Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0 },
-      { user: "Tereza S.", comment: "Uau! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0, image: saiaRendaaa1.url },
-      { user: "Daiane G.", comment: "Experiência ótima. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
-      { user: "Gisele P.", comment: "Uau! A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muiito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 4.0 },
-      { user: "Zilda L.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 }
+      {
+        user: "Silvana A.",
+        comment:
+          "Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+      },
+      {
+        user: "Tereza S.",
+        comment:
+          "Uau! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+        image: saiaRendaaa1.url,
+      },
+      {
+        user: "Daiane G.",
+        comment:
+          "Experiência ótima. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
+      {
+        user: "Gisele P.",
+        comment:
+          "Uau! A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muiito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 4.0,
+      },
+      { user: "Zilda L.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
     ],
   },
-  { id: "conjunto-espresso-alfaiataria",
+  {
+    id: "conjunto-espresso-alfaiataria",
     name: "Conjunto Évora Espresso Alfaiataria",
     price: 139,
     originalPrice: 349,
-    description: "Conjunto de alfaiataria premium composto por colete transpassado com cinto e calça wide leg. O tom espresso profundo e o corte impecável trazem uma sofisticação moderna e autoritária, ideal para la mulher que impõe presença. Acompanha cinto exclusivo em couro sintético no mesmo tom." + exchangePolicy,
-    images: [conjuntoEspresso1.url, conjuntoEspresso2.url, conjuntoEspresso3.url, conjuntoEspresso4.url, conjuntoEspresso5.url, conjuntoEspresso6.url, conjuntoEspresso7.url, conjuntoEspresso8.url, conjuntoEspresso9.url, conjuntoEspresso10.url],
+    description:
+      "Conjunto de alfaiataria premium composto por colete transpassado com cinto e calça wide leg. O tom espresso profundo e o corte impecável trazem uma sofisticação moderna e autoritária, ideal para la mulher que impõe presença. Acompanha cinto exclusivo em couro sintético no mesmo tom." +
+      exchangePolicy,
+    images: [
+      conjuntoEspresso1.url,
+      conjuntoEspresso2.url,
+      conjuntoEspresso3.url,
+      conjuntoEspresso4.url,
+      conjuntoEspresso5.url,
+      conjuntoEspresso6.url,
+      conjuntoEspresso7.url,
+      conjuntoEspresso8.url,
+      conjuntoEspresso9.url,
+      conjuntoEspresso10.url,
+    ],
     sizes,
     includedGift: {
       name: "Cinto Premium Évora",
       color: "Marrom Escuro",
       colorValue: "#3d2b1f",
       price: "Grátis",
-      image: cintoEspressoso.url
+      image: cintoEspressoso.url,
     },
     colors: [{ name: "Espresso", value: "#3d2b1f" }],
     salesCount: 6842,
     rating: 4.8,
-    ratingBreakdown: {"1": 0, "2": 4, "3": 24, "4": 76, "5": 580},
+    ratingBreakdown: { "1": 0, "2": 4, "3": 24, "4": 76, "5": 580 },
     reviews: [
-      { user: "Bruna S.", comment: "Simplesmente amei! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0, image: feedbackEspressoAlfaiataria1.url },
-      { user: "Iara S.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0, image: feedbackEspressoAlfaiataria2.url },
-      { user: "Cássia P.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0, image: feedbackEspressoAlfaiataria3.url },
-      { user: "Vitória A.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0, image: feedbackEspressoAlfaiataria4.url },
-      { user: "Tereza F.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 5.0, image: feedbackEspressoAlfaiataria5.url },
-      { user: "Paula S.", comment: "Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.", rating: 5.0, image: feedbackEspressoAlfaiataria6.url },
-      { user: "Verônica P.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0, image: feedbackEspressoAlfaiataria7.url },
-      { user: "Cláudia F.", comment: "Muito satisfeita. Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0, image: feedbackEspressoAlfaiataria8.url },
-      { user: "Helena A.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0, image: feedbackEspressoAlfaiataria9.url },
-      { user: "Silvana P.", comment: "Achei incrível. O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0, image: feedbackEspressoAlfaiataria10.url },
+      {
+        user: "Bruna S.",
+        comment:
+          "Simplesmente amei! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+        image: feedbackEspressoAlfaiataria1.url,
+      },
+      {
+        user: "Iara S.",
+        comment: "Peça coringa, combina com tudo no meu armário.",
+        rating: 5.0,
+        image: feedbackEspressoAlfaiataria2.url,
+      },
+      {
+        user: "Cássia P.",
+        comment: "Amei cada detalhe, a costura é impecável.",
+        rating: 5.0,
+        image: feedbackEspressoAlfaiataria3.url,
+      },
+      {
+        user: "Vitória A.",
+        comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.",
+        rating: 5.0,
+        image: feedbackEspressoAlfaiataria4.url,
+      },
+      {
+        user: "Tereza F.",
+        comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.",
+        rating: 5.0,
+        image: feedbackEspressoAlfaiataria5.url,
+      },
+      {
+        user: "Paula S.",
+        comment:
+          "Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.",
+        rating: 5.0,
+        image: feedbackEspressoAlfaiataria6.url,
+      },
+      {
+        user: "Verônica P.",
+        comment: "Tecido fresco e leve, ideal para o verão.",
+        rating: 5.0,
+        image: feedbackEspressoAlfaiataria7.url,
+      },
+      {
+        user: "Cláudia F.",
+        comment:
+          "Muito satisfeita. Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+        image: feedbackEspressoAlfaiataria8.url,
+      },
+      {
+        user: "Helena A.",
+        comment: "Qualidade que surpreende, o acabamento interno é perfeito.",
+        rating: 5.0,
+        image: feedbackEspressoAlfaiataria9.url,
+      },
+      {
+        user: "Silvana P.",
+        comment:
+          "Achei incrível. O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+        image: feedbackEspressoAlfaiataria10.url,
+      },
       { user: "Marta S.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0 },
       { user: "Sabrina L.", comment: "Peça coringa, combina com tudo no meu armário.", rating: 5.0 },
       { user: "Soraia A.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
-      { user: "Cristiane F.", comment: "Uau! Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.", rating: 5.0 },
+      {
+        user: "Cristiane F.",
+        comment:
+          "Uau! Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.",
+        rating: 5.0,
+      },
       { user: "Carla S.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
-      { user: "Maria Eduarda F.", comment: "Simplesmente amei! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas eleganche. A experiência de compra foi nota mil.", rating: 5.0 },
-      { user: "Renata P.", comment: "Uau! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
+      {
+        user: "Maria Eduarda F.",
+        comment:
+          "Simplesmente amei! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas eleganche. A experiência de compra foi nota mil.",
+        rating: 5.0,
+      },
+      {
+        user: "Renata P.",
+        comment:
+          "Uau! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
       { user: "Bianca S.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 5.0 },
-      { user: "Ivone S.", comment: "Muito satisfeita. Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 4.0 },
-      { user: "Gislaine O.", comment: "Muito satisfeita. A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 4.0 },
-      { user: "Sabrina P.", comment: "Experiência ótima. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 4.0 },
-      { user: "Jéssica P.", comment: "Achei incrível. O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muiito feliz com o resultado final e com certeza voltarei a comprar.", rating: 4.0 },
-      { user: "Jéssica S.", comment: "Achei incrível. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 4.0 },
-      { user: "Sandra O.", comment: "Simplesmente amei! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 4.0 },
-      { user: "Vanessa A.", comment: "Muito satisfeita. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 4.0 },
-      { user: "Gabriela L.", comment: "A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 4.0 },
+      {
+        user: "Ivone S.",
+        comment:
+          "Muito satisfeita. Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 4.0,
+      },
+      {
+        user: "Gislaine O.",
+        comment:
+          "Muito satisfeita. A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 4.0,
+      },
+      {
+        user: "Sabrina P.",
+        comment:
+          "Experiência ótima. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 4.0,
+      },
+      {
+        user: "Jéssica P.",
+        comment:
+          "Achei incrível. O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muiito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 4.0,
+      },
+      {
+        user: "Jéssica S.",
+        comment:
+          "Achei incrível. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 4.0,
+      },
+      {
+        user: "Sandra O.",
+        comment:
+          "Simplesmente amei! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 4.0,
+      },
+      {
+        user: "Vanessa A.",
+        comment:
+          "Muito satisfeita. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 4.0,
+      },
+      {
+        user: "Gabriela L.",
+        comment:
+          "A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 4.0,
+      },
       { user: "Tânia F.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 3.0 },
       { user: "Gisele O.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 3.0 },
       { user: "Rafaela O.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 3.0 },
@@ -1265,53 +3453,128 @@ export const products: Product[] = [
       { user: "Daniela S.", comment: "A cor é um pouco diferente do que eu esperava pela foto.", rating: 2.0 },
       { user: "Regina S.", comment: "Achei o acabamento da barra um pouco simples.", rating: 2.0 },
     ],
-
   },
-  { id: "conjunto-rose",
+  {
+    id: "conjunto-rose",
     name: "Conjunto Évora Rosé",
     price: 179,
     originalPrice: 179,
-    description: "Conjunto de alfaiataria em tom rosé composto por colete acinturado e saia longa fluida. Uma produção delicada, elegante e versátil para ocasiões especiais." + exchangePolicy,
+    description:
+      "Conjunto de alfaiataria em tom rosé composto por colete acinturado e saia longa fluida. Uma produção delicada, elegante e versátil para ocasiões especiais." +
+      exchangePolicy,
     images: [ig0, p1b, p1c, p1d],
     sizes,
     colors: [{ name: "Rosé", value: "#e2b6b1" }],
     salesCount: 843,
     rating: 4.81,
-    ratingBreakdown: {"1": 0, "2": 0, "3": 4, "4": 8, "5": 72},
+    ratingBreakdown: { "1": 0, "2": 0, "3": 4, "4": 8, "5": 72 },
     reviews: [
-      { user: "Tânia S.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 5.0 },
-      { user: "Sabrina L.", comment: "A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 5.0 },
-      { user: "Débora P.", comment: "O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 5.0 },
-      { user: "Silvana S.", comment: "Gente, que peça! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0 },
+      { user: "Tânia S.", comment: "O tamanho serviu perfeitamente, sem apertar.", rating: 5.0 },
+      {
+        user: "Sabrina L.",
+        comment:
+          "A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 5.0,
+      },
+      {
+        user: "Débora P.",
+        comment:
+          "O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 5.0,
+      },
+      {
+        user: "Silvana S.",
+        comment:
+          "Gente, que peça! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+      },
       { user: "Soraia O.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0 },
       { user: "Fabiana O.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
       { user: "Débora S.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
-      { user: "Taís P.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 5.0 },
+      { user: "Taís P.", comment: "O tamanho serviu perfeitamente, sem apertar.", rating: 5.0 },
       { user: "\u00c9rica A.", comment: "", rating: 4.0 },
-      { user: "Sueli F.", comment: "Experiência ótima. O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e concerteza voltarei a comprar.", rating: 5.0 },
-      { user: "Flávia L.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 5.0 },
-      { user: "Maria Eduarda P.", comment: "Uau! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0 },
-      { user: "Karine R.", comment: "Gente, que peça! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
+      {
+        user: "Sueli F.",
+        comment:
+          "Experiência ótima. O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e concerteza voltarei a comprar.",
+        rating: 5.0,
+      },
+      { user: "Flávia L.", comment: "O tamanho serviu perfeitamente, sem apertar.", rating: 5.0 },
+      {
+        user: "Maria Eduarda P.",
+        comment:
+          "Uau! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+      },
+      {
+        user: "Karine R.",
+        comment:
+          "Gente, que peça! Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
       { user: "Isabela S.", comment: "Caimento fluido e elegante, nota máxima.", rating: 4.0 },
-      { user: "Juliana O.", comment: "Achei incrível. Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!", rating: 5.0 },
-      { user: "Viviane S.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 3.0 },
-      { user: "Patrícia P.", comment: "O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidadde que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 5.0 },
+      {
+        user: "Juliana O.",
+        comment:
+          "Achei incrível. Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!",
+        rating: 5.0,
+      },
+      { user: "Viviane S.", comment: "O tamanho serviu perfeitamente, sem apertar.", rating: 3.0 },
+      {
+        user: "Patrícia P.",
+        comment:
+          "O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidadde que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 5.0,
+      },
       { user: "Maria Eduarda P.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 4.0 },
       { user: "Luciana S.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 5.0 },
-      { user: "Andréia L.", comment: "Gente, que peça! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0, image: p1b },
+      {
+        user: "Andréia L.",
+        comment:
+          "Gente, que peça! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+        image: p1b,
+      },
       { user: "Ol\u00edvia O.", comment: "", rating: 4.0 },
       { user: "Iara S.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
       { user: "Gislaine R.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
-      { user: "Gabriela G.", comment: "Uau! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!", rating: 5.0 },
+      {
+        user: "Gabriela G.",
+        comment:
+          "Uau! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!",
+        rating: 5.0,
+      },
       { user: "Bianca F.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
-      { user: "Maria Eduarda S.", comment: "Simplesmente amei! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0, image: p1c },
+      {
+        user: "Maria Eduarda S.",
+        comment:
+          "Simplesmente amei! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+        image: p1c,
+      },
       { user: "Daniela S.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 3.0 },
       { user: "Alice A.", comment: "", rating: 4.0 },
       { user: "Cristiane F.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
       { user: "Andréia A.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 3.0 },
-      { user: "Raquel O.", comment: "Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0 },
-      { user: "Iara S.", comment: "Experiência ótima. O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0, image: p1d },
-      { user: "Ivone A.", comment: "Uau! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0 },
+      {
+        user: "Raquel O.",
+        comment:
+          "Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+      },
+      {
+        user: "Iara S.",
+        comment:
+          "Experiência ótima. O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+        image: p1d,
+      },
+      {
+        user: "Ivone A.",
+        comment:
+          "Uau! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+      },
       { user: "Márcia O.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
       { user: "Débora L.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 5.0 },
       { user: "Iara S.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0, image: p1b },
@@ -1322,126 +3585,403 @@ export const products: Product[] = [
       { user: "Aline G.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
       { user: "Gisele R.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 5.0 },
       { user: "Helena L.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
-      { user: "Beatriz R.", comment: "Muito satisfeita. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
-      { user: "Ursula R.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 5.0 },
+      {
+        user: "Beatriz R.",
+        comment:
+          "Muito satisfeita. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
+      { user: "Ursula R.", comment: "O tamanho serviu perfeitamente, sem apertar.", rating: 5.0 },
       { user: "Soraia G.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
       { user: "Milena A.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
       { user: "Adriana S.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 5.0 },
       { user: "Sandra G.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
-      { user: "Sandra S.", comment: "Uau! O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 4.0 },
-      { user: "Taís O.", comment: "Achei incrível. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0 },
-      { user: "Soraia G.", comment: "Gente, que peça! A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
+      {
+        user: "Sandra S.",
+        comment:
+          "Uau! O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 4.0,
+      },
+      {
+        user: "Taís O.",
+        comment:
+          "Achei incrível. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+      },
+      {
+        user: "Soraia G.",
+        comment:
+          "Gente, que peça! A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
       { user: "Janaina A.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
-      { user: "Flávia S.", comment: "Uau! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
+      {
+        user: "Flávia S.",
+        comment:
+          "Uau! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
       { user: "Márcia O.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0, image: p1c },
       { user: "Silvana F.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
       { user: "Luciana S.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0, image: p1d },
       { user: "Daiane S.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 5.0 },
-      { user: "Iara O.", comment: "Simplesmente amei! O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.", rating: 5.0, image: p1b },
+      {
+        user: "Iara O.",
+        comment:
+          "Simplesmente amei! O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.",
+        rating: 5.0,
+        image: p1b,
+      },
       { user: "Karine P.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
       { user: "Sueli S.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
       { user: "Juliana S.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
-      { user: "Sueli R.", comment: "Muito satisfeita. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0 },
-      { user: "Soraia R.", comment: "O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
-      { user: "Cristiane S.", comment: "Gente, que peça! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
-      { user: "Regina R.", comment: "Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 5.0 },
+      {
+        user: "Sueli R.",
+        comment:
+          "Muito satisfeita. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+      },
+      {
+        user: "Soraia R.",
+        comment:
+          "O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
+      {
+        user: "Cristiane S.",
+        comment:
+          "Gente, que peça! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
+      {
+        user: "Regina R.",
+        comment:
+          "Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 5.0,
+      },
       { user: "Alessandra S.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0 },
-      { user: "Cristiane O.", comment: "Achei incrível. Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 5.0, image: p1c },
+      {
+        user: "Cristiane O.",
+        comment:
+          "Achei incrível. Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 5.0,
+        image: p1c,
+      },
       { user: "Luciana S.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0 },
       { user: "Amanda R.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 4.0 },
       { user: "Alessandra L.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
       { user: "Gislaine F.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 3.0 },
-      { user: "Beatriz G.", comment: "Simplesmente amei! Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.", rating: 5.0 },
-      { user: "Mônica R.", comment: "Simplesmente amei! Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.", rating: 5.0 },
-      { user: "Rosana S.", comment: "Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
-      { user: "Karine L.", comment: "Achei incrível. O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.", rating: 5.0 },
-      { user: "Silvana A.", comment: "Achei incrível. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0, image: p1d },
-      { user: "Carolina G.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 5.0, image: p1b },
-      { user: "Carolina S.", comment: "Muito satisfeita. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
+      {
+        user: "Beatriz G.",
+        comment:
+          "Simplesmente amei! Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.",
+        rating: 5.0,
+      },
+      {
+        user: "Mônica R.",
+        comment:
+          "Simplesmente amei! Simplesmente maravilhosa a experiência. A roupa é linda, o tecido é de extrema qualidade e o caimento é de outro mundo. Veste super bem e a cor é muito fiel. Recebi em 4 dias úteis no interior de Minas. A loja está de parabéns pelo curadoria das peças.",
+        rating: 5.0,
+      },
+      {
+        user: "Rosana S.",
+        comment:
+          "Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
+      {
+        user: "Karine L.",
+        comment:
+          "Achei incrível. O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.",
+        rating: 5.0,
+      },
+      {
+        user: "Silvana A.",
+        comment:
+          "Achei incrível. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+        image: p1d,
+      },
+      { user: "Carolina G.", comment: "O tamanho serviu perfeitamente, sem apertar.", rating: 5.0, image: p1b },
+      {
+        user: "Carolina S.",
+        comment:
+          "Muito satisfeita. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
       { user: "Amanda O.", comment: "Ficou ótimo no busto, muito confortável.", rating: 5.0 },
-      { user: "Rosana R.", comment: "Achei incrível. O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 5.0 },
-      { user: "Karine A.", comment: "Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0 },
-      { user: "Rafaela S.", comment: "Gente, que peça! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
-      { user: "Sabrina P.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 }
+      {
+        user: "Rosana R.",
+        comment:
+          "Achei incrível. O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 5.0,
+      },
+      {
+        user: "Karine A.",
+        comment:
+          "Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+      },
+      {
+        user: "Rafaela S.",
+        comment:
+          "Gente, que peça! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
+      { user: "Sabrina P.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0 },
     ],
   },
-  { id: "vestido-aurora-rose",
+  {
+    id: "vestido-aurora-rose",
     name: "Blusa Évora Aurora Rosé",
     price: 119,
     originalPrice: 119,
-    description: "Blusa rosé em tecido acetinado com brilho suave, gola clássica e laço removível no decote. Mangas bufantes com punho abotoado e caimento fluido que valoriza o colo. Combina com alfaiataria, saia midi ou jeans, do escritório ao jantar." + exchangePolicy,
+    description:
+      "Blusa rosé em tecido acetinado com brilho suave, gola clássica e laço removível no decote. Mangas bufantes com punho abotoado e caimento fluido que valoriza o colo. Combina com alfaiataria, saia midi ou jeans, do escritório ao jantar." +
+      exchangePolicy,
     images: [ig1, p2c],
     sizes,
     colors: [{ name: "Rosé", value: "#e2b6b1" }],
     salesCount: 652,
     rating: 4.8,
-    ratingBreakdown: {"1": 0, "2": 0, "3": 4, "4": 5, "5": 56},
+    ratingBreakdown: { "1": 0, "2": 0, "3": 4, "4": 5, "5": 56 },
     reviews: [
-      { user: "Soraia S.", comment: "Gente, que peça! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 5.0 },
+      {
+        user: "Soraia S.",
+        comment:
+          "Gente, que peça! Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 5.0,
+      },
       { user: "Gabriela S.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
       { user: "Paula A.", comment: "Muito feliz com a compra, a peça é divina.", rating: 5.0 },
       { user: "Juliana L.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0 },
       { user: "Lourdes S.", comment: "O tecido não amassa fácil, o que é ótimo para o dia a dia.", rating: 4.0 },
-      { user: "Edna S.", comment: "Simplesmente amei! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0 },
-      { user: "Daiane A.", comment: "Experiência ótima. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
+      {
+        user: "Edna S.",
+        comment:
+          "Simplesmente amei! O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+      },
+      {
+        user: "Daiane A.",
+        comment:
+          "Experiência ótima. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
       { user: "Cláudia R.", comment: "Amei cada detalhe, a costura é impecável.", rating: 3.0 },
       { user: "Regina G.", comment: "Ficou ótimo no busto, muito confortável.", rating: 5.0 },
       { user: "Renata S.", comment: "Muito feliz com a compra, a peça é divina.", rating: 5.0 },
-      { user: "Taís F.", comment: "Uau! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0 },
-      { user: "Letícia S.", comment: "Achei incrível. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
-      { user: "Regina R.", comment: "Uau! A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.", rating: 5.0 },
-      { user: "Bianca P.", comment: "Achei incrível. Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 5.0 },
-      { user: "Tatiane R.", comment: "Experiência ótima. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.", rating: 5.0, image: p3c },
-      { user: "Fabiana G.", comment: "O tecido é maravilhozo, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.", rating: 5.0 },
-      { user: "Mônica O.", comment: "Muito satisfeita. Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!", rating: 4.0 },
-      { user: "Larissa O.", comment: "Experiência ótima. O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0 },
-      { user: "Zilda R.", comment: "Simplesmente amei! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0 },
+      {
+        user: "Taís F.",
+        comment:
+          "Uau! Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+      },
+      {
+        user: "Letícia S.",
+        comment:
+          "Achei incrível. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
+      {
+        user: "Regina R.",
+        comment:
+          "Uau! A qualidade superou minhas expectativas. As fotos não fazem justiça à textura do tecido, que é muito macia. O corte é inteligente e disfarça bem as gordurinhas que eu queria esconder. Chegou antes do prazo previsto e o atendimento foi excelente durante todo o processo.",
+        rating: 5.0,
+      },
+      {
+        user: "Bianca P.",
+        comment:
+          "Achei incrível. Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 5.0,
+      },
+      {
+        user: "Tatiane R.",
+        comment:
+          "Experiência ótima. A entrega foi surpreendentemente rápida. Quando abri a caixa, vi que o cuidado com a peça é real. O tecido é muito nobre e o corte valoriza o movimento. Usei num jantar de negócios e me senti muito segura e bem vestida. É um investimento que vale a pena pela durabilidade.",
+        rating: 5.0,
+        image: p3c,
+      },
+      {
+        user: "Fabiana G.",
+        comment:
+          "O tecido é maravilhozo, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.",
+        rating: 5.0,
+      },
+      {
+        user: "Mônica O.",
+        comment:
+          "Muito satisfeita. Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!",
+        rating: 4.0,
+      },
+      {
+        user: "Larissa O.",
+        comment:
+          "Experiência ótima. O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+      },
+      {
+        user: "Zilda R.",
+        comment:
+          "Simplesmente amei! Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+      },
       { user: "Aline A.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 4.0 },
       { user: "Maria Eduarda L.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
-      { user: "Débora S.", comment: "Experiência ótima. Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.", rating: 4.0 },
-      { user: "Mônica F.", comment: "Muito satisfeita. O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.", rating: 5.0 },
+      {
+        user: "Débora S.",
+        comment:
+          "Experiência ótima. Amei o detalhe das mangas e o decote. O pano é muito confortável e não esquenta. A modelagem é ideal para quem gosta de peças que acompanham o corpo sem apertar. A cor é linda e combina com vários tons de sapato. Foi uma excelente compra, estou apaixonada.",
+        rating: 4.0,
+      },
+      {
+        user: "Mônica F.",
+        comment:
+          "Muito satisfeita. O tecido é muito fresco, ótimo para o clima aqui do Brasil. A modelagem é generosa, então o G ficou bem confortável sem parecer largo demais. Adorei a versatilidade, trocando os acessórios dá pra mudar completamente o estilo da roupa. Recomendo pra quem busca elegância sem esforço.",
+        rating: 5.0,
+      },
       { user: "Lourdes A.", comment: "Muito feliz com a compra, a peça é divina.", rating: 3.0 },
-      { user: "Helena A.", comment: "Simplesmente amei! O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 5.0, image: p3d },
+      {
+        user: "Helena A.",
+        comment:
+          "Simplesmente amei! O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 5.0,
+        image: p3d,
+      },
       { user: "Edna A.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0, image: p3b },
       { user: "Olívia A.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
-      { user: "Renata P.", comment: "A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
+      {
+        user: "Renata P.",
+        comment:
+          "A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
       { user: "Fabiana F.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
-      { user: "Adriana S.", comment: "Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0, image: p3c },
-      { user: "Tânia F.", comment: "A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
+      {
+        user: "Adriana S.",
+        comment:
+          "Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+        image: p3c,
+      },
+      {
+        user: "Tânia F.",
+        comment:
+          "A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
       { user: "Fernanda S.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
       { user: "Larissa A.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
-      { user: "Carolina O.", comment: "Gente, que peça! O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 5.0 },
-      { user: "Edna L.", comment: "Muito satisfeita. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0, image: p3d },
-      { user: "Bianca S.", comment: "A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
-      { user: "Flávia L.", comment: "Gente, que peça! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0, image: p3b },
+      {
+        user: "Carolina O.",
+        comment:
+          "Gente, que peça! O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 5.0,
+      },
+      {
+        user: "Edna L.",
+        comment:
+          "Muito satisfeita. A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+        image: p3d,
+      },
+      {
+        user: "Bianca S.",
+        comment:
+          "A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
+      {
+        user: "Flávia L.",
+        comment:
+          "Gente, que peça! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+        image: p3b,
+      },
       { user: "Raquel O.", comment: "Caimento fluido e elegante, nota máxima.", rating: 3.0 },
       { user: "Rafaela G.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 3.0 },
       { user: "Gabriela A.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0 },
-      { user: "Rafaela F.", comment: "Muito satisfeita. Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!", rating: 5.0 },
+      {
+        user: "Rafaela F.",
+        comment:
+          "Muito satisfeita. Ficou perfeito no corpo. O tecido é encorpado e não marca a celulite, que era meu medo. A cor é elegante e o corte é muito bem pensado. Chegou bem rápido e o suporte da loja foi muito atencioso quando tive dúvida sobre o rastreio. Recomendo muito!",
+        rating: 5.0,
+      },
       { user: "Luciana L.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
-      { user: "Sandra F.", comment: "Muito satisfeita. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
+      {
+        user: "Sandra F.",
+        comment:
+          "Muito satisfeita. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
       { user: "Olívia A.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0, image: p3c },
-      { user: "Verônica F.", comment: "Muito satisfeita. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0 },
-      { user: "Rosana P.", comment: "Muito satisfeita. Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.", rating: 5.0 },
+      {
+        user: "Verônica F.",
+        comment:
+          "Muito satisfeita. A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+      },
+      {
+        user: "Rosana P.",
+        comment:
+          "Muito satisfeita. Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.",
+        rating: 5.0,
+      },
       { user: "Juliana L.", comment: "A cor pessoalmente é ainda mais bonita que no site.", rating: 5.0 },
       { user: "Paula F.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
       { user: "Gislaine P.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0 },
       { user: "Bianca F.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
-      { user: "Carla F.", comment: "Simplesmente amei! Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 5.0 },
-      { user: "Rafaela S.", comment: "Achei incrível. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 },
-      { user: "Patrícia F.", comment: "Gente, que peça! A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.", rating: 5.0 },
+      {
+        user: "Carla F.",
+        comment:
+          "Simplesmente amei! Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 5.0,
+      },
+      {
+        user: "Rafaela S.",
+        comment:
+          "Achei incrível. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
+      {
+        user: "Patrícia F.",
+        comment:
+          "Gente, que peça! A peça é incrível, superou o que eu esperava. O tecido é fluido e o caimento é maravilhoso. Usei num evento de gala e foi um sucesso. A cor é muito bonita e o design é exclusivo. Parabéns pela qualidade, é difícil encontrar peças assim atualmente.",
+        rating: 5.0,
+      },
       { user: "Eliane O.", comment: "O corte é perfeito, valoriza as curvas sem marcar.", rating: 5.0, image: p3d },
       { user: "Tatiane F.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 5.0 },
       { user: "Aline F.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0 },
-      { user: "Beatriz S.", comment: "Achei incrível. O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.", rating: 5.0, image: p3b },
-      { user: "Daniela P.", comment: "Simplesmente amei! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
+      {
+        user: "Beatriz S.",
+        comment:
+          "Achei incrível. O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.",
+        rating: 5.0,
+        image: p3b,
+      },
+      {
+        user: "Daniela P.",
+        comment:
+          "Simplesmente amei! O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
       { user: "Viviane L.", comment: "Muito feliz com a compra, a peça é divina.", rating: 5.0 },
       { user: "Regina S.", comment: "Muito feliz com a compra, a peça é divina.", rating: 4.0 },
       { user: "Olívia O.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 5.0 },
-      { user: "Renata S.", comment: "Muito satisfeita. Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.", rating: 5.0 },
+      {
+        user: "Renata S.",
+        comment:
+          "Muito satisfeita. Fiquei surpresa com a qualidade do acabamento interno, as costuras são muito bem feitas. A cor é exatamente como na foto, um tom muito sofisticado. O tamanho M serviu como uma luva, tenho 1,65m e o comprimento ficou ideal para usar com salto médio. Chegou rápido e bem embalado.",
+        rating: 5.0,
+      },
       { user: "Gislaine O.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 5.0 },
       { user: "Lourdes P.", comment: "A cor é maravilhosa e o tecido é muito confortável.", rating: 5.0 },
-      { user: "Ana Paula L.", comment: "Muito satisfeita. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.", rating: 5.0 }
+      {
+        user: "Ana Paula L.",
+        comment:
+          "Muito satisfeita. Estava procurando algo assim há tempos para o batizado do meu afilhado. A peça é super confortável, não aperta e permite movimento. O design é moderno mas mantém aquele ar clássico que eu adoro. A entrega foi super pontual e veio com um cheirinho maravilhoso na caixa.",
+        rating: 5.0,
+      },
     ],
   },
   {
@@ -1450,54 +3990,176 @@ export const products: Product[] = [
     price: 99.0,
     originalPrice: 189.0,
     video: videoCalcaOffWhite.url,
-    description: "A peça que define a elegância moderna. Nossa Calça de Alfaiataria Off-White possui corte reto impecável, pregas frontais que alongam a silhueta e um caimento fluido que exala sofisticação. Ideal para compor looks minimalistas e poderosos." + exchangePolicy,
+    description:
+      "A peça que define a elegância moderna. Nossa Calça de Alfaiataria Off-White possui corte reto impecável, pregas frontais que alongam a silhueta e um caimento fluido que exala sofisticação. Ideal para compor looks minimalistas e poderosos." +
+      exchangePolicy,
 
-    images: [calcaOffWhite1.url, calcaOffWhite2.url, calcaOffWhite3.url, calcaOffWhite4.url, calcaOffWhite5.url, calcaOffWhite7.url, calcaOffWhite8.url, calcaOffWhite9.url, calcaOffWhite10.url],
+    images: [
+      calcaOffWhite1.url,
+      calcaOffWhite2.url,
+      calcaOffWhite3.url,
+      calcaOffWhite4.url,
+      calcaOffWhite5.url,
+      calcaOffWhite7.url,
+      calcaOffWhite8.url,
+      calcaOffWhite9.url,
+      calcaOffWhite10.url,
+    ],
     sizes: numericSizes,
     includedGift: {
       name: "Cinto Premium Évora",
       color: "Preto",
       colorValue: "#000000",
       price: "Grátis",
-      image: cintoOffwhiteeee.url
+      image: cintoOffwhiteeee.url,
     },
     colors: [{ name: "Off-White", value: "#faf9f6" }],
     rating: 4.8,
     salesCount: 1842,
     ratingBreakdown: { 5: 1245, 4: 98, 3: 25, 2: 6, 1: 4 },
     reviews: [
-      { user: "Mônica R.", comment: "Veste muito bem, estou super satisfeita com a compra.", rating: 5.0, image: feedbackCalcaOffWhiteeee1.url },
-      { user: "Paloma S.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 5.0, image: feedbackCalcaOffWhiteeee2.url },
-      { user: "Milena L.", comment: "Gente, que peça! Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 5.0, image: feedbackCalcaOffWhiteeee3.url },
-      { user: "Fernanda P.", comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.", rating: 5.0, image: feedbackCalcaOffWhiteeee4.url },
-      { user: "Viviane F.", comment: "O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0, image: feedbackCalcaOffWhiteeee5.url },
-      { user: "Fabiana A.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0, image: feedbackCalcaOffWhiteeee6.url },
-      { user: "Luana F.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0, image: feedbackCalcaOffWhiteeee7.url },
-      { user: "Isabela P.", comment: "Gente, que peça! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0, image: feedbackCalcaOffWhiteeee8.url },
-      { user: "Aline S.", comment: "Gente, que peça! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0, image: feedbackCalcaOffWhiteeee9.url },
-      { user: "Maria Eduarda S.", comment: "Achei incrível. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0, image: feedbackCalcaOffWhiteeee2.url },
+      {
+        user: "Mônica R.",
+        comment: "Veste muito bem, estou super satisfeita com a compra.",
+        rating: 5.0,
+        image: feedbackCalcaOffWhiteeee1.url,
+      },
+      {
+        user: "Paloma S.",
+        comment: "Chegou tudo certinho e a peça é um encanto.",
+        rating: 5.0,
+        image: feedbackCalcaOffWhiteeee2.url,
+      },
+      {
+        user: "Milena L.",
+        comment:
+          "Gente, que peça! Amei o detalhe do corte, valoriza muito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 5.0,
+        image: feedbackCalcaOffWhiteeee3.url,
+      },
+      {
+        user: "Fernanda P.",
+        comment: "Ficou lindíssimo, o tamanho P serviu certinho em mim.",
+        rating: 5.0,
+        image: feedbackCalcaOffWhiteeee4.url,
+      },
+      {
+        user: "Viviane F.",
+        comment:
+          "O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+        image: feedbackCalcaOffWhiteeee5.url,
+      },
+      {
+        user: "Fabiana A.",
+        comment: "O tecido é uma delícia na pele, muito macio.",
+        rating: 5.0,
+        image: feedbackCalcaOffWhiteeee6.url,
+      },
+      {
+        user: "Luana F.",
+        comment: "Simplesmente perfeito, superou minhas expectativas.",
+        rating: 5.0,
+        image: feedbackCalcaOffWhiteeee7.url,
+      },
+      {
+        user: "Isabela P.",
+        comment:
+          "Gente, que peça! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.",
+        rating: 5.0,
+        image: feedbackCalcaOffWhiteeee8.url,
+      },
+      {
+        user: "Aline S.",
+        comment:
+          "Gente, que peça! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 5.0,
+        image: feedbackCalcaOffWhiteeee9.url,
+      },
+      {
+        user: "Maria Eduarda S.",
+        comment:
+          "Achei incrível. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.",
+        rating: 5.0,
+        image: feedbackCalcaOffWhiteeee2.url,
+      },
       { user: "Paloma R.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 5.0 },
       { user: "Priscila F.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
-      { user: "Fabiana G.", comment: "Gente, que peça! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!", rating: 5.0 },
+      {
+        user: "Fabiana G.",
+        comment:
+          "Gente, que peça! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!",
+        rating: 5.0,
+      },
       { user: "Bianca R.", comment: "Qualidade que surpreende, o acabamento interno é perfeito.", rating: 5.0 },
-      { user: "Luciana R.", comment: "Simplesmente amei! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.", rating: 5.0 },
-      { user: "Olívia F.", comment: "Simplesmente amei! A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.", rating: 5.0 },
+      {
+        user: "Luciana R.",
+        comment:
+          "Simplesmente amei! O caimento é bem fluido, exatamente como eu queria para um evento na praia. O tecido é leve mas tem substância. A cor combina com tudo e os detalhes da costura mostram que é uma peça de alto padrão. Fiquei muito feliz com o resultado final e com certeza voltarei a comprar.",
+        rating: 5.0,
+      },
+      {
+        user: "Olívia F.",
+        comment:
+          "Simplesmente amei! A qualidade da costura é algo que me chamou a atenção logo de cara. Tudo muito limpo e bem finalizado. O tecido tem um brilho discreto que dá um ar de sofisticação. O tamanho P serviu perfeitamente. A entrega foi rápida e o produto veio muito bem protegido.",
+        rating: 5.0,
+      },
       { user: "Flávia G.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
-      { user: "Rosana G.", comment: "Muito satisfeita. Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.", rating: 5.0 },
-      { user: "Ursula S.", comment: "Simplesmente amei! O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.", rating: 5.0 },
+      {
+        user: "Rosana G.",
+        comment:
+          "Muito satisfeita. Simplesmente impecável. O forro é de qualidade e vai até o final, o que faz toda a diferença no caimento. A cor pessoalmente consegue ser ainda mais bonita que no site. É aquele tipo de roupa que a gente veste e se sente poderosa na hora. Estou muito satisfeita com a aquisição.",
+        rating: 5.0,
+      },
+      {
+        user: "Ursula S.",
+        comment:
+          "Simplesmente amei! O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.",
+        rating: 5.0,
+      },
       { user: "Mônica A.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 5.0 },
-      { user: "Eliane A.", comment: "Muito satisfeita. O tecido é muiito macio e a cor é divinal. O corte é moderno e valoriza muiito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 5.0 },
+      {
+        user: "Eliane A.",
+        comment:
+          "Muito satisfeita. O tecido é muiito macio e a cor é divinal. O corte é moderno e valoriza muiito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 5.0,
+      },
       { user: "Iara G.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
-      { user: "Ursula F.", comment: "O tamanho GG serviu perfeitamente, sem apertar.", rating: 5.0 },
+      { user: "Ursula F.", comment: "O tamanho serviu perfeitamente, sem apertar.", rating: 5.0 },
       { user: "Tereza S.", comment: "Amei cada detalhe, a costura é impecável.", rating: 5.0 },
       { user: "Márcia S.", comment: "O tecido é uma delícia na pele, muito macio.", rating: 5.0 },
-      { user: "Daniela S.", comment: "Achei incrível. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.", rating: 5.0 },
-      { user: "Iara L.", comment: "Experiência ótima. Amei o detalhe do corte, valoriza muiito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.", rating: 5.0 },
+      {
+        user: "Daniela S.",
+        comment:
+          "Achei incrível. O que mais gostei foi a versatilidade. Com um colete por cima fica super formal, sozinho fica mais leve. O tecido é respirável e não esquenta. A modelagem é perfeita, respeita as curvas sem marcar. O tom de marfim é muito chic e fácil de coordenar com outros acessórios.",
+        rating: 5.0,
+      },
+      {
+        user: "Iara L.",
+        comment:
+          "Experiência ótima. Amei o detalhe do corte, valoriza muiito o colo. O pano é encorpado, então não fica transparente, o que era minha maior preocupação. É uma peça versátil que dá pra usar tanto num jantar mais chic quanto num evento de trabalho. Vale cada centavo pela qualidade que entrega.",
+        rating: 5.0,
+      },
       { user: "Adriana S.", comment: "Tecido fresco e leve, ideal para o verão.", rating: 5.0 },
-      { user: "Taís P.", comment: "Gente, que peça! O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.", rating: 4.0 },
+      {
+        user: "Taís P.",
+        comment:
+          "Gente, que peça! O tecido é muito macio e a cor é divinal. O corte é moderno e valoriza muito o corpo. É o tipo de peça coringa que toda mulher deveria ter no guarda-roupa. O preço é justo pela qualidade que oferece. Com certeza vou comprar outras cores do mesmo modelo.",
+        rating: 4.0,
+      },
       { user: "Alessandra S.", comment: "Amei cada detalhe, a costura é impecável.", rating: 4.0 },
-      { user: "Gabriela F.", comment: "Experiência ótima. O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.", rating: 4.0 },
-      { user: "Gislaine P.", comment: "Achei incrível. Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 4.0 },
+      {
+        user: "Gabriela F.",
+        comment:
+          "Experiência ótima. O tecido é maravilhoso, tem um toque acetinado que eu não esperava pelo valor. Usei em um casamento à tarde e recebi muitos elogios. O caimento na cintura ficou perfeito, não marca nada e deixa o corpo bem elegante. Com certeza vou usar muito em outras ocasiões especiais.",
+        rating: 4.0,
+      },
+      {
+        user: "Gislaine P.",
+        comment:
+          "Achei incrível. Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.",
+        rating: 4.0,
+      },
       { user: "Larissa L.", comment: "O luxo em forma de roupa, me senti uma rainha.", rating: 4.0 },
       { user: "Marta S.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 3.0 },
       { user: "Tânia A.", comment: "Chegou tudo certinho e a peça é um encanto.", rating: 3.0 },
