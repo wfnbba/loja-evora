@@ -185,7 +185,7 @@ export const checkPixStatus = createServerFn({ method: "GET" })
         import("./utmify.server"),
       ]);
 
-      await processVexoPayEvent({
+      const tracking = await processVexoPayEvent({
         eventType: "polling.payment.paid",
         transactionId: data.transactionId,
         status: "paid",
@@ -195,6 +195,15 @@ export const checkPixStatus = createServerFn({ method: "GET" })
         payload: { source: "vexopay_status_api", ...result.data },
       });
       await deliverUtmifyPurchase(data.transactionId);
+
+      return {
+        ...result,
+        data: {
+          ...result.data,
+          trackingCode: tracking.trackingCode ?? null,
+          purchasedAt: tracking.purchasedAt ?? null,
+        },
+      };
     }
 
     return result;
