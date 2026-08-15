@@ -28,7 +28,7 @@ function CheckoutPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <header className="w-full border-b border-border/50 bg-background">
+      <header className="w-full border-b border-border/50 bg-background sticky top-0 z-50">
         <div className="container mx-auto flex h-20 items-center justify-between px-4">
           <Link to="/">
             <img src={logoAsset.url} alt="Évora Logo" className="h-10 w-auto" />
