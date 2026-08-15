@@ -9,9 +9,9 @@ import { products as localProducts } from "@/lib/products-data";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Évora | Moda feminina elegante" },
-      { name: "description", content: "Conheça a coleção Évora: alfaiataria, vestidos e peças femininas que unem elegância, presença e acabamento impecável." },
-      { property: "og:title", content: "Évora | Moda feminina elegante" },
+      { title: "Loja Évora | Moda feminina elegante" },
+      { name: "description", content: "Conheça a coleção Loja Évora: alfaiataria, vestidos e peças femininas que unem elegância, presença e acabamento impecável." },
+      { property: "og:title", content: "Loja Évora | Moda feminina elegante" },
       { property: "og:description", content: "Descubra vestidos, alfaiataria e peças femininas da coleção Évora." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

@@ -7,8 +7,8 @@ import logoAsset from "@/assets/logo.png.asset.json";
 export const Route = createFileRoute("/checkout")({
   head: () => ({
     meta: [
-      { title: "Checkout Seguro | Évora" },
-      { name: "description", content: "Finalize sua compra com segurança na Évora." },
+      { title: "Checkout Seguro | Loja Évora" },
+      { name: "description", content: "Finalize sua compra com segurança na Loja Évora." },
     ],
   }),
   component: CheckoutPage,
