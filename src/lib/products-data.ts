@@ -1,4 +1,5 @@
 import p2d from "@/assets/products/p2-d.jpg";
+import { REVIEW_NAMES } from "./review-names";
 import p2c from "@/assets/products/p2-c.jpg";
 import p2b from "@/assets/products/p2-b.jpg";
 import ig0 from "@/assets/products/ig-0.jpg";
@@ -1465,3 +1466,28 @@ export const products: Product[] = [
     ],
   },
 ];
+
+// --- Complemento de avaliações somente-nota ---------------------------------
+// Cada produto deve exibir um total de avaliações equivalente a 32% das vendas.
+// As avaliações existentes NÃO são alteradas: apenas completamos a diferença
+// com avaliações sem texto (só estrelas), distribuídas em 85% nota 5 e 15% nota 4.
+for (const product of products) {
+  const target = Math.round(product.salesCount * 0.32);
+  const missing = target - product.reviews.length;
+  if (missing <= 0) continue;
+
+  const fourStars = Math.round(missing * 0.15);
+  const fiveStars = missing - fourStars;
+
+  let seed = 0;
+  for (let i = 0; i < product.id.length; i++) seed = (seed * 31 + product.id.charCodeAt(i)) % 100000;
+
+  for (let i = 0; i < missing; i++) {
+    seed = (seed * 1103515245 + 12345) % 2147483648;
+    const user = REVIEW_NAMES[seed % REVIEW_NAMES.length] ?? "Maria S.";
+    product.reviews.push({ user, comment: "", rating: i < fiveStars ? 5.0 : 4.0 });
+  }
+
+  product.ratingBreakdown[5] += fiveStars;
+  product.ratingBreakdown[4] += fourStars;
+}
