@@ -228,7 +228,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
               <div className="flex flex-col items-center gap-6">
                 <img src={pixLogoAsset.url} alt="PIX" className="h-8 w-auto grayscale opacity-50" />
-                <Button type="submit" disabled={loading} className="w-full h-16 bg-foreground text-background font-bold uppercase tracking-[0.2em] rounded-none cursor-pointer utmify">
+                <Button type="submit" disabled={loading} className="w-full h-16 bg-foreground text-background font-bold uppercase tracking-[0.2em] rounded-none cursor-pointer">
                   {loading ? <Loader2 className="animate-spin" /> : "Gerar QR Code PIX"}
                 </Button>
               </div>
