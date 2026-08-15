@@ -212,7 +212,7 @@ function Header() {
                     <Link
                       key={link.name}
                       to={link.to}
-                      hash={link.hash}
+                      {...(link.hash ? { hash: link.hash } : {})}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="text-base font-light tracking-[0.15em] uppercase hover:text-muted-foreground transition-colors border-b border-border/50 pb-4"
                     >
