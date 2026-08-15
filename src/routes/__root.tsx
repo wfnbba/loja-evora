@@ -176,12 +176,20 @@ function Header() {
     return () => window.removeEventListener('open-cart', handleOpenCart);
   }, []);
 
-  const navLinks = [
-    { name: "Início", href: "/" },
-    { name: "Vestidos", href: "/#colecao" },
-    { name: "Conjuntos", href: "/#colecao" },
-    { name: "Alfaiataria", href: "/#colecao" },
-    { name: "Acessórios", href: "/#colecao" },
+  const navLinks: { name: string; to: string; hash?: string }[] = [
+    { name: "Início", to: "/" },
+    { name: "Coleção", to: "/", hash: "colecao" },
+    { name: "Rastrear Pedido", to: "/rastrear-pedido" },
+    { name: "Contato", to: "/contato" },
+  ];
+
+  const menuLinks: { name: string; to: string; hash?: string }[] = [
+    ...navLinks,
+    { name: "Política de Trocas", to: "/politica-de-trocas" },
+    { name: "Política de Entrega", to: "/politica-de-entrega" },
+    { name: "Política de Reembolso", to: "/politica-de-reembolso" },
+    { name: "Política de Privacidade", to: "/politica-de-privacidade" },
+    { name: "Termos de Serviço", to: "/termos-de-servico" },
   ];
 
   return (
@@ -191,21 +199,22 @@ function Header() {
           <div className="flex items-center gap-4">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden cursor-pointer">
+                <Button variant="ghost" size="icon" aria-label="Abrir menu" className="cursor-pointer">
                   <Menu className="size-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+              <SheetContent side="left" className="w-[300px] sm:w-[400px] overflow-y-auto">
                 <SheetHeader className="mb-8">
                   <SheetTitle className="text-left font-light tracking-[0.2em] uppercase">Menu</SheetTitle>
                 </SheetHeader>
-                <nav className="flex flex-col gap-6">
-                  {navLinks.map((link) => (
+                <nav className="flex flex-col gap-5 px-4 pb-10">
+                  {menuLinks.map((link) => (
                     <Link
                       key={link.name}
-                      to={link.href}
+                      to={link.to}
+                      {...(link.hash ? { hash: link.hash } : {})}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-lg font-light tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors border-b border-border/50 pb-4"
+                      className="text-base font-light tracking-[0.15em] uppercase hover:text-muted-foreground transition-colors border-b border-border/50 pb-4"
                     >
                       {link.name}
                     </Link>
@@ -213,6 +222,7 @@ function Header() {
                 </nav>
               </SheetContent>
             </Sheet>
+
 
             <Link to="/" className="flex items-center gap-2">
               <img src={logoAsset.url} alt="Évora Logo" className="h-10 w-auto" />
@@ -224,7 +234,8 @@ function Header() {
             {navLinks.map((link) => (
               <Link
                 key={link.name}
-                to={link.href}
+                to={link.to}
+                {...(link.hash ? { hash: link.hash } : {})}
                 className="text-xs font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors"
               >
                 {link.name}
