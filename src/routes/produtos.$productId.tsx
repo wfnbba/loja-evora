@@ -45,7 +45,7 @@ function ProductPage() {
   const loaderData = Route.useLoaderData();
   const product = loaderData.product;
   const router = useRouter();
-  const isCheckoutMode = router.state.location.pathname.startsWith("/checkout");
+  const isCheckoutMode = router.state.location.pathname.startsWith("/checkout") || router.state.location.pathname === "/checkout";
 
   if (isCheckoutMode) return null;
   

@@ -22,7 +22,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const router = useRouter();
-  const isCheckoutMode = router.state.location.pathname.startsWith("/checkout");
+  const isCheckoutMode = router.state.location.pathname.startsWith("/checkout") || router.state.location.pathname === "/checkout";
 
   if (isCheckoutMode) return null;
 
