@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/obrigado")({
   head: () => ({
     meta: [
-      { title: "Obrigado | Évora" },
+      { title: "Obrigado | Loja Évora" },
       { name: "description", content: "Seu pedido foi recebido com sucesso." },
     ],
   }),
@@ -21,7 +21,7 @@ function ThankYouPage() {
       <div className="max-w-md space-y-4">
         <h1 className="text-3xl font-light uppercase tracking-[0.2em]">Pedido Recebido</h1>
         <p className="text-sm font-light text-muted-foreground leading-relaxed">
-          Obrigada por escolher a Évora. Seu pagamento foi confirmado e seu pedido já está sendo processado.
+          Obrigada por escolher a Loja Évora. Seu pagamento foi confirmado e seu pedido já está sendo processado.
         </p>
         <p className="text-xs font-light text-muted-foreground">
           Você receberá as atualizações de rastreio em seu e-mail e WhatsApp em breve.
