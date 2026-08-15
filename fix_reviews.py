@@ -92,13 +92,10 @@ def process_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    # Regex robusta para capturar blocos de review, mesmo com quebras de linha
-    review_pattern = re.compile(r'\{\s*user:\s*"([^"]+)",\s*comment:\s*"([^"]+)",\s*rating:\s*([\d\.]+)(?:,\s*image:\s*([^ }]+))?\s*\}', re.MULTILINE)
+    # Regex robusta para capturar blocos de review
+    review_pattern = re.compile(r'\{\s*user:\s*"([^"]+)",\s*comment:\s*"([^"]+)",\s*rating:\s*([\d\.]+)(?:,\s*image:\s*([^ }]+))?\s*\}')
     
     used_comments = set()
-    
-    # Vamos processar por partes para evitar timeout se o arquivo for muito grande
-    # Ou simplesmente limitar o número de substituições se necessário
     
     def replace_review(match):
         user = match.group(1)
@@ -107,13 +104,15 @@ def process_file(file_path):
 
         if rating >= 4.0:
             if random.random() > 0.5:
-                new_comment = get_unique_long_feedback()
-                while new_comment in used_comments:
-                    new_comment = get_unique_long_feedback()
+                # Comentário longo
+                new_comment = random.choice(LONG_FEEDBACK_TEMPLATES)
+                # Adicionar variações para garantir unicidade sem loop infinito
+                prefixos = ["Achei incrível. ", "Simplesmente amei! ", "Experiência ótima. ", "Muito satisfeita. ", "Gente, que peça! ", "Uau! ", ""]
+                new_comment = f"{random.choice(prefixos)}{new_comment}"
+                new_comment = add_slight_errors(new_comment)
             else:
-                new_comment = get_unique_short_feedback()
-                while new_comment in used_comments:
-                    new_comment = get_unique_short_feedback()
+                # Comentário curto
+                new_comment = random.choice(SHORT_FEEDBACK_TEMPLATES)
         elif rating == 1.0:
             new_comment = ""
         elif rating == 2.0:
@@ -126,14 +125,14 @@ def process_file(file_path):
             ]
             new_comment = random.choice(templates_2)
         else:
-            new_comment = get_unique_short_feedback()
+            new_comment = random.choice(SHORT_FEEDBACK_TEMPLATES)
 
-        used_comments.add(new_comment)
         new_user = generate_name()
         
         img_str = f", image: {image}" if image else ""
         return f'{{ user: "{new_user}", comment: "{new_comment}", rating: {rating}{img_str} }}'
 
+    # Processar o conteúdo
     new_content = review_pattern.sub(replace_review, content)
     
     with open(file_path, 'w', encoding='utf-8') as f:
@@ -142,4 +141,5 @@ def process_file(file_path):
 if __name__ == "__main__":
     process_file('src/lib/products-data.ts')
     print("Successfully processed src/lib/products-data.ts")
+
 
