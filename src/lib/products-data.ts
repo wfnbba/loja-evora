@@ -1516,7 +1516,9 @@ for (const product of products) {
   }
 
   comments.forEach((comment, index) => {
-    product.reviews[index].comment = comment;
+    const review = product.reviews[index];
+    if (!review) throw new Error(`Feedback ${index + 1} ausente em ${product.name}.`);
+    review.comment = comment;
   });
 }
 
