@@ -11,7 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as ObrigadoRouteImport } from './routes/obrigado'
+import { Route as PoliticaDeEntregaRouteImport } from './routes/politica-de-entrega'
+import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
+import { Route as PoliticaDeReembolsoRouteImport } from './routes/politica-de-reembolso'
+import { Route as PoliticaDeTrocasRouteImport } from './routes/politica-de-trocas'
+import { Route as RastrearPedidoRouteImport } from './routes/rastrear-pedido'
+import { Route as TermosDeServicoRouteImport } from './routes/termos-de-servico'
 import { Route as ProdutosProductIdRouteImport } from './routes/produtos.$productId'
 import { Route as ApiPublicWebhookRouteImport } from './routes/api/public/webhook'
 
@@ -25,9 +32,44 @@ const CheckoutRoute = CheckoutRouteImport.update({
   path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContatoRoute = ContatoRouteImport.update({
+  id: '/contato',
+  path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ObrigadoRoute = ObrigadoRouteImport.update({
   id: '/obrigado',
   path: '/obrigado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDeEntregaRoute = PoliticaDeEntregaRouteImport.update({
+  id: '/politica-de-entrega',
+  path: '/politica-de-entrega',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
+  id: '/politica-de-privacidade',
+  path: '/politica-de-privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDeReembolsoRoute = PoliticaDeReembolsoRouteImport.update({
+  id: '/politica-de-reembolso',
+  path: '/politica-de-reembolso',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDeTrocasRoute = PoliticaDeTrocasRouteImport.update({
+  id: '/politica-de-trocas',
+  path: '/politica-de-trocas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RastrearPedidoRoute = RastrearPedidoRouteImport.update({
+  id: '/rastrear-pedido',
+  path: '/rastrear-pedido',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermosDeServicoRoute = TermosDeServicoRouteImport.update({
+  id: '/termos-de-servico',
+  path: '/termos-de-servico',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProdutosProductIdRoute = ProdutosProductIdRouteImport.update({
@@ -44,14 +86,28 @@ const ApiPublicWebhookRoute = ApiPublicWebhookRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/checkout': typeof CheckoutRoute
+  '/contato': typeof ContatoRoute
   '/obrigado': typeof ObrigadoRoute
+  '/politica-de-entrega': typeof PoliticaDeEntregaRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/politica-de-reembolso': typeof PoliticaDeReembolsoRoute
+  '/politica-de-trocas': typeof PoliticaDeTrocasRoute
+  '/rastrear-pedido': typeof RastrearPedidoRoute
+  '/termos-de-servico': typeof TermosDeServicoRoute
   '/produtos/$productId': typeof ProdutosProductIdRoute
   '/api/public/webhook': typeof ApiPublicWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/checkout': typeof CheckoutRoute
+  '/contato': typeof ContatoRoute
   '/obrigado': typeof ObrigadoRoute
+  '/politica-de-entrega': typeof PoliticaDeEntregaRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/politica-de-reembolso': typeof PoliticaDeReembolsoRoute
+  '/politica-de-trocas': typeof PoliticaDeTrocasRoute
+  '/rastrear-pedido': typeof RastrearPedidoRoute
+  '/termos-de-servico': typeof TermosDeServicoRoute
   '/produtos/$productId': typeof ProdutosProductIdRoute
   '/api/public/webhook': typeof ApiPublicWebhookRoute
 }
@@ -59,7 +115,14 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/checkout': typeof CheckoutRoute
+  '/contato': typeof ContatoRoute
   '/obrigado': typeof ObrigadoRoute
+  '/politica-de-entrega': typeof PoliticaDeEntregaRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/politica-de-reembolso': typeof PoliticaDeReembolsoRoute
+  '/politica-de-trocas': typeof PoliticaDeTrocasRoute
+  '/rastrear-pedido': typeof RastrearPedidoRoute
+  '/termos-de-servico': typeof TermosDeServicoRoute
   '/produtos/$productId': typeof ProdutosProductIdRoute
   '/api/public/webhook': typeof ApiPublicWebhookRoute
 }
@@ -68,21 +131,42 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/checkout'
+    | '/contato'
     | '/obrigado'
+    | '/politica-de-entrega'
+    | '/politica-de-privacidade'
+    | '/politica-de-reembolso'
+    | '/politica-de-trocas'
+    | '/rastrear-pedido'
+    | '/termos-de-servico'
     | '/produtos/$productId'
     | '/api/public/webhook'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/checkout'
+    | '/contato'
     | '/obrigado'
+    | '/politica-de-entrega'
+    | '/politica-de-privacidade'
+    | '/politica-de-reembolso'
+    | '/politica-de-trocas'
+    | '/rastrear-pedido'
+    | '/termos-de-servico'
     | '/produtos/$productId'
     | '/api/public/webhook'
   id:
     | '__root__'
     | '/'
     | '/checkout'
+    | '/contato'
     | '/obrigado'
+    | '/politica-de-entrega'
+    | '/politica-de-privacidade'
+    | '/politica-de-reembolso'
+    | '/politica-de-trocas'
+    | '/rastrear-pedido'
+    | '/termos-de-servico'
     | '/produtos/$productId'
     | '/api/public/webhook'
   fileRoutesById: FileRoutesById
@@ -90,7 +174,14 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CheckoutRoute: typeof CheckoutRoute
+  ContatoRoute: typeof ContatoRoute
   ObrigadoRoute: typeof ObrigadoRoute
+  PoliticaDeEntregaRoute: typeof PoliticaDeEntregaRoute
+  PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
+  PoliticaDeReembolsoRoute: typeof PoliticaDeReembolsoRoute
+  PoliticaDeTrocasRoute: typeof PoliticaDeTrocasRoute
+  RastrearPedidoRoute: typeof RastrearPedidoRoute
+  TermosDeServicoRoute: typeof TermosDeServicoRoute
   ProdutosProductIdRoute: typeof ProdutosProductIdRoute
   ApiPublicWebhookRoute: typeof ApiPublicWebhookRoute
 }
@@ -111,11 +202,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contato': {
+      id: '/contato'
+      path: '/contato'
+      fullPath: '/contato'
+      preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/obrigado': {
       id: '/obrigado'
       path: '/obrigado'
       fullPath: '/obrigado'
       preLoaderRoute: typeof ObrigadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-entrega': {
+      id: '/politica-de-entrega'
+      path: '/politica-de-entrega'
+      fullPath: '/politica-de-entrega'
+      preLoaderRoute: typeof PoliticaDeEntregaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-privacidade': {
+      id: '/politica-de-privacidade'
+      path: '/politica-de-privacidade'
+      fullPath: '/politica-de-privacidade'
+      preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-reembolso': {
+      id: '/politica-de-reembolso'
+      path: '/politica-de-reembolso'
+      fullPath: '/politica-de-reembolso'
+      preLoaderRoute: typeof PoliticaDeReembolsoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-trocas': {
+      id: '/politica-de-trocas'
+      path: '/politica-de-trocas'
+      fullPath: '/politica-de-trocas'
+      preLoaderRoute: typeof PoliticaDeTrocasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rastrear-pedido': {
+      id: '/rastrear-pedido'
+      path: '/rastrear-pedido'
+      fullPath: '/rastrear-pedido'
+      preLoaderRoute: typeof RastrearPedidoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/termos-de-servico': {
+      id: '/termos-de-servico'
+      path: '/termos-de-servico'
+      fullPath: '/termos-de-servico'
+      preLoaderRoute: typeof TermosDeServicoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/produtos/$productId': {
@@ -138,7 +278,14 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CheckoutRoute: CheckoutRoute,
+  ContatoRoute: ContatoRoute,
   ObrigadoRoute: ObrigadoRoute,
+  PoliticaDeEntregaRoute: PoliticaDeEntregaRoute,
+  PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
+  PoliticaDeReembolsoRoute: PoliticaDeReembolsoRoute,
+  PoliticaDeTrocasRoute: PoliticaDeTrocasRoute,
+  RastrearPedidoRoute: RastrearPedidoRoute,
+  TermosDeServicoRoute: TermosDeServicoRoute,
   ProdutosProductIdRoute: ProdutosProductIdRoute,
   ApiPublicWebhookRoute: ApiPublicWebhookRoute,
 }

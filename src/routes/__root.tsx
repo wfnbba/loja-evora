@@ -249,18 +249,111 @@ function Header() {
 }
 
 function Footer() {
+  const policyLinks = [
+    { name: "Política de Privacidade", href: "/politica-de-privacidade" as const },
+    { name: "Política de Reembolso", href: "/politica-de-reembolso" as const },
+    { name: "Política de Entrega", href: "/politica-de-entrega" as const },
+    { name: "Política de Trocas", href: "/politica-de-trocas" as const },
+    { name: "Termos de Serviço", href: "/termos-de-servico" as const },
+  ];
+
+  const careLinks = [
+    { name: "Rastrear Pedido", href: "/rastrear-pedido" as const },
+    { name: "Fale Conosco", href: "/contato" as const },
+  ];
+
+  const advantages = [
+    "Suporte 100% Humanizado",
+    "Garantia de 90 Dias",
+    "Selo SSL de Segurança",
+    "Devoluções Gratuitas",
+    "Empresa Certificada",
+    "Marca Registrada",
+  ];
+
   return (
-    <footer className="border-t border-border/50 bg-background py-20">
-      <div className="container mx-auto px-4 text-center lg:px-8">
-        <img src={logoAsset.url} alt="Évora Logo" className="mx-auto mb-8 h-8 w-auto opacity-50" />
-        <nav className="mb-8 flex justify-center gap-8">
-          <a href="#" className="text-[10px] font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Termos</a>
-          <a href="#" className="text-[10px] font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Privacidade</a>
-        </nav>
-        <p className="text-[10px] tracking-[0.2em] font-light text-muted-foreground">
-          © 2026 ÉVORA. TODOS OS DIREITOS RESERVADOS.
-        </p>
+    <footer className="border-t border-border/50 bg-background py-16 lg:py-20">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="grid gap-12 text-left sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <h3 className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground">
+              Políticas
+            </h3>
+            <ul className="mt-6 space-y-4">
+              {policyLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.href}
+                    className="text-sm font-light text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground">
+              Atendimento ao Cliente
+            </h3>
+            <ul className="mt-6 space-y-4">
+              {careLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.href}
+                    className="text-sm font-light text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground">
+              Fale Conosco
+            </h3>
+            <ul className="mt-6 space-y-4 text-sm font-light text-muted-foreground">
+              <li>Horário: 09:00 às 18:00</li>
+              <li>
+                <a
+                  href="mailto:atendimento@lojaevora.shop"
+                  className="transition-colors hover:text-foreground"
+                >
+                  atendimento@lojaevora.shop
+                </a>
+              </li>
+              <li className="leading-relaxed">
+                Av. Trompowsky, 354 - 5º andar - Centro, Florianópolis - SC, 88015-300
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground">
+              Vantagens
+            </h3>
+            <ul className="mt-6 space-y-4 text-sm font-light text-muted-foreground">
+              {advantages.map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span aria-hidden="true">·</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-16 border-t border-border/50 pt-10 text-center">
+          <img src={logoAsset.url} alt="Évora Logo" className="mx-auto mb-6 h-8 w-auto opacity-50" />
+          <p className="text-[10px] tracking-[0.2em] font-light text-muted-foreground">
+            © 2026 ÉVORA. TODOS OS DIREITOS RESERVADOS.
+          </p>
+        </div>
       </div>
     </footer>
   );
 }
+
