@@ -9,6 +9,7 @@ import { createPixPayment, checkPixStatus } from "@/lib/vexopay.functions";
 import { getAddressByCep } from "@/lib/cep.functions";
 import { useServerFn } from "@tanstack/react-start";
 import { getPersistedUtms } from "@/hooks/use-utm-tracking";
+import { trackLead } from "@/lib/tracking.functions";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { OptimizedImage } from "@/components/ui/optimized-image";
@@ -42,8 +43,23 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
   const createPix = useServerFn(createPixPayment);
   const checkStatus = useServerFn(checkPixStatus);
   const getAddress = useServerFn(getAddressByCep);
+  const trackLeadFn = useServerFn(trackLead);
 
   useEffect(() => {
+    // Lead tracking when email is filled
+    if (formData.email.length > 5 && formData.email.includes('@')) {
+      const timer = setTimeout(() => {
+        trackLeadFn({ 
+          data: { 
+            email: formData.email, 
+            name: formData.name, 
+            phone: formData.phone 
+          } 
+        }).catch(console.error);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [formData.email, formData.name, formData.phone, trackLeadFn]);
     const timer = setInterval(() => setTimeLeft(p => p > 0 ? p - 1 : 0), 1000);
     return () => clearInterval(timer);
   }, []);

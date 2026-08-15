@@ -55,12 +55,15 @@ export const Route = createFileRoute('/api/public/webhook')({
           
           console.log(`Payment status update for transaction ${transactionId}: ${status}`);
           
-          // 1. Update database
+          // 1. Update database status and total_spent
+          const { updateOrderStatus } = await import('@/lib/tracking.server');
+          await updateOrderStatus(transactionId, status === 'paid' ? 'paid' : 'waiting_payment' as any);
+
+          // Get order for UTMify notification
           const { data: order, error: orderError } = await supabase
             .from('orders')
-            .update({ status: status === 'paid' ? 'paid' : 'pending' })
-            .eq('transaction_id', transactionId)
             .select('*, order_items(*), customers(*)')
+            .eq('transaction_id', transactionId)
             .single();
 
           if (order && !orderError) {
