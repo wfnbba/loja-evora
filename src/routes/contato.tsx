@@ -7,8 +7,7 @@ export const Route = createFileRoute("/contato")({
       { title: "Fale Conosco | Loja Évora" },
       {
         name: "description",
-        content:
-          "Atendimento 100% humanizado da Loja Évora: e-mail, horário de funcionamento e endereço.",
+        content: "Atendimento 100% humanizado da Loja Évora: e-mail, horário de funcionamento e endereço.",
       },
       { property: "og:title", content: "Fale Conosco | Loja Évora" },
       {
@@ -30,10 +29,7 @@ function ContactPage() {
     >
       <Section title="E-mail">
         <p>
-          <a
-            href="mailto:atendimento@lojaevora.shop"
-            className="underline underline-offset-4 hover:text-[#4a3f35]"
-          >
+          <a href="mailto:atendimento@lojaevora.shop" className="underline underline-offset-4 hover:text-[#4a3f35]">
             atendimento@lojaevora.shop
           </a>
           <br />
@@ -49,14 +45,10 @@ function ContactPage() {
           <br />
           Florianópolis - SC, 88015-300
         </p>
-        <p className="text-sm">
-          Endereço administrativo — não realizamos atendimento presencial nem retirada de pedidos.
-        </p>
       </Section>
       <Section title="Para agilizar seu atendimento">
         <p>
-          Informe o número do pedido e o CPF utilizado na compra. Assim conseguimos localizar tudo na
-          primeira resposta.
+          Informe o número do pedido e o CPF utilizado na compra. Assim conseguimos localizar tudo na primeira resposta.
         </p>
       </Section>
     </LegalPage>
