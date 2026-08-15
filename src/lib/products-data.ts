@@ -1411,7 +1411,7 @@ export const products: Product[] = [
     video: videoCalcaOffWhite.url,
     description: "A peça que define a elegância moderna. Nossa Calça de Alfaiataria Off-White possui corte reto impecável, pregas frontais que alongam a silhueta e um caimento fluido que exala sofisticação. Ideal para compor looks minimalistas e poderosos." + exchangePolicy,
 
-    images: [(calcaOffWhite1 as any), (calcaOffWhite2 as any), (calcaOffWhite3 as any), (calcaOffWhite4 as any), (calcaOffWhite5 as any), (calcaOffWhite7 as any), (calcaOffWhite8 as any), (calcaOffWhite9 as any), (calcaOffWhite10 as any)],
+    images: [calcaOffWhite1.url, calcaOffWhite2.url, calcaOffWhite3.url, calcaOffWhite4.url, calcaOffWhite5.url, calcaOffWhite7.url, calcaOffWhite8.url, calcaOffWhite9.url, calcaOffWhite10.url],
     sizes,
     includedGift: {
       name: "Cinto Premium Évora",
@@ -1434,7 +1434,7 @@ export const products: Product[] = [
       { user: "Luana F.", comment: "Simplesmente perfeito, superou minhas expectativas.", rating: 5.0, image: feedbackCalcaOffWhiteeee7.url },
       { user: "Isabela P.", comment: "Gente, que peça! A peça é um sonho. O tecido tem um caimento pesado que dá muita elegância ao andar. O acabamento da barra é perfeito. Fiquei com medo do tamanho, mas segui a tabela e deu certinho. É raro achar roupas com essa qualidade de alfaiataria na internet hoje em dia.", rating: 5.0, image: feedbackCalcaOffWhiteeee8.url },
       { user: "Aline S.", comment: "Gente, que peça! Sempre tive dificuldade de achar roupas que vestissem bem no busto e na cintura ao mesmo tempo, mas essa peça conseguiu. O elástico é suave e não incomoda. O pano é de primeira linha e a cor é super vibrante, mas elegante. A experiência de compra foi nota mil.", rating: 5.0, image: feedbackCalcaOffWhiteeee9.url },
-      { user: "Maria Eduarda S.", comment: "Achei incrível. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0, image: feedbackCalcaOffWhiteeee1.url },
+      { user: "Maria Eduarda S.", comment: "Achei incrível. Gente, que caimento é esse? Parece que foi feito sob medida para mim. O tecido tem um peso bom, o que ajuda na fluidez da saia. A cor é linda e o brilho é na medida certa, nada exagerado. Já lavei uma vez e continuou perfeito, não encolheu nem desbotou nadinha.", rating: 5.0, image: feedbackCalcaOffWhiteeee2.url },
       { user: "Paloma R.", comment: "Entrega super rápida e produto de altíssima qualidade.", rating: 5.0 },
       { user: "Priscila F.", comment: "Caimento fluido e elegante, nota máxima.", rating: 5.0 },
       { user: "Fabiana G.", comment: "Gente, que peça! Comprei para usar no meu aniversário e foi a melhor escolha. A peça tem uma presença incrível. O tecido não amassa com facilidade, o que é ótimo para quem passa muito tempo sentada. O acabamento nos ombros e decote é muito delicado e bem finalizado. Nota dez!", rating: 5.0 },
