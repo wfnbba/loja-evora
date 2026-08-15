@@ -20,6 +20,7 @@ export type Database = {
           complement: string | null
           created_at: string
           document: string | null
+          document_normalized: string | null
           email: string
           name: string
           neighborhood: string | null
@@ -36,6 +37,7 @@ export type Database = {
           complement?: string | null
           created_at?: string
           document?: string | null
+          document_normalized?: string | null
           email: string
           name: string
           neighborhood?: string | null
@@ -52,6 +54,7 @@ export type Database = {
           complement?: string | null
           created_at?: string
           document?: string | null
+          document_normalized?: string | null
           email?: string
           name?: string
           neighborhood?: string | null
@@ -116,7 +119,9 @@ export type Database = {
           metadata: Json | null
           net_amount: number | null
           payment_method: string
+          purchased_at: string | null
           status: string
+          tracking_code: string | null
           total_amount: number
           transaction_id: string | null
           utmify_attempts: number
@@ -139,7 +144,9 @@ export type Database = {
           metadata?: Json | null
           net_amount?: number | null
           payment_method?: string
+          purchased_at?: string | null
           status?: string
+          tracking_code?: string | null
           total_amount: number
           transaction_id?: string | null
           utmify_attempts?: number
@@ -162,7 +169,9 @@ export type Database = {
           metadata?: Json | null
           net_amount?: number | null
           payment_method?: string
+          purchased_at?: string | null
           status?: string
+          tracking_code?: string | null
           total_amount?: number
           transaction_id?: string | null
           utmify_attempts?: number
@@ -251,6 +260,10 @@ export type Database = {
           p_transaction_id: string
         }
         Returns: Json
+      }
+      generate_order_tracking_code: {
+        Args: Record<PropertyKey, never>
+        Returns: string
       }
       save_checkout_order: {
         Args: { p_customer: Json; p_items: Json; p_order: Json }
