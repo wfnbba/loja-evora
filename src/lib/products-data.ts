@@ -240,6 +240,7 @@ export interface Product {
 
 
 const sizes = ["P", "M", "G", "GG"];
+const numericSizes = ["34", "36", "38", "40", "42", "44", "46"];
 const exchangePolicy = "";
 
 export const products: Product[] = [
