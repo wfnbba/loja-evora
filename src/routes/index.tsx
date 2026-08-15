@@ -168,7 +168,9 @@ function Index() {
 
             <div className="mt-16 flex flex-col items-center justify-center gap-6 border-t border-[#fdfbf7]/10 pt-12 md:flex-row md:gap-12">
               <div className="text-center">
-                <p className="text-3xl font-light tracking-[0.1em] md:text-4xl">+10k</p>
+                <p className="text-3xl font-light tracking-[0.1em] md:text-4xl">
+                  +{localProducts.reduce((sum, product) => sum + product.salesCount, 0).toLocaleString("pt-BR")}
+                </p>
                 <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.2em] text-[#fdfbf7]/60">Clientes Satisfeitas</p>
               </div>
               <div className="hidden h-10 w-px bg-[#fdfbf7]/20 md:block" />
@@ -176,14 +178,10 @@ function Index() {
                 <p className="text-3xl font-light tracking-[0.1em] md:text-4xl">4.9</p>
                 <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.2em] text-[#fdfbf7]/60">Avaliação Média</p>
               </div>
-              <div className="hidden h-10 w-px bg-[#fdfbf7]/20 md:block" />
-              <div className="text-center">
-                <p className="text-3xl font-light tracking-[0.1em] md:text-4xl">Frete</p>
-                <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.2em] text-[#fdfbf7]/60">Grátis em Todas as Compras</p>
-              </div>
             </div>
           </div>
         </section>
+
       </main>
     </div>
   );
