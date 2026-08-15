@@ -115,7 +115,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 function RootShell({ children }: { children: ReactNode }) {
   useUtmTracking();
 
-
   const [mounted, setMounted] = useState(false);
   useLayoutEffect(() => {
     setMounted(true);
@@ -134,7 +133,7 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         <div className="min-h-screen bg-[#fdfbf7] text-[#4a3f35] flex flex-col">
-          <Outlet />
+          {children}
         </div>
         <Scripts />
       </body>
@@ -145,61 +144,26 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const router = useRouter();
   const isCheckoutPage = router.state.location.pathname === "/checkout" || router.state.location.pathname === "/obrigado";
+  const { queryClient } = Route.useRouteContext();
 
   if (isCheckoutPage) {
     return (
-      <main className="flex-1">
-        <Outlet />
-      </main>
+      <QueryClientProvider client={queryClient}>
+        <main className="flex-1">
+          <Outlet />
+        </main>
+      </QueryClientProvider>
     );
   }
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 pt-20">
         <Outlet />
       </main>
       <Footer />
-    </>
-  );
-}
-
-function Header() {
-...
-}
-
-function Footer() {
-...
-}
-
-
-function HeaderWrapper() {
-  const router = useRouter();
-  const isCheckoutPage = router.state.location.pathname === "/checkout" || router.state.location.pathname === "/obrigado";
-  
-  if (isCheckoutPage) return null;
-  return <Header />;
-}
-
-function FooterWrapper() {
-  const router = useRouter();
-  const isCheckoutPage = router.state.location.pathname === "/checkout" || router.state.location.pathname === "/obrigado";
-  
-  if (isCheckoutPage) return null;
-  return (
-    <footer className="border-t border-border/50 bg-background py-20">
-      <div className="container mx-auto px-4 text-center lg:px-8">
-        <img src={logoAsset.url} alt="Évora Logo" className="mx-auto mb-8 h-8 w-auto opacity-50" />
-        <nav className="mb-8 flex justify-center gap-8">
-          <a href="#" className="text-[10px] font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Termos</a>
-          <a href="#" className="text-[10px] font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Privacidade</a>
-        </nav>
-        <p className="text-[10px] tracking-[0.2em] font-light text-muted-foreground">
-          © 2026 ÉVORA. TODOS OS DIREITOS RESERVADOS.
-        </p>
-      </div>
-    </footer>
+    </QueryClientProvider>
   );
 }
 
@@ -288,12 +252,19 @@ function Header() {
   );
 }
 
-function RootComponent() {
-  const { queryClient } = Route.useRouteContext();
-
+function Footer() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Outlet />
-    </QueryClientProvider>
+    <footer className="border-t border-border/50 bg-background py-20">
+      <div className="container mx-auto px-4 text-center lg:px-8">
+        <img src={logoAsset.url} alt="Évora Logo" className="mx-auto mb-8 h-8 w-auto opacity-50" />
+        <nav className="mb-8 flex justify-center gap-8">
+          <a href="#" className="text-[10px] font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Termos</a>
+          <a href="#" className="text-[10px] font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors">Privacidade</a>
+        </nav>
+        <p className="text-[10px] tracking-[0.2em] font-light text-muted-foreground">
+          © 2026 ÉVORA. TODOS OS DIREITOS RESERVADOS.
+        </p>
+      </div>
+    </footer>
   );
 }
