@@ -345,7 +345,6 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                   </span>
                 </div>
               </div>
-            </div>
           </div>
         </div>
 
