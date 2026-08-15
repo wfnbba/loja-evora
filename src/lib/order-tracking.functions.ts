@@ -37,57 +37,41 @@ export type OrderTrackingResult = {
 export const lookupOrderTracking = createServerFn({ method: "GET" })
   .validator((data) => z.object({ trackingCode: trackingCodeSchema }).parse(data))
   .handler(async ({ data }): Promise<OrderTrackingResult | null> => {
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { data: order, error } = await supabaseAdmin
-      .from("orders")
-      .select("tracking_code, purchased_at")
-      .eq("tracking_code", data.trackingCode)
-      .eq("status", "paid")
+    const { supabase } = await import("@/integrations/supabase/client");
+    const { data: order, error } = await supabase
+      .rpc("lookup_order_tracking", { p_tracking_code: data.trackingCode })
       .maybeSingle();
 
     if (error) throw new Error(`Não foi possível consultar o pedido: ${error.message}`);
-    if (!order?.tracking_code || !order.purchased_at) return null;
+    if (!order?.tracking_code || !order.purchased_at || !order.checked_at) return null;
 
     return {
       trackingCode: order.tracking_code,
       purchasedAt: order.purchased_at,
-      checkedAt: new Date().toISOString(),
+      checkedAt: order.checked_at,
     };
   });
 
 export const recoverTrackingByCpf = createServerFn({ method: "POST" })
   .validator((data) => z.object({ cpf: cpfSchema }).parse(data))
   .handler(async ({ data }): Promise<OrderTrackingResult[]> => {
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { data: customers, error: customerError } = await supabaseAdmin
-      .from("customers")
-      .select("email")
-      .eq("document_normalized", data.cpf);
-
-    if (customerError) {
-      throw new Error(`Não foi possível recuperar o rastreamento: ${customerError.message}`);
-    }
-
-    const emails = [...new Set((customers ?? []).map((customer) => customer.email))];
-    if (emails.length === 0) return [];
-
-    const { data: orders, error: orderError } = await supabaseAdmin
-      .from("orders")
-      .select("tracking_code, purchased_at")
-      .in("customer_email", emails)
-      .eq("status", "paid")
-      .not("tracking_code", "is", null)
-      .not("purchased_at", "is", null)
-      .order("purchased_at", { ascending: false });
+    const { supabase } = await import("@/integrations/supabase/client");
+    const { data: orders, error: orderError } = await supabase
+      .rpc("recover_order_tracking_by_cpf", { p_cpf: data.cpf });
 
     if (orderError) {
       throw new Error(`Não foi possível recuperar o rastreamento: ${orderError.message}`);
     }
 
-    const checkedAt = new Date().toISOString();
     return (orders ?? []).flatMap((order) =>
-      order.tracking_code && order.purchased_at
-        ? [{ trackingCode: order.tracking_code, purchasedAt: order.purchased_at, checkedAt }]
+      order.tracking_code && order.purchased_at && order.checked_at
+        ? [
+            {
+              trackingCode: order.tracking_code,
+              purchasedAt: order.purchased_at,
+              checkedAt: order.checked_at,
+            },
+          ]
         : [],
     );
   });
