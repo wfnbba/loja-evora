@@ -641,6 +641,9 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             </div>
           )}
         </div>
+        {/* Placeholder to prevent layout leaking */}
+        <div className="hidden" />
+
 
 
 
