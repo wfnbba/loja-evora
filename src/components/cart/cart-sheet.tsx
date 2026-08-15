@@ -118,7 +118,7 @@ export function CartSheet({ open, onOpenChange }: CartSheetProps) {
                 onOpenChange(false);
                 navigate({ to: "/checkout" });
               }}
-              className="w-full rounded-none py-8 uppercase tracking-[0.2em] font-medium cursor-pointer bg-foreground text-background hover:bg-foreground/90 transition-all utmify"
+              className="w-full rounded-none py-8 uppercase tracking-[0.2em] font-medium cursor-pointer bg-foreground text-background hover:bg-foreground/90 transition-all"
             >
               Finalizar Compra
             </Button>
