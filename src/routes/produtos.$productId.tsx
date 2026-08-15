@@ -123,7 +123,7 @@ function ProductPage() {
   };
 
   return (
-    <main className="min-h-screen bg-background pb-12 pt-20 md:pb-20 md:pt-24 text-foreground">
+    <main className="min-h-screen bg-background pb-12 pt-0 md:pb-20 md:pt-4 text-foreground">
       <div className="container mx-auto px-0 md:px-4 lg:px-8">
         <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-2 lg:gap-20">
 
