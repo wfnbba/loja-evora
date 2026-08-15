@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useCartStore } from "@/store/cart-store";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,6 +24,8 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
   const [step, setStep] = useState<"form" | "payment" | "success">("form");
   const [loading, setLoading] = useState(false);
   const [pixData, setPixData] = useState<any>(null);
+  const [confirmedTrackingCode, setConfirmedTrackingCode] = useState("");
+  const isCheckingPayment = useRef(false);
   const [timeLeft, setTimeLeft] = useState(15 * 60);
   const [isAddressFilled, setIsAddressFilled] = useState(false);
 
@@ -67,6 +69,35 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
     const timer = setInterval(() => setTimeLeft(p => p > 0 ? p - 1 : 0), 1000);
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    const transactionId = pixData?.transactionId;
+    if (step !== "payment" || !transactionId) return;
+
+    let active = true;
+    const pollPayment = async () => {
+      if (isCheckingPayment.current) return;
+      isCheckingPayment.current = true;
+      try {
+        const response = await checkStatus({ data: { transactionId } });
+        if (active && response?.success && response.data?.status === "paid") {
+          setConfirmedTrackingCode(response.data.trackingCode ?? "");
+          setStep("success");
+        }
+      } catch (error) {
+        console.error("Erro ao consultar pagamento PIX:", error);
+      } finally {
+        isCheckingPayment.current = false;
+      }
+    };
+
+    void pollPayment();
+    const timer = window.setInterval(pollPayment, 3_000);
+    return () => {
+      active = false;
+      window.clearInterval(timer);
+    };
+  }, [checkStatus, pixData?.transactionId, step]);
 
   const handleCepChange = async (cep: string) => {
     const cleanCep = cep.replace(/\D/g, "");
@@ -121,7 +152,13 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
     }
   };
 
-  if (step === "success") { window.location.href = "/obrigado"; return null; }
+  if (step === "success") {
+    const query = confirmedTrackingCode
+      ? `?codigo=${encodeURIComponent(confirmedTrackingCode)}`
+      : "";
+    window.location.href = `/obrigado${query}`;
+    return null;
+  }
 
   return (
     <div className="w-full bg-white pb-20">
