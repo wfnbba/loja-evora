@@ -92,12 +92,41 @@ export async function trackCustomerAndOrder(data: {
 
 export async function updateOrderStatus(transactionId: string, status: 'paid' | 'cancelled') {
   try {
-    const { error } = await supabase
+    const { data: order, error: fetchError } = await supabase
+      .from('orders')
+      .select('customer_email, total_amount, status')
+      .eq('transaction_id', transactionId)
+      .single();
+
+    if (fetchError || !order) throw fetchError || new Error('Order not found');
+
+    // Update order status
+    const { error: updateError } = await supabase
       .from('orders')
       .update({ status })
       .eq('transaction_id', transactionId);
 
-    if (error) throw error;
+    if (updateError) throw updateError;
+
+    // If paid and wasn't paid before, update total_spent
+    if (status === 'paid' && order.status !== 'paid') {
+      const { data: customer, error: customerFetchError } = await supabase
+        .from('customers')
+        .select('total_spent')
+        .eq('email', order.customer_email)
+        .single();
+
+      if (!customerFetchError && customer) {
+        const currentSpent = Number(customer.total_spent) || 0;
+        const newSpent = currentSpent + Number(order.total_amount);
+
+        await supabase
+          .from('customers')
+          .update({ total_spent: newSpent })
+          .eq('email', order.customer_email);
+      }
+    }
+
     return { success: true };
   } catch (error) {
     console.error('Error updating order status:', error);
