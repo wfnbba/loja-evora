@@ -2417,7 +2417,7 @@ export const products: Product[] = [
       color: "Marrom Escuro",
       colorValue: "#3d2b1f",
       price: "Grátis",
-      image: cintoEspres
+      image: cintoEspres.url
     },
     colors: [{ name: "Espresso", value: "#3d2b1f" }],
     salesCount: 6842,
@@ -3303,7 +3303,7 @@ export const products: Product[] = [
       color: "Preto",
       colorValue: "#000000",
       price: "Grátis",
-      image: cintoOffwhiteee.url
+      image: cintoOffwhiteeee.url
     },
     colors: [{ name: "Off-White", value: "#faf9f6" }],
     rating: 4.8,
@@ -3311,15 +3311,15 @@ export const products: Product[] = [
     ratingBreakdown: { 5: 1245, 4: 98, 3: 25, 2: 6, 1: 4 },
     reviews: [
       
-      { user: "Iracema B.", comment: "O caimento é um espetáculo, me sinto chique.", rating: 5.0, image: feedbackCalcaOffWhiteee.url },
-      { user: "Stela O.", comment: "Tecidu de altissima qualidade, valeu cada centavo.", rating: 5.0, image: feedbackCalcaOffWhiteee.url },
-      { user: "Milena F.", comment: "A cor é vibrante e o tecido tem um brilho discreto e elegante.", rating: 5.0, image: feedbackCalcaOffWhiteee.url },
-      { user: "Maria F.", comment: "Loja de confiança, entrega antes do prazo.", rating: 5.0, image: feedbackCalcaOffWhiteee.url },
-      { user: "Marília M.", comment: "Maravilhoso! Veste super bem, a modelajem é diferenciada.", rating: 5.0, image: feedbackCalcaOffWhiteee.url },
-      { user: "Solange B.", comment: "Vou comprar mais com certeza, a loja é otima.", rating: 5.0, image: feedbackCalcaOffWhiteee.url },
-      { user: "Inez A.", comment: "Um luxo! A peça é muito mais bonita ao vivo que na foto.", rating: 5.0, image: feedbackCalcaOffWhiteee.url },
-      { user: "Dalva G.", comment: "Fico perfeito, parece que foi feito sob medidda pra mim.", rating: 5.0, image: feedbackCalcaOffWhiteee.url },
-      { user: "Eunice T.", comment: "Um luxo só! Me senti maravilhosa com esse look.", rating: 5.0, image: feedbackCalcaOffWhiteee.url },
+      { user: "Iracema B.", comment: "O caimento é um espetáculo, me sinto chique.", rating: 5.0, image: feedbackCalcaOffWhitee.url },
+      { user: "Stela O.", comment: "Tecidu de altissima qualidade, valeu cada centavo.", rating: 5.0, image: feedbackCalcaOffWhitee.url },
+      { user: "Milena F.", comment: "A cor é vibrante e o tecido tem um brilho discreto e elegante.", rating: 5.0, image: feedbackCalcaOffWhitee.url },
+      { user: "Maria F.", comment: "Loja de confiança, entrega antes do prazo.", rating: 5.0, image: feedbackCalcaOffWhitee.url },
+      { user: "Marília M.", comment: "Maravilhoso! Veste super bem, a modelajem é diferenciada.", rating: 5.0, image: feedbackCalcaOffWhitee.url },
+      { user: "Solange B.", comment: "Vou comprar mais com certeza, a loja é otima.", rating: 5.0, image: feedbackCalcaOffWhitee.url },
+      { user: "Inez A.", comment: "Um luxo! A peça é muito mais bonita ao vivo que na foto.", rating: 5.0, image: feedbackCalcaOffWhitee.url },
+      { user: "Dalva G.", comment: "Fico perfeito, parece que foi feito sob medidda pra mim.", rating: 5.0, image: feedbackCalcaOffWhitee.url },
+      { user: "Eunice T.", comment: "Um luxo só! Me senti maravilhosa com esse look.", rating: 5.0, image: feedbackCalcaOffWhitee.url },
       { user: "Marília S.", comment: "Já quero outras cores, virou minha peça favorita.", rating: 5.0 },
       { user: "Ester N.", comment: "Elegancia pura! O corte é muito bem feito.", rating: 5.0 },
       { user: "Bruna R.", comment: "Ficou impecável, vou usar em um evento muito especial.", rating: 5.0 },
