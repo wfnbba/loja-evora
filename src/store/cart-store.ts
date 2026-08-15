@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { getProductPrice } from '@/lib/product-pricing';
 
 export interface CartItem {
   id: string;
@@ -89,6 +90,17 @@ export const useCartStore = create<CartStore>()(
     }),
     {
       name: 'evora-cart-storage',
+      version: 1,
+      migrate: (persistedState) => {
+        const state = persistedState as Partial<CartStore>;
+        return {
+          ...state,
+          items: (state.items ?? []).map((item) => ({
+            ...item,
+            price: getProductPrice(item.id) ?? item.price,
+          })),
+        };
+      },
     }
   )
 );
