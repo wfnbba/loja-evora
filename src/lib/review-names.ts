@@ -22,8 +22,8 @@ export const REVIEW_NAMES: string[] = (() => {
   const list: string[] = [];
   for (let i = 0; i < FIRST_NAMES.length; i++) {
     for (let j = 0; j < SURNAMES.length; j++) {
-      const first = FIRST_NAMES[(i + j) % FIRST_NAMES.length];
-      const last = SURNAMES[(j + i * 3) % SURNAMES.length];
+      const first = FIRST_NAMES[(i + j) % FIRST_NAMES.length] ?? "Maria";
+      const last = SURNAMES[(j + i * 3) % SURNAMES.length] ?? "Silva";
       list.push(`${first} ${last.charAt(0)}.`);
     }
   }
