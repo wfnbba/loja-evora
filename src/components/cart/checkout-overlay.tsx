@@ -102,7 +102,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
   return (
     <div className="w-full bg-white pb-20">
-      <div className="bg-[#1a1512] text-white py-3 text-center mb-8">
+      <div className="bg-[#1a1512] text-white py-3 text-center mb-8 sticky top-[80px] z-40">
         <p className="text-[10px] font-bold uppercase tracking-[0.2em]">Preço garantido por {Math.floor(timeLeft/60)}:{(timeLeft%60).toString().padStart(2,'0')}</p>
       </div>
 
@@ -110,7 +110,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
         <div className="flex-1 space-y-12">
           {step === "form" ? (
             <form onSubmit={handleCreatePayment} className="space-y-12">
-              <div className="space-y-6">
+              <div className="space-y-6 scroll-mt-32" id="personal-data">
                 <h3 className="text-xs font-bold uppercase tracking-[0.2em] border-b pb-4">1. Dados Pessoais</h3>
                 <div className="grid gap-4">
                   <Input placeholder="E-mail" value={formData.email} onChange={e => setFormData(p=>({...p,email:e.target.value}))} className="h-14 rounded-none" />
@@ -122,7 +122,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 </div>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-6 scroll-mt-32" id="shipping-data">
                 <h3 className="text-xs font-bold uppercase tracking-[0.2em] border-b pb-4">2. Entrega</h3>
                 <div className="grid gap-4">
                   <div className="grid grid-cols-3 gap-4">
