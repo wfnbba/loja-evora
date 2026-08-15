@@ -27,7 +27,9 @@ export async function trackCustomerAndOrder(data: {
     size?: string | null;
   }>;
   totalAmount: number;
+  trackingParameters?: any;
 }) {
+
   try {
     // 1. Upsert Customer
     const { error: customerError } = await supabase
@@ -57,9 +59,11 @@ export async function trackCustomerAndOrder(data: {
         transaction_id: data.transactionId,
         status: 'pending',
         total_amount: data.totalAmount,
+        metadata: data.trackingParameters || {}
       })
       .select()
       .single();
+
 
     if (orderError) throw orderError;
 

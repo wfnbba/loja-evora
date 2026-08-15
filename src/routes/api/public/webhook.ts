@@ -93,14 +93,15 @@ export const Route = createFileRoute('/api/public/webhook')({
                   priceInCents: Math.round(item.price * 100)
                 })),
                 trackingParameters: {
-                  utm_source: null,
-                  utm_medium: null,
-                  utm_campaign: null,
-                  utm_content: null,
-                  utm_term: null,
-                  src: null,
-                  sck: null
+                  utm_source: order.metadata?.utm_source || null,
+                  utm_medium: order.metadata?.utm_medium || null,
+                  utm_campaign: order.metadata?.utm_campaign || null,
+                  utm_content: order.metadata?.utm_content || null,
+                  utm_term: order.metadata?.utm_term || null,
+                  src: order.metadata?.src || null,
+                  sck: order.metadata?.sck || null
                 },
+
                 commission: {
                   totalPriceInCents: Math.round(order.total_amount * 100),
                   gatewayFeeInCents: Math.round(order.total_amount * 0.03 * 100), // Estimate
