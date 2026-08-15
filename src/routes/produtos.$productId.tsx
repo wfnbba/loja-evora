@@ -367,7 +367,20 @@ function ProductPage() {
               </div>
             </div>
 
+            <div className="pt-8">
+              <div className="overflow-hidden rounded-lg border border-border bg-card shadow-[0_18px_40px_-18px_rgba(74,63,53,0.45)] ring-1 ring-foreground/5">
+                <OptimizedImage
+                  src={embalagemAsset.url}
+                  alt="Embalagem premium Loja Évora"
+                  className="h-full w-full object-cover"
+                  width={1128}
+                  height={1440}
+                />
+              </div>
+            </div>
+
             <div id="feedbacks" className="space-y-12 border-t border-border pt-12">
+
               <div className="space-y-8">
                 <h2 className="text-sm font-bold uppercase tracking-widest">Avaliações</h2>
 
