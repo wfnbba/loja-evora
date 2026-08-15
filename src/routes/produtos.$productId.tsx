@@ -9,6 +9,8 @@ import { Progress } from "@/components/ui/progress";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { products as localProducts } from "@/lib/products-data";
 import embalagemAsset from "@/assets/embalagem-evora.webp.asset.json";
+import comprarOnlineAsset from "@/assets/comprar-online.webp.asset.json";
+import comoVistoEmAsset from "@/assets/como-visto-em.webp.asset.json";
 
 
 export const Route = createFileRoute("/produtos/$productId")({
@@ -519,6 +521,27 @@ function ProductPage() {
                   </div>
                 </Link>
               ))}
+          </div>
+        </section>
+
+        <section className="mt-16 space-y-8 px-4 md:px-0">
+          <div className="overflow-hidden rounded-sm border border-border bg-card shadow-[0_8px_30px_-12px_rgba(74,63,53,0.35)]">
+            <OptimizedImage
+              src={comprarOnlineAsset.url}
+              alt="Comprar online com confiança na Loja Évora"
+              className="h-full w-full object-cover"
+              width={1242}
+              height={1242}
+            />
+          </div>
+          <div className="overflow-hidden rounded-sm border border-border bg-card shadow-[0_8px_30px_-12px_rgba(74,63,53,0.35)]">
+            <OptimizedImage
+              src={comoVistoEmAsset.url}
+              alt="Loja Évora como visto na imprensa"
+              className="h-full w-full object-cover"
+              width={1242}
+              height={1242}
+            />
           </div>
         </section>
       </div>
