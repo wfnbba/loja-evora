@@ -134,17 +134,45 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         <div className="min-h-screen bg-[#fdfbf7] text-[#4a3f35] flex flex-col">
-          <HeaderWrapper />
-          <main className="flex-1">
-            <Outlet />
-          </main>
-          <FooterWrapper />
+          <Outlet />
         </div>
         <Scripts />
       </body>
     </html>
   );
 }
+
+function RootComponent() {
+  const router = useRouter();
+  const isCheckoutPage = router.state.location.pathname === "/checkout" || router.state.location.pathname === "/obrigado";
+
+  if (isCheckoutPage) {
+    return (
+      <main className="flex-1">
+        <Outlet />
+      </main>
+    );
+  }
+
+  return (
+    <>
+      <Header />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+function Header() {
+...
+}
+
+function Footer() {
+...
+}
+
 
 function HeaderWrapper() {
   const router = useRouter();
