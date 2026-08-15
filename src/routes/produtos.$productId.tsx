@@ -107,6 +107,21 @@ function ProductPage() {
     setTimeout(() => setAdded(false), 2000);
   };
 
+  const handleImageChange = (index: number) => {
+    setSelectedImage(index);
+    if (thumbnailsRef.current) {
+      const thumbnail = thumbnailsRef.current.children[index] as HTMLElement;
+      if (thumbnail) {
+        const container = thumbnailsRef.current;
+        const scrollLeft = thumbnail.offsetLeft - container.offsetWidth / 2 + thumbnail.offsetWidth / 2;
+        container.scrollTo({
+          left: scrollLeft,
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
+
   return (
     <main className="min-h-screen bg-background pb-12 pt-20 md:pb-20 md:pt-24 text-foreground">
       <div className="container mx-auto px-0 md:px-4 lg:px-8">
@@ -114,7 +129,7 @@ function ProductPage() {
 
           <section aria-label="Galeria do produto" className="relative space-y-4 md:sticky md:top-24">
             {/* Carrossel Principal */}
-            <div className="relative aspect-[3/4] overflow-hidden bg-muted md:rounded-sm group cursor-pointer" onClick={() => setSelectedImage((current) => current < product.images.length - 1 ? current + 1 : 0)}>
+            <div className="relative aspect-[3/4] overflow-hidden bg-muted md:rounded-sm group cursor-pointer" onClick={() => handleImageChange(selectedImage < product.images.length - 1 ? selectedImage + 1 : 0)}>
               <div 
                 className="flex h-full w-full transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${selectedImage * 100}%)` }}
@@ -136,16 +151,16 @@ function ProductPage() {
               <Button 
                 variant="secondary" 
                 size="icon" 
-                onClick={() => setSelectedImage((current) => current > 0 ? current - 1 : product.images.length - 1)} 
-                className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full size-12 opacity-80 hover:opacity-100 transition-opacity bg-white/20 backdrop-blur-sm border-none md:flex hidden"
+                onClick={(e) => { e.stopPropagation(); handleImageChange(selectedImage > 0 ? selectedImage - 1 : product.images.length - 1); }} 
+                className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full size-12 opacity-80 hover:opacity-100 transition-opacity bg-white/20 backdrop-blur-sm border-none md:flex"
               >
                 <ChevronLeft className="size-6 text-foreground" />
               </Button>
               <Button 
                 variant="secondary" 
                 size="icon" 
-                onClick={() => setSelectedImage((current) => current < product.images.length - 1 ? current + 1 : 0)} 
-                className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full size-12 opacity-80 hover:opacity-100 transition-opacity bg-white/20 backdrop-blur-sm border-none md:flex hidden"
+                onClick={(e) => { e.stopPropagation(); handleImageChange(selectedImage < product.images.length - 1 ? selectedImage + 1 : 0); }} 
+                className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full size-12 opacity-80 hover:opacity-100 transition-opacity bg-white/20 backdrop-blur-sm border-none md:flex"
               >
                 <ChevronRight className="size-6 text-foreground" />
               </Button>
@@ -165,12 +180,15 @@ function ProductPage() {
             </div>
 
             {/* Miniaturas */}
-            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide px-4 md:px-0 snap-x">
+            <div 
+              ref={thumbnailsRef}
+              className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide px-4 md:px-0 snap-x scroll-smooth"
+            >
               {product.images.map((image, index) => (
                 <button 
                   key={index} 
                   type="button" 
-                  onClick={() => setSelectedImage(index)} 
+                  onClick={() => handleImageChange(index)} 
                   className={cn(
                     "relative aspect-[3/4] w-20 flex-shrink-0 overflow-hidden bg-muted md:w-24 border transition-all snap-start", 
                     selectedImage === index ? "border-foreground ring-1 ring-foreground opacity-100" : "border-transparent opacity-40 hover:opacity-70"
