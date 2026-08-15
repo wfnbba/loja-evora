@@ -155,6 +155,23 @@
   .animate-spin-slow {
     animation: spin 3s linear infinite;
   }
+
+  @media (max-width: 767px) {
+    body .text-\[10px\] {
+      font-size: 0.75rem;
+      line-height: 1rem;
+    }
+
+    body .text-\[11px\] {
+      font-size: 0.8125rem;
+      line-height: 1.125rem;
+    }
+
+    body .text-xs {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+  }
 }
 
 @keyframes spin {

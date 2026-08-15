@@ -198,7 +198,7 @@ function Header() {
   return (
     <>
       <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur-md">
-        <div className="container mx-auto flex h-20 items-center justify-between px-4 lg:px-8">
+        <div className="container relative mx-auto flex h-20 items-center justify-between px-4 lg:px-8">
           <div className="flex items-center gap-4">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
@@ -227,11 +227,15 @@ function Header() {
             </Sheet>
 
 
-            <Link to="/" className="flex items-center gap-2">
+            <Link to="/" className="hidden items-center gap-2 md:flex">
               <img src={logoAsset.url} alt="Évora Logo" className="h-10 w-auto" />
-              <img src={logoTextAsset.url} alt="Évora" className="hidden h-6 w-auto md:block" />
+              <img src={logoTextAsset.url} alt="Évora" className="h-6 w-auto" />
             </Link>
           </div>
+
+          <Link to="/" className="absolute left-1/2 -translate-x-1/2 md:hidden">
+            <img src={logoTextAsset.url} alt="Évora" className="h-7 w-auto" />
+          </Link>
 
           <nav className="hidden items-center gap-8 md:flex">
             {navLinks.map((link) => (
@@ -286,11 +290,11 @@ function Footer() {
   ];
 
   return (
-    <footer className="border-t border-border/50 bg-background py-16 lg:py-20">
+    <footer className="border-t border-[#5a473b] bg-[#2a211c] py-16 text-[#f7f1e9] lg:py-20">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid gap-12 text-left sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h3 className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground">
+            <h3 className="text-[11px] font-medium uppercase tracking-[0.2em] text-[#f7f1e9]">
               Políticas
             </h3>
             <ul className="mt-6 space-y-4">
@@ -298,7 +302,7 @@ function Footer() {
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-sm font-light text-muted-foreground transition-colors hover:text-foreground"
+                    className="text-sm font-light text-[#cdbfb3] transition-colors hover:text-white"
                   >
                     {link.name}
                   </Link>
@@ -308,7 +312,7 @@ function Footer() {
           </div>
 
           <div>
-            <h3 className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground">
+            <h3 className="text-[11px] font-medium uppercase tracking-[0.2em] text-[#f7f1e9]">
               Atendimento ao Cliente
             </h3>
             <ul className="mt-6 space-y-4">
@@ -316,7 +320,7 @@ function Footer() {
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-sm font-light text-muted-foreground transition-colors hover:text-foreground"
+                    className="text-sm font-light text-[#cdbfb3] transition-colors hover:text-white"
                   >
                     {link.name}
                   </Link>
@@ -326,15 +330,15 @@ function Footer() {
           </div>
 
           <div>
-            <h3 className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground">
+            <h3 className="text-[11px] font-medium uppercase tracking-[0.2em] text-[#f7f1e9]">
               Fale Conosco
             </h3>
-            <ul className="mt-6 space-y-4 text-sm font-light text-muted-foreground">
+            <ul className="mt-6 space-y-4 text-sm font-light text-[#cdbfb3]">
               <li>Horário: 09:00 às 18:00</li>
               <li>
                 <a
                   href="mailto:atendimento@lojaevora.shop"
-                  className="transition-colors hover:text-foreground"
+                  className="transition-colors hover:text-white"
                 >
                   atendimento@lojaevora.shop
                 </a>
@@ -346,10 +350,10 @@ function Footer() {
           </div>
 
           <div>
-            <h3 className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground">
+            <h3 className="text-[11px] font-medium uppercase tracking-[0.2em] text-[#f7f1e9]">
               Vantagens
             </h3>
-            <ul className="mt-6 space-y-4 text-sm font-light text-muted-foreground">
+            <ul className="mt-6 space-y-4 text-sm font-light text-[#cdbfb3]">
               {advantages.map((item) => (
                 <li key={item} className="flex gap-2">
                   <span aria-hidden="true">·</span>
@@ -360,9 +364,9 @@ function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 border-t border-border/50 pt-10 text-center">
-          <img src={logoAsset.url} alt="Évora Logo" className="mx-auto mb-6 h-8 w-auto opacity-50" />
-          <p className="text-[10px] tracking-[0.2em] font-light text-muted-foreground">
+        <div className="mt-16 border-t border-[#5a473b] pt-10 text-center">
+          <img src={logoAsset.url} alt="Évora Logo" className="mx-auto mb-6 h-8 w-auto brightness-0 invert opacity-80" />
+          <p className="text-[10px] tracking-[0.2em] font-light text-[#b6a69a]">
             © 2026 ÉVORA. TODOS OS DIREITOS RESERVADOS.
           </p>
         </div>

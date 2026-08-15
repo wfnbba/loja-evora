@@ -239,7 +239,8 @@ export interface Product {
 }
 
 
-const sizes = ["P", "M", "G", "GG"];
+const sizes = ["PP", "P", "M", "G", "GG", "XGG"];
+const numericSizes = ["34", "36", "38", "40", "42", "44", "46"];
 const exchangePolicy = "";
 
 export const products: Product[] = [
@@ -508,7 +509,7 @@ export const products: Product[] = [
     originalPrice: 159,
     description: "Saia midi em chiffon de alta qualidade com modelagem em camadas e caimento leve. Possui forro interno e cós com elástico para maior conforto. Uma peça versátil que transita do casual ao sofisticado com elegância." + exchangePolicy,
     images: [saiaChiffon1.url, saiaChiffon2.url, saiaChiffon3.url, saiaChiffon4.url, saiaChiffon5.url, saiaChiffon6.url, saiaChiffon7.url, saiaChiffon8.url, saiaChiffon9.url, saiaChiffon10.url],
-    sizes,
+    sizes: numericSizes,
     colors: [
       { name: "Off-White", value: "#faf9f6" },
       { name: "Terracota", value: "#a45a52" },
@@ -1038,7 +1039,7 @@ export const products: Product[] = [
     originalPrice: 169,
     description: "Saia midi em renda guipure delicada com detalhes florais e transparência sutil. Possui forro em tom nude para destacar o desenho da renda, cós estruturado e fechamento por zíper invisível. Uma peça atemporal que exala feminilidade e elegância." + exchangePolicy,
     images: [saiaRendaaa1.url, saiaRendaaa2.url, saiaRendaaa3.url, saiaRendaaa4.url, saiaRendaaa5.url, saiaRendaaa6.url, saiaRendaaa7.url, saiaRendaaa8.url, saiaRendaaa9.url, saiaRendaaa10.url],
-    sizes,
+    sizes: numericSizes,
     colors: [{ name: "Renda Nude", value: "#e8d7c5" }],
     salesCount: 1243,
     rating: 4.81,
@@ -1411,7 +1412,7 @@ export const products: Product[] = [
     description: "A peça que define a elegância moderna. Nossa Calça de Alfaiataria Off-White possui corte reto impecável, pregas frontais que alongam a silhueta e um caimento fluido que exala sofisticação. Ideal para compor looks minimalistas e poderosos." + exchangePolicy,
 
     images: [calcaOffWhite1.url, calcaOffWhite2.url, calcaOffWhite3.url, calcaOffWhite4.url, calcaOffWhite5.url, calcaOffWhite7.url, calcaOffWhite8.url, calcaOffWhite9.url, calcaOffWhite10.url],
-    sizes,
+    sizes: numericSizes,
     includedGift: {
       name: "Cinto Premium Évora",
       color: "Preto",
