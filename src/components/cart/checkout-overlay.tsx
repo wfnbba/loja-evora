@@ -59,6 +59,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
       }, 2000);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [formData.email, formData.name, formData.phone, trackLeadFn]);
 
   useEffect(() => {
