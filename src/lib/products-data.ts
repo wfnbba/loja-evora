@@ -1411,7 +1411,7 @@ export const products: Product[] = [
     video: videoCalcaOffWhite.url,
     description: "A peça que define a elegância moderna. Nossa Calça de Alfaiataria Off-White possui corte reto impecável, pregas frontais que alongam a silhueta e um caimento fluido que exala sofisticação. Ideal para compor looks minimalistas e poderosos." + exchangePolicy,
 
-    images: [(calcaOffWhite1 as any), (calcaOffWhite2 as any), (calcaOffWhite3 as any), (calcaOffWhite4 as any), (calcaOffWhite5 as any), (calcaOffWhite7 as any), (calcaOffWhite8 as any), (calcaOffWhite9 as any), (calcaOffWhite10 as any)],
+    images: [calcaOffWhite1.url, calcaOffWhite2.url, calcaOffWhite3.url, calcaOffWhite4.url, calcaOffWhite5.url, calcaOffWhite7.url, calcaOffWhite8.url, calcaOffWhite9.url, calcaOffWhite10.url],
     sizes,
     includedGift: {
       name: "Cinto Premium Évora",
