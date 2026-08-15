@@ -227,7 +227,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                 <ShieldCheck className="size-4" />
                 <span className="text-[10px] font-bold uppercase">Garantia Loja Évora</span>
               </div>
-              <p className="text-[10px] text-background/60 uppercase leading-loose">Sua compra está protegida. Receba em 5 dias ou seu dinheiro de volta.</p>
+              <p className="text-[10px] text-background/60 uppercase leading-loose">Sua compra está protegida. Receba em 5 dias. Enviado de Florianópolis SC</p>
             </div>
           </div>
         </div>
