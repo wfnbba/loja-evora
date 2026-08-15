@@ -92,21 +92,20 @@ def process_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    # Regex para encontrar blocos de reviews
-    # Ex: { user: "...", comment: "...", rating: ... }
-    review_pattern = re.compile(r'\{\s*user:\s*"([^"]+)",\s*comment:\s*"([^"]+)",\s*rating:\s*([\d\.]+)(?:,\s*image:\s*([^ }]+))?\s*\}')
+    # Regex robusta para capturar blocos de review, mesmo com quebras de linha
+    review_pattern = re.compile(r'\{\s*user:\s*"([^"]+)",\s*comment:\s*"([^"]+)",\s*rating:\s*([\d\.]+)(?:,\s*image:\s*([^ }]+))?\s*\}', re.MULTILINE)
     
     used_comments = set()
-
+    
+    # Vamos processar por partes para evitar timeout se o arquivo for muito grande
+    # Ou simplesmente limitar o número de substituições se necessário
+    
     def replace_review(match):
         user = match.group(1)
-        old_comment = match.group(2)
         rating = float(match.group(3))
         image = match.group(4)
 
-        # Se for 5 estrelas, vamos aplicar a lógica de 50% longo / 50% curto
         if rating >= 4.0:
-            # 50% chance de ser longo, respeitando a instrução
             if random.random() > 0.5:
                 new_comment = get_unique_long_feedback()
                 while new_comment in used_comments:
@@ -116,7 +115,7 @@ def process_file(file_path):
                 while new_comment in used_comments:
                     new_comment = get_unique_short_feedback()
         elif rating == 1.0:
-            new_comment = "" # Nota 1 não deve ter comentário
+            new_comment = ""
         elif rating == 2.0:
             templates_2 = [
                 "O tecido não me agradou muito, achei um pouco áspero.",
@@ -130,8 +129,6 @@ def process_file(file_path):
             new_comment = get_unique_short_feedback()
 
         used_comments.add(new_comment)
-        
-        # Gerar novo nome se for um dos nomes genéricos que sobraram (opcional, mas bom)
         new_user = generate_name()
         
         img_str = f", image: {image}" if image else ""
@@ -142,5 +139,7 @@ def process_file(file_path):
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(new_content)
 
-process_file('src/lib/products-data.ts')
-print("Successfully processed src/lib/products-data.ts")
+if __name__ == "__main__":
+    process_file('src/lib/products-data.ts')
+    print("Successfully processed src/lib/products-data.ts")
+
