@@ -354,6 +354,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
 
 
 
+
         {/* Form and Desktop Content */}
         <div className="flex-1 order-2 lg:order-1 p-6 md:p-10 lg:p-16 bg-white min-h-screen">
           <div className="bg-white">
