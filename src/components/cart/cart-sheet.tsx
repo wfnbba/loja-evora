@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useCartStore } from "@/store/cart-store";
-import { CheckoutOverlay } from "./checkout-overlay";
+import { useNavigate } from "@tanstack/react-router";
 import {
   Sheet,
   SheetContent,
@@ -9,7 +9,7 @@ import {
   SheetFooter,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Minus, Plus, Trash2, ShoppingBag, Loader2 } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 
@@ -20,11 +20,7 @@ interface CartSheetProps {
 
 export function CartSheet({ open, onOpenChange }: CartSheetProps) {
   const { items, removeItem, updateQuantity, totalPrice } = useCartStore();
-  const [showCheckout, setShowCheckout] = useState(false);
-
-  if (showCheckout) {
-    return <CheckoutOverlay onClose={() => setShowCheckout(false)} />;
-  }
+  const navigate = useNavigate();
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -118,7 +114,10 @@ export function CartSheet({ open, onOpenChange }: CartSheetProps) {
             <Separator className="bg-border/50" />
             <Button 
               id="checkout-button"
-              onClick={() => setShowCheckout(true)}
+              onClick={() => {
+                onOpenChange(false);
+                navigate({ to: "/checkout" });
+              }}
               className="w-full rounded-none py-8 uppercase tracking-[0.2em] font-medium cursor-pointer bg-foreground text-background hover:bg-foreground/90 transition-all utmify"
             >
               Finalizar Compra

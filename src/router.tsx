@@ -10,6 +10,7 @@ export const getRouter = () => {
     context: { queryClient },
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
+    // Add default components that don't include the root layout for specific routes if needed
   });
 
   return router;
