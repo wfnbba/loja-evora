@@ -9,6 +9,8 @@ import { Progress } from "@/components/ui/progress";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { products as localProducts } from "@/lib/products-data";
 import embalagemAsset from "@/assets/embalagem-evora.webp.asset.json";
+import comprarOnlineAsset from "@/assets/comprar-online.webp.asset.json";
+import comoVistoEmAsset from "@/assets/como-visto-em.webp.asset.json";
 
 
 export const Route = createFileRoute("/produtos/$productId")({
