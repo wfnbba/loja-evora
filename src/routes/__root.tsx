@@ -91,9 +91,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Évora | Elegância que Impõe Presença" },
-      { name: "description", content: "Loja oficial Évora. Roupas que inspiram confiança e elegância." },
-      { property: "og:title", content: "Évora" },
+      { title: "Loja Évora | Elegância que Impõe Presença" },
+      { name: "description", content: "Loja oficial Loja Évora. Roupas que inspiram confiança e elegância." },
+      { property: "og:title", content: "Loja Évora" },
       { property: "og:description", content: "Elegância que Impõe Presença" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
