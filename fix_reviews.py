@@ -63,11 +63,11 @@ def get_unique_long_feedback():
 
 # Feedbacks CURTOS (manter o estilo, mas garantir que não tenham as frases proibidas)
 SHORT_FEEDBACK_TEMPLATES = [
-    "Ficou lindíssimo, o tamanho P serviu certinho em mim.",
+    "Ficou lindíssimo, o tamanho serviu certinho em mim.",
     "O tecido é uma delícia na pele, muito macio.",
     "O caimento é surreal de bom, valoriza muito o corpo.",
     "Chegou tudo certinho e a peça é um encanto.",
-    "O tamanho GG serviu perfeitamente, sem apertar.",
+    "O tamanho serviu perfeitamente, sem apertar.",
     "O luxo em forma de roupa, me senti uma rainha.",
     "Qualidade que surpreende, o acabamento interno é perfeito.",
     "A cor é maravilhosa e o tecido é muito confortável.",
