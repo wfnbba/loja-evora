@@ -234,7 +234,8 @@ function Header() {
             {navLinks.map((link) => (
               <Link
                 key={link.name}
-                to={link.href}
+                to={link.to}
+                {...(link.hash ? { hash: link.hash } : {})}
                 className="text-xs font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors"
               >
                 {link.name}
