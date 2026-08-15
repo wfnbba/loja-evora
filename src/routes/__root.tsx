@@ -199,7 +199,7 @@ function Header() {
     <>
       <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur-md">
         <div className="container relative mx-auto flex h-20 items-center justify-between px-4 lg:px-8">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" aria-label="Abrir menu" className="cursor-pointer">
@@ -226,16 +226,15 @@ function Header() {
               </SheetContent>
             </Sheet>
 
+            <Link to="/" className="flex items-center md:hidden">
+              <img src={logoTextAsset.url} alt="Évora" className="h-7 w-auto" />
+            </Link>
 
             <Link to="/" className="hidden items-center gap-2 md:flex">
               <img src={logoAsset.url} alt="Évora Logo" className="h-10 w-auto" />
               <img src={logoTextAsset.url} alt="Évora" className="h-6 w-auto" />
             </Link>
           </div>
-
-          <Link to="/" className="absolute left-1/2 -translate-x-1/2 md:hidden">
-            <img src={logoTextAsset.url} alt="Évora" className="h-7 w-auto" />
-          </Link>
 
           <nav className="hidden items-center gap-8 md:flex">
             {navLinks.map((link) => (
