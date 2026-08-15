@@ -165,10 +165,11 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                   <p className="text-[10px] text-muted-foreground uppercase mt-1">{item.color} / {item.size}</p>
                   <div className="flex justify-between items-end mt-2">
                     <div className="flex items-center gap-2">
-                      <button onClick={() => decrementQuantity(item.id)} className="p-1 border border-border/20"><Minus className="size-3" /></button>
+                      <button onClick={() => decrementQuantity(item.id)} className="p-1 border border-border/20" type="button"><Minus className="size-3" /></button>
                       <span className="text-[10px] font-bold">{item.quantity}</span>
-                      <button onClick={() => incrementQuantity(item.id)} className="p-1 border border-border/20"><Plus className="size-3" /></button>
+                      <button onClick={() => incrementQuantity(item.id)} className="p-1 border border-border/20" type="button"><Plus className="size-3" /></button>
                     </div>
+
                     <span className="text-xs font-bold">R$ {(item.price * item.quantity).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
                   </div>
                 </div>
