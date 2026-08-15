@@ -265,6 +265,22 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: string
       }
+      lookup_order_tracking: {
+        Args: { p_tracking_code: string }
+        Returns: {
+          checked_at: string
+          purchased_at: string
+          tracking_code: string
+        }[]
+      }
+      recover_order_tracking_by_cpf: {
+        Args: { p_cpf: string }
+        Returns: {
+          checked_at: string
+          purchased_at: string
+          tracking_code: string
+        }[]
+      }
       save_checkout_order: {
         Args: { p_customer: Json; p_items: Json; p_order: Json }
         Returns: string
