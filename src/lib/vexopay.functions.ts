@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { requireProductPrice } from "@/lib/product-pricing";
 
 const VEXOPAY_API_URL = "https://www.vexopay.com.br/api";
 
@@ -35,11 +36,14 @@ export const createPixPayment = createServerFn({ method: "POST" })
     const ci = process.env["VEXOPAY_CI"];
     const cs = process.env["VEXOPAY_CS"];
 
-    let total = 0;
-    for (const item of data.items) {
-      const itemPrice = item.price || 0;
-      total += itemPrice * item.quantity;
-    }
+    const pricedItems = data.items.map((item) => ({
+      ...item,
+      price: requireProductPrice(item.id),
+    }));
+    const total = pricedItems.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0,
+    );
 
     if (total < 2.0) {
       throw new Error("O valor mínimo para pagamento PIX é R$ 2,00.");
@@ -122,11 +126,11 @@ export const createPixPayment = createServerFn({ method: "POST" })
           },
         },
         transactionId: transactionResult.data.transactionId,
-        items: data.items.map((i) => ({
+        items: pricedItems.map((i) => ({
           id: i.id,
           name: i.name,
           quantity: i.quantity,
-          price: i.price || 0,
+          price: i.price,
           size: i.size ?? null,
         })),
         totalAmount: total,
