@@ -105,31 +105,73 @@ export type Database = {
       }
       orders: {
         Row: {
+          approved_at: string | null
           created_at: string
           customer_email: string
+          customer_ip: string | null
+          gateway_created_at: string | null
+          gateway_fee: number | null
           id: string
+          last_webhook_payload: Json | null
           metadata: Json | null
+          net_amount: number | null
+          payment_method: string
           status: string
           total_amount: number
           transaction_id: string | null
+          utmify_attempts: number
+          utmify_last_attempt_at: string | null
+          utmify_last_error: string | null
+          utmify_response: Json | null
+          utmify_sent_at: string | null
+          utmify_status: string
+          webhook_received_at: string | null
         }
         Insert: {
+          approved_at?: string | null
           created_at?: string
           customer_email: string
+          customer_ip?: string | null
+          gateway_created_at?: string | null
+          gateway_fee?: number | null
           id?: string
+          last_webhook_payload?: Json | null
           metadata?: Json | null
+          net_amount?: number | null
+          payment_method?: string
           status?: string
           total_amount: number
           transaction_id?: string | null
+          utmify_attempts?: number
+          utmify_last_attempt_at?: string | null
+          utmify_last_error?: string | null
+          utmify_response?: Json | null
+          utmify_sent_at?: string | null
+          utmify_status?: string
+          webhook_received_at?: string | null
         }
         Update: {
+          approved_at?: string | null
           created_at?: string
           customer_email?: string
+          customer_ip?: string | null
+          gateway_created_at?: string | null
+          gateway_fee?: number | null
           id?: string
+          last_webhook_payload?: Json | null
           metadata?: Json | null
+          net_amount?: number | null
+          payment_method?: string
           status?: string
           total_amount?: number
           transaction_id?: string | null
+          utmify_attempts?: number
+          utmify_last_attempt_at?: string | null
+          utmify_last_error?: string | null
+          utmify_response?: Json | null
+          utmify_sent_at?: string | null
+          utmify_status?: string
+          webhook_received_at?: string | null
         }
         Relationships: [
           {
@@ -141,12 +183,79 @@ export type Database = {
           },
         ]
       }
+      webhook_events: {
+        Row: {
+          error: string | null
+          event_type: string
+          id: string
+          payload: Json
+          processed_at: string | null
+          processing_status: string
+          provider: string
+          received_at: string
+          signature_valid: boolean
+          transaction_id: string
+        }
+        Insert: {
+          error?: string | null
+          event_type: string
+          id?: string
+          payload: Json
+          processed_at?: string | null
+          processing_status?: string
+          provider: string
+          received_at?: string
+          signature_valid?: boolean
+          transaction_id: string
+        }
+        Update: {
+          error?: string | null
+          event_type?: string
+          id?: string
+          payload?: Json
+          processed_at?: string | null
+          processing_status?: string
+          provider?: string
+          received_at?: string
+          signature_valid?: boolean
+          transaction_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      claim_utmify_purchase: {
+        Args: { p_transaction_id: string }
+        Returns: boolean
+      }
+      finish_utmify_purchase: {
+        Args: {
+          p_error: string | null
+          p_response: Json
+          p_success: boolean
+          p_transaction_id: string
+        }
+        Returns: undefined
+      }
+      process_vexopay_event: {
+        Args: {
+          p_event_type: string
+          p_fee: number | null
+          p_net_amount: number | null
+          p_paid_at: string | null
+          p_payload: Json
+          p_status: string
+          p_transaction_id: string
+        }
+        Returns: Json
+      }
+      save_checkout_order: {
+        Args: { p_customer: Json; p_items: Json; p_order: Json }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never

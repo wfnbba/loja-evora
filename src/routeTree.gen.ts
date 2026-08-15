@@ -20,6 +20,7 @@ import { Route as PoliticaDeTrocasRouteImport } from './routes/politica-de-troca
 import { Route as RastrearPedidoRouteImport } from './routes/rastrear-pedido'
 import { Route as TermosDeServicoRouteImport } from './routes/termos-de-servico'
 import { Route as ProdutosProductIdRouteImport } from './routes/produtos.$productId'
+import { Route as ApiInternalReconcileUtmifyRouteImport } from './routes/api/internal/reconcile-utmify'
 import { Route as ApiPublicWebhookRouteImport } from './routes/api/public/webhook'
 
 const IndexRoute = IndexRouteImport.update({
@@ -77,6 +78,12 @@ const ProdutosProductIdRoute = ProdutosProductIdRouteImport.update({
   path: '/produtos/$productId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiInternalReconcileUtmifyRoute =
+  ApiInternalReconcileUtmifyRouteImport.update({
+    id: '/api/internal/reconcile-utmify',
+    path: '/api/internal/reconcile-utmify',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicWebhookRoute = ApiPublicWebhookRouteImport.update({
   id: '/api/public/webhook',
   path: '/api/public/webhook',
@@ -95,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/rastrear-pedido': typeof RastrearPedidoRoute
   '/termos-de-servico': typeof TermosDeServicoRoute
   '/produtos/$productId': typeof ProdutosProductIdRoute
+  '/api/internal/reconcile-utmify': typeof ApiInternalReconcileUtmifyRoute
   '/api/public/webhook': typeof ApiPublicWebhookRoute
 }
 export interface FileRoutesByTo {
@@ -109,6 +117,7 @@ export interface FileRoutesByTo {
   '/rastrear-pedido': typeof RastrearPedidoRoute
   '/termos-de-servico': typeof TermosDeServicoRoute
   '/produtos/$productId': typeof ProdutosProductIdRoute
+  '/api/internal/reconcile-utmify': typeof ApiInternalReconcileUtmifyRoute
   '/api/public/webhook': typeof ApiPublicWebhookRoute
 }
 export interface FileRoutesById {
@@ -124,6 +133,7 @@ export interface FileRoutesById {
   '/rastrear-pedido': typeof RastrearPedidoRoute
   '/termos-de-servico': typeof TermosDeServicoRoute
   '/produtos/$productId': typeof ProdutosProductIdRoute
+  '/api/internal/reconcile-utmify': typeof ApiInternalReconcileUtmifyRoute
   '/api/public/webhook': typeof ApiPublicWebhookRoute
 }
 export interface FileRouteTypes {
@@ -140,6 +150,7 @@ export interface FileRouteTypes {
     | '/rastrear-pedido'
     | '/termos-de-servico'
     | '/produtos/$productId'
+    | '/api/internal/reconcile-utmify'
     | '/api/public/webhook'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -154,6 +165,7 @@ export interface FileRouteTypes {
     | '/rastrear-pedido'
     | '/termos-de-servico'
     | '/produtos/$productId'
+    | '/api/internal/reconcile-utmify'
     | '/api/public/webhook'
   id:
     | '__root__'
@@ -168,6 +180,7 @@ export interface FileRouteTypes {
     | '/rastrear-pedido'
     | '/termos-de-servico'
     | '/produtos/$productId'
+    | '/api/internal/reconcile-utmify'
     | '/api/public/webhook'
   fileRoutesById: FileRoutesById
 }
@@ -183,6 +196,7 @@ export interface RootRouteChildren {
   RastrearPedidoRoute: typeof RastrearPedidoRoute
   TermosDeServicoRoute: typeof TermosDeServicoRoute
   ProdutosProductIdRoute: typeof ProdutosProductIdRoute
+  ApiInternalReconcileUtmifyRoute: typeof ApiInternalReconcileUtmifyRoute
   ApiPublicWebhookRoute: typeof ApiPublicWebhookRoute
 }
 
@@ -265,6 +279,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProdutosProductIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/internal/reconcile-utmify': {
+      id: '/api/internal/reconcile-utmify'
+      path: '/api/internal/reconcile-utmify'
+      fullPath: '/api/internal/reconcile-utmify'
+      preLoaderRoute: typeof ApiInternalReconcileUtmifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/webhook': {
       id: '/api/public/webhook'
       path: '/api/public/webhook'
@@ -287,6 +308,7 @@ const rootRouteChildren: RootRouteChildren = {
   RastrearPedidoRoute: RastrearPedidoRoute,
   TermosDeServicoRoute: TermosDeServicoRoute,
   ProdutosProductIdRoute: ProdutosProductIdRoute,
+  ApiInternalReconcileUtmifyRoute: ApiInternalReconcileUtmifyRoute,
   ApiPublicWebhookRoute: ApiPublicWebhookRoute,
 }
 export const routeTree = rootRouteImport
