@@ -59,7 +59,7 @@ export async function trackCustomerAndOrder(data: {
         transaction_id: data.transactionId,
         status: 'pending',
         total_amount: data.totalAmount,
-        metadata: data.trackingParameters || {}
+        metadata: (data.trackingParameters || {}) as any
       })
       .select()
       .single();

@@ -93,13 +93,13 @@ export const Route = createFileRoute('/api/public/webhook')({
                   priceInCents: Math.round(item.price * 100)
                 })),
                 trackingParameters: {
-                  utm_source: order.metadata?.utm_source || null,
-                  utm_medium: order.metadata?.utm_medium || null,
-                  utm_campaign: order.metadata?.utm_campaign || null,
-                  utm_content: order.metadata?.utm_content || null,
-                  utm_term: order.metadata?.utm_term || null,
-                  src: order.metadata?.src || null,
-                  sck: order.metadata?.sck || null
+                  utm_source: (order as any).metadata?.utm_source || null,
+                  utm_medium: (order as any).metadata?.utm_medium || null,
+                  utm_campaign: (order as any).metadata?.utm_campaign || null,
+                  utm_content: (order as any).metadata?.utm_content || null,
+                  utm_term: (order as any).metadata?.utm_term || null,
+                  src: (order as any).metadata?.src || null,
+                  sck: (order as any).metadata?.sck || null
                 },
 
                 commission: {
