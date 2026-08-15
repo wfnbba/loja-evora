@@ -26,7 +26,7 @@ export function OptimizedImage({
       width={width}
       height={height}
       loading={priority ? "eager" : "lazy"}
-      fetchPriority={priority ? "high" : "auto"}
+      fetchPriority={priority ? "high" : "low"}
       decoding="async"
       className={cn("h-auto max-w-full", className)}
       {...props}

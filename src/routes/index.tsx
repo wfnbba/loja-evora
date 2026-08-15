@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import heroMobileAsset from "@/assets/hero_mobile.png.asset.json";
-import { products as localProducts } from "@/lib/products-data";
+import { productCatalog } from "@/lib/product-catalog";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,10 +25,8 @@ function Index() {
     <div className="">
       <main>
         <section className="relative h-[80vh] w-full overflow-hidden">
-          <div
-            className="absolute inset-0 hidden bg-cover bg-center md:block"
-            style={{ backgroundImage: `url(${heroMobileAsset.url})`, backgroundPosition: "50% 20%" }}
-          >
+          <div className="absolute inset-0 hidden md:block">
+            <OptimizedImage src={heroMobileAsset.url} alt="Coleção Évora" className="h-full w-full object-cover object-[50%_20%]" width={1920} height={1080} priority />
             <div className="absolute inset-0 bg-foreground/10" />
           </div>
           <div className="absolute inset-0 md:hidden">
@@ -45,13 +43,13 @@ function Index() {
           <h1 className="mb-10 md:mb-16 text-center text-2xl md:text-3xl font-light uppercase tracking-[0.3em]">Coleção Évora</h1>
           <div className="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-3 md:gap-x-8 lg:grid-cols-4">
 
-            {localProducts.map((product) => (
+            {productCatalog.map((product) => (
               <div key={product.id} className="group cursor-pointer">
                 <Card className="cursor-pointer border-none bg-transparent shadow-none">
                   <CardContent className="p-0">
                     <Link to="/produtos/$productId" params={{ productId: product.id }} className="relative mb-4 block aspect-[3/4] overflow-hidden bg-muted md:mb-6">
                       <OptimizedImage
-                        src={product.images[0] || ""}
+                        src={product.image}
                         alt={product.name}
                         className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                         width={400}

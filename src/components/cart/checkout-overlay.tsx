@@ -139,7 +139,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             {items.map(item => (
               <div key={`${item.id}-${item.color}-${item.size}`} className="flex gap-4">
                 <div className="size-20 bg-white border border-border/10 overflow-hidden relative flex-shrink-0">
-                  <OptimizedImage src={item.image} alt={item.name} className="object-cover w-full h-full" />
+                  <OptimizedImage src={item.image} alt={item.name} className="object-cover w-full h-full" width={80} height={80} />
                   <span className="absolute -top-1 -right-1 size-5 bg-foreground text-background text-[10px] flex items-center justify-center rounded-full font-bold">{item.quantity}</span>
                 </div>
                 <div className="flex-1 py-1">

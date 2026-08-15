@@ -238,6 +238,47 @@ export interface Product {
   };
 }
 
+type ProductReview = Product["reviews"][number];
+
+function getReviewTarget(product: Product) {
+  return Math.max(product.reviews.length, Math.round(product.salesCount * 0.32));
+}
+
+export function getProductReviewCount(product: Product) {
+  return getReviewTarget(product);
+}
+
+export function getProductReviewsPage(product: Product, page: number, perPage: number): ProductReview[] {
+  const start = (page - 1) * perPage;
+  const end = Math.min(start + perPage, getReviewTarget(product));
+  const reviews = product.reviews.slice(start, Math.min(end, product.reviews.length));
+
+  if (end <= product.reviews.length) return reviews;
+
+  const missing = getReviewTarget(product) - product.reviews.length;
+  const fourStars = Math.round(missing * 0.15);
+  const fiveStars = missing - fourStars;
+  const generatedStart = Math.max(0, start - product.reviews.length);
+  const generatedEnd = end - product.reviews.length;
+
+  let seed = 0;
+  for (let i = 0; i < product.id.length; i++) {
+    seed = (seed * 31 + product.id.charCodeAt(i)) % 100000;
+  }
+
+  for (let i = 0; i < generatedEnd; i++) {
+    seed = (seed * 1103515245 + 12345) % 2147483648;
+    if (i < generatedStart) continue;
+    reviews.push({
+      user: REVIEW_NAMES[seed % REVIEW_NAMES.length] ?? "Maria S.",
+      comment: "",
+      rating: i < fiveStars ? 5.0 : 4.0,
+    });
+  }
+
+  return reviews;
+}
+
 
 const sizes = ["PP", "P", "M", "G", "GG", "XGG"];
 const numericSizes = ["34", "36", "38", "40", "42", "44", "46"];
@@ -1467,9 +1508,9 @@ export const products: Product[] = [
 ];
 
 // --- Complemento de avaliações somente-nota ---------------------------------
-// Cada produto deve exibir um total de avaliações equivalente a 32% das vendas.
-// As avaliações existentes NÃO são alteradas: apenas completamos a diferença
-// com avaliações sem texto (só estrelas), distribuídas em 85% nota 5 e 15% nota 4.
+// Cada produto exibe um total de avaliações equivalente a 32% das vendas.
+// As avaliações existentes NÃO são alteradas: a diferença é gerada por página,
+// sem texto (só estrelas), distribuída em 85% nota 5 e 15% nota 4.
 for (const product of products) {
   const target = Math.round(product.salesCount * 0.32);
   const missing = target - product.reviews.length;
@@ -1477,15 +1518,6 @@ for (const product of products) {
 
   const fourStars = Math.round(missing * 0.15);
   const fiveStars = missing - fourStars;
-
-  let seed = 0;
-  for (let i = 0; i < product.id.length; i++) seed = (seed * 31 + product.id.charCodeAt(i)) % 100000;
-
-  for (let i = 0; i < missing; i++) {
-    seed = (seed * 1103515245 + 12345) % 2147483648;
-    const user = REVIEW_NAMES[seed % REVIEW_NAMES.length] ?? "Maria S.";
-    product.reviews.push({ user, comment: "", rating: i < fiveStars ? 5.0 : 4.0 });
-  }
 
   product.ratingBreakdown[5] += fiveStars;
   product.ratingBreakdown[4] += fourStars;

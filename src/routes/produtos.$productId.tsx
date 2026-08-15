@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Progress } from "@/components/ui/progress";
 import { OptimizedImage } from "@/components/ui/optimized-image";
-import { products as localProducts } from "@/lib/products-data";
+import { getProductReviewCount, getProductReviewsPage, products as localProducts } from "@/lib/products-data";
 import embalagemAsset from "@/assets/embalagem-evora.webp.asset.json";
 import comprarOnlineAsset from "@/assets/comprar-online.webp.asset.json";
 import comoVistoEmAsset from "@/assets/como-visto-em.webp.asset.json";
@@ -57,9 +57,9 @@ function ProductPage() {
   const [reviewPage, setReviewPage] = useState(1);
   const reviewsPerPage = 10;
   
-  const totalReviews = product.reviews.length;
+  const totalReviews = getProductReviewCount(product);
   const totalPages = Math.ceil(totalReviews / reviewsPerPage);
-  const currentReviews = product.reviews.slice((reviewPage - 1) * reviewsPerPage, reviewPage * reviewsPerPage);
+  const currentReviews = getProductReviewsPage(product, reviewPage, reviewsPerPage);
   
   const addItem = useCartStore((state) => state.addItem);
 
@@ -395,7 +395,7 @@ function ProductPage() {
                         <Star key={i} className={`size-5 ${i < Math.floor(product.rating) ? "fill-current" : "text-muted-foreground"}`} />
                       ))}
                     </div>
-                    <span className="text-sm uppercase tracking-widest text-muted-foreground font-medium">{product.reviews.length.toLocaleString("pt-BR")} avaliações</span>
+                    <span className="text-sm uppercase tracking-widest text-muted-foreground font-medium">{totalReviews.toLocaleString("pt-BR")} avaliações</span>
                   </div>
 
                   <div className="col-span-1 space-y-2 lg:col-span-2">
@@ -570,6 +570,7 @@ function VideoPlayer({ src, poster }: { src: string; poster?: string | undefined
       <video
         ref={videoRef}
         src={src}
+        preload="none"
         playsInline
         className="h-full w-full object-cover"
         poster={poster}
