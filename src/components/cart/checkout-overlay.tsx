@@ -84,9 +84,11 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             neighborhood: formData.neighborhood,
             city: formData.city,
             state: formData.state,
-          }
+          },
+          trackingParameters: getPersistedUtms()
         }
       });
+
       if (response.success) {
         setPixData(response.data);
         setStep("payment");

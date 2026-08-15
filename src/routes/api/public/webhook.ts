@@ -1,5 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { createHmac, timingSafeEqual } from 'node:crypto';
+import { supabaseAdmin as supabase } from '@/integrations/supabase/client.server';
+import { sendUtmifySale } from '@/lib/utmify.functions';
+
 
 export const Route = createFileRoute('/api/public/webhook')({
   server: {
@@ -46,11 +49,76 @@ export const Route = createFileRoute('/api/public/webhook')({
 
         const payload = JSON.parse(body);
         
-        if (payload.event === 'payment.completed' && payload.data.status === 'paid') {
-          console.log(`Payment confirmed for transaction ${payload.data.transactionId}`);
-          // Here we would typically update a database or trigger fulfillment
-          // Since we are using local state/Zustand, the client will also poll or be notified via WebSockets if available
+        if (payload.event === 'payment.completed' || payload.event === 'payment.paid') {
+          const transactionId = payload.data.transactionId;
+          const status = payload.data.status === 'paid' ? 'paid' : 'waiting_payment';
+          
+          console.log(`Payment status update for transaction ${transactionId}: ${status}`);
+          
+          // 1. Update database
+          const { data: order, error: orderError } = await supabase
+            .from('orders')
+            .update({ status: status === 'paid' ? 'paid' : 'pending' })
+            .eq('transaction_id', transactionId)
+            .select('*, order_items(*), customers(*)')
+            .single();
+
+          if (order && !orderError) {
+            // 2. Notify UTMify if paid
+            if (status === 'paid') {
+              const customer = order.customers;
+              const items = order.order_items || [];
+              
+              // We need UTMs. In a real scenario, we'd store them in the database during order creation.
+              // For now, we'll try to recover what we can or use defaults.
+              // Ideally, trackCustomerAndOrder should have saved the tracking parameters.
+              
+              const utmifyPayload = {
+                orderId: order.id.toString(),
+                status: 'paid',
+                paymentMethod: 'pix',
+                createdAt: new Date(order.created_at).toISOString().replace('T', ' ').split('.')[0],
+                approvedDate: new Date().toISOString().replace('T', ' ').split('.')[0],
+                customer: {
+                  name: customer.name,
+                  email: customer.email,
+                  phone: customer.phone,
+                  document: customer.document,
+                  country: 'BR'
+                },
+                products: items.map((item: any) => ({
+                  id: item.product_id,
+                  name: item.product_name,
+                  quantity: item.quantity,
+                  priceInCents: Math.round(item.price * 100)
+                })),
+                trackingParameters: {
+                  utm_source: (order as any).metadata?.utm_source || null,
+                  utm_medium: (order as any).metadata?.utm_medium || null,
+                  utm_campaign: (order as any).metadata?.utm_campaign || null,
+                  utm_content: (order as any).metadata?.utm_content || null,
+                  utm_term: (order as any).metadata?.utm_term || null,
+                  src: (order as any).metadata?.src || null,
+                  sck: (order as any).metadata?.sck || null
+                },
+
+                commission: {
+                  totalPriceInCents: Math.round(order.total_amount * 100),
+                  gatewayFeeInCents: Math.round(order.total_amount * 0.03 * 100), // Estimate
+                  userCommissionInCents: Math.round(order.total_amount * 0.97 * 100)
+                }
+              };
+
+              try {
+                // Call server function directly since we are on the server
+                await sendUtmifySale({ data: utmifyPayload });
+              } catch (utmError) {
+                console.error("Failed to notify UTMify:", utmError);
+              }
+            }
+          }
         }
+
 
         return new Response('ok', { status: 200 });
       }

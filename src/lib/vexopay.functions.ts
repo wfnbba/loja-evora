@@ -25,7 +25,9 @@ const createPixInput = z.object({
     state: z.string(),
     zipCode: z.string(),
   }),
+  trackingParameters: z.any().optional(),
 });
+
 
 export const createPixPayment = createServerFn({ method: "POST" })
   .validator((data) => createPixInput.parse(data))
@@ -115,8 +117,10 @@ export const createPixPayment = createServerFn({ method: "POST" })
           price: i.price || 0,
           size: i.size ?? null
         })),
-        totalAmount: total
+        totalAmount: total,
+        trackingParameters: data.trackingParameters
       }).catch(err => console.error("Tracking error during PIX creation:", err));
+
     }
 
     return transactionResult;

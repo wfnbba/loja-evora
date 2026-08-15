@@ -105,6 +105,7 @@ export type Database = {
           created_at: string
           customer_email: string
           id: string
+          metadata: Json | null
           status: string
           total_amount: number
           transaction_id: string | null
@@ -113,6 +114,7 @@ export type Database = {
           created_at?: string
           customer_email: string
           id?: string
+          metadata?: Json | null
           status?: string
           total_amount: number
           transaction_id?: string | null
@@ -121,6 +123,7 @@ export type Database = {
           created_at?: string
           customer_email?: string
           id?: string
+          metadata?: Json | null
           status?: string
           total_amount?: number
           transaction_id?: string | null
