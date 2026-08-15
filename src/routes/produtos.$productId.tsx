@@ -339,7 +339,7 @@ function ProductPage() {
               <Button 
                 onClick={addToCart} 
                 className={cn(
-                  "w-full rounded-none py-10 text-sm md:text-base font-bold uppercase tracking-widest transition-all duration-300 utmify",
+                  "w-full rounded-none py-10 text-sm md:text-base font-bold uppercase tracking-widest transition-all duration-300",
                   (!selectedSize || (product.colors && product.colors.length > 0 && !selectedColor)) 
                     ? "bg-[#4a3f35]/40 hover:bg-[#4a3f35]/50" 
                     : "bg-[#4a3f35] hover:bg-[#4a3f35]/90"
