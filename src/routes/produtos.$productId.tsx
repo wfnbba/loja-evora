@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { Progress } from "@/components/ui/progress";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { products as localProducts } from "@/lib/products-data";
+import embalagemAsset from "@/assets/embalagem-evora.webp.asset.json";
 
 
 export const Route = createFileRoute("/produtos/$productId")({
@@ -366,6 +367,19 @@ function ProductPage() {
                 )}
               </div>
             </div>
+
+            <div className="pt-4">
+              <div className="overflow-hidden rounded-sm border border-border bg-card shadow-[0_8px_30px_-12px_rgba(74,63,53,0.35)]">
+                <OptimizedImage
+                  src={embalagemAsset.url}
+                  alt="Embalagem premium Loja Évora"
+                  className="h-full w-full object-cover"
+                  width={1129}
+                  height={1440}
+                />
+              </div>
+            </div>
+
 
             <div id="feedbacks" className="space-y-12 border-t border-border pt-12">
               <div className="space-y-8">
