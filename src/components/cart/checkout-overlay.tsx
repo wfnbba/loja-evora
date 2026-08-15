@@ -60,6 +60,8 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
       return () => clearTimeout(timer);
     }
   }, [formData.email, formData.name, formData.phone, trackLeadFn]);
+
+  useEffect(() => {
     const timer = setInterval(() => setTimeLeft(p => p > 0 ? p - 1 : 0), 1000);
     return () => clearInterval(timer);
   }, []);
