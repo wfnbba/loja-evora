@@ -9,6 +9,7 @@ import conjuntoEspresso1 from "@/assets/products/conjunto-espresso-alfaiataria-1
 import conjuntoRose1 from "@/assets/products/ig-0.jpg";
 import auroraRose1 from "@/assets/products/ig-1.jpg";
 import calcaOffWhite1 from "@/assets/products/calca-alfaiataria-off-white-1.png.asset.json";
+import { PRODUCT_PRICES } from "@/lib/product-pricing";
 
 export interface ProductSummary {
   id: string;
@@ -24,7 +25,7 @@ export const productCatalog: ProductSummary[] = [
   {
     id: "vestido-aurora-marfim",
     name: "Vestido Évora Aurora Marfim",
-    price: 89,
+    price: PRODUCT_PRICES["vestido-aurora-marfim"],
     originalPrice: 179,
     image: auroraMarfim1.url,
     salesCount: 3421,
@@ -33,7 +34,7 @@ export const productCatalog: ProductSummary[] = [
   {
     id: "vestido-aurora-cafe",
     name: "Vestido Évora Aurora Café",
-    price: 89,
+    price: PRODUCT_PRICES["vestido-aurora-cafe"],
     originalPrice: 179,
     image: auroraCafe1.url,
     salesCount: 2154,
@@ -42,7 +43,7 @@ export const productCatalog: ProductSummary[] = [
   {
     id: "vestido-monument-noir",
     name: "Vestido Évora Monument Noir",
-    price: 189,
+    price: PRODUCT_PRICES["vestido-monument-noir"],
     originalPrice: 189,
     image: monumentNoir1.url,
     salesCount: 1587,
@@ -51,7 +52,7 @@ export const productCatalog: ProductSummary[] = [
   {
     id: "colete-alvorada",
     name: "Colete Évora Alvorada",
-    price: 89,
+    price: PRODUCT_PRICES["colete-alvorada"],
     originalPrice: 89,
     image: alvorada1.url,
     salesCount: 4231,
@@ -60,7 +61,7 @@ export const productCatalog: ProductSummary[] = [
   {
     id: "vestido-satin-espresso",
     name: "Vestido Évora Satin Espresso",
-    price: 189,
+    price: PRODUCT_PRICES["vestido-satin-espresso"],
     originalPrice: 429,
     image: satinEspresso1.url,
     salesCount: 2845,
@@ -69,7 +70,7 @@ export const productCatalog: ProductSummary[] = [
   {
     id: "saia-chiffon-fluida",
     name: "Saia Évora Chiffon Fluida",
-    price: 159,
+    price: PRODUCT_PRICES["saia-chiffon-fluida"],
     originalPrice: 159,
     image: saiaChiffon1.url,
     salesCount: 5124,
@@ -78,7 +79,7 @@ export const productCatalog: ProductSummary[] = [
   {
     id: "saia-renda-romantique",
     name: "Saia Évora Renda Romantique",
-    price: 169,
+    price: PRODUCT_PRICES["saia-renda-romantique"],
     originalPrice: 169,
     image: saiaRenda1.url,
     salesCount: 1243,
@@ -87,7 +88,7 @@ export const productCatalog: ProductSummary[] = [
   {
     id: "conjunto-espresso-alfaiataria",
     name: "Conjunto Évora Espresso Alfaiataria",
-    price: 139,
+    price: PRODUCT_PRICES["conjunto-espresso-alfaiataria"],
     originalPrice: 349,
     image: conjuntoEspresso1.url,
     salesCount: 6842,
@@ -96,7 +97,7 @@ export const productCatalog: ProductSummary[] = [
   {
     id: "conjunto-rose",
     name: "Conjunto Évora Rosé",
-    price: 179,
+    price: PRODUCT_PRICES["conjunto-rose"],
     originalPrice: 179,
     image: conjuntoRose1,
     salesCount: 843,
@@ -105,7 +106,7 @@ export const productCatalog: ProductSummary[] = [
   {
     id: "vestido-aurora-rose",
     name: "Blusa Évora Aurora Rosé",
-    price: 119,
+    price: PRODUCT_PRICES["vestido-aurora-rose"],
     originalPrice: 119,
     image: auroraRose1,
     salesCount: 652,
@@ -114,7 +115,7 @@ export const productCatalog: ProductSummary[] = [
   {
     id: "calca-alfaiataria-off-white",
     name: "Calça Évora Alfaiataria Off-White",
-    price: 99,
+    price: PRODUCT_PRICES["calca-alfaiataria-off-white"],
     originalPrice: 189,
     image: calcaOffWhite1.url,
     salesCount: 1842,
