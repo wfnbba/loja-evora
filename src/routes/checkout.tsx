@@ -27,7 +27,7 @@ function CheckoutPage() {
   if (items.length === 0) return null;
 
   return (
-    <div className="min-h-screen bg-[#fcfaf7]">
+    <div className="min-h-screen bg-white">
       <header className="w-full border-b border-border/50 bg-background">
         <div className="container mx-auto flex h-20 items-center justify-between px-4">
           <Link to="/">
