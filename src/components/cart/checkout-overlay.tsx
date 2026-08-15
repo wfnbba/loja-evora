@@ -247,7 +247,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
       </div>
 
 
-      <div className="flex flex-col lg:flex-row min-h-screen relative z-10">
+      <div className="flex flex-col lg:flex-row min-h-screen relative z-10 bg-white">
         {/* Mobile Order Summary (Always Visible) */}
         <div className="lg:hidden border-b border-border/50 bg-[#faf8f6]">
           <div 
@@ -348,6 +348,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             </div>
           </div>
         </div>
+      </div>
 
 
 
