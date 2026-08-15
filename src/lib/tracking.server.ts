@@ -95,7 +95,13 @@ export async function processVexoPayEvent(data: VexoPayEventData) {
 
   const parsed =
     result && typeof result === "object"
-      ? (result as { found?: boolean; firstPaid?: boolean; utmifySent?: boolean })
+      ? (result as {
+          found?: boolean;
+          firstPaid?: boolean;
+          utmifySent?: boolean;
+          trackingCode?: string;
+          purchasedAt?: string;
+        })
       : {};
 
   if (!parsed.found) throw new Error(`Order not found for transaction ${data.transactionId}`);
