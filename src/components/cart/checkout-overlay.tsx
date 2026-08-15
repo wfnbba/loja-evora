@@ -35,6 +35,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
     cep: "",
     street: "",
     number: "",
+    complement: "",
     neighborhood: "",
     city: "",
     state: "",
@@ -100,6 +101,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
             zipCode: formData.cep,
             street: formData.street,
             number: formData.number,
+            complement: formData.complement,
             neighborhood: formData.neighborhood,
             city: formData.city,
             state: formData.state,
@@ -124,7 +126,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
   return (
     <div className="w-full bg-white pb-20">
       <div className="bg-[#1a1512] text-white py-3 text-center mb-8 sticky top-[80px] z-40">
-        <p className="text-[10px] font-bold uppercase tracking-[0.2em]">Preço garantido por {Math.floor(timeLeft/60)}:{(timeLeft%60).toString().padStart(2,'0')}</p>
+        <p className="text-[10px] font-bold uppercase tracking-[0.2em]">Devido a alta demanda - Preço garantido por {Math.floor(timeLeft/60)}:{(timeLeft%60).toString().padStart(2,'0')}</p>
       </div>
 
       <div className="container mx-auto max-w-6xl px-4 flex flex-col lg:flex-row-reverse gap-12">
@@ -223,6 +225,7 @@ export function CheckoutOverlay({ onClose }: CheckoutOverlayProps) {
                     <Input placeholder="Número" required value={formData.number} onChange={e => setFormData(p=>({...p,number:e.target.value}))} className="h-14 rounded-none" />
                     <Input placeholder="Bairro" required value={formData.neighborhood} onChange={e => setFormData(p=>({...p,neighborhood:e.target.value}))} className="h-14 rounded-none" />
                   </div>
+                  <Input placeholder="Complemento (ex.: apto 402)" value={formData.complement} onChange={e => setFormData(p=>({...p,complement:e.target.value}))} className="h-14 rounded-none" />
                 </div>
               </div>
 

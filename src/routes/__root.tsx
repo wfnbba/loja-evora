@@ -139,15 +139,18 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const router = useRouter();
-  const isCheckoutPage = router.state.location.pathname === "/checkout" || router.state.location.pathname === "/obrigado";
+  const pathname = router.state.location.pathname;
+  const isCheckoutPage = pathname === "/checkout";
+  const isStandalonePage = isCheckoutPage || pathname === "/obrigado";
   const { queryClient } = Route.useRouteContext();
 
-  if (isCheckoutPage) {
+  if (isStandalonePage) {
     return (
       <QueryClientProvider client={queryClient}>
         <main className="flex-1">
           <Outlet />
         </main>
+        {isCheckoutPage && <Footer />}
       </QueryClientProvider>
     );
   }
