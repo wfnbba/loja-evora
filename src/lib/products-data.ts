@@ -1,3 +1,6 @@
+import p2d from "@/assets/products/p2-d.jpg";
+import p2c from "@/assets/products/p2-c.jpg";
+import p2b from "@/assets/products/p2-b.jpg";
 import ig0 from "@/assets/products/ig-0.jpg";
 import ig1 from "@/assets/products/ig-1.jpg";
 import ig2 from "@/assets/products/ig-2.jpg";
@@ -3213,7 +3216,7 @@ export const products: Product[] = [
     price: 219,
     originalPrice: 219,
     description: "Vestido midi rosé com decote fechado, cintura marcada e saia evasê. Um clássico leve que acompanha do almoço ao evento noturno." + exchangePolicy,
-    images: [ig2, p3b, p3c, p3d],
+    images: [ig1, p2b, p2c, p2d],
     sizes,
     colors: [{ name: "Rosé", value: "#e2b6b1" }],
     salesCount: 652,
